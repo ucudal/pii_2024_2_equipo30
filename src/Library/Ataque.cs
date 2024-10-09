@@ -6,6 +6,6 @@ public class Ataque
     public int Daño { get; set; }//toma el valor de daño para calcular cuanto daño va a haceer
     public int atacar(int Daño, string Nombre)//clase
     {
-        return 1;//ejemplo
+        return 1;//el 1 esta de mas,es un ejemplo para no tirar error
     }
 }
