@@ -4,30 +4,30 @@ namespace Library;
 
 public class Pokemon
 {
-    public string Nombre;
-    public string Tipo;
-    public int Vida;
-    private List<Estados> EstadosList;
-    public List<Resistencias> ResistenciasList;
+    public string Nombre { get; set; }
+    public int Vida { get; set; }
+    public int Id { get; set; }  // No la utlizamos hasta que implementemos el uso de la API
+    public List<Movimiento> Movimientos { get; set; }
 
-    public Pokemon(string nombre)
+    public Pokemon(string nombre, int vida, List<Movimiento> movimientos)
     {
-        string Nombre = nombre;
-        string Tipo = this.Tipo;
-        int Vida = this.Vida;
-        EstadosList = new List<Estados>();
+        Nombre = nombre;
+        Vida = vida;
+        Movimientos = movimientos;
+    }
+    public void Atacar(Pokemon oponente, Movimiento movimiento)
+    {
+        oponente.Vida -= movimiento.Poder;
+        if (oponente.Vida < 0)
+        {
+            oponente.Vida = 0;  // La vida no puede ser negativa
+        }
+        Console.WriteLine($"{Nombre} usó {movimiento.Nombre}! {oponente.Nombre} ahora tiene {oponente.Vida} puntos de vida.");
     }
 
-    public void AtaqueNormal(Ataque ataque)
+    public bool EstaFueraDeCombate()
     {
-
+        return Vida <= 0;
     }
-
-    public void AtaqueEspecial(AtaqueEspecial ataque)
-    {
-        
-    }
-
-
-
 }
+
