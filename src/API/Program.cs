@@ -44,6 +44,10 @@ public class Program
                         Console.WriteLine($"- {type.TypeDetail.Name}");
                     }
                 }
+                foreach (var habilidad in ListaHabilidad)
+                {
+                    Console.WriteLine($"aaaaaaaaaaaaaaaaa{habilidad.Name}");
+                }
 
                 // Imprimir las habilidades del Pokémon
                 Console.WriteLine("Habilidades:");
@@ -51,7 +55,7 @@ public class Program
                 {
                     foreach (var ability in pokemon.Abilities)
                     {
-                        ListaHabilidad.Add(new Ability(AbilityDetail.Name));
+                        ListaHabilidad.Add(new Ability(ability.AbilityDetail.Name));
                         Console.WriteLine($"- {ability.AbilityDetail.Name}");
                     }
                 }
