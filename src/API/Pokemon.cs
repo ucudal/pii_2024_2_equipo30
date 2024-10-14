@@ -21,9 +21,10 @@ public class Pokemon
     public List<Ability> Abilities { get; set; }
     public List<Type> Types { get; set; }
     public List<Stat> Stats { get; set; } 
+    public List<Dictionary<string,int>> DiccionarioStats { get; set; }
 
 // Puedes agregar más propiedades si necesitas más información del Pokémon
-    public Pokemon(string name, int height, int weight, int id, int order, List<Ability> abilities, List<Type> types, List<Stat> stats)
+    public Pokemon(string name, int height, int weight, int id, int order, List<Ability> abilities, List<Type> types, List<Dictionary<string,int>> diccionariostats)
     {
         this.Name = name;
         this.Height = height;
@@ -32,6 +33,6 @@ public class Pokemon
         this.Order = order;
         this.Abilities = abilities;
         this.Types = types;
-        this.Stats = stats;
+        this.DiccionarioStats = diccionariostats;
     }
 }
