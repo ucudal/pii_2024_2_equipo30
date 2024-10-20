@@ -8,10 +8,10 @@ public class Movimientos
     {
         ListaMovimientos = new List<Movimiento>
         {
-            new Movimiento("Impactrueno", 40),
-            new Movimiento("Llamarada", 90),
+            new Movimiento("Impactrueno", 40, EstadoEspecial.Paralizado),
+            new Movimiento("Llamarada", 90, EstadoEspecial.Quemado),
             new Movimiento("Golpe Karate", 50),
-            new Movimiento("Rayo Hielo", 80),
+            new Movimiento("Rayo Hielo", 80, EstadoEspecial.Dormido),
             new Movimiento("Placaje", 40),
             new Movimiento("Hoja Afilada", 70),
             new Movimiento("Terremoto", 100),
@@ -20,8 +20,8 @@ public class Movimientos
             new Movimiento("Hidrobomba", 110),
             new Movimiento("Viento Plata", 60),
             new Movimiento("Látigo", 30),
-            new Movimiento("Colmillo Ígneo", 65),
-            new Movimiento("Bola Sombra", 80),
+            new Movimiento("Colmillo Ígneo", 65, EstadoEspecial.Quemado),
+            new Movimiento("Bola Sombra", 80, EstadoEspecial.Paralizado),
             new Movimiento("Pulso Dragón", 85)
         };
     }

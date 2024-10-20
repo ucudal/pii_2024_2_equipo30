@@ -20,7 +20,7 @@ class Program
 
         // Crear la batalla
         Batalla batalla = new Batalla(jugador1, jugador2);
-
+        
         // Iniciar la batalla
         batalla.IniciarBatalla();
     }
