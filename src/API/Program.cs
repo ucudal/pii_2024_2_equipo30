@@ -13,7 +13,7 @@ public class Program
     public static async Task Main(string[] args)
     {
         // Nombre del Pokémon que quieres obtener
-        string pokemonName = "6";  
+        string pokemonName = "899";  
         // URL de la API de Pokémon
         string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonName}";
 
@@ -55,7 +55,7 @@ public class Program
                 {
                     Console.WriteLine($"- {habilidad.AbilityDetail.Name}");
                 }
-                Console.WriteLine($"Efectividaes: ");
+                Console.WriteLine($"Efectividades: ");
                 foreach (var diccionario in pokemon1.Tipo.Efectividad)
                 {
                     Console.WriteLine($"Tipo: {diccionario.Key}   -    Potenciador del ataque: {diccionario.Value}");
