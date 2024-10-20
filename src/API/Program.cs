@@ -13,7 +13,7 @@ public class Program
     public static async Task Main(string[] args)
     {
         // Nombre del Pokémon que quieres obtener
-        string pokemonName = "21";  
+        string pokemonName = "6";  
         // URL de la API de Pokémon
         string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonName}";
 
@@ -33,13 +33,8 @@ public class Program
                 int Vida = pokemon.Stats[0].base_stat;
                 int Ataque = pokemon.Stats[1].base_stat;
                 List<Ability> ListaHabilidad = new List<Ability>();
-                Type Tipo = new Type()
-                {
-                    TypeDetail = new TypeDetail
-                    {
-                        Name = pokemon.Types[0].TypeDetail.Name
-                    }
-                };
+                Type Tipo = new Type();
+                Tipo.SetType(pokemon.Types[0].TypeDetail.Name);
                 foreach (var ability in pokemon.Abilities)
                 {
                     ListaHabilidad.Add(new Ability());
@@ -59,6 +54,11 @@ public class Program
                 foreach (var habilidad in pokemon.Abilities)
                 {
                     Console.WriteLine($"- {habilidad.AbilityDetail.Name}");
+                }
+                Console.WriteLine($"Efectividaes: ");
+                foreach (var diccionario in pokemon1.Tipo.Efectividad)
+                {
+                    Console.WriteLine($"Tipo: {diccionario.Key}   -    Potenciador del ataque: {diccionario.Value}");
                 }
             }
             else
