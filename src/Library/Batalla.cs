@@ -40,17 +40,21 @@ public class Batalla
         // Mostrar Pokémon del jugador
         for (int i = 0; i < jugadorActual.Equipo.Count; i++)
         {
-            var pokemon = jugadorActual.Equipo[i];
+            var pokemon = jugadorActual.Equipo[i]; 
             if (!pokemon.EstaFueraDeCombate())
             {
                 Console.WriteLine($"{i + 1}: {pokemon.Nombre} - {pokemon.Vida} de vida");
             }
         }
-
         // Elección del Pokémon
         int eleccion = int.Parse(Console.ReadLine()) - 1;
         Pokemon pokemonSeleccionado = jugadorActual.Equipo[eleccion];
-
+        
+        if (!pokemonSeleccionado.PuedeAtacar())
+        {
+            Console.WriteLine($"{pokemonSeleccionado.Nombre} no puede atacar este turno.");
+            return;
+        }
         // Mostrar movimientos del Pokémon seleccionado
         Console.WriteLine($"{pokemonSeleccionado.Nombre}, elige un movimiento:");
 
