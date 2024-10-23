@@ -11,7 +11,9 @@ public class Pokemon
     public Tipo TipoPokemon { get; set; }
     public EstadoEspecial Estado { get; set; }
     public int TurnosDormido { get; set; } = 0;
+    public int VidaMax { get; set; }
     public int TurnosRestantesDeSueño { get; set; } = 0;
+    public bool FueraDeCombate{get;set;}
     private Random random = new Random();
 
     public Pokemon(string nombre, int vida, List<Movimiento> movimientos, Tipo tipoPokemon)
@@ -20,6 +22,7 @@ public class Pokemon
         Vida = vida;
         Movimientos = movimientos;
         TipoPokemon = tipoPokemon;
+        VidaMax = vida;
     }
     //Atencion, la clase atacar actualmente se encarga de manejar la efectividad y los Ataques especiales
     public void Atacar(Pokemon oponente, Movimiento movimiento)
@@ -73,9 +76,16 @@ public class Pokemon
 
     public bool EstaFueraDeCombate()
     {
-        return Vida <= 0;
+        if (Vida == 0 || Vida < 0)
+        {
+            return FueraDeCombate = true;
+        }
+        else
+        {
+            return FueraDeCombate = false;
+        }
     }
-
+    
     public bool PuedeAtacar()
     {
         if (Estado == EstadoEspecial.Dormido && TurnosRestantesDeSueño > 0)

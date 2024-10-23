@@ -3,6 +3,7 @@
 //clase interface echa para seguir la guia de diseño y que mantenga un bajo acoplamiento
 public interface IItem
 {
+    int VidaMax { get; set; }
     string ItemsName { get; set; }
     string ItemsDescription { get; set; }
     int Quantity { get; set; }
@@ -13,6 +14,7 @@ public interface IItem
 
 public abstract class Items : IItem //clase abstracta que implementa interfaz
 {
+    public int VidaMax { get; set; }
     public string ItemsName { get; set; }
     public string ItemsDescription { get; set; }
     public int Quantity { get; set; }
@@ -75,26 +77,20 @@ public class TotalCure : Items
     {
         if (Quantity > 0)
         {
-            //espacio para la parte del estado dormido
-/*            if (Pokemon.dormido == true)
+            if (pokemon.Estado == EstadoEspecial.Envenenado)
             {
-                Console.WriteLine();
-*/
-
-            if (pokemon.envenenado)
-            {
-                pokemon.envenenando = false;
+                pokemon.Estado = EstadoEspecial.Ninguno;
                 Console.WriteLine($"El pokemon {pokemon.Nombre} ya no está envenenado.");
             }
-            if (pokemon.paralizado)
+            if (pokemon.Estado == EstadoEspecial.Paralizado)
             {
-                pokemon.paralizado = false;
+                pokemon.Estado = EstadoEspecial.Ninguno;
                 Console.WriteLine($"El pokemon {pokemon.Nombre} ya no está paralizado.");
             }
 
-            if (pokemon.quemado)
+            if (pokemon.Estado == EstadoEspecial.Quemado)
             {
-                pokemon.quemado = false;
+                pokemon.Estado = EstadoEspecial.Ninguno;
                 Console.WriteLine($"El pokemon {pokemon.Nombre} ya no está quemado.");
             }
 
@@ -111,21 +107,21 @@ public class TotalCure : Items
 //clase que hereda de items
 public class Revive : Items
 {
-    private int HpRecovered = pokemon.maxhealth / 2;
+    private int HpRecovered;
     
     public Revive(int quantity) : base("Revivir", "Revive a un Pokémon con el 50% de su HP total.", quantity)
     {
-        
+        HpRecovered = VidaMax / 2;
     }
     
     public override void Use(Pokemon pokemon)
     {
         if (Quantity > 0)
         {
-            if (pokemon.EstaFueraDeCombate)
+            if (pokemon.FueraDeCombate = true)
             {
-                pokemon.vida = HpRecovered;
-                pokemon.EstaFueraDeCombate = false;
+                pokemon.FueraDeCombate = false;
+                pokemon.Vida = HpRecovered;
                 Console.WriteLine($"El pokemon {pokemon.Nombre} a sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
                 Consume();
             }
