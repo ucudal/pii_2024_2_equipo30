@@ -19,8 +19,8 @@ public class Pokemon
     public List<Ability> Abilities { get; set; }
     public List<Stat> Stats { get; set; }  // Propiedad para almacenar los stats
     public List<Type> Types { get; set; }  // Propiedad para almacenar los tipos
-   
-    public Pokemon(string name, int height, int weight, int id, int order, int vida, int ataque,Type tipo, List<Ability> abilities)
+   public List<Move> Moves { get; set; }
+    public Pokemon(string name, int height, int weight, int id, int order, int vida, int ataque,Type tipo, List<Ability> abilities, List<Move> moves)
     {
         this.Name = name;
         this.Height = height;
@@ -31,5 +31,6 @@ public class Pokemon
         this.Ataque = ataque;
         this.Tipo = tipo;
         this.Abilities = abilities;
+        this.Moves = moves;
     }
 }
