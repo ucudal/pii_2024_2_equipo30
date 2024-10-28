@@ -13,7 +13,7 @@ public class Program
     public static async Task Main(string[] args)
     {
         // Nombre del Pokémon que quieres obtener
-        string pokemonName = "130";  
+        string pokemonName = "25";  
         // URL de la API de Pokémon
         string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonName}";
 
@@ -26,12 +26,12 @@ public class Program
             {
                 //Parámetros
                 string Nombre = pokemon.Name;
-                int Altura = pokemon.Height;
-                int Peso = pokemon.Weight;
                 int Numero = pokemon.Id;
-                int Orden = pokemon.Order;
                 int Vida = pokemon.Stats[0].base_stat;
                 int Ataque = pokemon.Stats[1].base_stat;
+                int Defensa = pokemon.Stats[2].base_stat;
+                int AtaqueEspecial = pokemon.Stats[3].base_stat;
+                int DefensaEspecial = pokemon.Stats[4].base_stat;
                 List<Ability> ListaHabilidad = new List<Ability>();
                 Type Tipo = new Type();
                 Tipo.SetType(pokemon.Types[0].TypeDetail.Name);
@@ -67,15 +67,15 @@ public class Program
                 }
                 
                 
-                Pokemon pokemon1 = new Pokemon(Nombre, Altura, Peso, Numero, Orden, Vida,Ataque,Tipo,ListaHabilidad, ListMoves);
+                Pokemon pokemon1 = new Pokemon(Nombre, Numero, Vida,Ataque,Defensa, AtaqueEspecial, DefensaEspecial,Tipo,ListaHabilidad, ListMoves);
 
                 Console.WriteLine($"Nombre: {pokemon1.Name}");
-                Console.WriteLine($"Altura: {pokemon1.Height}");
-                Console.WriteLine($"Peso: {pokemon1.Weight}");
                 Console.WriteLine($"ID: {pokemon1.Id}");
-                Console.WriteLine($"Orden: {pokemon1.Order}");
-                Console.WriteLine($"Vida: {pokemon1.Vida}");
-                Console.WriteLine($"Ataque: {pokemon1.Ataque}");
+                Console.WriteLine($"Vida: {pokemon1.Health}");
+                Console.WriteLine($"Ataque: {pokemon1.Attack}");
+                Console.WriteLine($"Ataque: {pokemon1.Defense}");
+                Console.WriteLine($"Ataque: {pokemon1.SpecialAttack}");
+                Console.WriteLine($"Ataque: {pokemon1.SpecialDefense}");
                 Console.WriteLine($"Tipo: {pokemon1.Tipo.TypeDetail.Name}");
                 Console.WriteLine("Habilidades:");
                 foreach (var habilidad in pokemon.Abilities)
