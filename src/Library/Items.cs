@@ -56,9 +56,9 @@ public class SuperPotion : Items
     
     public override void Use(Pokemon pokemon)
     {
-        pokemon.Vida += HpRecovered;
+        pokemon.Health += HpRecovered;
         Consume();
-        Console.WriteLine($" El Pokemon {pokemon.Nombre} ha recuperado {HpRecovered} puntos de salud.");
+        Console.WriteLine($" El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud.");
         Consume();
     }
 }
@@ -80,18 +80,18 @@ public class TotalCure : Items
             if (pokemon.Estado == EstadoEspecial.Envenenado)
             {
                 pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Nombre} ya no está envenenado.");
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está envenenado.");
             }
             if (pokemon.Estado == EstadoEspecial.Paralizado)
             {
                 pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Nombre} ya no está paralizado.");
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está paralizado.");
             }
 
             if (pokemon.Estado == EstadoEspecial.Quemado)
             {
                 pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Nombre} ya no está quemado.");
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está quemado.");
             }
 
             Consume();
@@ -121,8 +121,8 @@ public class Revive : Items
             if (pokemon.FueraDeCombate = true)
             {
                 pokemon.FueraDeCombate = false;
-                pokemon.Vida = HpRecovered;
-                Console.WriteLine($"El pokemon {pokemon.Nombre} a sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
+                pokemon.Health = HpRecovered;
+                Console.WriteLine($"El pokemon {pokemon.Name} a sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
                 Consume();
             }
         }

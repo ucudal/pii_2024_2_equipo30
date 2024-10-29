@@ -43,7 +43,7 @@ public class Batalla
             var pokemon = jugadorActual.Equipo[i]; 
             if (!pokemon.EstaFueraDeCombate())
             {
-                Console.WriteLine($"{i + 1}: {pokemon.Nombre} - {pokemon.Vida} de vida");
+                Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
             }
         }
         // Elección del Pokémon
@@ -52,16 +52,16 @@ public class Batalla
         
         if (!pokemonSeleccionado.PuedeAtacar())
         {
-            Console.WriteLine($"{pokemonSeleccionado.Nombre} no puede atacar este turno.");
+            Console.WriteLine($"{pokemonSeleccionado.Name} no puede atacar este turno.");
             return;
         }
         // Mostrar movimientos del Pokémon seleccionado
-        Console.WriteLine($"{pokemonSeleccionado.Nombre}, elige un movimiento:");
+        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento:");
 
         for (int i = 0; i < pokemonSeleccionado.Movimientos.Count; i++)
         {
-            var movimiento = pokemonSeleccionado.Movimientos[i];
-            Console.WriteLine($"{i + 1}: {movimiento.Nombre} (Poder: {movimiento.Poder})");
+            var movimiento = pokemonSeleccionado.Moves[i];
+            Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}");
         }
 
         // Elección del movimiento

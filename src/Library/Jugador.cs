@@ -12,10 +12,15 @@ public class Jugador
         Equipo = equipo;
     }
 
+    public List<Pokemon> ElegirEquipo(string pokemon)
+    {
+        return new List<Pokemon>();
+    }
+
     public void CambiarPokemon(int indice)
     {
         PokemonActual = Equipo[indice];
-        Console.WriteLine($"{Nombre} cambió a {PokemonActual.Nombre}!");
+        Console.WriteLine($"{Nombre} cambió a {PokemonActual.Name}!");
     }
 
     public bool TodosFueraDeCombate()
