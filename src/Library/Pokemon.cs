@@ -27,6 +27,8 @@ public class Pokemon
     public int TurnosRestantesDeSueño { get; set; } = 0;
     public bool FueraDeCombate{get;set;}
     private Random random = new Random();
+    public Pokemon() {}
+
 
     public Pokemon(string name,  int id,  int health, int attack,int defense, int specialAttack, int specialDefense ,Type tipo,  List<Move> moves)
     {

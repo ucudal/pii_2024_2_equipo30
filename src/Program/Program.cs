@@ -1,4 +1,6 @@
-﻿namespace Program;
+﻿using System.Threading.Channels;
+
+namespace Program;
 using Library;
 using System;
 using System.Net.Http;
@@ -15,10 +17,14 @@ class Program
 {
     private static readonly HttpClient client = new HttpClient(); 
     public static async Task Main(string[] args)
+    {
+        List<Pokemon> ListaPokemon = new List<Pokemon>();
+        for (int i = 0; i< 6; i++)
         {
-            string pokemonName = "25";  
-            // URL de la API de Pokémon
-            string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonName}";
+            Console.WriteLine("Ingrese un nombre o un ID de un pokemon: ");
+            string pokemonx = Console.ReadLine();
+            string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonx}";
+            
             try
             {
                 Pokemon pokemon = await client.GetFromJsonAsync<Pokemon>(apiUrl);
@@ -55,7 +61,11 @@ class Program
                                 counter++;
                             }
                         }
+                        
                     }
+                    Pokemon pokemon1 = new Pokemon(Nombre, Numero, Vida,Ataque,Defensa, AtaqueEspecial, DefensaEspecial,Tipo, ListMoves);
+                    ListaPokemon.Add(pokemon1);
+                    
 
                 }
             }
@@ -64,15 +74,23 @@ class Program
                 Console.WriteLine("Hubo un problema al realizar la solicitud:");
                 Console.WriteLine(e.Message);
             }
-            // Crear dos jugadores
-            Jugador jugador1 = new Jugador("Jugador 1", pokemonsDisponibles.ObtenerEquipoAleatorio());
-            Jugador jugador2 = new Jugador("Jugador 2", pokemonsDisponibles.ObtenerEquipoAleatorio());
 
-            // Crear la batalla
-            Batalla batalla = new Batalla(jugador1, jugador2);
-                
-            // Iniciar la batalla
-            batalla.IniciarBatalla();
+            
+        }
+        foreach (var pokemon in ListaPokemon)
+        {
+            Console.WriteLine(pokemon.Name);
+        }
+        
+            // // Crear dos jugadores
+            // Jugador jugador1 = new Jugador("Jugador 1", pokemonsDisponibles.ObtenerEquipoAleatorio());
+            // Jugador jugador2 = new Jugador("Jugador 2", pokemonsDisponibles.ObtenerEquipoAleatorio());
+
+            // // Crear la batalla
+            // Batalla batalla = new Batalla(jugador1, jugador2);
+            //     
+            // // Iniciar la batalla
+            // batalla.IniciarBatalla();
         }
      
 }
