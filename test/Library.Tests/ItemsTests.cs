@@ -36,17 +36,21 @@ public class ItemsTests
     }
     
     [Test]
-    public void TotalCure_()
+    public void TotalCure_dontcleanstates()
     {
         
     }
-
     
-    
-    
-    [Test]
-    public void Revive()
+    [Test] 
+    public void Revive_CanRevive()
     {
-        
+            
     }
+     
+    [Test] 
+    public void Revive_Leavedead()
+    {
+            
+    }
+    
 }
