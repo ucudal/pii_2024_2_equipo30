@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Runtime.Intrinsics.Arm;
 using System.Text.Json.Serialization;
 namespace API;
 public class Program
@@ -13,7 +14,7 @@ public class Program
     public static async Task Main(string[] args)
     {
         // Nombre del Pokémon que quieres obtener
-        string pokemonName = "25";  
+        string pokemonName = Console.ReadLine();  
         // URL de la API de Pokémon
         string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonName}";
 

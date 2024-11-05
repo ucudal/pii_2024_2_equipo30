@@ -18,8 +18,8 @@ public class Pokemon
     
     public Type Tipo { get; set; }
     public List<Ability> Abilities { get; set; }
-    public List<Stat> Stats { get; set; }  // Propiedad para almacenar los stats
-    public List<Type> Types { get; set; }  // Propiedad para almacenar los tipos
+    public List<Stat> Stats { get; set; }  
+    public List<Type> Types { get; set; }  
    public List<Move> Moves { get; set; }
     public Pokemon(string name,  int id,  int health, int attack,int defense, int specialAttack, int specialDefense ,Type tipo, List<Ability> abilities, List<Move> moves)
     {
