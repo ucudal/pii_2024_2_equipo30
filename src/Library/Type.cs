@@ -137,7 +137,6 @@ public class Type
                 Effectiveness.Add("ground", 2);
                 Effectiveness.Add("fighting", 2);
                 Effectiveness.Add("grass", 2);
-                Effectiveness.Add("grass", 0.5);
                 Effectiveness.Add("poison", 0.5);
                 break;
             case"flying":

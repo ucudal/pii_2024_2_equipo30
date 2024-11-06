@@ -1,3 +1,5 @@
+using System.Threading.Channels;
+
 namespace Library;
 
 public class Batalla
@@ -48,7 +50,18 @@ public class Batalla
         }
         // Elección del Pokémon
         int eleccion = int.Parse(Console.ReadLine()) - 1;
+        if (jugadorActual.Equipo == null || jugadorActual.Equipo.Count == 0)
+        {
+            Console.WriteLine($"{jugadorActual.Nombre} no tiene Pokémon disponibles para luchar.");
+            return;
+        }
+        
         Pokemon pokemonSeleccionado = jugadorActual.Equipo[eleccion];
+        if (pokemonSeleccionado.Moves == null || pokemonSeleccionado.Moves.Count == 0)
+        {
+            Console.WriteLine($"{pokemonSeleccionado.Name} no tiene movimientos disponibles.");
+            return;
+        }
         
         if (!pokemonSeleccionado.PuedeAtacar())
         {
@@ -58,16 +71,16 @@ public class Batalla
         // Mostrar movimientos del Pokémon seleccionado
         Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento:");
 
-        for (int i = 0; i < pokemonSeleccionado.Movimientos.Count; i++)
+        for (int i = 0; i < pokemonSeleccionado.Moves.Count; i++)
         {
             var movimiento = pokemonSeleccionado.Moves[i];
-            Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}");
+            Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
         }
 
         // Elección del movimiento
         int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
 
         // Realizar el ataque
-        pokemonSeleccionado.Atacar(jugadorOponente.Equipo[0], pokemonSeleccionado.Movimientos[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
+        pokemonSeleccionado.Atacar(jugadorActual.Equipo[0],jugadorOponente.Equipo[0], pokemonSeleccionado.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
     }
 }

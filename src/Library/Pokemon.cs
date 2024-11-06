@@ -10,7 +10,7 @@ namespace Library;
 public class Pokemon
 {
     public string Name { get; set; }
-    public int Health { get; set; }
+    public double Health { get; set; }
     public int VidaMax { get; set; }
     public int Id { get; set; }  
     public int Attack { get; set; }
@@ -30,7 +30,7 @@ public class Pokemon
     public Pokemon() {}
 
 
-    public Pokemon(string name,  int id,  int health, int attack,int defense, int specialAttack, int specialDefense ,Type tipo,  List<Move> moves)
+    public Pokemon(string name,  int id,  double health, int attack,int defense, int specialAttack, int specialDefense ,Type tipo,  List<Move> moves)
     {
         this.Name = name;
         this.Id = id;
@@ -43,7 +43,7 @@ public class Pokemon
         this.Moves = moves;
     }
     //Atencion, la clase atacar actualmente se encarga de manejar la efectividad y los Ataques especiales
-    public void Atacar(Pokemon oponente, Move movimiento)
+    public void Atacar(Pokemon atacante,Pokemon oponente, Move movimiento)
     {
         // Verificar si el Pokémon actual puede atacar
         if (this.Estado == EstadoEspecial.Dormido)
@@ -76,14 +76,28 @@ public class Pokemon
             Console.WriteLine($"{oponente.Name} ya está afectado por {oponente.Estado}, no se puede aplicar otro estado.");
         }
 
-        int daño = (int)(movimiento.MoveDetails.Power);//Hay q poner la fórmula
-        oponente.Health -= movimiento.MoveDetails.Power ?? 0;
+        int? PoderMovimiento = movimiento.MoveDetails.Power;
+        double? Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
+        int? AtaquePokemon = atacante.Attack;
+        int? Defensa = oponente.Defense;
+        int? Precison = movimiento.MoveDetails.Accuracy;
+        int Nivel = 100;
+        Random rand = new Random();
+        double V = rand.NextDouble() * (1.0 - 0.85) + 0.85;
+        double? probabilidadGolpeCritico = 0.1 * (Precison / 100.0);
+        double golpeCritico = (rand.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
+        if (Type.Effectiveness[oponente.Type.TypeDetail.Name] == null)
+        {
+            Efectividad = 1;
+        }
+        double? daño = (0.1 * golpeCritico * Efectividad * V * (0.2 * Nivel + 1) * AtaquePokemon * PoderMovimiento) / (25 * Defensa) + 2;
+        oponente.Health -= daño ?? 0;
         
         if (oponente.Health < 0)
         {
             oponente.Health = 0;  // La vida no puede ser negativa
         }
-        Console.WriteLine($"{Name} usó {movimiento.MoveDetails.Name}! {oponente.Name} ahora tiene {oponente.Health} puntos de vida.");
+        Console.WriteLine($"{Name} usó {movimiento.MoveDetails.Name} e hizo {daño} puntos de daño! {oponente.Name} ahora tiene {oponente.Health} puntos de vida.");
     }
 
     public bool EstaFueraDeCombate()

@@ -18,11 +18,11 @@ public class PokemonCreator : IPokemonCreator
             }
                 
 
-            Type tipo = new Library.Type();
+            Type tipo = new Type();
             tipo.SetType(genericPokemon.Types[0].TypeDetail.Name);
-            List<Move> listaMovimientos = await GetMoves(genericPokemon.Moves);
-
-            return new Pokemon(
+            List<Move> listaMovimientos = await GetMoves(genericPokemon.Moves, pokemonId);
+            
+            Pokemon pokemon = new Pokemon(
                 genericPokemon.Name,
                 genericPokemon.Id,
                 genericPokemon.Stats[0].base_stat,  // Vida
@@ -33,31 +33,64 @@ public class PokemonCreator : IPokemonCreator
                 tipo,
                 listaMovimientos
             );
+            AsignarEstadoEspecial(pokemon);
+            return pokemon;
         }
 
-        private async Task<List<Move>> GetMoves(List<Move> moveInfos)
+        private async Task<List<Move>> GetMoves(List<Move> listmoves, string pokemonId)
         {
+            var genericPokemon = await pokemonApi.GetPokemonDetails(pokemonId);
             var moves = new List<Move>();
             int counter = 0;
-            foreach (var moveInfo in moveInfos)
+            foreach (var move in listmoves)
             {
-                if (counter >= 10) break;
-                var moveDetail = await pokemonApi.GetMoveDetails(moveInfo.MoveDetails.URL);
-                if (moveDetail?.Accuracy != null && moveDetail.Power != null)
+                if (counter < 4)
                 {
-                    moves.Add(new Move
+                    var moveDetail = await pokemonApi.GetMoveDetails(move.MoveDetails.URL);
+                    if (moveDetail?.Accuracy != null && moveDetail.Power != null)
                     {
-                        MoveDetails = new MoveDetail
+                        moves.Add(new Move
                         {
-                            Name = moveDetail.Name,
-                            Accuracy = moveDetail.Accuracy,
-                            Power = moveDetail.Power
-                        }
-                    });
+                            MoveDetails = new MoveDetail
+                            {
+                                Name = moveDetail.Name,
+                                Accuracy = moveDetail.Accuracy,
+                                Power = moveDetail.Power
+                            }
+                        });
+                    }
                     counter++;
                 }
             }
+
+            // Verificar si existe al menos 4 movimientos y si genericPokemon tiene la información de tipo
+
             return moves;
+        
+        }
+        private void AsignarEstadoEspecial(Pokemon pokemon) //Estado Especial de ataques
+        {
+            List<string> Paralize = new List<string>{"electric", "normal", "flying", "ice", "rock", "ground"};
+            List<string> Poison = new List<string>{"poison", "bug", "plant", "steel", "grass"};
+            List<string> Sleep = new List<string>{"psychic", "fairy", "fighting", "ghost"};
+            List<string> Burn = new List<string>{"fire", "dragon", "water"};
+            if (pokemon.Moves.Count > 0 && Paralize.Contains(pokemon.Type.TypeDetail.Name))
+            {
+                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Paralizado;
+            }
+            if (pokemon.Moves.Count > 0 && Poison.Contains(pokemon.Type.TypeDetail.Name))
+            {
+                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Envenenado;
+            }
+            if (pokemon.Moves.Count > 0 && Sleep.Contains(pokemon.Type.TypeDetail.Name))
+            {
+                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Dormido;
+            }  if (pokemon.Moves.Count > 0 && Burn.Contains(pokemon.Type.TypeDetail.Name))
+            {
+                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Quemado;
+            }
+            
         }
     }
+
 

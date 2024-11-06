@@ -14,28 +14,9 @@ public class Move
     public MoveDetail MoveDetails { get; set; }
     public List<Move> ListMove { get; set; }
     public EstadoEspecial EstadoEspecial { get; set; }
-    public Move(EstadoEspecial estadoEspecial = Library.EstadoEspecial.Ninguno)
+    public Move(EstadoEspecial estadoEspecial = EstadoEspecial.Ninguno)
     {
-        ListMove = new List<Move>(0);
         EstadoEspecial = estadoEspecial;
-    }
-    public List<Move> ObtenerMovimientosAleatorios()
-    {
-        Random random = new Random();
-        List<Move> movimientosAleatorios = new List<Move>();
-
-        while (movimientosAleatorios.Count < 4)
-        {
-            int index = random.Next(ListMove.Count);
-            Move movimientoSeleccionado = ListMove[index];
-
-            if (!movimientosAleatorios.Contains(movimientoSeleccionado))
-            {
-                movimientosAleatorios.Add(movimientoSeleccionado);
-            }
-        }
-
-        return movimientosAleatorios;
     }
 }
 
