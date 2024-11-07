@@ -10,7 +10,6 @@ public class Jugador
     public Revive Revive { get; set; }
     public TotalCure Totalcure { get; set; }
 
-
     public Jugador(string nombre, List<Pokemon> equipo)
     {
         Nombre = nombre;
@@ -45,5 +44,4 @@ public class Jugador
 
         return true; // Retorna True si todos están fuera de combate
     }
-
 }

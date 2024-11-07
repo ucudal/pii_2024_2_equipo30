@@ -38,6 +38,31 @@ public class Batalla
 
     private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
+        Console.WriteLine($"{jugadorActual.Nombre}, elige qué quieres hacer en este turno:");
+        Console.WriteLine("1: Usar un ítem");
+        Console.WriteLine("2: Atacar con un movimiento");
+        Console.WriteLine("3: Cambiar de Pokémon");
+        int eleccionAccion = int.Parse(Console.ReadLine());
+
+        switch (eleccionAccion)
+        {
+            case 1:
+                UsarItem(jugadorActual);
+                break;
+            case 2:
+                Atacar(jugadorActual, jugadorOponente);
+                break;
+            case 3:
+                CambiarPokemon(jugadorActual);
+                break;
+            default:
+                Console.WriteLine("Elección inválida. Pierdes tu turno.");
+                break;
+        }
+    }
+
+    private void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
+    {
         Console.WriteLine($"{jugadorActual.Nombre}, elige un Pokémon para atacar:");
 
         // Mostrar Pokémon del jugador
@@ -81,56 +106,105 @@ public class Batalla
         // Elección del movimiento
         int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
 
-        // Opción de usar un ítem antes de atacar
-        Console.WriteLine("¿Quieres usar un ítem antes de atacar? (sí/no)");
-        string respuesta = Console.ReadLine()?.ToLower();
-
-        if (respuesta == "sí")
-        {
-            UsarItem(jugadorActual, pokemonSeleccionado);
-        }
-
         // Realizar el ataque
         pokemonSeleccionado.Atacar(jugadorActual.Equipo[0], jugadorOponente.Equipo[0], pokemonSeleccionado.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
+    }
 
-        // Opción de usar un ítem después de atacar
-        if (!jugadorOponente.TodosFueraDeCombate()) // Solo si el oponente sigue en combate
+    private void UsarItem(Jugador jugador)
+    {
+        bool itemUsado = false;
+        while (!itemUsado)
         {
-            Console.WriteLine($"¿Estas listo {jugadorActual}? (sí/no)");
-            respuesta = Console.ReadLine()?.ToLower();
+            Console.WriteLine("Elige un ítem para usar:");
+            Console.WriteLine("1: Superpoción");
+            Console.WriteLine("2: Revivir");
+            Console.WriteLine("3: Cura Total");
+            int eleccion = int.Parse(Console.ReadLine());
 
-            if (respuesta == "sí")
+            switch (eleccion)
             {
-                // Necesitamos pausar para garantizar que el ítem pueda ser usado antes del siguiente turno
-                System.Threading.Thread.Sleep(500); // Pausa para darle tiempo al jugador a usar el ítem antes del siguiente turno
-                UsarItem(jugadorActual, pokemonSeleccionado);
+                case 1:
+                    if (jugador.Superpotion.Quantity > 0)
+                    {
+                        jugador.Superpotion.Use(jugador.PokemonActual);
+                        itemUsado = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No te quedan Superpociones.");
+                    }
+                    break;
+                case 2:
+                    if (jugador.Revive.Quantity > 0)
+                    {
+                        bool pokemonRevivido = false;
+                        while (!pokemonRevivido)
+                        {
+                            Console.WriteLine("Elige el Pokémon para revivir:");
+                            for (int i = 0; i < jugador.Equipo.Count; i++)
+                            {
+                                var pokemon = jugador.Equipo[i];
+                                if (pokemon.EstaFueraDeCombate())
+                                {
+                                    Console.WriteLine($"{i + 1}: {pokemon.Name}");
+                                }
+                            }
+                            int pokemonARevivir = int.Parse(Console.ReadLine()) - 1;
+                            if (pokemonARevivir >= 0 && pokemonARevivir < jugador.Equipo.Count && jugador.Equipo[pokemonARevivir].EstaFueraDeCombate())
+                            {
+                                jugador.Revive.Use(jugador.Equipo[pokemonARevivir]);
+                                pokemonRevivido = true;
+                                itemUsado = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Selección inválida o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No te quedan Revivir.");
+                    }
+                    break;
+                case 3:
+                    if (jugador.Totalcure.Quantity > 0)
+                    {
+                        jugador.Totalcure.Use(jugador.PokemonActual);
+                        itemUsado = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No te quedan Cura Total.");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Elección inválida. Por favor, intenta nuevamente.");
+                    break;
             }
         }
     }
 
-    private void UsarItem(Jugador jugador, Pokemon pokemon)
+    private void CambiarPokemon(Jugador jugador)
     {
-        if (jugador.Inventario == null || jugador.Inventario.Count == 0)
-        {
-            Console.WriteLine("No tienes ítems disponibles.");
-            return;
-        }
+        Console.WriteLine($"{jugador.Nombre}, elige un Pokémon para cambiar:");
 
-        Console.WriteLine("Elige un ítem para usar:");
-        for (int i = 0; i < jugador.Inventario.Count; i++)
+        for (int i = 0; i < jugador.Equipo.Count; i++)
         {
-            Console.WriteLine($"{i + 1}: {jugador.Inventario[i].ItemsName} - {jugador.Inventario[i].ItemsDescription}");
+            var pokemon = jugador.Equipo[i];
+            if (!pokemon.EstaFueraDeCombate())
+            {
+                Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+            }
         }
 
         int eleccion = int.Parse(Console.ReadLine()) - 1;
-        if (eleccion < 0 || eleccion >= jugador.Inventario.Count)
+        if (eleccion < 0 || eleccion >= jugador.Equipo.Count)
         {
             Console.WriteLine("Elección inválida.");
             return;
         }
 
-        IItem itemSeleccionado = jugador.Inventario[eleccion];
-        itemSeleccionado.Use(pokemon);
-        itemSeleccionado.Consume();
+        jugador.CambiarPokemon(eleccion);
     }
 }
