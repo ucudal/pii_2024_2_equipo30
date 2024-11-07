@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library;
 
-public class Batalla //clase
+public class Batalla
 {
     private Jugador jugador1;
     private Jugador jugador2;
@@ -95,7 +95,7 @@ public class Batalla //clase
             return;
         }
         // Mostrar movimientos del Pokémon seleccionado
-        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento: ");
+        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento:");
 
         for (int i = 0; i < pokemonSeleccionado.Moves.Count; i++)
         {
@@ -126,6 +126,11 @@ public class Batalla //clase
                 case 1:
                     if (jugador.Superpotion.Quantity > 0)
                     {
+                        if (jugador.PokemonActual == null || jugador.PokemonActual.EstaFueraDeCombate())
+                        {
+                            Console.WriteLine("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
+                            CambiarPokemon(jugador);
+                        }
                         jugador.Superpotion.Use(jugador.PokemonActual);
                         itemUsado = true;
                     }
