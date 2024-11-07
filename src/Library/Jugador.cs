@@ -6,12 +6,20 @@ public class Jugador
     public List<Pokemon> Equipo { get; set; }
     public Pokemon PokemonActual { get; set; }
     public List<IItem> Inventario { get; set; }
+    public SuperPotion Superpotion { get; set; }
+    public Revive Revive { get; set; }
+    public TotalCure Totalcure { get; set; }
+
 
     public Jugador(string nombre, List<Pokemon> equipo)
     {
         Nombre = nombre;
         Equipo = equipo;
         Inventario = new List<IItem>(); // Inicializamos el inventario vacío
+        Superpotion = new SuperPotion(4, 70);
+        Revive = new Revive(1);
+        Totalcure = new TotalCure(2);
+
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)
