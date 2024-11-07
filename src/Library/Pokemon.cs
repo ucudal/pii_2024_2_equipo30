@@ -17,7 +17,6 @@ public class Pokemon
     public int Defense { get; set; }
     public int SpecialAttack { get; set; }
     public int SpecialDefense { get; set; }
-    public List<Move> Movimientos { get; set; }
     public Type Type { get; set; }
     public List<Stat> Stats { get; set; }  
     public List<Type> Types { get; set; }  
@@ -82,10 +81,9 @@ public class Pokemon
         int? Defensa = oponente.Defense;
         int? Precison = movimiento.MoveDetails.Accuracy;
         int Nivel = 100;
-        Random rand = new Random();
-        double V = rand.NextDouble() * (1.0 - 0.85) + 0.85;
+        double V = random.NextDouble() * (1.0 - 0.85) + 0.85;
         double? probabilidadGolpeCritico = 0.1 * (Precison / 100.0);
-        double golpeCritico = (rand.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
+        double golpeCritico = (random.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
         if (Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name))
         {
             Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
