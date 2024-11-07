@@ -17,7 +17,6 @@ public class Pokemon
     public int Defense { get; set; }
     public int SpecialAttack { get; set; }
     public int SpecialDefense { get; set; }
-    public List<Move> Movimientos { get; set; }
     public Type Type { get; set; }
     public List<Stat> Stats { get; set; }  
     public List<Type> Types { get; set; }  
@@ -46,21 +45,22 @@ public class Pokemon
     public void Atacar(Pokemon atacante,Pokemon oponente, Move movimiento)
     {
         // Verificar si el Pokémon actual puede atacar
-        if (this.Estado == EstadoEspecial.Dormido)
+        if (atacante.Estado == EstadoEspecial.Dormido)
         {
-            Console.WriteLine($"{Name} está dormido y no puede atacar este turno.");
+            Console.WriteLine($"{oponente.Name} está dormido y no puede atacar este turno.");
             return; 
         }
-        else if (this.Estado == EstadoEspecial.Paralizado && new Random().Next(0, 2) == 0)
+        else if (atacante.Estado == EstadoEspecial.Paralizado && new Random().Next(0, 2) == 0)
         {
-            Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.");
+            Console.WriteLine($"{oponente.Name} está paralizado y no puede atacar este turno.");
             return;
         }
 
-        Console.WriteLine($"{Name} usa {movimiento.MoveDetails.Name}!");
+        Console.WriteLine($"{atacante.Name} usa {movimiento.MoveDetails.Name}!");
         if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
         {
             oponente.Estado = movimiento.EstadoEspecial;
+            ProcesarEstado(atacante,oponente);
             Console.WriteLine($"{oponente.Name} ahora está {movimiento.EstadoEspecial}.");
         }
         else if (movimiento.EstadoEspecial == EstadoEspecial.Dormido && oponente.Estado == EstadoEspecial.Ninguno)
@@ -77,16 +77,19 @@ public class Pokemon
         }
 
         int? PoderMovimiento = movimiento.MoveDetails.Power;
-        double? Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
+        double? Efectividad = null;
         int? AtaquePokemon = atacante.Attack;
         int? Defensa = oponente.Defense;
         int? Precison = movimiento.MoveDetails.Accuracy;
         int Nivel = 100;
-        Random rand = new Random();
-        double V = rand.NextDouble() * (1.0 - 0.85) + 0.85;
+        double V = random.NextDouble() * (1.0 - 0.85) + 0.85;
         double? probabilidadGolpeCritico = 0.1 * (Precison / 100.0);
-        double golpeCritico = (rand.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
-        if (Type.Effectiveness[oponente.Type.TypeDetail.Name] == null)
+        double golpeCritico = (random.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
+        if (Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name))
+        {
+            Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
+        }
+        else
         {
             Efectividad = 1;
         }
@@ -142,23 +145,23 @@ public class Pokemon
         return true;
     }
 
-    public void ProcesarEstado()
+    public void ProcesarEstado(Pokemon atacante,Pokemon oponente)
     {
-        if (Estado == EstadoEspecial.Envenenado)
+        if (oponente.Estado == EstadoEspecial.Envenenado)
         {
-            int damage = (int)(Health * 0.05);
-            Health -= damage;
-            Console.WriteLine($"{Name} está envenenado y pierde {damage} puntos de vida.");
+            int damage = (int)(oponente.Health * 0.05);
+            oponente.Health -= damage;
+            Console.WriteLine($"{oponente.Name} está envenenado y pierde {damage} puntos de vida.");
         }
-        else if (Estado == EstadoEspecial.Quemado)
+        else if (oponente.Estado == EstadoEspecial.Quemado)
         {
-            int burnDamage = (int)(Health * 0.10);
-            Health -= burnDamage;
-            Console.WriteLine($"{Name} está quemado y pierde {burnDamage} puntos de vida.");
+            int burnDamage = (int)(oponente.Health * 0.10);
+            oponente.Health -= burnDamage;
+            Console.WriteLine($"{oponente.Name} está quemado y pierde {burnDamage} puntos de vida.");
         }
-        else if (Estado == EstadoEspecial.Dormido)
+        else if (oponente.Estado == EstadoEspecial.Dormido)
         {
-            Console.WriteLine($"{Name} está dormido, no puede atacar");
+            Console.WriteLine($"{oponente.Name} está dormido, no puede ser quemado ni envenenado");
         }
     }
     public void Dormir()

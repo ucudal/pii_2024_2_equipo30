@@ -18,6 +18,7 @@ public class Jugador
         Superpotion = new SuperPotion(4, 70);
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
+        PokemonActual = Equipo[0];
 
     }
 
@@ -44,4 +45,4 @@ public class Jugador
 
         return true; // Retorna True si todos están fuera de combate
     }
-}
+}//b
