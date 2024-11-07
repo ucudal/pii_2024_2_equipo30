@@ -95,7 +95,7 @@ public class Batalla
             return;
         }
         // Mostrar movimientos del Pokémon seleccionado
-        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento: ");
+        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento:");
 
         for (int i = 0; i < pokemonSeleccionado.Moves.Count; i++)
         {
@@ -126,6 +126,11 @@ public class Batalla
                 case 1:
                     if (jugador.Superpotion.Quantity > 0)
                     {
+                        if (jugador.PokemonActual == null || jugador.PokemonActual.EstaFueraDeCombate())
+                        {
+                            Console.WriteLine("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
+                            CambiarPokemon(jugador);
+                        }
                         jugador.Superpotion.Use(jugador.PokemonActual);
                         itemUsado = true;
                     }
@@ -137,28 +142,41 @@ public class Batalla
                 case 2:
                     if (jugador.Revive.Quantity > 0)
                     {
+                        List<string> pokemonsMuertos = new List<string>();
+                        foreach (var pokemon in jugador.Equipo)
+                        {
+                            if (pokemon.EstaFueraDeCombate())
+                            {
+                                pokemonsMuertos.Add(pokemon.Name);
+                            }
+                        }
+
+                        if (pokemonsMuertos.Count == 0)
+                        {
+                            Console.WriteLine("No hay Pokémon muertos para revivir.");
+                            return;
+                        }
+
                         bool pokemonRevivido = false;
                         while (!pokemonRevivido)
                         {
-                            Console.WriteLine("Elige el Pokémon para revivir:");
-                            for (int i = 0; i < jugador.Equipo.Count; i++)
+                            Console.WriteLine("Elige el nombre del Pokémon para revivir (lista de Pokémon muertos):");
+                            foreach (var nombre in pokemonsMuertos)
                             {
-                                var pokemon = jugador.Equipo[i];
-                                if (pokemon.EstaFueraDeCombate())
-                                {
-                                    Console.WriteLine($"{i + 1}: {pokemon.Name}");
-                                }
+                                Console.WriteLine(nombre);
                             }
-                            int pokemonARevivir = int.Parse(Console.ReadLine()) - 1;
-                            if (pokemonARevivir >= 0 && pokemonARevivir < jugador.Equipo.Count && jugador.Equipo[pokemonARevivir].EstaFueraDeCombate())
+
+                            string nombrePokemon = Console.ReadLine();
+                            if (pokemonsMuertos.Contains(nombrePokemon))
                             {
-                                jugador.Revive.Use(jugador.Equipo[pokemonARevivir]);
+                                Pokemon pokemonARevivir = jugador.Equipo.Find(p => p.Name == nombrePokemon);
+                                jugador.Revive.Use(pokemonARevivir);
                                 pokemonRevivido = true;
                                 itemUsado = true;
                             }
                             else
                             {
-                                Console.WriteLine("Selección inválida o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.");
+                                Console.WriteLine("Nombre inválido o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.");
                             }
                         }
                     }
@@ -207,4 +225,4 @@ public class Batalla
 
         jugador.CambiarPokemon(eleccion);
     }
-}
+} //a

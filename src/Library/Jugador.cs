@@ -5,6 +5,7 @@ public class Jugador
     public string Nombre { get; set; }
     public List<Pokemon> Equipo { get; set; }
     public Pokemon PokemonActual { get; set; }
+    public List<IItem> Inventario { get; set; }
     public SuperPotion Superpotion { get; set; }
     public Revive Revive { get; set; }
     public TotalCure Totalcure { get; set; }
@@ -13,9 +14,11 @@ public class Jugador
     {
         Nombre = nombre;
         Equipo = equipo;
+        Inventario = new List<IItem>(); // Inicializamos el inventario vacío
         Superpotion = new SuperPotion(4, 70);
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
+
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)
@@ -33,12 +36,12 @@ public class Jugador
     {
         foreach (var pokemon in Equipo)
         {
-            if (!pokemon.EstaFueraDeCombate()) 
+            if (!pokemon.EstaFueraDeCombate())
             {
                 return false;
             }
         }
-        return true;  // Retorna True si todos están fuera de combate
-    }
 
-}
+        return true; // Retorna True si todos están fuera de combate
+    }
+}//b
