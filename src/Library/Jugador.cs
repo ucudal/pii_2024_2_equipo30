@@ -5,11 +5,12 @@ public class Jugador
     public string Nombre { get; set; }
     public List<Pokemon> Equipo { get; set; }
     public Pokemon PokemonActual { get; set; }
-
+    public List<IItem> Inventario { get; set; }
     public Jugador(string nombre, List<Pokemon> equipo)
     {
         Nombre = nombre;
         Equipo = equipo;
+        Inventario = new List<IItem>(); // Inicializamos el inventario vacío
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)

@@ -1,4 +1,5 @@
 using System.Threading.Channels;
+using System.Collections.Generic;
 
 namespace Library;
 
@@ -80,7 +81,56 @@ public class Batalla
         // Elección del movimiento
         int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
 
+        // Opción de usar un ítem antes de atacar
+        Console.WriteLine("¿Quieres usar un ítem antes de atacar? (sí/no)");
+        string respuesta = Console.ReadLine()?.ToLower();
+
+        if (respuesta == "sí")
+        {
+            UsarItem(jugadorActual, pokemonSeleccionado);
+        }
+
         // Realizar el ataque
-        pokemonSeleccionado.Atacar(jugadorActual.Equipo[0],jugadorOponente.Equipo[0], pokemonSeleccionado.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
+        pokemonSeleccionado.Atacar(jugadorActual.Equipo[0], jugadorOponente.Equipo[0], pokemonSeleccionado.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
+
+        // Opción de usar un ítem después de atacar
+        if (!jugadorOponente.TodosFueraDeCombate()) // Solo si el oponente sigue en combate
+        {
+            Console.WriteLine($"¿Estas listo {jugadorActual}? (sí/no)");
+            respuesta = Console.ReadLine()?.ToLower();
+
+            if (respuesta == "sí")
+            {
+                // Necesitamos pausar para garantizar que el ítem pueda ser usado antes del siguiente turno
+                System.Threading.Thread.Sleep(500); // Pausa para darle tiempo al jugador a usar el ítem antes del siguiente turno
+                UsarItem(jugadorActual, pokemonSeleccionado);
+            }
+        }
+    }
+
+    private void UsarItem(Jugador jugador, Pokemon pokemon)
+    {
+        if (jugador.Inventario == null || jugador.Inventario.Count == 0)
+        {
+            Console.WriteLine("No tienes ítems disponibles.");
+            return;
+        }
+
+        Console.WriteLine("Elige un ítem para usar:");
+        for (int i = 0; i < jugador.Inventario.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}: {jugador.Inventario[i].ItemsName} - {jugador.Inventario[i].ItemsDescription}");
+        }
+
+        int eleccion = int.Parse(Console.ReadLine()) - 1;
+        if (eleccion < 0 || eleccion >= jugador.Inventario.Count)
+        {
+            Console.WriteLine("Elección inválida.");
+            return;
+        }
+
+        IItem itemSeleccionado = jugador.Inventario[eleccion];
+        itemSeleccionado.Use(pokemon);
+        itemSeleccionado.Consume();
     }
 }
