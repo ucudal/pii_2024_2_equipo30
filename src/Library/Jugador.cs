@@ -6,6 +6,7 @@ public class Jugador
     public List<Pokemon> Equipo { get; set; }
     public Pokemon PokemonActual { get; set; }
     public List<IItem> Inventario { get; set; }
+
     public Jugador(string nombre, List<Pokemon> equipo)
     {
         Nombre = nombre;
@@ -28,12 +29,13 @@ public class Jugador
     {
         foreach (var pokemon in Equipo)
         {
-            if (!pokemon.EstaFueraDeCombate()) 
+            if (!pokemon.EstaFueraDeCombate())
             {
                 return false;
             }
         }
-        return true;  // Retorna True si todos están fuera de combate
+
+        return true; // Retorna True si todos están fuera de combate
     }
 
 }
