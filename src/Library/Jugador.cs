@@ -5,11 +5,17 @@ public class Jugador
     public string Nombre { get; set; }
     public List<Pokemon> Equipo { get; set; }
     public Pokemon PokemonActual { get; set; }
+    public SuperPotion Superpotion { get; set; }
+    public Revive Revive { get; set; }
+    public TotalCure Totalcure { get; set; }
 
     public Jugador(string nombre, List<Pokemon> equipo)
     {
         Nombre = nombre;
         Equipo = equipo;
+        Superpotion = new SuperPotion(4, 70);
+        Revive = new Revive(1);
+        Totalcure = new TotalCure(2);
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)

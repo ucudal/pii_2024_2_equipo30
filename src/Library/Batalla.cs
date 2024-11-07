@@ -69,7 +69,7 @@ public class Batalla
             return;
         }
         // Mostrar movimientos del Pokémon seleccionado
-        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento:");
+        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento: ");
 
         for (int i = 0; i < pokemonSeleccionado.Moves.Count; i++)
         {
