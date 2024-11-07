@@ -186,24 +186,18 @@ public class Batalla
 
     private void CambiarPokemon(Jugador jugador)
     {
-        Console.WriteLine($"{jugador.Nombre}, elige un Pokémon para cambiar a {jugador.PokemonActual.Name}:");
-
+        Console.WriteLine($"Pokemon Actual: {jugador.PokemonActual.Name}");
+        Console.WriteLine($"{jugador.Nombre} elige un pokemon para cambiar al actual: ");
         for (int i = 0; i < jugador.Equipo.Count; i++)
         {
             var pokemon = jugador.Equipo[i];
-            if (!pokemon.EstaFueraDeCombate())
+            if (!pokemon.EstaFueraDeCombate() || pokemon!=jugador.PokemonActual)
             {
                 Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
             }
         }
-
-        int eleccion = int.Parse(Console.ReadLine()) - 1;
-        if (eleccion < 0 || eleccion >= jugador.Equipo.Count)
-        {
-            Console.WriteLine("Elección inválida.");
-            return;
-        }
-
-        jugador.CambiarPokemon(eleccion);
+        int PokemonElection = int.Parse(Console.ReadLine());
+        jugador.PokemonActual = jugador.Equipo[PokemonElection];
+        Console.WriteLine($"Se realizó el cambio correctamente. Su pokemon actual es {jugador.PokemonActual.Name}");
     }
-} //a
+}
