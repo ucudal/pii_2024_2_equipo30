@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library;
 
-public class Batalla //clase
+public class Batalla
 {
     private Jugador jugador1;
     private Jugador jugador2;
@@ -14,6 +14,8 @@ public class Batalla //clase
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
         this.turno = new Turno(jugador1, jugador2);
+        InicializarPokemonActual(jugador1);
+        InicializarPokemonActual(jugador2);
     }
 
     public void IniciarBatalla()
@@ -63,43 +65,25 @@ public class Batalla //clase
 
     private void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
     {
-        Console.WriteLine($"{jugadorActual.Nombre}, elige un Pokémon para atacar:");
+        Pokemon pokemonActual = jugadorActual.PokemonActual;
+        if (pokemonActual == null || pokemonActual.Moves == null || pokemonActual.Moves.Count == 0)
+        {
+            Console.WriteLine($"{pokemonActual?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.");
+            return;
+        }
 
-        // Mostrar Pokémon del jugador
-        for (int i = 0; i < jugadorActual.Equipo.Count; i++)
+        if (!pokemonActual.PuedeAtacar())
         {
-            var pokemon = jugadorActual.Equipo[i]; 
-            if (!pokemon.EstaFueraDeCombate())
-            {
-                Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
-            }
-        }
-        // Elección del Pokémon
-        int eleccion = int.Parse(Console.ReadLine()) - 1;
-        if (jugadorActual.Equipo == null || jugadorActual.Equipo.Count == 0)
-        {
-            Console.WriteLine($"{jugadorActual.Nombre} no tiene Pokémon disponibles para luchar.");
+            Console.WriteLine($"{pokemonActual.Name} no puede atacar este turno.");
             return;
         }
-        
-        Pokemon pokemonSeleccionado = jugadorActual.Equipo[eleccion];
-        if (pokemonSeleccionado.Moves == null || pokemonSeleccionado.Moves.Count == 0)
-        {
-            Console.WriteLine($"{pokemonSeleccionado.Name} no tiene movimientos disponibles.");
-            return;
-        }
-        
-        if (!pokemonSeleccionado.PuedeAtacar())
-        {
-            Console.WriteLine($"{pokemonSeleccionado.Name} no puede atacar este turno.");
-            return;
-        }
-        // Mostrar movimientos del Pokémon seleccionado
-        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento:");
 
-        for (int i = 0; i < pokemonSeleccionado.Moves.Count; i++)
+        // Mostrar movimientos del Pokémon actual
+        Console.WriteLine($"{jugadorActual.Nombre}, elige un movimiento de: {pokemonActual.Name}");
+
+        for (int i = 0; i < pokemonActual.Moves.Count; i++)
         {
-            var movimiento = pokemonSeleccionado.Moves[i];
+            var movimiento = pokemonActual.Moves[i];
             Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
         }
 
@@ -107,7 +91,7 @@ public class Batalla //clase
         int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
 
         // Realizar el ataque
-        pokemonSeleccionado.Atacar(jugadorActual.Equipo[0], jugadorOponente.Equipo[0], pokemonSeleccionado.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
+        pokemonActual.Atacar(jugadorActual.PokemonActual, jugadorOponente.PokemonActual, pokemonActual.Moves[movimientoSeleccionado]);
     }
 
     private void UsarItem(Jugador jugador)
@@ -126,6 +110,11 @@ public class Batalla //clase
                 case 1:
                     if (jugador.Superpotion.Quantity > 0)
                     {
+                        if (jugador.PokemonActual == null || jugador.PokemonActual.EstaFueraDeCombate())
+                        {
+                            Console.WriteLine("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
+                            CambiarPokemon(jugador);
+                        }
                         jugador.Superpotion.Use(jugador.PokemonActual);
                         itemUsado = true;
                     }
@@ -205,7 +194,7 @@ public class Batalla //clase
         for (int i = 0; i < jugador.Equipo.Count; i++)
         {
             var pokemon = jugador.Equipo[i];
-            if (!pokemon.EstaFueraDeCombate())
+            if (!pokemon.EstaFueraDeCombate() && pokemon != jugador.PokemonActual)
             {
                 Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
             }
@@ -219,5 +208,22 @@ public class Batalla //clase
         }
 
         jugador.CambiarPokemon(eleccion);
+        Console.WriteLine($"Se realizó el cambio correctamente. Su Pokémon actual es {jugador.PokemonActual.Name}");
+    }
+
+    private void InicializarPokemonActual(Jugador jugador)
+    {
+        if (jugador.PokemonActual == null || jugador.PokemonActual.EstaFueraDeCombate())
+        {
+            foreach (var pokemon in jugador.Equipo)
+            {
+                if (!pokemon.EstaFueraDeCombate())
+                {
+                    jugador.PokemonActual = pokemon;
+                    Console.WriteLine($"{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.");
+                    break;
+                }
+            }
+        }
     }
 }
