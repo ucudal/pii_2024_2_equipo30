@@ -4,10 +4,6 @@ using Library;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-using NUnit.Framework;
-using System.Collections.Generic;
-using Library;
-
 [TestFixture]
 public class PokemonTests
 {
@@ -46,16 +42,28 @@ public class PokemonTests
     }
 
     [Test]
-    public void DealDamage()
+    public void RegularDealDamage()
     {
         // Arrange
         double saludInicial = oponente.Health;
-
+        var flamethrower = new MoveDetail
+        {
+            Name = "Flamethrower",
+            Power = 90,
+            Accuracy = 100,
+            URL = "Nothing"
+        };
+        movimiento = new Move
+        {
+            MoveDetails = flamethrower,
+            EstadoEspecial = EstadoEspecial.Ninguno
+        };
         // Act
         atacante.Atacar(atacante, oponente, movimiento);
 
         // Assert
         Assert.Less(oponente.Health, saludInicial, "La salud del oponente debería reducirse después del ataque exitoso.");
+        Console.WriteLine(oponente.Health);
     }
 
     [Test]
@@ -124,7 +132,7 @@ public class PokemonTests
     }
 
     [Test]
-    public void Atacar_CalculaDañoCorrectamenteConEfectividad()
+    public void AtacarCalculaDañoCorrectamenteConEfectividad()
     {
         // Arrange
         oponente.Type.SetType("grass");  // Configura el tipo del oponente
@@ -135,6 +143,84 @@ public class PokemonTests
 
         // Assert
         Assert.Less(oponente.Health, 100, "La salud del oponente debería reducirse tomando en cuenta la efectividad del tipo.");
+    }
+    [Test]
+    public void True_OutOfCombat()
+    {
+        // Arrange
+        var pokemon = new Pokemon { Health = 0 };
+
+        // Act
+        bool resultado = pokemon.EstaFueraDeCombate();
+
+        // Assert
+        Assert.IsTrue(resultado, "El Pokémon debería estar fuera de combate cuando la salud es 0.");
+        Assert.IsTrue(pokemon.FueraDeCombate, "La propiedad FueraDeCombate debería ser verdadera.");
+    }
+    [Test]
+    public void False_OutOfCombat()
+    {
+        // Arrange
+        var pokemon = new Pokemon { Health = 1 };
+
+        // Act
+        bool resultado = pokemon.EstaFueraDeCombate();
+
+        // Assert
+        Assert.IsFalse(resultado, "El Pokémon NO debería estar fuera de combate cuando la salud es mayor a 0.");
+        Assert.IsFalse(pokemon.FueraDeCombate, "La propiedad FueraDeCombate debería ser falsa.");
+    }
+    [Test]
+    public void PoisonAttack()
+    {
+        oponente.Estado = EstadoEspecial.Ninguno;
+        // Arrange
+        //Power is 0, however since opponent is now poisoned, he should lose 5% health
+        var poisonMan = new MoveDetail
+        {
+            Name = "StingRay",
+            Power = 0,
+            Accuracy = 100,
+            URL = "http://example.com/move/Generic?"
+        };
+        movimiento = new Move
+        {
+            MoveDetails = poisonMan,
+            EstadoEspecial = EstadoEspecial.Envenenado
+        };
+
+        // Act
+        atacante.Atacar(atacante, oponente, movimiento);
+
+        // Assert
+        Assert.AreEqual(95,oponente.Health, "El oponente debería perder un 5% de su salud debido a estar envenenado.");
+        Console.WriteLine(atacante.Attack);
+    }
+    [Test]
+    public void BurningAttack()
+    {
+        oponente.Estado = EstadoEspecial.Ninguno;
+        // Arrange
+        //Power is 0, however since opponent is now burned, he should lose 10% health
+        var burningMan = new MoveDetail
+        {
+            Name = "HellBlaze",
+            Power = 0,
+            Accuracy = 100,
+            URL = "http://example.com/move/Generic?"
+        };
+        movimiento = new Move
+        {
+            MoveDetails = burningMan,
+            EstadoEspecial = EstadoEspecial.Quemado
+        };
+
+        // Act
+        atacante.Atacar(atacante, oponente, movimiento);
+
+        // Assert
+        Assert.AreEqual(90,oponente.Health, "El oponente debería perder un 10% de su salud debido a estar quemado.");
+        Console.WriteLine(atacante.Attack);
     }
 
 }
