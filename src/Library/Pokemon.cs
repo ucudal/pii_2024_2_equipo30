@@ -77,7 +77,7 @@ public class Pokemon
         }
 
         int? PoderMovimiento = movimiento.MoveDetails.Power;
-        double? Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
+        double? Efectividad = null;
         int? AtaquePokemon = atacante.Attack;
         int? Defensa = oponente.Defense;
         int? Precison = movimiento.MoveDetails.Accuracy;
@@ -86,7 +86,11 @@ public class Pokemon
         double V = rand.NextDouble() * (1.0 - 0.85) + 0.85;
         double? probabilidadGolpeCritico = 0.1 * (Precison / 100.0);
         double golpeCritico = (rand.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
-        if (Type.Effectiveness[oponente.Type.TypeDetail.Name] == null)
+        if (Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name))
+        {
+            Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
+        }
+        else
         {
             Efectividad = 1;
         }
