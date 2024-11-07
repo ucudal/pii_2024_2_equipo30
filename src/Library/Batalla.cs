@@ -37,6 +37,7 @@ public class Batalla
 
     private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
+        int election = Console.ReadLine("");
         Console.WriteLine($"{jugadorActual.Nombre}, elige un Pokémon para atacar:");
 
         // Mostrar Pokémon del jugador
