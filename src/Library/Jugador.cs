@@ -16,6 +16,7 @@ public class Jugador
         Superpotion = new SuperPotion(4, 70);
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
+        PokemonActual = Equipo[0];
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)
@@ -25,6 +26,15 @@ public class Jugador
 
     public void CambiarPokemon(int indice)
     {
+        if (indice >= 0 && indice < Equipo.Count && !Equipo[indice].EstaFueraDeCombate())
+        {
+                PokemonActual = Equipo[indice];
+                Console.WriteLine($"{Nombre} ha cambiado a {PokemonActual.Name}.");
+        }
+        else
+        {
+            Console.WriteLine("Cambio de pokemon no válido");
+        }
         PokemonActual = Equipo[indice];
         Console.WriteLine($"{Nombre} cambió a {PokemonActual.Name}!");
     }

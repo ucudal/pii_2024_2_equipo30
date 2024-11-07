@@ -17,6 +17,26 @@ public class Batalla
 
     public void IniciarBatalla()
     {
+        Console.WriteLine($"Equipo de {jugador1.Nombre}: ");
+        // Mostrar Pokémon del jugador
+        for (int i = 0; i < jugador1.Equipo.Count; i++)
+        {
+            var pokemon = jugador1.Equipo[i]; 
+            if (!pokemon.EstaFueraDeCombate())
+            {
+                Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+            }
+        }
+        Console.WriteLine($"Equipo de {jugador2.Nombre}: ");
+        // Mostrar Pokémon del jugador
+        for (int i = 0; i < jugador2.Equipo.Count; i++)
+        {
+            var pokemon = jugador2.Equipo[i]; 
+            if (!pokemon.EstaFueraDeCombate())
+            {
+                Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+            }
+        }
         while (!jugador1.TodosFueraDeCombate() && !jugador2.TodosFueraDeCombate())
         {
             turno.MostrarTurno();
@@ -37,50 +57,55 @@ public class Batalla
 
     private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
-        Console.WriteLine($"{jugadorActual.Nombre}, elige un Pokémon para atacar:");
-
-        // Mostrar Pokémon del jugador
-        for (int i = 0; i < jugadorActual.Equipo.Count; i++)
+        Console.WriteLine($"{jugadorActual.Nombre} elige la acción que deseas hacer: ");
+        Console.WriteLine($"1: Atacar al pokemon contrario");
+        Console.WriteLine($"2: Cambiar el pokemon actual por otro");
+        string Election = Console.ReadLine();
+        if (Election == "1")
         {
-            var pokemon = jugadorActual.Equipo[i]; 
-            if (!pokemon.EstaFueraDeCombate())
+            Pokemon PokemonActual = jugadorActual.PokemonActual;
+            if (PokemonActual.Moves == null || PokemonActual.Moves.Count == 0)
             {
-                Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+                Console.WriteLine($"{PokemonActual.Name} no tiene movimientos disponibles.");
+                return;
             }
-        }
-        // Elección del Pokémon
-        int eleccion = int.Parse(Console.ReadLine()) - 1;
-        if (jugadorActual.Equipo == null || jugadorActual.Equipo.Count == 0)
-        {
-            Console.WriteLine($"{jugadorActual.Nombre} no tiene Pokémon disponibles para luchar.");
-            return;
-        }
         
-        Pokemon pokemonSeleccionado = jugadorActual.Equipo[eleccion];
-        if (pokemonSeleccionado.Moves == null || pokemonSeleccionado.Moves.Count == 0)
-        {
-            Console.WriteLine($"{pokemonSeleccionado.Name} no tiene movimientos disponibles.");
-            return;
-        }
-        
-        if (!pokemonSeleccionado.PuedeAtacar())
-        {
-            Console.WriteLine($"{pokemonSeleccionado.Name} no puede atacar este turno.");
-            return;
-        }
-        // Mostrar movimientos del Pokémon seleccionado
-        Console.WriteLine($"{pokemonSeleccionado.Name}, elige un movimiento: ");
+            if (!PokemonActual.PuedeAtacar())
+            {
+                Console.WriteLine($"{PokemonActual.Name} no puede atacar este turno.");
+                return;
+            }
+            // Mostrar movimientos del Pokémon seleccionado
+            Console.WriteLine($"{jugadorActual.Nombre} elige un movimiento de: {PokemonActual.Name}");
 
-        for (int i = 0; i < pokemonSeleccionado.Moves.Count; i++)
-        {
-            var movimiento = pokemonSeleccionado.Moves[i];
-            Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
+            for (int i = 0; i < PokemonActual.Moves.Count; i++)
+            {
+                var movimiento = PokemonActual.Moves[i];
+                Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
+            }
+
+            // Elección del movimiento
+            int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
+
+            // Realizar el ataque
+            PokemonActual.Atacar(jugadorActual.PokemonActual,jugadorOponente.PokemonActual, PokemonActual.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
         }
-
-        // Elección del movimiento
-        int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
-
-        // Realizar el ataque
-        pokemonSeleccionado.Atacar(jugadorActual.Equipo[0],jugadorOponente.Equipo[0], pokemonSeleccionado.Moves[movimientoSeleccionado]); // Suponiendo que el oponente es el primer Pokémon
-    }
+        else if (Election == "2")
+        {
+            Console.WriteLine($"Pokemon Actual: {jugadorActual.PokemonActual.Name}");
+            Console.WriteLine($"{jugadorActual.Nombre} elige un pokemon para cambiar al actual: ");
+            for (int i = 0; i < jugadorActual.Equipo.Count; i++)
+            {
+                var pokemon = jugadorActual.Equipo[i];
+                if (!pokemon.EstaFueraDeCombate() || pokemon!=jugadorActual.PokemonActual)
+                {
+                    Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+                }
+            }
+            int PokemonElection = int.Parse(Console.ReadLine());
+            jugadorActual.PokemonActual = jugadorActual.Equipo[PokemonElection];
+            Console.WriteLine($"Se realizó el cambio correctamente. Su pokemon actual es {jugadorActual.PokemonActual.Name}");
+        }
+        }
+    
 }

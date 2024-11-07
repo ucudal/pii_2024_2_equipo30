@@ -29,7 +29,7 @@ public class Pokemon
     public Pokemon() {}
 
 
-    public Pokemon(string name,  int id,  double health, int attack,int defense, int specialAttack, int specialDefense ,Type tipo,  List<Move> moves)
+    public Pokemon(string name,  int id,  double health, int attack,int defense, int specialAttack, int specialDefense,Type tipo,  List<Move> moves)
     {
         this.Name = name;
         this.Id = id;
@@ -40,6 +40,7 @@ public class Pokemon
         this.SpecialDefense = specialDefense;
         this.Type = tipo;
         this.Moves = moves;
+        this.Estado = EstadoEspecial.Ninguno;
     }
     //Atencion, la clase atacar actualmente se encarga de manejar la efectividad y los Ataques especiales
     public void Atacar(Pokemon atacante,Pokemon oponente, Move movimiento)
@@ -117,6 +118,10 @@ public class Pokemon
     
     public bool PuedeAtacar()
     {
+        if (Estado == EstadoEspecial.Ninguno)
+        {
+            return true;
+        }
         if (Estado == EstadoEspecial.Dormido && TurnosRestantesDeSueño > 0)
         {
             TurnosRestantesDeSueño--;
