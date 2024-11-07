@@ -8,49 +8,107 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Runtime.Intrinsics.Arm;
 using System.Text.Json.Serialization;
-namespace Program;
+using System.Text.Json;
 
-class Program
+namespace Program
 {
-    private static HttpClient client = new HttpClient();
-
-    public static async Task Main(string[] args)
+    class Program
     {
-        PokemonApi pokemonApi = new PokemonApi(client);
-        PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
+        private static HttpClient client = new HttpClient();
 
-        List<Pokemon> listPokemon = new List<Pokemon>();
-        for (int i = 0; i < 6; i++)
+        public static async Task Main(string[] args)
         {
-            Console.WriteLine("Ingrese un nombre o un ID de un pokemon: ");
-            string pokemonId = Console.ReadLine();
-            var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
-            if (pokemon != null)
+            PokemonApi pokemonApi = new PokemonApi(client);
+            PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
+
+            // Crear listas de Pokémon para ambos jugadores
+            List<Pokemon> listPokemonJugador1 = new List<Pokemon>();
+            List<Pokemon> listPokemonJugador2 = new List<Pokemon>();
+
+            // Selección de Pokémon para el Jugador 1
+            Console.WriteLine("Selección de Pokémon para Jugador 1:");
+            for (int i = 0; i < 6; i++)
             {
-                listPokemon.Add(pokemon);
+                bool pokemonAgregado = false;
+                while (!pokemonAgregado)
+                {
+                    try
+                    {
+                        Console.WriteLine("Jugador 1, ingrese un nombre o un ID de un Pokémon: ");
+                        string pokemonId = Console.ReadLine();
+                        var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId.ToLower()}");
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var responseBody = await response.Content.ReadAsStringAsync();
+                            var pokemonData = JsonSerializer.Deserialize<JsonElement>(responseBody);
+                            string pokemonName = pokemonData.GetProperty("name").GetString();
+
+                            var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
+                            listPokemonJugador1.Add(pokemon);
+                            Console.WriteLine($"Has seleccionado a: {pokemonName}");
+                            pokemonAgregado = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.");
+                    }
+                }
             }
-            else
+
+            // Selección de Pokémon para el Jugador 2
+            Console.WriteLine("Selección de Pokémon para Jugador 2:");
+            for (int i = 0; i < 6; i++)
             {
-                Console.WriteLine($"No se pudo obtener datos para: {pokemonId}");
+                bool pokemonAgregado = false;
+                while (!pokemonAgregado)
+                {
+                    try
+                    {
+                        Console.WriteLine("Jugador 2, ingrese un nombre o un ID de un Pokémon: ");
+                        string pokemonId = Console.ReadLine();
+                        var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId.ToLower()}");
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var responseBody = await response.Content.ReadAsStringAsync();
+                            var pokemonData = JsonSerializer.Deserialize<JsonElement>(responseBody);
+                            string pokemonName = pokemonData.GetProperty("name").GetString();
+
+                            var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
+                            listPokemonJugador2.Add(pokemon);
+                            Console.WriteLine($"Has seleccionado a: {pokemonName}");
+                            pokemonAgregado = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.");
+                    }
+                }
             }
+
+            // Validar si ambos jugadores tienen al menos un Pokémon
+            if (listPokemonJugador1.Count == 0 || listPokemonJugador2.Count == 0)
+            {
+                Console.WriteLine("No se pudo obtener suficientes Pokémon para ambos jugadores.");
+                return;
+            }
+
+            // Crear jugadores
+            Jugador jugador1 = new Jugador("Jugador 1", listPokemonJugador1);
+            Jugador jugador2 = new Jugador("Jugador 2", listPokemonJugador2);
+
+            // Crear y manejar la batalla
+            var batalla = new Batalla(jugador1, jugador2);
+            batalla.IniciarBatalla();
         }
-
-        if (listPokemon.Count == 0)
-        {
-            Console.WriteLine("No se pudo obtener ningún Pokémon.");
-            return;
-        }
-
-        // Crear jugadores
-        Jugador jugador1 = new Jugador("Jugador 1", listPokemon);
-        Jugador jugador2 = new Jugador("Jugador 2", listPokemon);
-
-        // Crear y manejar la batalla
-        var batalla = new Batalla(jugador1, jugador2);
-        batalla.IniciarBatalla();
     }
 }
-
-
-
-
