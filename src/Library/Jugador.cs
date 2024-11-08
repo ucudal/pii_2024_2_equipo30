@@ -5,6 +5,7 @@ public class Jugador
     public string Nombre { get; set; }
     public List<Pokemon> Equipo { get; set; }
     public Pokemon PokemonActual { get; set; }
+    public List<IItem> Inventario { get; set; }
     public SuperPotion Superpotion { get; set; }
     public Revive Revive { get; set; }
     public TotalCure Totalcure { get; set; }
@@ -13,10 +14,12 @@ public class Jugador
     {
         Nombre = nombre;
         Equipo = equipo;
+        Inventario = new List<IItem>(); // Inicializamos el inventario vacío
         Superpotion = new SuperPotion(4, 70);
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
         PokemonActual = Equipo[0];
+        
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)
@@ -26,29 +29,22 @@ public class Jugador
 
     public void CambiarPokemon(int indice)
     {
-        if (indice >= 0 && indice < Equipo.Count && !Equipo[indice].EstaFueraDeCombate())
-        {
-                PokemonActual = Equipo[indice];
-                Console.WriteLine($"{Nombre} ha cambiado a {PokemonActual.Name}.");
-        }
-        else
-        {
-            Console.WriteLine("Cambio de pokemon no válido");
-        }
         PokemonActual = Equipo[indice];
-        Console.WriteLine($"{Nombre} cambió a {PokemonActual.Name}!");
+        Console.WriteLine($"\n {Nombre} cambió a {PokemonActual.Name}!\n");
     }
 
     public bool TodosFueraDeCombate()
     {
         foreach (var pokemon in Equipo)
         {
-            if (!pokemon.EstaFueraDeCombate()) 
+            if (!pokemon.EstaFueraDeCombate())
             {
                 return false;
             }
         }
-        return true;  // Retorna True si todos están fuera de combate
+
+        Console.WriteLine($"\n {Nombre} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
+        return true; // Retorna True si todos están fuera de combate
     }
 
 }

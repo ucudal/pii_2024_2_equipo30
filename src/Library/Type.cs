@@ -188,7 +188,3 @@ public class Type
         }
     }
 }
-public class TypeDetail
-{
-    public string Name { get; set; }
-}
