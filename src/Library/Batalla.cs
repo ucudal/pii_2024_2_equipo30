@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library;
 
-public class Batalla
+public class Batalla:IBatalla
 {
     private Jugador jugador1;
     private Jugador jugador2;
@@ -40,7 +40,7 @@ public class Batalla
         }
     }
 
-    private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
+    public void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
         if (!jugadorActual.PokemonActual.EstaFueraDeCombate())
         {
@@ -83,7 +83,7 @@ public class Batalla
         
     }
 
-    private void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
+    public void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
     {
         Pokemon pokemonActual = jugadorActual.PokemonActual;
 
@@ -123,7 +123,7 @@ public class Batalla
         Console.WriteLine($"\n{jugadorActual.Nombre}'s {pokemonActual.Name} ha atacado a {jugadorOponente.Nombre}'s {jugadorOponente.PokemonActual.Name} causando daño.\n");
     }
 
-    private void UsarItem(Jugador jugador)
+    public void UsarItem(Jugador jugador)
     {
         bool itemUsado = false;
         while (!itemUsado)
@@ -218,7 +218,7 @@ public class Batalla
             }
         }
     }
-    private void CambiarPokemon(Jugador jugador)
+    public void CambiarPokemon(Jugador jugador)
     {
         while (true)
         {
@@ -263,7 +263,7 @@ public class Batalla
     
 
 
-    private void InicializarPokemonActual(Jugador jugador)
+    public void InicializarPokemonActual(Jugador jugador)
     {
         if (jugador.PokemonActual == null || jugador.PokemonActual.EstaFueraDeCombate())
         {

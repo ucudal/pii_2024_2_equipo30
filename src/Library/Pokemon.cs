@@ -8,10 +8,10 @@ using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
-namespace Library
+namespace Library;
+
+public class Pokemon : IPokemon
 {
-    public class Pokemon
-    {
         public string Name { get; set; }
         public double Health { get; set; }
         public double VidaMax { get; set; }
@@ -74,7 +74,7 @@ namespace Library
             Console.WriteLine($"{Name} hizo {daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.");
         }
 
-        private double CalcularDaño(Move movimiento, double efectividad, Pokemon oponente)
+        public double CalcularDaño(Move movimiento, double efectividad, Pokemon oponente)
         {
             int poder = movimiento.MoveDetails.Power ?? 0;
             int ataque = movimiento.EstadoEspecial == EstadoEspecial.Ninguno ? Attack : SpecialAttack;
@@ -182,6 +182,6 @@ public void ProcesarEstado(Pokemon oponente = null)
 
 
     }
-}
+
 
 
