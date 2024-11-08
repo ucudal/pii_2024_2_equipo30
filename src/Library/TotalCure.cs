@@ -12,21 +12,26 @@ public class TotalCure : Items
     {
         if (Quantity > 0)
         {
-            if (pokemon.Estado != EstadoEspecial.Ninguno)
+            if (pokemon.Estado == EstadoEspecial.Envenenado)
             {
-                Console.WriteLine($"\n El pokemon {pokemon.Name} estaba {pokemon.Estado}.");
                 pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"Ahora el pokemon {pokemon.Name} está completamente curado de todos los efectos especiales.\n");
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está envenenado.");
             }
-            else
+            if (pokemon.Estado == EstadoEspecial.Paralizado)
             {
-                Console.WriteLine($"\n El pokemon {pokemon.Name} no tiene efectos de estado activos.\n");
+                pokemon.Estado = EstadoEspecial.Ninguno;
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está paralizado.");
+            }
+            if (pokemon.Estado == EstadoEspecial.Quemado)
+            {
+                pokemon.Estado = EstadoEspecial.Ninguno;
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está quemado.");
             }
             Consume();
         }
         else
         {
-            Console.WriteLine($"\n La {ItemsName} no se puede usar, no quedan más unidades.\n");
+            Console.WriteLine($"La cura {ItemsName} no se puede usar, no hay mas");
         }
     }
 }
