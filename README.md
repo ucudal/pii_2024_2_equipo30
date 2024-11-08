@@ -24,9 +24,12 @@ Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las sig
   -  Un jugador es el ganador cuando todos los Pokemons del opononente son derrotados
 
 Funcionamiento general del codigo:
-
-Para la estructura del programa usamos los principios de GRASP y Solid.
 -
+Para la estructura del programa usamos:
+-
+-   los principios de GRASP y Solid.
+-   Low coupling and High Coesion
+
 
 
 
