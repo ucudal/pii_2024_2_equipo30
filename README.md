@@ -33,7 +33,7 @@ Para la estructura del programa usamos:
 
 
 
-Las clases usadas en nuestro proyecto son son:
+Las clases usadas en nuestro proyecto son:
 -
 
 -   Movimientos(lista)
