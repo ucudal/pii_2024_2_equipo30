@@ -45,46 +45,72 @@ public class Pokemon : IPokemon
         } 
         public Pokemon (){}
 
-        public void Atacar(Pokemon oponente, Move movimiento)
+    public void Atacar(Jugador jugador, Pokemon oponente, Move movimiento, int turnoActual)
+{
+    // Verificar si el Pokémon atacante puede actuar en este turno
+    if (!PuedeAtacar())
+    {
+        Console.WriteLine($"{Name} no puede atacar este turno debido a su estado {Estado}.");
+        return;
+    }
+
+    // Verificar si se trata de un ataque especial
+    if (movimiento.EsAtaqueEspecial)
+    {
+        // Si el ataque especial no está permitido, salir y no atacar
+        if (!jugador.PuedeUsarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual))
         {
-            if (!PuedeAtacar())
-            {
-                Console.WriteLine($"{Name} no puede atacar este turno.");
-                return;
-            }
-
-            Console.WriteLine($"{Name} usa {movimiento.MoveDetails.Name}!");
-            if (movimiento.EstadoEspecial == EstadoEspecial.Dormido)
-            {
-                oponente.Dormir();
-            }
-
-            if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
-            {
-                oponente.Estado = movimiento.EstadoEspecial;
-                Console.WriteLine($"{oponente.Name} ahora está {movimiento.EstadoEspecial}.");
-            }
-
-            double efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
-            double daño = CalcularDaño(movimiento, efectividad, oponente);
-
-            oponente.Health -= daño;
-            if (oponente.Health < 0) oponente.Health = 0;
-
-            Console.WriteLine($"{Name} hizo {daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.");
+            Console.WriteLine($"No puedes usar el ataque especial {movimiento.MoveDetails.Name} en este momento. Debes esperar más turnos.");
+            return;
         }
-
-        public double CalcularDaño(Move movimiento, double efectividad, Pokemon oponente)
+        else
         {
-            int poder = movimiento.MoveDetails.Power ?? 0;
-            int ataque = movimiento.EstadoEspecial == EstadoEspecial.Ninguno ? Attack : SpecialAttack;
-            int defensa = movimiento.EstadoEspecial == EstadoEspecial.Ninguno ? oponente.Defense : oponente.SpecialDefense;
-            int nivel = 100;
-            double variacion = random.NextDouble() * (1.0 - 0.85) + 0.85;
-            double critico = random.NextDouble() < 0.1 ? 1.2 : 1.0;
-
-            return (0.1 * critico * efectividad * variacion * (0.2 * nivel + 1) * ataque * poder) / (25 * defensa) + 2;
+            // Si el ataque especial es válido, registrar el turno y continuar
+            jugador.RegistrarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual);
         }
+    }
+
+    // Ataque exitoso
+    Console.WriteLine($"{Name} usa {movimiento.MoveDetails.Name}!");
+
+    // Aplicar estado especial si corresponde y si el oponente no tiene un estado ya aplicado
+    if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
+    {
+        oponente.Estado = movimiento.EstadoEspecial;
+        if (movimiento.EstadoEspecial == EstadoEspecial.Dormido)
+        {
+            oponente.Dormir();
+        }
+        else
+        {
+            Console.WriteLine($"{oponente.Name} ahora está {movimiento.EstadoEspecial}.");
+        }
+    }
+
+    // Calcular el daño
+    double efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
+    double daño = CalcularDaño(movimiento, efectividad, oponente);
+
+    // Aplicar el daño
+    oponente.Health -= daño;
+    if (oponente.Health < 0) oponente.Health = 0;
+
+    // Mostrar resultado del ataque
+    Console.WriteLine($"{Name} hizo {daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.");
+}
+
+public double CalcularDaño(Move movimiento, double efectividad, Pokemon oponente)
+{
+    int poder = movimiento.MoveDetails.Power ?? 0;
+    int ataque = movimiento.EsAtaqueEspecial ? SpecialAttack : Attack;
+    int defensa = movimiento.EsAtaqueEspecial ? oponente.SpecialDefense : oponente.Defense;
+    int nivel = 100;
+    double variacion = random.NextDouble() * (1.0 - 0.85) + 0.85;
+    double critico = random.NextDouble() < 0.1 ? 1.2 : 1.0;
+
+    return (0.1 * critico * efectividad * variacion * (0.2 * nivel + 1) * ataque * poder) / (25 * defensa) + 2;
+}
+
 
         public bool PuedeAtacar()
         {
