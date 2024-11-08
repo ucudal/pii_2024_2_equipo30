@@ -14,6 +14,7 @@ public class Move
     public MoveDetail MoveDetails { get; set; }
     public List<Move> ListMove { get; set; }
     public EstadoEspecial EstadoEspecial { get; set; }
+ 
     public Move(EstadoEspecial estadoEspecial = EstadoEspecial.Ninguno)
     {
         EstadoEspecial = estadoEspecial;

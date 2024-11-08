@@ -44,6 +44,7 @@ public class Batalla
     {
         if (!jugadorActual.PokemonActual.EstaFueraDeCombate())
         {
+            Console.WriteLine("\n---------------------------------------------------");
             jugadorActual.PokemonActual.ProcesarEstado();
             Console.WriteLine("\n---------------------------------------------------");
             Console.WriteLine($"{jugadorActual.Nombre}, tu pokemon actual es {jugadorActual.PokemonActual.Name} y tiene {jugadorActual.PokemonActual.Health:F1} puntos de vida");
@@ -93,7 +94,6 @@ public class Batalla
 
         if (!pokemonActual.PuedeAtacar())
         {
-            Console.WriteLine($"{pokemonActual.Name} no puede atacar este turno.");
             return;
         }
 

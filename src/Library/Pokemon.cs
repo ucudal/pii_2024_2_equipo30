@@ -41,6 +41,7 @@ public class Pokemon
         this.SpecialDefense = specialDefense;
         this.Type = tipo;
         this.Moves = moves;
+        this.Estado = EstadoEspecial.Ninguno;
     }
     //Atencion, la clase atacar actualmente se encarga de manejar la efectividad y los Ataques especiales
 public void Atacar(Pokemon atacante, Pokemon oponente, Move movimiento)
@@ -75,21 +76,43 @@ public void Atacar(Pokemon atacante, Pokemon oponente, Move movimiento)
         Console.WriteLine($" {oponente.Name} ahora está {movimiento.EstadoEspecial}.\n");
     }
 
-    // Calcular el daño
-    int? PoderMovimiento = movimiento.MoveDetails.Power;
-    double Efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
-    int Nivel = 100;
-    double Variacion = new Random().NextDouble() * (1.0 - 0.85) + 0.85;
-    double GolpeCritico = (new Random().NextDouble() < 0.1) ? 1.2 : 1.0;
+    if (movimiento.EstadoEspecial == EstadoEspecial.Ninguno)
+    {
+        // Calcular el daño
+        int? PoderMovimiento = movimiento.MoveDetails.Power;
+        double Efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
+        int Nivel = 100;
+        double Variacion = new Random().NextDouble() * (1.0 - 0.85) + 0.85;
+        double GolpeCritico = (new Random().NextDouble() < 0.1) ? 1.2 : 1.0;
     
-    double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * atacante.Attack * PoderMovimiento) / (25 * oponente.Defense) + 2;
-    oponente.Health -= Daño ?? 0;
+        double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * atacante.Attack * PoderMovimiento) / (25 * oponente.Defense) + 2;
+        oponente.Health -= Daño ?? 0;
     
-    // Mostrar resultado del ataque
-    Console.WriteLine($" {atacante.Name} usó {movimiento.MoveDetails.Name} e hizo {Daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
+        // Mostrar resultado del ataque
+        Console.WriteLine($" {atacante.Name} usó {movimiento.MoveDetails.Name} e hizo {Daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
 
-    // Evitar valores negativos de salud
-    if (oponente.Health < 0) oponente.Health = 0;
+        // Evitar valores negativos de salud
+        if (oponente.Health < 0) oponente.Health = 0;
+    }
+    if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno)
+    {
+        // Calcular el daño
+        int? PoderMovimiento = movimiento.MoveDetails.Power;
+        double Efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
+        int Nivel = 100;
+        double Variacion = new Random().NextDouble() * (1.0 - 0.85) + 0.85;
+        double GolpeCritico = (new Random().NextDouble() < 0.1) ? 1.2 : 1.0;
+    
+        double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * atacante.SpecialAttack * PoderMovimiento) / (25 * oponente.SpecialDefense) + 2;
+        oponente.Health -= Daño ?? 0;
+    
+        // Mostrar resultado del ataque
+        Console.WriteLine($" {atacante.Name} usó {movimiento.MoveDetails.Name} (especial) e hizo {Daño:F2} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F2} puntos de vida.\n");
+
+        // Evitar valores negativos de salud
+        if (oponente.Health < 0) oponente.Health = 0; 
+    }
+    
 }
 
 
@@ -166,6 +189,15 @@ public void Atacar(Pokemon atacante, Pokemon oponente, Move movimiento)
         else if (this.Estado == EstadoEspecial.Dormido)
         {
             Console.WriteLine($"{Name} está dormido, no puede ser quemado ni envenenado\n");
+            
+        }
+        else if (this.Estado == EstadoEspecial.Paralizado)
+        {
+            Console.WriteLine($"{Name} está paralizado, no puede ser quemado ni envenenado\n");
+        }
+        else if (this.Estado == EstadoEspecial.Ninguno)
+        {
+            Console.WriteLine($"{Name} No tiene ningún efecto \n");
         }
     }
 
