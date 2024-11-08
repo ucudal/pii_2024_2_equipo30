@@ -59,7 +59,7 @@ public class PokemonTests
             EstadoEspecial = EstadoEspecial.Ninguno
         };
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.Less(oponente.Health, saludInicial, "La salud del oponente debería reducirse después del ataque exitoso.");
@@ -75,7 +75,7 @@ public class PokemonTests
         double saludInicial = oponente.Health;
 
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(saludInicial, oponente.Health, "La salud del oponente no debería cambiar cuando el atacante está dormido.");
@@ -99,7 +99,7 @@ public class PokemonTests
         };
 
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(EstadoEspecial.Paralizado, oponente.Estado, "El estado 'Paralizado' debería aplicarse al oponente.");
@@ -125,7 +125,7 @@ public class PokemonTests
         };
 
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(EstadoEspecial.Dormido, oponente.Estado, "El estado del oponente no debería cambiar si ya tiene otro estado aplicado.");
@@ -139,7 +139,7 @@ public class PokemonTests
         atacante.Type.SetType("fire");   // Configura el tipo del atacante, efectivo contra "grass"
 
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.Less(oponente.Health, 100, "La salud del oponente debería reducirse tomando en cuenta la efectividad del tipo.");
@@ -190,7 +190,7 @@ public class PokemonTests
         };
 
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(95,oponente.Health, "El oponente debería perder un 5% de su salud debido a estar envenenado.");
@@ -216,7 +216,7 @@ public class PokemonTests
         };
 
         // Act
-        atacante.Atacar(atacante, oponente, movimiento);
+        atacante.Atacar(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(90,oponente.Health, "El oponente debería perder un 10% de su salud debido a estar quemado.");
