@@ -57,18 +57,31 @@ public class SuperPotion : Items
     
     public override void Use(Pokemon pokemon)
     {
-        double nuevaVida = pokemon.Health + HpRecovered;
-        
-        if (nuevaVida > pokemon.VidaMax)
+        if (Quantity > 0)
         {
-            pokemon.Health = pokemon.VidaMax;
+            if (pokemon.Estado == EstadoEspecial.Envenenado)
+            {
+                pokemon.Estado = EstadoEspecial.Ninguno;
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está envenenado.");
+            }
+            if (pokemon.Estado == EstadoEspecial.Paralizado)
+            {
+                pokemon.Estado = EstadoEspecial.Ninguno;
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está paralizado.");
+            }
+
+            if (pokemon.Estado == EstadoEspecial.Quemado)
+            {
+                pokemon.Estado = EstadoEspecial.Ninguno;
+                Console.WriteLine($"El pokemon {pokemon.Name} ya no está quemado.");
+            }
+
+            Consume();
         }
         else
         {
-            pokemon.Health = nuevaVida;
+            Console.WriteLine($"La cura {ItemsName} no se puede usar, no hay mas");
         }
-        Consume();
-        Console.WriteLine($"\n El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud. Ahora tiene {pokemon.Health:F1}/{pokemon.VidaMax} puntos de vida.\n");
     }
 }
 
