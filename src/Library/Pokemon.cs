@@ -177,12 +177,20 @@ public void Atacar(Pokemon atacante, Pokemon oponente, Move movimiento)
         if (Estado == EstadoEspecial.Envenenado)
         {
             int damage = (int)(Health * 0.05);
+            if (damage < 1)
+            {
+                damage = 1; // Asegurarse de que el daño mínimo sea al menos 1 punto de vida
+            }
             this.Health -= damage;
             Console.WriteLine($"{Name} está envenenado y pierde {damage} puntos de vida.\n");
         }
-        else if (this.Estado == EstadoEspecial.Quemado)
+        else if (Estado == EstadoEspecial.Quemado)
         {
             int burnDamage = (int)(Health * 0.10);
+            if (burnDamage < 1)
+            {
+                burnDamage = 1; // Asegurarse de que el daño mínimo sea al menos 1 punto de vida
+            }
             this.Health -= burnDamage;
             Console.WriteLine($"{Name} está quemado y pierde {burnDamage} puntos de vida.\n");
         }

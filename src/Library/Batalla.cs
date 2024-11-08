@@ -83,21 +83,22 @@ public class Batalla
         
     }
 
-    private void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
+private void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
+{
+    Pokemon pokemonActual = jugadorActual.PokemonActual;
+    if (pokemonActual == null || pokemonActual.Moves == null || pokemonActual.Moves.Count == 0)
     {
-        Pokemon pokemonActual = jugadorActual.PokemonActual;
-        if (pokemonActual == null || pokemonActual.Moves == null || pokemonActual.Moves.Count == 0)
-        {
-            Console.WriteLine($"{pokemonActual?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.");
-            return;
-        }
+        Console.WriteLine($"{pokemonActual?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.");
+        return;
+    }
 
-        if (!pokemonActual.PuedeAtacar())
-        {
-            return;
-        }
+    if (!pokemonActual.PuedeAtacar())
+    {
+        return;
+    }
 
-        // Mostrar movimientos del Pokémon actual
+    while (true) // Bucle para permitir al jugador elegir otro ataque si el especial está bloqueado
+    {
         Console.WriteLine($"\n{jugadorActual.Nombre}, elige un movimiento de: {pokemonActual.Name}");
 
         for (int i = 0; i < pokemonActual.Moves.Count; i++)
@@ -106,14 +107,31 @@ public class Batalla
             Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
         }
 
-        // Elección del movimiento
         int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
+        var movimientoElegido = pokemonActual.Moves[movimientoSeleccionado];
 
-        // Realizar el ataque
-        Console.WriteLine("\n Realizando ataque...\n");
-        pokemonActual.Atacar(jugadorActual.PokemonActual, jugadorOponente.PokemonActual, pokemonActual.Moves[movimientoSeleccionado]);
-        Console.WriteLine($"\n{jugadorActual.Nombre}'s {pokemonActual.Name} ha atacado a {jugadorOponente.Nombre}'s {jugadorOponente.PokemonActual.Name} causando daño.\n");
+        if (movimientoElegido.EsAtaqueEspecial)
+        {
+            // Si es un ataque especial, usar EjecutarAtaqueEspecial para manejar la lógica de restricciones
+            if (turno.EjecutarAtaqueEspecial(jugadorActual, pokemonActual, movimientoElegido, turno.NumeroTurno))
+            {
+                break; // Salir del bucle si el ataque especial fue ejecutado exitosamente
+            }
+            else
+            {
+                Console.WriteLine("No puedes usar ese ataque especial en este momento. Selecciona otro movimiento.");
+            }
+        }
+        else
+        {
+            // Realizar un ataque regular si no es un ataque especial
+            pokemonActual.Atacar(jugadorActual.PokemonActual, jugadorOponente.PokemonActual, movimientoElegido);
+            Console.WriteLine($"{jugadorActual.Nombre}'s {pokemonActual.Name} ha atacado a {jugadorOponente.Nombre}'s {jugadorOponente.PokemonActual.Name} causando daño.");
+            break; // Salir del bucle si el ataque regular fue ejecutado
+        }
     }
+}
+
 
     private void UsarItem(Jugador jugador)
     {
