@@ -61,8 +61,7 @@ public class HistoryUser3_Test
         atacante.Atacar(oponente, movimiento);
 
         // Assert
-        Assert.Less(oponente.Health, saludInicial,
-            "La salud del oponente debería reducirse después del ataque exitoso.");
+        Assert.Less(oponente.Health, saludInicial,"La salud del oponente debería reducirse después del ataque exitoso.");
         Console.WriteLine(oponente.Health);
     }
 }

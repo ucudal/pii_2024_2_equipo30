@@ -60,7 +60,7 @@ public class HistoryUser4_Test
                 EstadoEspecial = EstadoEspecial.Ninguno
         };
         // Act
-        fire.Atacar(Grass, movimiento);
+        Fire.Atacar(Grass, movimiento);
 
         // Assert
         Assert.Less(Grass.Health, saludInicial2, "La salud del oponente debería reducirse mas segun la efectividad.");
