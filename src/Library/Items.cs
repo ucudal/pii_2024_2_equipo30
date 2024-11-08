@@ -18,6 +18,7 @@ public abstract class Items : IItem //clase abstracta que implementa interfaz
     public string ItemsName { get; set; }
     public string ItemsDescription { get; set; }
     public int Quantity { get; set; }
+    
 
     //constructor creado para cumplir con creator, por responsabilidad de los items y sus instancias
     public Items(string itemsName, string itemsDescription, int quantity)
@@ -56,10 +57,19 @@ public class SuperPotion : Items
     
     public override void Use(Pokemon pokemon)
     {
-        pokemon.Health += HpRecovered;
+        double nuevaVida = pokemon.Health + HpRecovered;
+        
+        if (nuevaVida > pokemon.VidaMax)
+        {
+            pokemon.Health = pokemon.VidaMax;
+        }
+        else
+        {
+            pokemon.Health = nuevaVida;
+        }
+
         Consume();
         Console.WriteLine($" El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud.");
-        Consume();
     }
 }
 
@@ -107,6 +117,7 @@ public class TotalCure : Items
 //clase que hereda de items
 public class Revive : Items
 {
+    
     private int HpRecovered;
     
     public Revive(int quantity) : base("Revivir", "Revive a un Pokémon con el 50% de su HP total.", quantity)
@@ -118,7 +129,7 @@ public class Revive : Items
     {
         if (Quantity > 0)
         {
-            if (pokemon.FueraDeCombate = true)
+            if (pokemon.FueraDeCombate == true)
             {
                 pokemon.FueraDeCombate = false;
                 pokemon.Health = HpRecovered;
