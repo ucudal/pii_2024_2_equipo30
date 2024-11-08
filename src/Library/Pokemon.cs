@@ -44,76 +44,81 @@ public class Pokemon
         this.Estado = EstadoEspecial.Ninguno;
     }
     //Atencion, la clase atacar actualmente se encarga de manejar la efectividad y los Ataques especiales
-public void Atacar(Pokemon atacante, Pokemon oponente, Move movimiento)
-{
-    // Verificar si el Pokémon atacante puede actuar en este turno
-    if (atacante.Estado == EstadoEspecial.Dormido)
+    public void Atacar(Jugador jugador, Pokemon oponente, Move movimiento, int turnoActual)
     {
-        Console.WriteLine($"\n {atacante.Name} está dormido y no puede atacar este turno.\n");
-        return; 
-    }
-    else if (atacante.Estado == EstadoEspecial.Paralizado)
-    {
-        if (new Random().Next(0, 2) == 0)  // Probabilidad del 50%
+        // Verificar si el Pokémon atacante puede actuar en este turno
+        if (this.Estado == EstadoEspecial.Dormido)
         {
-            Console.WriteLine($"\n {atacante.Name} está paralizado y no puede atacar este turno.\n");
-            return;
+            Console.WriteLine($"\n {this.Name} está dormido y no puede atacar este turno.\n");
+            return; 
         }
-        else
+        else if (this.Estado == EstadoEspecial.Paralizado)
         {
-            Console.WriteLine($"\n {atacante.Name} no está paralizado\n");
+            if (new Random().Next(0, 2) == 0)  // Probabilidad del 50%
+            {
+                Console.WriteLine($"\n {this.Name} está paralizado y no puede atacar este turno.\n");
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"\n {this.Name} logra superar la parálisis y puede atacar.\n");
+            }
         }
-    }
 
-    // Ataque exitoso
-    Console.WriteLine($"\n {atacante.Name} usa {movimiento.MoveDetails.Name}!\n");
-    
-    // Aplicar estado especial si corresponde
-    if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
-    {
-        oponente.Estado = movimiento.EstadoEspecial;
-        ProcesarEstado(atacante, oponente);
-        Console.WriteLine($" {oponente.Name} ahora está {movimiento.EstadoEspecial}.\n");
-    }
+        // Verificar si se trata de un ataque especial
+        if (movimiento.EsAtaqueEspecial)
+        {
+            // Si el ataque especial no está permitido, salir y no atacar
+            if (!jugador.PuedeUsarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual))
+            {
+                Console.WriteLine($"No puedes usar el ataque especial {movimiento.MoveDetails.Name} en este momento. Debes esperar más turnos.");
+                return;
+            }
+            else
+            {
+                // Si el ataque especial es válido, registrar el turno y continuar
+                jugador.RegistrarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual);
+            }
+        }
 
-    if (movimiento.EstadoEspecial == EstadoEspecial.Ninguno)
-    {
+        // Ataque exitoso
+        Console.WriteLine($"\n {this.Name} usa {movimiento.MoveDetails.Name}!\n");
+
+        // Aplicar estado especial si corresponde y si el oponente no tiene un estado ya aplicado
+        if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
+        {
+            oponente.Estado = movimiento.EstadoEspecial;
+            ProcesarEstado(this, oponente);
+            Console.WriteLine($" {oponente.Name} ahora está {movimiento.EstadoEspecial}.\n");
+        }
+
         // Calcular el daño
         int? PoderMovimiento = movimiento.MoveDetails.Power;
         double Efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
         int Nivel = 100;
         double Variacion = new Random().NextDouble() * (1.0 - 0.85) + 0.85;
         double GolpeCritico = (new Random().NextDouble() < 0.1) ? 1.2 : 1.0;
-    
-        double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * atacante.Attack * PoderMovimiento) / (25 * oponente.Defense) + 2;
+
+        double ataqueBase = movimiento.EsAtaqueEspecial ? this.SpecialAttack : this.Attack;
+        double defensaOponente = movimiento.EsAtaqueEspecial ? oponente.SpecialDefense : oponente.Defense;
+
+        double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * ataqueBase * PoderMovimiento) / (25 * defensaOponente) + 2;
         oponente.Health -= Daño ?? 0;
-    
+
         // Mostrar resultado del ataque
-        Console.WriteLine($" {atacante.Name} usó {movimiento.MoveDetails.Name} e hizo {Daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
+        if (movimiento.EsAtaqueEspecial)
+        {
+            Console.WriteLine($" {this.Name} usó {movimiento.MoveDetails.Name} (especial) e hizo {Daño:F2} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F2} puntos de vida.\n");
+        }
+        else
+        {
+            Console.WriteLine($" {this.Name} usó {movimiento.MoveDetails.Name} e hizo {Daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
+        }
 
         // Evitar valores negativos de salud
         if (oponente.Health < 0) oponente.Health = 0;
     }
-    if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno)
-    {
-        // Calcular el daño
-        int? PoderMovimiento = movimiento.MoveDetails.Power;
-        double Efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
-        int Nivel = 100;
-        double Variacion = new Random().NextDouble() * (1.0 - 0.85) + 0.85;
-        double GolpeCritico = (new Random().NextDouble() < 0.1) ? 1.2 : 1.0;
-    
-        double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * atacante.SpecialAttack * PoderMovimiento) / (25 * oponente.SpecialDefense) + 2;
-        oponente.Health -= Daño ?? 0;
-    
-        // Mostrar resultado del ataque
-        Console.WriteLine($" {atacante.Name} usó {movimiento.MoveDetails.Name} (especial) e hizo {Daño:F2} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F2} puntos de vida.\n");
 
-        // Evitar valores negativos de salud
-        if (oponente.Health < 0) oponente.Health = 0; 
-    }
-    
-}
 
 
     public bool EstaFueraDeCombate()

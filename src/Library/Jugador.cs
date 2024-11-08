@@ -9,7 +9,9 @@ public class Jugador
     public SuperPotion Superpotion { get; set; }
     public Revive Revive { get; set; }
     public TotalCure Totalcure { get; set; }
-    private Dictionary<string, int> ataquesEspecialesUltimoTurno = new Dictionary<string, int>();
+    private Dictionary<string, int> ataquesEspecialesUsados = new Dictionary<string, int>();
+    // Turno personal del jugador
+    private int turnoPersonal = 1;
 
     public Jugador(string nombre, List<Pokemon> equipo)
     {
@@ -49,20 +51,38 @@ public class Jugador
     }
     
     // Método para registrar el turno en el que se usó un ataque especial
+// Método para registrar el turno en el que se usó un ataque especial
     public void RegistrarAtaqueEspecial(string nombreAtaque, int turnoActual)
     {
-        ataquesEspecialesUltimoTurno[nombreAtaque] = turnoActual;
+        ataquesEspecialesUsados[nombreAtaque] = turnoActual;
     }
 
     // Método para verificar si el ataque especial está disponible
     public bool PuedeUsarAtaqueEspecial(string nombreAtaque, int turnoActual)
     {
-        if (ataquesEspecialesUltimoTurno.ContainsKey(nombreAtaque))
+        int turnoUltimoUso = ObtenerUltimoTurnoDeAtaque(nombreAtaque);
+
+        // Verificar si se puede usar el ataque (se debe esperar 2 turnos del jugador)
+        if (turnoUltimoUso == -1 || turnoActual - turnoUltimoUso >= 3)
         {
-            int turnoUltimoUso = ataquesEspecialesUltimoTurno[nombreAtaque];
-            // Solo permite el uso si han pasado al menos 2 turnos
-            return (turnoActual - turnoUltimoUso) >= 2;
+            return true;
         }
-        return true; // Si no se ha usado antes, está disponible
+        return false;
+    }
+
+    // Método para obtener el turno en el que se usó el ataque especial por última vez
+    public int ObtenerUltimoTurnoDeAtaque(string nombreAtaque)
+    {
+        return ataquesEspecialesUsados.ContainsKey(nombreAtaque) ? ataquesEspecialesUsados[nombreAtaque] : -1;
+    }
+    
+    public void IncrementarTurnoPersonal()
+    {
+        turnoPersonal++;
+    }
+    
+    public int ObtenerTurnoPersonal()
+    {
+        return turnoPersonal;
     }
 }

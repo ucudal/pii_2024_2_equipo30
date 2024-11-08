@@ -16,7 +16,11 @@ public class Move
     public EstadoEspecial EstadoEspecial { get; set; }
     
     // Nueva propiedad que indica si un movimiento es un ataque especial
-    public bool EsAtaqueEspecial => EstadoEspecial != EstadoEspecial.Ninguno;
+    public bool EsAtaqueEspecial =>
+        EstadoEspecial == EstadoEspecial.Envenenado ||
+        EstadoEspecial == EstadoEspecial.Quemado ||
+        EstadoEspecial == EstadoEspecial.Dormido ||
+        EstadoEspecial == EstadoEspecial.Paralizado;
  
     public Move(EstadoEspecial estadoEspecial = EstadoEspecial.Ninguno)
     {

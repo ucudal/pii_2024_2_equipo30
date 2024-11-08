@@ -26,27 +26,24 @@ public class Turno
     {
         Console.WriteLine($"-- Turno {NumeroTurno} / {JugadorActual.Nombre} es tu turno! --");
     }
-    
-    // Método para ejecutar un ataque especial con restricción de turnos
-    public bool EjecutarAtaqueEspecial(Jugador jugador, Pokemon pokemon, Move movimiento, int turnoActual)
-    {
-        // Verificar si el ataque especial está disponible según el turno actual
-        if (jugador.PuedeUsarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual))
-        {
-            // Ejecuta el ataque especial y aplica daño
-            pokemon.Atacar(jugador.PokemonActual, JugadorOponente.PokemonActual, movimiento);
-            Console.WriteLine($"{jugador.Nombre} usa el ataque especial {movimiento.MoveDetails.Name} causando daño!");
-        
-            // Registrar el turno actual en el que se usó el ataque especial
-            jugador.RegistrarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual);
 
-            return true; // Ataque especial realizado exitosamente
-        }
-        else
+    // Método para ejecutar un ataque especial con restricción de turnos
+    public bool EjecutarAtaqueEspecial(Jugador jugador, Pokemon atacante, Move movimiento, int turnoActual)
+    {
+        // Verificar si el ataque especial se puede realizar
+        if (!jugador.PuedeUsarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual))
         {
-            // El ataque especial no se puede usar debido a la restricción de turnos
-            Console.WriteLine($"{jugador.Nombre} no puede usar el ataque especial {movimiento.MoveDetails.Name} nuevamente. Debe esperar.");
-            return false; // Ataque especial bloqueado
+            Console.WriteLine($"No puedes usar el ataque especial {movimiento.MoveDetails.Name} en este momento. Debes esperar más turnos.");
+            return false;
         }
+
+        // Realizar el ataque especial
+        atacante.Atacar(jugador, JugadorOponente.PokemonActual, movimiento, turnoActual);
+        Console.WriteLine($"{jugador.Nombre} usó el ataque especial {movimiento.MoveDetails.Name} causando daño!");
+
+        // Registrar el ataque especial solo si el ataque fue exitoso
+        jugador.RegistrarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual);
+
+        return true;
     }
 }
