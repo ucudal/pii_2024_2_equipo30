@@ -70,7 +70,7 @@ class Program
 
         public async Task StartAsync()
         {
-            string token = "";
+           //Aca va el to k e n
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
