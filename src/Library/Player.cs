@@ -1,10 +1,10 @@
 namespace Library;
 
-public class Jugador:IJugador
+public class Player:IJugador
 {
-    public string Nombre { get; set; }
-    public List<Pokemon> Equipo { get; set; }
-    public Pokemon PokemonActual { get; set; }
+    public string NamePlayer { get; set; }
+    public List<Pokemon> Team { get; set; }
+    public Pokemon actualPokemon { get; set; }
     public List<IItem> Inventario { get; set; }
     public SuperPotion Superpotion { get; set; }
     public Revive Revive { get; set; }
@@ -12,15 +12,15 @@ public class Jugador:IJugador
     private Dictionary<string, int> ataquesEspecialesUsados = new Dictionary<string, int>();
     private int turnoPersonal = 1;
 
-    public Jugador(string nombre, List<Pokemon> equipo)
+    public Player(string namePlayer, List<Pokemon> team)
     {
-        Nombre = nombre;
-        Equipo = equipo;
+        NamePlayer = namePlayer;
+        Team = team;
         Inventario = new List<IItem>(); // Inicializamos el inventario vacío
         Superpotion = new SuperPotion(4, 70);
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
-        PokemonActual = Equipo[0];
+        actualPokemon = Team[0];
         
     }
 
@@ -29,38 +29,38 @@ public class Jugador:IJugador
         return new List<Pokemon>();
     }
 
-    public void CambiarPokemon(int indice)
+    public void SwitchPokemon(int indice)
     {
-        PokemonActual = Equipo[indice];
-        Console.WriteLine($"\n {Nombre} cambió a {PokemonActual.Name}!\n");
+        actualPokemon = Team[indice];
+        Console.WriteLine($"\n {NamePlayer} cambió a {actualPokemon.Name}!\n");
     }
 
-    public bool TodosFueraDeCombate()
+    public bool AllOutOfCombat()
     {
-        foreach (var pokemon in Equipo)
+        foreach (var pokemon in Team)
         {
-            if (!pokemon.EstaFueraDeCombate())
+            if (!pokemon.OutOfAction())
             {
                 return false;
             }
         }
 
-        Console.WriteLine($"\n {Nombre} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
+        Console.WriteLine($"\n {NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
         return true; // Retorna True si todos están fuera de combate
     }
 // Método para registrar el turno en el que se usó un ataque especial
 // Método para registrar el turno en el que se usó un ataque especial
-    public void RegistrarAtaqueEspecial(string nombreAtaque, int turnoActual)
+    public void RegisterSpecialAttack(string nombreAtaque, int turnoActual)
     {
         ataquesEspecialesUsados[nombreAtaque] = turnoActual;
     }
 
     // Método para verificar si el ataque especial está disponible
-    public bool PuedeUsarAtaqueEspecial(string nombreAtaque, int turnoActual)
+    public bool CanUseEspecialAtack(string nombreAtaque, int turnoActual)
     {
-        int turnoUltimoUso = ObtenerUltimoTurnoDeAtaque(nombreAtaque);
+        int turnoUltimoUso = ObtainLastShiftofAttack(nombreAtaque);
 
-        // Verificar si se puede usar el ataque (se debe esperar 2 turnos del jugador)
+        // Verificar si se puede usar el ataque (se debe esperar 2 turnos del player)
         if (turnoUltimoUso == -1 || turnoActual - turnoUltimoUso >= 2)
         {
             return true;
@@ -69,17 +69,17 @@ public class Jugador:IJugador
     }
 
     // Método para obtener el turno en el que se usó el ataque especial por última vez
-    public int ObtenerUltimoTurnoDeAtaque(string nombreAtaque)
+    public int ObtainLastShiftofAttack(string nombreAtaque)
     {
         return ataquesEspecialesUsados.ContainsKey(nombreAtaque) ? ataquesEspecialesUsados[nombreAtaque] : -1;
     }
     
-    public void IncrementarTurnoPersonal()
+    public void IncrementPersonalShift()
     {
         turnoPersonal++;
     }
     
-    public int ObtenerTurnoPersonal()
+    public int ObtainPersonalShift()
     {
         return turnoPersonal;
     }

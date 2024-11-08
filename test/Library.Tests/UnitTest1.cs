@@ -56,10 +56,10 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = flamethrower,
-            EstadoEspecial = EstadoEspecial.Ninguno
+            EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
         Assert.Less(oponente.Health, saludInicial, "La salud del oponente debería reducirse después del ataque exitoso.");
@@ -71,11 +71,11 @@ public class PokemonTests
     //Este metodo testea que si el atacante esta dormido no puede inflingir daño al oponente
     {
         // Arrange
-        atacante.Estado = EstadoEspecial.Dormido;
+        atacante.Status = EspecialStatus.Asleep;
         double saludInicial = oponente.Health;
 
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(saludInicial, oponente.Health, "La salud del oponente no debería cambiar cuando el atacante está dormido.");
@@ -95,14 +95,14 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = paralizarMoveDetail,
-            EstadoEspecial = EstadoEspecial.Paralizado
+            EspecialStatus = EspecialStatus.Paralyzed
         };
 
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
-        Assert.AreEqual(EstadoEspecial.Paralizado, oponente.Estado, "El estado 'Paralizado' debería aplicarse al oponente.");
+        Assert.AreEqual(EspecialStatus.Paralyzed, oponente.Status, "El estado 'Paralyzed' debería aplicarse al oponente.");
     }
 
     [Test]
@@ -110,7 +110,7 @@ public class PokemonTests
     //En este metodo probamos que si un pokemon ya esta afectado por un estado, que no pueda ser afectado por otro
     {
         // Arrange
-        oponente.Estado = EstadoEspecial.Dormido;
+        oponente.Status = EspecialStatus.Asleep;
         var paralizarMoveDetail = new MoveDetail
         {
             Name = "Thunder Wave",
@@ -121,14 +121,14 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = paralizarMoveDetail,
-            EstadoEspecial = EstadoEspecial.Paralizado
+            EspecialStatus = EspecialStatus.Paralyzed
         };
 
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
-        Assert.AreEqual(EstadoEspecial.Dormido, oponente.Estado, "El estado del oponente no debería cambiar si ya tiene otro estado aplicado.");
+        Assert.AreEqual(EspecialStatus.Asleep, oponente.Status, "El estado del oponente no debería cambiar si ya tiene otro estado aplicado.");
     }
 
     [Test]
@@ -139,7 +139,7 @@ public class PokemonTests
         atacante.Type.SetType("fire");   // Configura el tipo del atacante, efectivo contra "grass"
 
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
         Assert.Less(oponente.Health, 100, "La salud del oponente debería reducirse tomando en cuenta la efectividad del tipo.");
@@ -151,11 +151,11 @@ public class PokemonTests
         var pokemon = new Pokemon { Health = 0 };
 
         // Act
-        bool resultado = pokemon.EstaFueraDeCombate();
+        bool resultado = pokemon.OutOfAction();
 
         // Assert
         Assert.IsTrue(resultado, "El Pokémon debería estar fuera de combate cuando la salud es 0.");
-        Assert.IsTrue(pokemon.FueraDeCombate, "La propiedad FueraDeCombate debería ser verdadera.");
+        Assert.IsTrue(pokemon.Outofaction, "La propiedad Outofaction debería ser verdadera.");
     }
     [Test]
     public void False_OutOfCombat()
@@ -164,16 +164,16 @@ public class PokemonTests
         var pokemon = new Pokemon { Health = 1 };
 
         // Act
-        bool resultado = pokemon.EstaFueraDeCombate();
+        bool resultado = pokemon.OutOfAction();
 
         // Assert
         Assert.IsFalse(resultado, "El Pokémon NO debería estar fuera de combate cuando la salud es mayor a 0.");
-        Assert.IsFalse(pokemon.FueraDeCombate, "La propiedad FueraDeCombate debería ser falsa."); //ksba
+        Assert.IsFalse(pokemon.Outofaction, "La propiedad Outofaction debería ser falsa."); //ksba
     }
     [Test]
     public void PoisonAttack()
     {
-        oponente.Estado = EstadoEspecial.Ninguno;
+        oponente.Status = EspecialStatus.NoneStatus;
         // Arrange
         //Power is 0, however since opponent is now poisoned, he should lose 5% health
         var poisonMan = new MoveDetail
@@ -186,11 +186,11 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = poisonMan,
-            EstadoEspecial = EstadoEspecial.Envenenado
+            EspecialStatus = EspecialStatus.Poisoned
         };
 
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(95,oponente.Health, "El oponente debería perder un 5% de su salud debido a estar envenenado.");
@@ -199,7 +199,7 @@ public class PokemonTests
     [Test]
     public void BurningAttack()
     {
-        oponente.Estado = EstadoEspecial.Ninguno;
+        oponente.Status = EspecialStatus.NoneStatus;
         // Arrange
         //Power is 0, however since opponent is now burned, he should lose 10% health
         var burningMan = new MoveDetail
@@ -212,11 +212,11 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = burningMan,
-            EstadoEspecial = EstadoEspecial.Quemado
+            EspecialStatus = EspecialStatus.Burned
         };
 
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.AttackP(oponente, movimiento);
 
         // Assert
         Assert.AreEqual(90,oponente.Health, "El oponente debería perder un 10% de su salud debido a estar quemado.");
