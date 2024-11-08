@@ -168,7 +168,7 @@ public class PokemonTests
 
         // Assert
         Assert.IsFalse(resultado, "El Pokémon NO debería estar fuera de combate cuando la salud es mayor a 0.");
-        Assert.IsFalse(pokemon.FueraDeCombate, "La propiedad FueraDeCombate debería ser falsa.");
+        Assert.IsFalse(pokemon.FueraDeCombate, "La propiedad FueraDeCombate debería ser falsa."); //ksba
     }
     [Test]
     public void PoisonAttack()
