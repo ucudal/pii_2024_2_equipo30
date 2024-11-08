@@ -228,4 +228,3 @@ public class Pokemon
         Console.WriteLine($" {Name} ha sido paralizado.\n");
     }
 }
-

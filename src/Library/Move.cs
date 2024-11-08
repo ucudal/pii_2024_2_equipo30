@@ -27,4 +27,3 @@ public class Move
         EstadoEspecial = estadoEspecial;
     }
 }
-
