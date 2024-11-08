@@ -1,6 +1,7 @@
 ﻿# pii_2024_2_equipo30
 
 Somos el grupo 4GRAM tambien poco conocidos como el equipo 30
+-
 
 Integrantes:
 - Mauricio Segovia
@@ -9,7 +10,7 @@ Integrantes:
 - Alejandro Hernandez
 
 Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las siguientes caracteristicas:
-
+-
   -  Se va a tratar de combates por turnos
   -  Se jugara mediante comandos de un Chatbot
   -  Sera multijugador (1 vs 1)
@@ -23,26 +24,43 @@ Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las sig
   -  Un jugador es el ganador cuando todos los Pokemons del opononente son derrotados
 
 Funcionamiento general del codigo:
+-
+Para la estructura del programa usamos:
+-
+-   los principios de GRASP y Solid.
+-   Low coupling and High Coesion
 
-Para la estructura del programa contamos con las siguientes clases
 
--Movimientos(lista)
 
--Movimiento(Define lo que es un movimiento,tendra un nombre y su daño asociado)
 
--Tipo(modifica el daño segun la eficiencia del ataque)
+Las clases usadas en nuestro proyecto son son:
+-
 
--Tipo Pokemno(se crean las relaciones de efictividad entre tipos de pokemon )
+-   Movimientos(lista)
 
--Pokemon(utiliza el nombres,la vida,la lista de movimientos y que tipo es. Constructor)
+-   Movimiento(Define lo que es un movimiento,tendra un nombre y su daño asociado)
+
+-   Tipo(modifica el daño segun la eficiencia del ataque)
+
+-   Tipo Pokemno(se crean las relaciones de efictividad entre tipos de pokemon )
+
+-   Pokemon(utiliza el nombres,la vida,la lista de movimientos y que tipo es. Constructor)
       - Tiene metodos como "Atacar" y  "Estafueradecombate" que seran utilizados mas adelante
       
--jugador/Entrenador (tendra un nombre y su lista de pokemons que se podran elegir)
+-   jugador/Entrenador (tendra un nombre y su lista de pokemons que se podran elegir)
 
--Turno (toma a los jugadores y gestiona quien debe o pueda usar un movimiento. Ademas lleva un conteo de los turnos)
+-   Turno (toma a los jugadores y gestiona quien debe o pueda usar un movimiento. Ademas lleva un conteo de los turnos)
 
--Batalla(incluye la interfaz y muestra las estadistica de ambos jugadores en cada turno )
+-   Batalla(incluye la interfaz y muestra las estadistica de ambos jugadores en cada turno )
+
+Errores y problemas que surgieron:
+-
+
+
+Comentarios:
+-
 
 
 
 Muchas gracias y un saludo. 
+-
