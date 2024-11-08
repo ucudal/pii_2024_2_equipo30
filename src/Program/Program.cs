@@ -1,5 +1,7 @@
 ﻿using System.Threading.Channels;
 using Library;
+using Discord;
+using Discord.WebSocket;
 using System;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -16,6 +18,12 @@ class Program
 
     public static async Task Main(string[] args)
     {
+        {
+            var bot = new Bot();
+            await bot.StartAsync();
+
+            await Task.Delay(-1);
+        }
         PokemonApi pokemonApi = new PokemonApi(client);
         PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
 
@@ -48,6 +56,47 @@ class Program
         // Crear y manejar la batalla
         var batalla = new Batalla(jugador1, jugador2);
         batalla.IniciarBatalla();
+    }
+    class Bot
+    {
+        private readonly DiscordSocketClient _client;
+
+        public Bot()
+        {
+            _client = new DiscordSocketClient();
+            _client.Log += Log;
+            _client.MessageReceived += MessageReceived;
+        }
+
+        public async Task StartAsync()
+        {
+            string token = "MTMwNDIwMTYwMjE4MTIzNDczOQ.Gi_jKI.Pa8pvwJsaGVAxR6mzdm41C1EGN0Nrn1uDNpNn4";
+
+            await _client.LoginAsync(TokenType.Bot, token);
+            await _client.StartAsync();
+        }
+
+        private Task Log(LogMessage log)
+        {
+            Console.WriteLine(log);
+            return Task.CompletedTask;
+        }
+
+        private async Task MessageReceived(SocketMessage arg)
+        {
+            if (arg.Author.IsBot)
+                return;
+
+            if (arg.Content == "!ping")
+            {
+                await arg.Channel.SendMessageAsync("Pong!");
+            }
+
+            else if (arg.Content == "!hello")
+            {
+                await arg.Channel.SendMessageAsync("¡Hola, soy tu bot!");
+            }
+        }
     }
 }
 
