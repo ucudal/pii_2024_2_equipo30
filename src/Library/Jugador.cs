@@ -1,6 +1,6 @@
 namespace Library;
 
-public class Jugador
+public class Jugador:IJugador
 {
     public string Nombre { get; set; }
     public List<Pokemon> Equipo { get; set; }
@@ -9,9 +9,6 @@ public class Jugador
     public SuperPotion Superpotion { get; set; }
     public Revive Revive { get; set; }
     public TotalCure Totalcure { get; set; }
-    private Dictionary<string, int> ataquesEspecialesUsados = new Dictionary<string, int>();
-    // Turno personal del jugador
-    private int turnoPersonal = 1;
 
     public Jugador(string nombre, List<Pokemon> equipo)
     {
@@ -49,40 +46,5 @@ public class Jugador
         Console.WriteLine($"\n {Nombre} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
         return true; // Retorna True si todos están fuera de combate
     }
-    
-    // Método para registrar el turno en el que se usó un ataque especial
-// Método para registrar el turno en el que se usó un ataque especial
-    public void RegistrarAtaqueEspecial(string nombreAtaque, int turnoActual)
-    {
-        ataquesEspecialesUsados[nombreAtaque] = turnoActual;
-    }
 
-    // Método para verificar si el ataque especial está disponible
-    public bool PuedeUsarAtaqueEspecial(string nombreAtaque, int turnoActual)
-    {
-        int turnoUltimoUso = ObtenerUltimoTurnoDeAtaque(nombreAtaque);
-
-        // Verificar si se puede usar el ataque (se debe esperar 2 turnos del jugador)
-        if (turnoUltimoUso == -1 || turnoActual - turnoUltimoUso >= 3)
-        {
-            return true;
-        }
-        return false;
-    }
-
-    // Método para obtener el turno en el que se usó el ataque especial por última vez
-    public int ObtenerUltimoTurnoDeAtaque(string nombreAtaque)
-    {
-        return ataquesEspecialesUsados.ContainsKey(nombreAtaque) ? ataquesEspecialesUsados[nombreAtaque] : -1;
-    }
-    
-    public void IncrementarTurnoPersonal()
-    {
-        turnoPersonal++;
-    }
-    
-    public int ObtenerTurnoPersonal()
-    {
-        return turnoPersonal;
-    }
 }
