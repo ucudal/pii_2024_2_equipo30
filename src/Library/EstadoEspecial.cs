@@ -8,4 +8,3 @@ public enum EstadoEspecial
     Dormido,
     Paralizado
 }
-

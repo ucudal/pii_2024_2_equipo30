@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library;
 
-public class Batalla:IBatalla
+public class Batalla : IBatalla
 {
     private Jugador jugador1;
     private Jugador jugador2;
@@ -80,7 +80,7 @@ public class Batalla:IBatalla
         {
             Console.WriteLine("\n---------------------------------------------------");
         }
-        
+
     }
 
     public void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
@@ -99,31 +99,65 @@ public class Batalla:IBatalla
             return;  // El Pokémon no puede atacar debido a su estado (dormido, paralizado, etc.)
         }
 
-        // Mostrar movimientos del Pokémon actual
-        Console.WriteLine($"\n{jugadorActual.Nombre}, elige un movimiento de: {pokemonActual.Name}");
-
-        for (int i = 0; i < pokemonActual.Moves.Count; i++)
+        while (true)
         {
-            var movimiento = pokemonActual.Moves[i];
-            Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
+            Console.WriteLine($"\n{jugadorActual.Nombre}, elige un movimiento de: {pokemonActual.Name}");
+
+            for (int i = 0; i < pokemonActual.Moves.Count; i++)
+            {
+                var movimiento = pokemonActual.Moves[i];
+                Console.WriteLine($"{i + 1}: {movimiento.MoveDetails.Name} (Poder: {movimiento.MoveDetails.Power}) (Precisión: {movimiento.MoveDetails.Accuracy}) Especial: {movimiento.EstadoEspecial}");
+            }
+
+            int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
+            
+            if (movimientoSeleccionado < 0 || movimientoSeleccionado >= pokemonActual.Moves.Count)
+            {
+                Console.WriteLine("Selección de movimiento inválida. Intenta nuevamente.");
+                continue; // Permitir al jugador elegir de nuevo
+            }
+
+            var movimientoElegido = pokemonActual.Moves[movimientoSeleccionado];
+
+            if (movimientoElegido.EsAtaqueEspecial)
+            {
+                // Verificar si el ataque especial puede ser usado
+                bool puedeUsarAtaqueEspecial = jugadorActual.PuedeUsarAtaqueEspecial(movimientoElegido.MoveDetails.Name, jugadorActual.ObtenerTurnoPersonal());
+
+                Console.WriteLine($"Verificando uso de ataque especial: {movimientoElegido.MoveDetails.Name}. Turno personal actual: {jugadorActual.ObtenerTurnoPersonal()}, Turno último uso: {jugadorActual.ObtenerUltimoTurnoDeAtaque(movimientoElegido.MoveDetails.Name)}");
+
+                if (puedeUsarAtaqueEspecial)
+                {
+                    // Ejecutar ataque especial y registrar el turno
+                    bool ataqueExitoso = turno.EjecutarAtaqueEspecial(jugadorActual, pokemonActual, movimientoElegido, jugadorActual.ObtenerTurnoPersonal());
+                    if (ataqueExitoso)
+                    {
+                        jugadorActual.RegistrarAtaqueEspecial(movimientoElegido.MoveDetails.Name, jugadorActual.ObtenerTurnoPersonal());
+                        break; // Salir del bucle si el ataque fue ejecutado exitosamente
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"No puedes usar el ataque especial {movimientoElegido.MoveDetails.Name} en este momento. Debes esperar más turnos. Selecciona otro movimiento.");
+                }
+            }
+            else
+            {
+                // Realizar un ataque regular si no es un ataque especial
+                pokemonActual.Atacar(jugadorActual, jugadorOponente.PokemonActual, movimientoElegido, jugadorActual.ObtenerTurnoPersonal());
+                Console.WriteLine($"{jugadorActual.Nombre}'s {pokemonActual.Name} ha atacado a {jugadorOponente.Nombre}'s {jugadorOponente.PokemonActual.Name} causando daño.");
+                break; // Salir del bucle si el ataque regular fue ejecutado
+            }
         }
 
-        // Elección del movimiento
-        int movimientoSeleccionado;
-        bool entradaValida = int.TryParse(Console.ReadLine(), out movimientoSeleccionado);
-        if (!entradaValida || movimientoSeleccionado < 1 || movimientoSeleccionado > pokemonActual.Moves.Count)
-        {
-            Console.WriteLine("Selección de movimiento inválida. Intenta nuevamente.");
-            return;  // Salir si la entrada es inválida
-        }
-
-        // Realizar el ataque
-        var movimientoSeleccionadoObjeto = pokemonActual.Moves[movimientoSeleccionado - 1];
-        pokemonActual.Atacar(jugadorOponente.PokemonActual, movimientoSeleccionadoObjeto);
-        Console.WriteLine($"\n{jugadorActual.Nombre}'s {pokemonActual.Name} ha atacado a {jugadorOponente.Nombre}'s {jugadorOponente.PokemonActual.Name} causando daño.\n");
+        // Incrementar turno personal del jugador actual después de que termine su turno
+        jugadorActual.IncrementarTurnoPersonal();
     }
 
-    public void UsarItem(Jugador jugador)
+    // Métodos auxiliares para los ítems, cambiar Pokémon y otros
+    // (Mantener los métodos existentes para `UsarItem`, `CambiarPokemon`, etc.)
+
+public void UsarItem(Jugador jugador)
     {
         bool itemUsado = false;
         while (!itemUsado)
@@ -260,8 +294,6 @@ public class Batalla:IBatalla
 
         }
     }
-    
-
 
     public void InicializarPokemonActual(Jugador jugador)
     {
@@ -272,13 +304,10 @@ public class Batalla:IBatalla
                 if (!pokemon.EstaFueraDeCombate())
                 {
                     jugador.PokemonActual = pokemon;
-                    Console.WriteLine(
-                        $"\n{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.\n");
+                    Console.WriteLine($"\n{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.\n");
                     break;
                 }
             }
         }
     }
-
-    
 }

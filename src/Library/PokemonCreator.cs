@@ -2,7 +2,7 @@ namespace Library;
 
 public class PokemonCreator : IPokemonCreator
     {
-        private readonly IPokemonApi pokemonApi;
+        private IPokemonApi pokemonApi;
 
         public PokemonCreator(IPokemonApi _pokemonApi)
         {

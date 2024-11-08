@@ -21,9 +21,12 @@ public class Move
         EstadoEspecial == EstadoEspecial.Quemado ||
         EstadoEspecial == EstadoEspecial.Dormido ||
         EstadoEspecial == EstadoEspecial.Paralizado;
+
+
  
     public Move(EstadoEspecial estadoEspecial = EstadoEspecial.Ninguno)
     {
         EstadoEspecial = estadoEspecial;
     }
 }
+

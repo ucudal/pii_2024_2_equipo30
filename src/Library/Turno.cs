@@ -26,7 +26,7 @@ public class Turno
     {
         Console.WriteLine($"-- Turno {NumeroTurno} / {JugadorActual.Nombre} es tu turno! --");
     }
-
+    
     // Método para ejecutar un ataque especial con restricción de turnos
     public bool EjecutarAtaqueEspecial(Jugador jugador, Pokemon atacante, Move movimiento, int turnoActual)
     {

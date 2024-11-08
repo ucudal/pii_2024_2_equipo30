@@ -17,7 +17,7 @@ public interface IPokemon
 
     double CalcularDaño(Move movimiento, double efectividad, Pokemon oponente);
     bool PuedeAtacar();
-    void Atacar(Pokemon oponente, Move movimiento);
+    void Atacar(Jugador jugador, Pokemon oponente, Move movimiento, int turnoActual);
     void ProcesarEstado(Pokemon oponente = null);
     bool EstaFueraDeCombate();
 }
