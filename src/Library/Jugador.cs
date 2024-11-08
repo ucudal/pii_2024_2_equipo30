@@ -1,6 +1,6 @@
 namespace Library;
 
-public class Jugador:IJugador
+public class Jugador:IJugador //a
 {
     public string Nombre { get; set; }
     public List<Pokemon> Equipo { get; set; }
