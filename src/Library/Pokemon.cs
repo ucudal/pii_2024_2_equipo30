@@ -11,7 +11,7 @@ public class Pokemon
 {
     public string Name { get; set; }
     public double Health { get; set; }
-    public int VidaMax { get; set; }
+    public double VidaMax { get; set; }
     public int Id { get; set; }  
     public int Attack { get; set; }
     public int Defense { get; set; }
@@ -34,6 +34,7 @@ public class Pokemon
         this.Name = name;
         this.Id = id;
         this.Health = health;
+        this.VidaMax = health;
         this.Attack = attack;
         this.Defense = defense;
         this.SpecialAttack = specialAttack;
@@ -42,109 +43,92 @@ public class Pokemon
         this.Moves = moves;
     }
     //Atencion, la clase atacar actualmente se encarga de manejar la efectividad y los Ataques especiales
-    public void Atacar(Pokemon atacante,Pokemon oponente, Move movimiento)
+public void Atacar(Pokemon atacante, Pokemon oponente, Move movimiento)
+{
+    // Verificar si el Pokémon atacante puede actuar en este turno
+    if (atacante.Estado == EstadoEspecial.Dormido)
     {
-        // Verificar si el Pokémon actual puede atacar
-        if (atacante.Estado == EstadoEspecial.Dormido)
+        Console.WriteLine($"\n {atacante.Name} está dormido y no puede atacar este turno.\n");
+        return; 
+    }
+    else if (atacante.Estado == EstadoEspecial.Paralizado)
+    {
+        if (new Random().Next(0, 2) == 0)  // Probabilidad del 50%
         {
-            Console.WriteLine($"\n {oponente.Name} está dormido y no puede atacar este turno.\n");
-            return; 
-        }
-        else if (atacante.Estado == EstadoEspecial.Paralizado && new Random().Next(0, 2) == 0)
-        {
-            Console.WriteLine($"\n {oponente.Name} está paralizado y no puede atacar este turno.\n");
+            Console.WriteLine($"\n {atacante.Name} está paralizado y no puede atacar este turno.\n");
             return;
-        }
-
-        Console.WriteLine($"\n {atacante.Name} usa {movimiento.MoveDetails.Name}!\n");
-        if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
-        {
-            oponente.Estado = movimiento.EstadoEspecial;
-            ProcesarEstado(atacante,oponente);
-            Console.WriteLine($" {oponente.Name} ahora está {movimiento.EstadoEspecial}.\n");
-        }
-        else if (movimiento.EstadoEspecial == EstadoEspecial.Dormido && oponente.Estado == EstadoEspecial.Ninguno)
-        {
-            oponente.Dormir(); 
-        }
-        else if (movimiento.EstadoEspecial == EstadoEspecial.Paralizado && oponente.Estado == EstadoEspecial.Ninguno)
-        {
-            oponente.Paralizar();
-        }
-        else if (oponente.Estado != EstadoEspecial.Ninguno)
-        {
-            Console.WriteLine($" {oponente.Name} ya está afectado por {oponente.Estado}, no se puede aplicar otro estado.\n");
-        }
-
-        int? PoderMovimiento = movimiento.MoveDetails.Power;
-        double? Efectividad = null;
-        int? AtaquePokemon = atacante.Attack;
-        int? Defensa = oponente.Defense;
-        int? Precison = movimiento.MoveDetails.Accuracy;
-        int Nivel = 100;
-        double V = random.NextDouble() * (1.0 - 0.85) + 0.85;
-        double? probabilidadGolpeCritico = 0.1 * (Precison / 100.0);
-        double golpeCritico = (random.NextDouble() < probabilidadGolpeCritico) ? 1.2 : 1.0;
-        if (Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name))
-        {
-            Efectividad = Type.Effectiveness[oponente.Type.TypeDetail.Name];
         }
         else
         {
-            Efectividad = 1;
+            Console.WriteLine($"\n {atacante.Name} no está paralizado\n");
         }
-        double? daño = (0.1 * golpeCritico * Efectividad * V * (0.2 * Nivel + 1) * AtaquePokemon * PoderMovimiento) / (25 * Defensa) + 2;
-        oponente.Health -= daño ?? 0;
-        
-        if (oponente.Health < 0)
-        {
-            oponente.Health = 0;  // La vida no puede ser negativa
-        }
-        Console.WriteLine($" {Name} usó {movimiento.MoveDetails.Name} e hizo {daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
     }
+
+    // Ataque exitoso
+    Console.WriteLine($"\n {atacante.Name} usa {movimiento.MoveDetails.Name}!\n");
+    
+    // Aplicar estado especial si corresponde
+    if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
+    {
+        oponente.Estado = movimiento.EstadoEspecial;
+        ProcesarEstado(atacante, oponente);
+        Console.WriteLine($" {oponente.Name} ahora está {movimiento.EstadoEspecial}.\n");
+    }
+
+    // Calcular el daño
+    int? PoderMovimiento = movimiento.MoveDetails.Power;
+    double Efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
+    int Nivel = 100;
+    double Variacion = new Random().NextDouble() * (1.0 - 0.85) + 0.85;
+    double GolpeCritico = (new Random().NextDouble() < 0.1) ? 1.2 : 1.0;
+    
+    double? Daño = (0.1 * GolpeCritico * Efectividad * Variacion * (0.2 * Nivel + 1) * atacante.Attack * PoderMovimiento) / (25 * oponente.Defense) + 2;
+    oponente.Health -= Daño ?? 0;
+    
+    // Mostrar resultado del ataque
+    Console.WriteLine($" {atacante.Name} usó {movimiento.MoveDetails.Name} e hizo {Daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
+
+    // Evitar valores negativos de salud
+    if (oponente.Health < 0) oponente.Health = 0;
+}
+
 
     public bool EstaFueraDeCombate()
     {
-        if (Health == 0 || Health < 0)
+        // Actualiza la propiedad FueraDeCombate según la salud del Pokémon
+        if (Health <= 0)
         {
-            Console.WriteLine($" {Name} está fuera de combate.\n");
-            return FueraDeCombate = true;
+            FueraDeCombate = true; // Si la salud es 0 o menor, está fuera de combate
         }
         else
         {
-            return FueraDeCombate = false;
+            FueraDeCombate = false; // Si la salud es mayor que 0, está en combate
         }
+        return FueraDeCombate;
     }
+
     
     public bool PuedeAtacar()
     {
         if (Estado == EstadoEspecial.Dormido && TurnosRestantesDeSueño > 0)
         {
             TurnosRestantesDeSueño--;
-            Console.WriteLine($" {Name} está dormido y no puede atacar. Turnos restantes: {TurnosRestantesDeSueño}\n");
+            Console.WriteLine($"{Name} está dormido y no puede atacar. Turnos restantes: {TurnosRestantesDeSueño}\n");
             if (TurnosRestantesDeSueño == 0)
             {
                 Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($" {Name} se ha despertado.\n");
+                Console.WriteLine($"{Name} se ha despertado.\n");
             }
-
             return false;
         }
-
-        // Verificar si está paralizado
-        if (Estado == EstadoEspecial.Paralizado)
+        else if (Estado == EstadoEspecial.Paralizado && new Random().Next(0, 2) == 0)
         {
-            // 50% de probabilidad de atacar
-            bool puedeAtacar = random.Next(0, 2) == 0; // Devuelve true o false aleatoriamente
-            if (!puedeAtacar)
-            {
-                Console.WriteLine($" {Name} está paralizado y no puede atacar este turno.\n");
-                return false;
-            }
+            Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.\n");
+            return false;
         }
-
         return true;
     }
+
 
     public void ProcesarEstado(Pokemon atacante,Pokemon oponente)
     {
@@ -165,6 +149,26 @@ public class Pokemon
             Console.WriteLine($" {oponente.Name} está dormido, no puede ser quemado ni envenenado\n");
         }
     }
+    public void ProcesarEstado()
+    {
+        if (Estado == EstadoEspecial.Envenenado)
+        {
+            int damage = (int)(Health * 0.05);
+            this.Health -= damage;
+            Console.WriteLine($"{Name} está envenenado y pierde {damage} puntos de vida.\n");
+        }
+        else if (this.Estado == EstadoEspecial.Quemado)
+        {
+            int burnDamage = (int)(Health * 0.10);
+            this.Health -= burnDamage;
+            Console.WriteLine($"{Name} está quemado y pierde {burnDamage} puntos de vida.\n");
+        }
+        else if (this.Estado == EstadoEspecial.Dormido)
+        {
+            Console.WriteLine($"{Name} está dormido, no puede ser quemado ni envenenado\n");
+        }
+    }
+
     public void Dormir()
     {
         Estado = EstadoEspecial.Dormido;

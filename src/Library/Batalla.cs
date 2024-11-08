@@ -42,29 +42,44 @@ public class Batalla
 
     private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
-        Console.WriteLine("\n---------------------------------------------------");
-        Console.WriteLine($"{jugadorActual.Nombre}, tu pokemon actual es {jugadorActual.PokemonActual.Name} y tiene {jugadorActual.PokemonActual.Health:F1} puntos de vida");
-        Console.WriteLine($"{jugadorActual.Nombre}, elige qué quieres hacer en este turno:");
-        Console.WriteLine("1: Usar un ítem");
-        Console.WriteLine("2: Atacar con un movimiento");
-        Console.WriteLine("3: Cambiar de Pokémon");
-        int eleccionAccion = int.Parse(Console.ReadLine());
-
-        switch (eleccionAccion)
+        if (!jugadorActual.PokemonActual.EstaFueraDeCombate())
         {
-            case 1:
-                UsarItem(jugadorActual);
-                break;
-            case 2:
-                Atacar(jugadorActual, jugadorOponente);
-                break;
-            case 3:
-                CambiarPokemon(jugadorActual);
-                break;
-            default:
-                Console.WriteLine("Elección inválida. Pierdes tu turno.");
-                break;
+            jugadorActual.PokemonActual.ProcesarEstado();
+            Console.WriteLine("\n---------------------------------------------------");
+            Console.WriteLine($"{jugadorActual.Nombre}, tu pokemon actual es {jugadorActual.PokemonActual.Name} y tiene {jugadorActual.PokemonActual.Health:F1} puntos de vida");
+            Console.WriteLine($"{jugadorActual.Nombre}, elige qué quieres hacer en este turno:");
+            Console.WriteLine("1: Usar un ítem");
+            Console.WriteLine("2: Atacar con un movimiento");
+            Console.WriteLine("3: Cambiar de Pokémon");
+            int eleccionAccion = int.Parse(Console.ReadLine());
+
+            switch (eleccionAccion)
+            {
+                case 1:
+                    UsarItem(jugadorActual);
+                    break;
+                case 2:
+                    Atacar(jugadorActual, jugadorOponente);
+                    break;
+                case 3:
+                    CambiarPokemon(jugadorActual);
+                    break;
+                default:
+                    Console.WriteLine("Elección inválida. Pierdes tu turno.");
+                    break;
+            }
         }
+        else if (jugadorActual.PokemonActual.EstaFueraDeCombate())
+        {
+            Console.WriteLine($"{jugadorActual.Nombre} tu pokemon actual está fuera de combate. Debes elegir otro\n");
+            CambiarPokemonFueraDeCombate(jugadorActual);
+            JugarTurno(jugadorActual, jugadorOponente);
+        }
+        else
+        {
+            Console.WriteLine("\n---------------------------------------------------");
+        }
+        
     }
 
     private void Atacar(Jugador jugadorActual, Jugador jugadorOponente)
@@ -196,29 +211,73 @@ public class Batalla
         }
     }
 
-    private void CambiarPokemon(Jugador jugador)
+private void CambiarPokemon(Jugador jugador)
+{
+    while (true) // Bucle para permitir que el jugador elija varias veces si hay un error
     {
         Console.WriteLine($"\n{jugador.Nombre}, elige un Pokémon para cambiar:\n");
 
+        // Aquí recorremos la lista de Pokémon del jugador
         for (int i = 0; i < jugador.Equipo.Count; i++)
         {
             var pokemon = jugador.Equipo[i];
+
+            // Verificamos que el Pokémon no esté fuera de combate y que no sea el Pokémon actual
             if (!pokemon.EstaFueraDeCombate() && pokemon != jugador.PokemonActual)
             {
                 Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
             }
         }
 
-        int eleccion = int.Parse(Console.ReadLine()) - 1;
-        if (eleccion < 0 || eleccion >= jugador.Equipo.Count)
-        {
-            Console.WriteLine("Elección inválida.");
-            return;
-        }
+        int eleccion;
 
-        jugador.CambiarPokemon(eleccion);
-        Console.WriteLine($"\n Se realizó el cambio correctamente. Su Pokémon actual es {jugador.PokemonActual.Name}\n");
+        // Intentamos obtener la elección del jugador
+        try
+        {
+            eleccion = int.Parse(Console.ReadLine()) - 1;
+
+            // Comprobamos si la elección es válida
+            if (eleccion < 0 || eleccion >= jugador.Equipo.Count)
+            {
+                Console.WriteLine("Elección inválida. El número elegido no está en el rango de Pokémon disponibles.");
+                continue; // Permite que el jugador elija nuevamente sin avanzar el turno
+            }
+
+            var pokemonSeleccionado = jugador.Equipo[eleccion];
+
+            // Si el Pokémon seleccionado es el mismo que el actual, no lo cambiamos
+            if (pokemonSeleccionado == jugador.PokemonActual)
+            {
+                Console.WriteLine("¡Ya estás usando este Pokémon! Elige otro.");
+                continue; // Permite que el jugador elija nuevamente sin avanzar el turno
+            }
+
+            // Si el Pokémon seleccionado está fuera de combate, no se puede cambiar
+            if (pokemonSeleccionado.EstaFueraDeCombate())
+            {
+                Console.WriteLine("El Pokémon está fuera de combate, elija otro.");
+                continue; // Permite que el jugador elija nuevamente sin avanzar el turno
+            }
+
+            // Cambiar el Pokémon actual a la elección
+            jugador.CambiarPokemon(eleccion);
+            Console.WriteLine($"\nSe realizó el cambio correctamente. Su Pokémon actual es {jugador.PokemonActual.Name}\n");
+            break; // Si todo está bien, rompemos el bucle y avanzamos el turno
+        }
+        catch (FormatException)
+        {
+            // Si la entrada no es un número, mostramos un mensaje de error
+            Console.WriteLine("Entrada no válida. Por favor ingrese un número.");
+        }
+        catch (Exception ex)
+        {
+            // Captura cualquier otro tipo de error
+            Console.WriteLine($"Ocurrió un error inesperado: {ex.Message}");
+        }
     }
+}
+    
+
 
     private void InicializarPokemonActual(Jugador jugador)
     {
@@ -229,9 +288,58 @@ public class Batalla
                 if (!pokemon.EstaFueraDeCombate())
                 {
                     jugador.PokemonActual = pokemon;
-                    Console.WriteLine($"\n{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.\n");
+                    Console.WriteLine(
+                        $"\n{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.\n");
                     break;
                 }
+            }
+        }
+    }
+
+    private void CambiarPokemonFueraDeCombate(Jugador jugador)
+    {
+        while (true)
+        {
+            for (int i = 0; i < jugador.Equipo.Count; i++)
+            {
+                var pokemon = jugador.Equipo[i];
+                if (!pokemon.EstaFueraDeCombate() && pokemon != jugador.PokemonActual)
+                {
+                    Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+                }
+            }
+
+            try
+            {
+                int eleccion = int.Parse(Console.ReadLine()) - 1;
+
+                // Validar que el número esté dentro del rango de la lista
+                if (eleccion < 0 || eleccion >= jugador.Equipo.Count)
+                {
+                    Console.WriteLine("Elección inválida. Intente nuevamente.");
+                    continue;
+                }
+
+                var pokemonElegido = jugador.Equipo[eleccion];
+
+                // Verificar que el Pokémon elegido no esté fuera de combate
+                if (pokemonElegido.EstaFueraDeCombate())
+                {
+                    Console.WriteLine("El Pokémon está fuera de combate, elija otro.");
+                    continue;
+                }
+
+                jugador.CambiarPokemon(eleccion);
+                Console.WriteLine($"\nSe realizó el cambio correctamente. Su Pokémon actual es {jugador.PokemonActual.Name}\n");
+                break; 
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Entrada no válida. Ingrese un número.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocurrió un error: {ex.Message}");
             }
         }
     }

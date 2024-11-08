@@ -19,7 +19,7 @@ public class Jugador
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
         PokemonActual = Equipo[0];
-        Console.WriteLine($"\n {Nombre} ha seleccionado a {PokemonActual.Name} como su Pokémon inicial. \u2728\n");
+        
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)

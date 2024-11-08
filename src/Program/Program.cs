@@ -113,6 +113,8 @@ namespace Program
             // Crear y manejar la batalla
             var batalla = new Batalla(jugador1, jugador2);
             Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
+            Console.WriteLine($"\n {jugador1.Nombre} ha seleccionado a {jugador1.PokemonActual.Name} como su Pokémon inicial y tiene {jugador1.PokemonActual.Health}");
+            Console.WriteLine($"\n {jugador2.Nombre} ha seleccionado a {jugador2.PokemonActual.Name} como su Pokémon inicial y tiene {jugador2.PokemonActual.Health}.");
             batalla.IniciarBatalla();
         }
     }
