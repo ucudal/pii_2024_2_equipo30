@@ -19,7 +19,7 @@ public class Jugador
         Revive = new Revive(1);
         Totalcure = new TotalCure(2);
         PokemonActual = Equipo[0];
-
+        Console.WriteLine($"\n {Nombre} ha seleccionado a {PokemonActual.Name} como su Pokémon inicial. \u2728\n");
     }
 
     public List<Pokemon> ElegirEquipo(string pokemon)
@@ -30,7 +30,7 @@ public class Jugador
     public void CambiarPokemon(int indice)
     {
         PokemonActual = Equipo[indice];
-        Console.WriteLine($"{Nombre} cambió a {PokemonActual.Name}!");
+        Console.WriteLine($"\n {Nombre} cambió a {PokemonActual.Name}!\n");
     }
 
     public bool TodosFueraDeCombate()
@@ -43,6 +43,7 @@ public class Jugador
             }
         }
 
+        Console.WriteLine($"\n {Nombre} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
         return true; // Retorna True si todos están fuera de combate
     }
-}//b
+}

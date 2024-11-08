@@ -25,8 +25,10 @@ namespace Program
             List<Pokemon> listPokemonJugador1 = new List<Pokemon>();
             List<Pokemon> listPokemonJugador2 = new List<Pokemon>();
 
+            Console.WriteLine("\n==================== SELECCIÓN DE POKÉMON ====================\n");
+
             // Selección de Pokémon para el Jugador 1
-            Console.WriteLine("Selección de Pokémon para Jugador 1:");
+            Console.WriteLine("Selección de Pokémon para Jugador 1:\n");
             for (int i = 0; i < 6; i++)
             {
                 bool pokemonAgregado = false;
@@ -45,23 +47,23 @@ namespace Program
 
                             var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
                             listPokemonJugador1.Add(pokemon);
-                            Console.WriteLine($"Has seleccionado a: {pokemonName}");
+                            Console.WriteLine($" Has seleccionado a: {pokemonName}\n");
                             pokemonAgregado = true;
                         }
                         else
                         {
-                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.");
+                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.\n");
                         }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.");
+                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n");
                     }
                 }
             }
 
             // Selección de Pokémon para el Jugador 2
-            Console.WriteLine("Selección de Pokémon para Jugador 2:");
+            Console.WriteLine("\nSelección de Pokémon para Jugador 2:\n");
             for (int i = 0; i < 6; i++)
             {
                 bool pokemonAgregado = false;
@@ -80,20 +82,22 @@ namespace Program
 
                             var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
                             listPokemonJugador2.Add(pokemon);
-                            Console.WriteLine($"Has seleccionado a: {pokemonName}");
+                            Console.WriteLine($" Has seleccionado a: {pokemonName}\n");
                             pokemonAgregado = true;
                         }
                         else
                         {
-                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.");
+                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.\n");
                         }
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.");
+                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n");
                     }
                 }
             }
+
+            Console.WriteLine("\n============================================================\n");
 
             // Validar si ambos jugadores tienen al menos un Pokémon
             if (listPokemonJugador1.Count == 0 || listPokemonJugador2.Count == 0)
@@ -108,6 +112,7 @@ namespace Program
 
             // Crear y manejar la batalla
             var batalla = new Batalla(jugador1, jugador2);
+            Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
             batalla.IniciarBatalla();
         }
     }

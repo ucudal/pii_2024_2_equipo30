@@ -47,21 +47,21 @@ public class Pokemon
         // Verificar si el Pokémon actual puede atacar
         if (atacante.Estado == EstadoEspecial.Dormido)
         {
-            Console.WriteLine($"{oponente.Name} está dormido y no puede atacar este turno.");
+            Console.WriteLine($"\n {oponente.Name} está dormido y no puede atacar este turno.\n");
             return; 
         }
         else if (atacante.Estado == EstadoEspecial.Paralizado && new Random().Next(0, 2) == 0)
         {
-            Console.WriteLine($"{oponente.Name} está paralizado y no puede atacar este turno.");
+            Console.WriteLine($"\n {oponente.Name} está paralizado y no puede atacar este turno.\n");
             return;
         }
 
-        Console.WriteLine($"{atacante.Name} usa {movimiento.MoveDetails.Name}!");
+        Console.WriteLine($"\n {atacante.Name} usa {movimiento.MoveDetails.Name}!\n");
         if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
         {
             oponente.Estado = movimiento.EstadoEspecial;
             ProcesarEstado(atacante,oponente);
-            Console.WriteLine($"{oponente.Name} ahora está {movimiento.EstadoEspecial}.");
+            Console.WriteLine($" {oponente.Name} ahora está {movimiento.EstadoEspecial}.\n");
         }
         else if (movimiento.EstadoEspecial == EstadoEspecial.Dormido && oponente.Estado == EstadoEspecial.Ninguno)
         {
@@ -73,7 +73,7 @@ public class Pokemon
         }
         else if (oponente.Estado != EstadoEspecial.Ninguno)
         {
-            Console.WriteLine($"{oponente.Name} ya está afectado por {oponente.Estado}, no se puede aplicar otro estado.");
+            Console.WriteLine($" {oponente.Name} ya está afectado por {oponente.Estado}, no se puede aplicar otro estado.\n");
         }
 
         int? PoderMovimiento = movimiento.MoveDetails.Power;
@@ -100,13 +100,14 @@ public class Pokemon
         {
             oponente.Health = 0;  // La vida no puede ser negativa
         }
-        Console.WriteLine($"{Name} usó {movimiento.MoveDetails.Name} e hizo {daño} puntos de daño! {oponente.Name} ahora tiene {oponente.Health} puntos de vida.");
+        Console.WriteLine($" {Name} usó {movimiento.MoveDetails.Name} e hizo {daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.\n");
     }
 
     public bool EstaFueraDeCombate()
     {
         if (Health == 0 || Health < 0)
         {
+            Console.WriteLine($" {Name} está fuera de combate.\n");
             return FueraDeCombate = true;
         }
         else
@@ -120,11 +121,11 @@ public class Pokemon
         if (Estado == EstadoEspecial.Dormido && TurnosRestantesDeSueño > 0)
         {
             TurnosRestantesDeSueño--;
-            Console.WriteLine($"{Name} está dormido y no puede atacar. Turnos restantes: {TurnosRestantesDeSueño}");
+            Console.WriteLine($" {Name} está dormido y no puede atacar. Turnos restantes: {TurnosRestantesDeSueño}\n");
             if (TurnosRestantesDeSueño == 0)
             {
                 Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"{Name} se ha despertado.");
+                Console.WriteLine($" {Name} se ha despertado.\n");
             }
 
             return false;
@@ -137,7 +138,7 @@ public class Pokemon
             bool puedeAtacar = random.Next(0, 2) == 0; // Devuelve true o false aleatoriamente
             if (!puedeAtacar)
             {
-                Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.");
+                Console.WriteLine($" {Name} está paralizado y no puede atacar este turno.\n");
                 return false;
             }
         }
@@ -151,17 +152,17 @@ public class Pokemon
         {
             int damage = (int)(oponente.Health * 0.05);
             oponente.Health -= damage;
-            Console.WriteLine($"{oponente.Name} está envenenado y pierde {damage} puntos de vida.");
+            Console.WriteLine($" {oponente.Name} está envenenado y pierde {damage} puntos de vida.\n");
         }
         else if (oponente.Estado == EstadoEspecial.Quemado)
         {
             int burnDamage = (int)(oponente.Health * 0.10);
             oponente.Health -= burnDamage;
-            Console.WriteLine($"{oponente.Name} está quemado y pierde {burnDamage} puntos de vida.");
+            Console.WriteLine($" {oponente.Name} está quemado y pierde {burnDamage} puntos de vida.\n");
         }
         else if (oponente.Estado == EstadoEspecial.Dormido)
         {
-            Console.WriteLine($"{oponente.Name} está dormido, no puede ser quemado ni envenenado");
+            Console.WriteLine($" {oponente.Name} está dormido, no puede ser quemado ni envenenado\n");
         }
     }
     public void Dormir()
@@ -170,12 +171,12 @@ public class Pokemon
         Random random = new Random();
         TurnosDormido = random.Next(1, 5); // Aleatoreamente va de 1 a 4
         TurnosRestantesDeSueño = TurnosDormido;
-        Console.WriteLine($"{Name} ha sido dormido y estará dormido por {TurnosDormido} turnos.");
+        Console.WriteLine($" {Name} ha sido dormido y estará dormido por {TurnosDormido} turnos.\n");
     }
     public void Paralizar()
     {
         Estado = EstadoEspecial.Paralizado;
-        Console.WriteLine($"{Name} ha sido paralizado.");
+        Console.WriteLine($" {Name} ha sido paralizado.\n");
     }
 }
 

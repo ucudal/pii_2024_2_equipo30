@@ -1,6 +1,6 @@
 ﻿namespace Library;
 
-//clase interface echa para seguir la guia de diseño y que mantenga un bajo acoplamiento
+//clase interface hecha para seguir la guia de diseño y que mantenga un bajo acoplamiento
 public interface IItem
 {
     int VidaMax { get; set; }
@@ -8,7 +8,7 @@ public interface IItem
     string ItemsDescription { get; set; }
     int Quantity { get; set; }
     
-    void Use(Pokemon pokemon);//para aplicar los items se necesita usar el metodo use sino no surge efecto segun la guia de diseño
+    void Use(Pokemon pokemon); //para aplicar los items se necesita usar el metodo use sino no surge efecto según la guia de diseño
     void Consume();
 }
 
@@ -34,41 +34,49 @@ public abstract class Items : IItem //clase abstracta que implementa interfaz
         if (Quantity > 0)
         {
             Quantity--;
-            Console.WriteLine($"{ItemsName} a sido utilizado. Te quedan {Quantity} restantes.");
+            Console.WriteLine($"\n {ItemsName} ha sido utilizado. Te quedan {Quantity} restantes.\n");
         }
         else
         {
-            Console.WriteLine($"Ya no te quedan mas {ItemsName}.");
+            Console.WriteLine($"\n Ya no te quedan más {ItemsName}.\n");
         }
     }
 }
 
-//pocion que cura gran cantidad de vida (segun la guia de usuario tendria que ser 70 HP)
+//pocion que cura gran cantidad de vida (según la guia de usuario tendría que ser 70 HP)
 //clase que hereda de items
 public class SuperPotion : Items
 {
     private int HpRecovered;
 
-    public SuperPotion(int quantity, int hpRecovered) : base("SuperPoción","Poción mejorada, puede curar mas que una poción normal", quantity)
+    public SuperPotion(int quantity, int hpRecovered) : base("SuperPoción","Poción mejorada, puede curar más que una poción normal", quantity)
     {
         HpRecovered = hpRecovered;
     }
     
     public override void Use(Pokemon pokemon)
     {
-        pokemon.Health += HpRecovered;
+        double nuevaVida = pokemon.Health + HpRecovered;
+        
+        if (nuevaVida > pokemon.VidaMax)
+        {
+            pokemon.Health = pokemon.VidaMax;
+        }
+        else
+        {
+            pokemon.Health = nuevaVida;
+        }
         Consume();
-        Console.WriteLine($" El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud.");
-        Consume();
+        Console.WriteLine($"\n El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud. Ahora tiene {pokemon.Health:F1}/{pokemon.VidaMax} puntos de vida.\n");
     }
 }
 
-//cura total:Cura a un Pokémon de efectos de ataques especiales(dormido, paralizado, envenenado, o quemado.)
+//cura total: Cura a un Pokémon de efectos de ataques especiales(dormido, paralizado, envenenado, o quemado.)
 //clase que hereda de items
 
 public class TotalCure : Items
 {
-    public TotalCure(int quantity) : base("Cura total", "Cura a un Pokémon de efectos de ataques especiales(dormido, paralizado, envenenado, o quemado.)", quantity)
+    public TotalCure(int quantity) : base("Cura Total", "Cura a un Pokémon de efectos de ataques especiales (dormido, paralizado, envenenado, o quemado).", quantity)
     {
 
     }
@@ -77,28 +85,21 @@ public class TotalCure : Items
     {
         if (Quantity > 0)
         {
-            if (pokemon.Estado == EstadoEspecial.Envenenado)
+            if (pokemon.Estado != EstadoEspecial.Ninguno)
             {
+                Console.WriteLine($"\n El pokemon {pokemon.Name} estaba {pokemon.Estado}.");
                 pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Name} ya no está envenenado.");
+                Console.WriteLine($"Ahora el pokemon {pokemon.Name} está completamente curado de todos los efectos especiales.\n");
             }
-            if (pokemon.Estado == EstadoEspecial.Paralizado)
+            else
             {
-                pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Name} ya no está paralizado.");
+                Console.WriteLine($"\n El pokemon {pokemon.Name} no tiene efectos de estado activos.\n");
             }
-
-            if (pokemon.Estado == EstadoEspecial.Quemado)
-            {
-                pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Name} ya no está quemado.");
-            }
-
             Consume();
         }
         else
         {
-            Console.WriteLine($"La cura {ItemsName} no se puede usar, no hay mas");
+            Console.WriteLine($"\n La {ItemsName} no se puede usar, no quedan más unidades.\n");
         }
     }
 }
@@ -107,28 +108,29 @@ public class TotalCure : Items
 //clase que hereda de items
 public class Revive : Items
 {
-    private int HpRecovered;
-    
     public Revive(int quantity) : base("Revivir", "Revive a un Pokémon con el 50% de su HP total.", quantity)
     {
-        HpRecovered = VidaMax / 2;
     }
     
     public override void Use(Pokemon pokemon)
     {
         if (Quantity > 0)
         {
-            if (pokemon.FueraDeCombate = true)
+            if (pokemon.FueraDeCombate)
             {
                 pokemon.FueraDeCombate = false;
-                pokemon.Health = HpRecovered;
-                Console.WriteLine($"El pokemon {pokemon.Name} a sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
+                pokemon.Health = pokemon.VidaMax / 2;
+                Console.WriteLine($"\n El pokemon {pokemon.Name} ha sido revivido con un {ItemsName} y recuperado {pokemon.Health:F1} HP.\n");
                 Consume();
+            }
+            else
+            {
+                Console.WriteLine($"\n El pokemon {pokemon.Name} no está fuera de combate, no se necesita usar {ItemsName}.\n");
             }
         }
         else
         {
-            Console.WriteLine($"La cura {ItemsName} no se puede usar, no hay mas");
+            Console.WriteLine($"\n La {ItemsName} no se puede usar, no quedan más unidades.\n");
         }
     }
 }

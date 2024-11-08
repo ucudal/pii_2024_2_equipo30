@@ -22,24 +22,27 @@ public class Batalla
     {
         while (!jugador1.TodosFueraDeCombate() && !jugador2.TodosFueraDeCombate())
         {
+            Console.WriteLine("\n================ TURNOS DE BATALLA ================\n");
             turno.MostrarTurno();
             JugarTurno(turno.JugadorActual, turno.JugadorOponente);
             turno.CambiarTurno();
         }
 
         // Mostrar quién ganó
+        Console.WriteLine("\n===================================================");
         if (jugador1.TodosFueraDeCombate())
         {
-            Console.WriteLine($"{jugador2.Nombre} gana la batalla!");
+            Console.WriteLine($"\n {jugador2.Nombre} gana la batalla! \n");
         }
         else
         {
-            Console.WriteLine($"{jugador1.Nombre} gana la batalla!");
+            Console.WriteLine($"\n {jugador1.Nombre} gana la batalla! \n");
         }
     }
 
     private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
+        Console.WriteLine("\n---------------------------------------------------");
         Console.WriteLine($"{jugadorActual.Nombre}, elige qué quieres hacer en este turno:");
         Console.WriteLine("1: Usar un ítem");
         Console.WriteLine("2: Atacar con un movimiento");
@@ -79,7 +82,7 @@ public class Batalla
         }
 
         // Mostrar movimientos del Pokémon actual
-        Console.WriteLine($"{jugadorActual.Nombre}, elige un movimiento de: {pokemonActual.Name}");
+        Console.WriteLine($"\n{jugadorActual.Nombre}, elige un movimiento de: {pokemonActual.Name}");
 
         for (int i = 0; i < pokemonActual.Moves.Count; i++)
         {
@@ -91,7 +94,9 @@ public class Batalla
         int movimientoSeleccionado = int.Parse(Console.ReadLine()) - 1;
 
         // Realizar el ataque
+        Console.WriteLine("\n Realizando ataque...\n");
         pokemonActual.Atacar(jugadorActual.PokemonActual, jugadorOponente.PokemonActual, pokemonActual.Moves[movimientoSeleccionado]);
+        Console.WriteLine($"\n{jugadorActual.Nombre}'s {pokemonActual.Name} ha atacado a {jugadorOponente.Nombre}'s {jugadorOponente.PokemonActual.Name} causando daño.\n");
     }
 
     private void UsarItem(Jugador jugador)
@@ -99,7 +104,7 @@ public class Batalla
         bool itemUsado = false;
         while (!itemUsado)
         {
-            Console.WriteLine("Elige un ítem para usar:");
+            Console.WriteLine("\nElige un ítem para usar:");
             Console.WriteLine("1: Superpoción");
             Console.WriteLine("2: Revivir");
             Console.WriteLine("3: Cura Total");
@@ -116,6 +121,7 @@ public class Batalla
                             CambiarPokemon(jugador);
                         }
                         jugador.Superpotion.Use(jugador.PokemonActual);
+                        Console.WriteLine($"\n Superpoción usada con éxito en {jugador.PokemonActual.Name}.\n");
                         itemUsado = true;
                     }
                     else
@@ -144,7 +150,7 @@ public class Batalla
                         bool pokemonRevivido = false;
                         while (!pokemonRevivido)
                         {
-                            Console.WriteLine("Elige el nombre del Pokémon para revivir (lista de Pokémon muertos):");
+                            Console.WriteLine("\nElige el nombre del Pokémon para revivir (lista de Pokémon muertos):");
                             foreach (var nombre in pokemonsMuertos)
                             {
                                 Console.WriteLine(nombre);
@@ -155,6 +161,7 @@ public class Batalla
                             {
                                 Pokemon pokemonARevivir = jugador.Equipo.Find(p => p.Name == nombrePokemon);
                                 jugador.Revive.Use(pokemonARevivir);
+                                Console.WriteLine($"\n {pokemonARevivir.Name} ha sido revivido con éxito.\n");
                                 pokemonRevivido = true;
                                 itemUsado = true;
                             }
@@ -173,6 +180,7 @@ public class Batalla
                     if (jugador.Totalcure.Quantity > 0)
                     {
                         jugador.Totalcure.Use(jugador.PokemonActual);
+                        Console.WriteLine($"\n Cura Total usada con éxito en {jugador.PokemonActual.Name}.\n");
                         itemUsado = true;
                     }
                     else
@@ -189,7 +197,7 @@ public class Batalla
 
     private void CambiarPokemon(Jugador jugador)
     {
-        Console.WriteLine($"{jugador.Nombre}, elige un Pokémon para cambiar:");
+        Console.WriteLine($"\n{jugador.Nombre}, elige un Pokémon para cambiar:\n");
 
         for (int i = 0; i < jugador.Equipo.Count; i++)
         {
@@ -208,7 +216,7 @@ public class Batalla
         }
 
         jugador.CambiarPokemon(eleccion);
-        Console.WriteLine($"Se realizó el cambio correctamente. Su Pokémon actual es {jugador.PokemonActual.Name}");
+        Console.WriteLine($"\n Se realizó el cambio correctamente. Su Pokémon actual es {jugador.PokemonActual.Name}\n");
     }
 
     private void InicializarPokemonActual(Jugador jugador)
@@ -220,7 +228,7 @@ public class Batalla
                 if (!pokemon.EstaFueraDeCombate())
                 {
                     jugador.PokemonActual = pokemon;
-                    Console.WriteLine($"{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.");
+                    Console.WriteLine($"\n{jugador.Nombre} ha seleccionado a {pokemon.Name} como su Pokémon inicial.\n");
                     break;
                 }
             }
