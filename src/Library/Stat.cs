@@ -13,7 +13,3 @@ public class Stat
     public StatsDetail StatsDetail { get; set; }
     public int base_stat { get; set; }
 }
-public class StatsDetail
-{
-    public string Name { get; set; }
-}

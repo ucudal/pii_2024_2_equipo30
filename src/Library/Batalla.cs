@@ -43,6 +43,7 @@ public class Batalla
     private void JugarTurno(Jugador jugadorActual, Jugador jugadorOponente)
     {
         Console.WriteLine("\n---------------------------------------------------");
+        Console.WriteLine($"{jugadorActual.Nombre}, tu pokemon actual es {jugadorActual.PokemonActual.Name} y tiene {jugadorActual.PokemonActual.Health:F1} puntos de vida");
         Console.WriteLine($"{jugadorActual.Nombre}, elige qué quieres hacer en este turno:");
         Console.WriteLine("1: Usar un ítem");
         Console.WriteLine("2: Atacar con un movimiento");
