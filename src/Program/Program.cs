@@ -14,7 +14,7 @@ namespace Program;
 
 class Program
 {
-    private static HttpClient client = new HttpClient();
+    /*private static HttpClient client = new HttpClient();
 
     public static async Task Main(string[] args)
     {
@@ -70,7 +70,7 @@ class Program
 
         public async Task StartAsync()
         {
-            string token = "MTMwNDIwMTYwMjE4MTIzNDczOQ.Gi_jKI.Pa8pvwJsaGVAxR6mzdm41C1EGN0Nrn1uDNpNn4";
+            string token = "";
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
@@ -96,8 +96,7 @@ class Program
             {
                 await arg.Channel.SendMessageAsync("¡Hola, soy tu bot!");
             }
-        }
-    }
+        }*/
 }
 
 
