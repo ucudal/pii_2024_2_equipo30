@@ -38,6 +38,8 @@ Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las sig
 Para la estructura del programa usamos:
 -
 -   los principios de GRASP y Solid.
+-   el principio más se usó es el ISP. Esto se implementó en las interfaces IBattle, IPlayer, IPokemon, etc.
+
 -   Low coupling and High Coesion
 
 
