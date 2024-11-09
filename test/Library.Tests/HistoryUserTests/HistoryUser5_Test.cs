@@ -71,9 +71,9 @@ public class HistoryUser5_Test
             Pokemon2 = new Pokemon("Venusaur", 3, 100, 82, 83, 100, 100, grassType, new List<Move>());
             listaPokemon.Add(Pokemon1);
             listaPokemon.Add(Pokemon2);
-            var jugador1 = new Jugador("Jugador1",listaPokemon);
-            var jugador2 = new Jugador("Jugador2",listaPokemon);
-            var turno = new Turno(jugador1, jugador2);
+            var jugador1 = new Player("Jugador1",listaPokemon);
+            var jugador2 = new Player("Jugador2",listaPokemon);
+            var turno = new Shift(jugador1, jugador2);
 
             // Captura la salida de la consola
             using (var sw = new StringWriter())
@@ -81,10 +81,10 @@ public class HistoryUser5_Test
                 Console.SetOut(sw);
 
                 // Act
-                turno.MostrarTurno();
+                turno.ShowShift();
 
                 // Assert
-                var expectedOutput = $"-- Turno 1 / {jugador1.Nombre} es tu turno! --{Environment.NewLine}";
+                var expectedOutput = $"-- Turno 1 / {jugador1.NamePlayer} es tu turno! --{Environment.NewLine}";
                 Assert.AreEqual(expectedOutput, sw.ToString());
             }
         }
@@ -93,12 +93,12 @@ public class HistoryUser5_Test
         public void CambiarTurno_ActualizaTurnoCorrectamente()
         {
             // Arrange
-            var jugador1 = new Jugador("Jugador1",listaPokemon);
-            var jugador2 = new Jugador("Jugador2",listaPokemon);
-            var turno = new Turno(jugador1, jugador2);
+            var jugador1 = new Player("Jugador1",listaPokemon);
+            var jugador2 = new Player("Jugador2",listaPokemon);
+            var turno = new Shift(jugador1, jugador2);
 
             // Act - Cambio de turno
-            turno.CambiarTurno();
+            turno.SwitchShift();
 
             // Captura la salida de la consola
             using (var sw = new StringWriter())
@@ -106,10 +106,10 @@ public class HistoryUser5_Test
                 Console.SetOut(sw);
 
                 // Act
-                turno.MostrarTurno();
+                turno.ShowShift();
 
                 // Assert
-                var expectedOutput = $"-- Turno 2 / {jugador2.Nombre} es tu turno! --{Environment.NewLine}";
+                var expectedOutput = $"-- Turno 2 / {jugador2.NamePlayer} es tu turno! --{Environment.NewLine}";
                 Assert.AreEqual(expectedOutput, sw.ToString());
             }
         }

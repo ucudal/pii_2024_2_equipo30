@@ -81,13 +81,13 @@ public class HistoryUser4_Test
             Accuracy = 100,
             URL = "Nothing"
         };
-        movimiento = new Move
+        movement = new Move
         {
             MoveDetails = flamethrower,
-            EstadoEspecial = EstadoEspecial.Ninguno
+            EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        Fire.Atacar(Water, movimiento);
+        Fire.AttackP(Water, movement);
 
         // Assert
         Assert.Less(Water.Health, saludInicial, "La salud del oponente debería reducirse mas segun la efectividad.");

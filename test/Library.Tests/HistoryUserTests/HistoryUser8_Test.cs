@@ -25,9 +25,9 @@ public class HistoryUser8_Test
                 new Pokemon { Health = 100 }
             };
 
-            var jugador1 = new Jugador("Jugador 1", equipoJugador1);
-            var jugador2 = new Jugador("Jugador 2", equipoJugador2);
-            var turno = new Turno(jugador1, jugador2);
+            var jugador1 = new Player("Jugador 1", equipoJugador1);
+            var jugador2 = new Player("Jugador 2", equipoJugador2);
+            var turno = new Shift(jugador1, jugador2);
             var pokemon1Jugador1 = equipoJugador1[0]; // Charmander
             var pokemon2Jugador1 = equipoJugador1[1]; // Pikachu
             var pokemon1Jugador2 = equipoJugador2[0]; // Bulbasaur
@@ -40,11 +40,11 @@ public class HistoryUser8_Test
             // Act
             // Jugador 1 usa una superpoción en su Pokémon actual
             jugador2.Superpotion.Use(pokemon1Jugador2);
-            turno.CambiarTurno(); // Se pierde el turno, pasa a Jugador 2
+            turno.SwitchShift(); // Se pierde el turno, pasa a Jugador 2
 
             // Assert
-            Assert.AreEqual(0, pokemon1Jugador2.Health, "La vida del Pokémon debería ser 100 después de usar la superpoción.");
-            Assert.AreEqual(jugador2, turno.JugadorActual, "El turno debería haber cambiado al oponente después de usar un ítem.");
+            Assert.That(pokemon1Jugador2.Health, Is.EqualTo(0), "La vida del Pokémon debería ser 100 después de usar la superpoción.");
+            Assert.That(turno.actualPlayer, Is.EqualTo(jugador2), "El turno debería haber cambiado al oponente después de usar un ítem.");
         }
     }
 }

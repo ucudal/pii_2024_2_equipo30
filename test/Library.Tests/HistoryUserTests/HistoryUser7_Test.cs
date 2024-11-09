@@ -32,11 +32,11 @@ public class HistoryUser7_Test
             // Act
             // Jugador 1 cambia a su segundo Pokémon
             jugador1.SwitchPokemon(1); // Cambia a Charmander
-            turno.CambiarTurno(); // Se pierde el turno, pasa a Jugador 2
+            turno.SwitchShift(); // Se pierde el turno, pasa a Jugador 2
 
             // Assert
             //Assert.AreEqual(pokemon2, jugador1.PokemonActual, "El Pokémon actual debería ser Charmander después del cambio.");
-            Assert.AreEqual(jugador2, turno.JugadorActual, "El turno debería haber cambiado al oponente después de cambiar de Pokémon.");
+            Assert.That(turno.actualPlayer, Is.EqualTo(jugador2), "El turno debería haber cambiado al oponente después de cambiar de Pokémon.");
         }
     }
 }
