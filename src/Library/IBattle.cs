@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public interface IBatalla
+    public interface IBattle
     {
         // Inicia la batalla entre dos jugadores
         void StartBattle();

@@ -12,7 +12,7 @@ public interface IPokemon
     int SpecialDefense { get; set; }
     Type Type { get; set; }
     List<Move> Moves { get; set; }
-    EspecialStatus Status { get; set; }
+    SpecialStatus Status { get; set; }
     int SleepTurnsLeft { get; set; }
 
     double CalculateDamage(Move movimiento, double efectividad, Pokemon oponente);

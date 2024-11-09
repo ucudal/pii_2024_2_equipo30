@@ -13,20 +13,20 @@ public class Move
     [JsonPropertyName("move")]
     public MoveDetail MoveDetails { get; set; }
     public List<Move> ListMove { get; set; }
-    public EspecialStatus EspecialStatus { get; set; }
+    public SpecialStatus SpecialStatus { get; set; }
     
     // Nueva propiedad que indica si un movimiento es un ataque especial
     public bool EspecialAttack =>
-        EspecialStatus == EspecialStatus.Poisoned ||
-        EspecialStatus == EspecialStatus.Burned ||
-        EspecialStatus == EspecialStatus.Asleep ||
-        EspecialStatus == EspecialStatus.Paralyzed;
+        SpecialStatus == SpecialStatus.Poisoned ||
+        SpecialStatus == SpecialStatus.Burned ||
+        SpecialStatus == SpecialStatus.Asleep ||
+        SpecialStatus == SpecialStatus.Paralyzed;
 
 
  
-    public Move(EspecialStatus especialStatus = EspecialStatus.NoneStatus)
+    public Move(SpecialStatus SpecialStatus = SpecialStatus.NoneStatus)
     {
-        EspecialStatus = especialStatus;
+        SpecialStatus = SpecialStatus;
     }
 }
 

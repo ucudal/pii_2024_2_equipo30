@@ -5,7 +5,7 @@ public class Player:IJugador
     public string NamePlayer { get; set; }
     public List<Pokemon> Team { get; set; }
     public Pokemon actualPokemon { get; set; }
-    public List<IItem> Inventario { get; set; }
+    public List<IItem> Inventory { get; set; }
     public SuperPotion Superpotion { get; set; }
     public Revive Revive { get; set; }
     public TotalCure Totalcure { get; set; }
@@ -16,15 +16,14 @@ public class Player:IJugador
     {
         NamePlayer = namePlayer;
         Team = team;
-        Inventario = new List<IItem>(); // Inicializamos el inventario vacío
+        Inventory = new List<IItem>(); // Inicializamos el inventario vacío
         Superpotion = new SuperPotion(4, 70);
         Revive = new Revive(1);
-        Totalcure = new TotalCure(2);
         actualPokemon = Team[0];
         
     }
 
-    public List<Pokemon> ElegirEquipo(string pokemon)
+    public List<Pokemon> ChooseTeam(string pokemon)
     {
         return new List<Pokemon>();
     }

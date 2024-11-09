@@ -24,7 +24,7 @@ public class Pokemon : IPokemon
         public List<Stat> Stats { get; set; }
         public List<Type> Types { get; set; }
         public List<Move> Moves { get; set; }
-        public EspecialStatus Status { get; set; }
+        public SpecialStatus Status { get; set; }
         public int SleepTurnsLeft { get; set; } = 0;
         
         public bool Outofaction = false;
@@ -43,7 +43,7 @@ public class Pokemon : IPokemon
             SpecialDefense = specialDefense;
             Type = type;
             Moves = moves;
-            Status = EspecialStatus.NoneStatus;
+            Status = SpecialStatus.NoneStatus;
         } 
         public Pokemon (){}
 
@@ -76,16 +76,16 @@ public class Pokemon : IPokemon
     Console.WriteLine($"{Name} usa {movement.MoveDetails.Name}!");
 
     // Aplicar estado especial si corresponde y si el enemy no tiene un estado ya aplicado
-    if (movement.EspecialStatus != EspecialStatus.NoneStatus && enemy.Status == EspecialStatus.NoneStatus)
+    if (movement.SpecialStatus != SpecialStatus.NoneStatus && enemy.Status == SpecialStatus.NoneStatus)
     {
-        enemy.Status = movement.EspecialStatus;
-        if (movement.EspecialStatus == EspecialStatus.Asleep)
+        enemy.Status = movement.SpecialStatus;
+        if (movement.SpecialStatus == SpecialStatus.Asleep)
         {
             enemy.sleep();
         }
         else
         {
-            Console.WriteLine($"{enemy.Name} ahora está {movement.EspecialStatus}.");
+            Console.WriteLine($"{enemy.Name} ahora está {movement.SpecialStatus}.");
         }
     }
 
@@ -119,7 +119,7 @@ public double CalculateDamage(Move movimiento, double efectividad, Pokemon opone
             // Procesar estado antes de permitir ataque
             ProcessStatus();
 
-            if (Status == EspecialStatus.Asleep)
+            if (Status == SpecialStatus.Asleep)
             {
                 if (SleepTurnsLeft > 0)
                 {
@@ -129,14 +129,14 @@ public double CalculateDamage(Move movimiento, double efectividad, Pokemon opone
                     // Si se agotaron los turnos de sueño, se cambia el estado a NoneStatus
                     if (SleepTurnsLeft == 0)
                     {
-                        Status = EspecialStatus.NoneStatus;
+                        Status = SpecialStatus.NoneStatus;
                         Console.WriteLine($"{Name} se ha despertado.");
                     }
 
                     return false;  // El Pokémon no puede atacar mientras está dormido
                 }
             }
-            else if (Status == EspecialStatus.Paralyzed && random.Next(0, 2) == 0)
+            else if (Status == SpecialStatus.Paralyzed && random.Next(0, 2) == 0)
             {
                 Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.");
                 return false;  // No puede atacar por parálisis
@@ -147,14 +147,14 @@ public double CalculateDamage(Move movimiento, double efectividad, Pokemon opone
 
 public void Paralyze()
 {
-    Status = EspecialStatus.Paralyzed;
+    Status = SpecialStatus.Paralyzed;
     Console.WriteLine($"{Name} ha sido paralizado.");
 }
 public void sleep()
 {
-    if (Status != EspecialStatus.Asleep)  // Solo se duerme si no está ya dormido
+    if (Status != SpecialStatus.Asleep)  // Solo se duerme si no está ya dormido
     {
-        Status = EspecialStatus.Asleep;
+        Status = SpecialStatus.Asleep;
         SleepTurnsLeft = random.Next(1, 5);  // Asigna un número aleatorio de turnos de sueño
         Console.WriteLine($"{Name} ha sido dormido y estará dormido por {SleepTurnsLeft} turnos.");
     }
@@ -171,25 +171,25 @@ public void ProcessStatus(Pokemon enemy = null)
 
     switch (target.Status)
     {
-        case EspecialStatus.Poisoned:
+        case SpecialStatus.Poisoned:
             int poisonDamage = (int)(target.Health * 0.05);
             target.Health -= poisonDamage;
             Console.WriteLine($"{target.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
             break;
 
-        case EspecialStatus.Burned:
+        case SpecialStatus.Burned:
             int burnDamage = (int)(target.Health * 0.10);
             target.Health -= burnDamage;
             Console.WriteLine($"{target.Name} está quemado y pierde {burnDamage} puntos de vida.");
             break;
 
-        case EspecialStatus.Asleep: ;
+        case SpecialStatus.Asleep: ;
             break;
 
-        case EspecialStatus.Paralyzed:
+        case SpecialStatus.Paralyzed:
             break;
 
-        case EspecialStatus.NoneStatus:
+        case SpecialStatus.NoneStatus:
             break;
     }
 }

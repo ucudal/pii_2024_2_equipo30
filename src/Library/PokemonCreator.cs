@@ -76,18 +76,18 @@ public class PokemonCreator : IPokemonCreator
             List<string> Burn = new List<string>{"fire", "dragon", "water"};
             if (pokemon.Moves.Count > 0 && Paralize.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Paralyzed;
+                pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Paralyzed;
             }
             if (pokemon.Moves.Count > 0 && Poison.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Poisoned;
+                pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Poisoned;
             }
             if (pokemon.Moves.Count > 0 && Sleep.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Asleep;
+                pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Asleep;
             }  if (pokemon.Moves.Count > 0 && Burn.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Burned;
+                pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Burned;
             }
             
         }

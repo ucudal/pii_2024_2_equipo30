@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Library;
 
-public class Battle : IBatalla
+public class Battle : IBattle
 {
     private Player Player1;
     private Player Player2;
@@ -106,7 +106,7 @@ public class Battle : IBatalla
             for (int i = 0; i < actualPokemon.Moves.Count; i++)
             {
                 var movement = actualPokemon.Moves[i];
-                Console.WriteLine($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.EspecialStatus}");
+                Console.WriteLine($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}");
             }
 
             int selectedMovement = int.Parse(Console.ReadLine()) - 1;
