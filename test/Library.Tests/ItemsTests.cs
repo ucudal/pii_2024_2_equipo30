@@ -45,52 +45,52 @@ public class ItemsTests
     public void TotalCure_poison()
     {
         //Arrange
-        _pokemon.Status = EspecialStatus.Poisoned;
+        _pokemon.Status = SpecialStatus.Poisoned;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Status, Is.EqualTo(EspecialStatus.NoneStatus));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.NoneStatus));
 
     }
     [Test]
     public void TotalCure_burned()
     {
         //Arrange
-        _pokemon.Status = EspecialStatus.Burned;
+        _pokemon.Status = SpecialStatus.Burned;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Status, Is.EqualTo(EspecialStatus.NoneStatus));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.NoneStatus));
 
     }
     [Test]
     public void TotalCure_Paralized()
     {
         //Arrange
-        _pokemon.Status = EspecialStatus.Paralyzed;
+        _pokemon.Status = SpecialStatus.Paralyzed;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Status, Is.EqualTo(EspecialStatus.NoneStatus));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.NoneStatus));
 
     }
     [Test]
     public void TotalCure_Dormido()
     {
         //Arrange
-        _pokemon.Status = EspecialStatus.Asleep;
+        _pokemon.Status = SpecialStatus.Asleep;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Status, Is.EqualTo(EspecialStatus.Asleep));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.Asleep));
 
     }
     
