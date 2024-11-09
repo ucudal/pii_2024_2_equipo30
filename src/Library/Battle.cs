@@ -3,12 +3,20 @@ using System.Collections.Generic;
 
 namespace Library;
 
+/// <summary>
+/// Clase que representa una batalla entre dos jugadores y maneja toda la lógica de turnos, ataques y uso de ítems.
+/// </summary>
 public class Battle : IBatalla
 {
     private Player Player1;
     private Player Player2;
     private Shift _shift;
 
+    /// <summary>
+    /// Constructor que inicializa la batalla con dos jugadores.
+    /// </summary>
+    /// <param name="player1">Jugador 1 de la batalla.</param>
+    /// <param name="player2">Jugador 2 de la batalla.</param>
     public Battle(Player player1, Player player2)
     {
         this.Player1 = player1;
@@ -18,6 +26,9 @@ public class Battle : IBatalla
         InitializeCurrentPokemon(player2);
     }
 
+    /// <summary>
+    /// Método para iniciar la batalla. Se continúa hasta que uno de los jugadores quede sin Pokémon en combate.
+    /// </summary>
     public void StartBattle()
     {
         while (!Player1.AllOutOfCombat() && !Player2.AllOutOfCombat())
@@ -28,7 +39,7 @@ public class Battle : IBatalla
             _shift.SwitchShift();
         }
 
-        // Mostrar quién ganó
+        // Mostrar quién ganó la batalla
         Console.WriteLine("\n===================================================");
         if (Player1.AllOutOfCombat())
         {
@@ -40,6 +51,11 @@ public class Battle : IBatalla
         }
     }
 
+    /// <summary>
+    /// Método que ejecuta el turno de un jugador.
+    /// </summary>
+    /// <param name="actualPlayer">Jugador que realiza la acción en este turno.</param>
+    /// <param name="enemyPlayer">Jugador enemigo que recibe la acción.</param>
     public void PlayShift(Player actualPlayer, Player enemyPlayer)
     {
         if (!actualPlayer.actualPokemon.OutOfAction())
@@ -80,9 +96,13 @@ public class Battle : IBatalla
         {
             Console.WriteLine("\n---------------------------------------------------");
         }
-
     }
 
+    /// <summary>
+    /// Método para realizar un ataque del Pokémon del jugador actual al del jugador enemigo.
+    /// </summary>
+    /// <param name="actualPlayer">Jugador que realiza el ataque.</param>
+    /// <param name="enemyPlayer">Jugador enemigo que recibe el ataque.</param>
     public void Attack(Player actualPlayer, Player enemyPlayer)
     {
         Pokemon actualPokemon = actualPlayer.actualPokemon;
@@ -154,10 +174,11 @@ public class Battle : IBatalla
         actualPlayer.IncrementPersonalShift();
     }
 
-    // Métodos auxiliares para los ítems, cambiar Pokémon y otros
-    // (Mantener los métodos existentes para `UseItem`, `SwitchPokemon`, etc.)
-
-public void UseItem(Player player)
+    /// <summary>
+    /// Método para usar un ítem durante el turno de un jugador.
+    /// </summary>
+    /// <param name="player">Jugador que va a usar el ítem.</param>
+    public void UseItem(Player player)
     {
         bool usedItem = false;
         while (!usedItem)
@@ -252,6 +273,11 @@ public void UseItem(Player player)
             }
         }
     }
+
+    /// <summary>
+    /// Método para cambiar el Pokémon del jugador durante un turno.
+    /// </summary>
+    /// <param name="player">Jugador que cambiará su Pokémon.</param>
     public void SwitchPokemon(Player player)
     {
         while (true)
@@ -295,6 +321,10 @@ public void UseItem(Player player)
         }
     }
 
+    /// <summary>
+    /// Inicializa el Pokémon actual de un jugador si no tiene uno o si el actual está fuera de combate.
+    /// </summary>
+    /// <param name="player">Jugador cuyo Pokémon será inicializado.</param>
     public void InitializeCurrentPokemon(Player player)
     {
         if (player.actualPokemon == null || player.actualPokemon.OutOfAction())
