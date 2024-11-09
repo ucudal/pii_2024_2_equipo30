@@ -58,7 +58,9 @@ public class HistoryUser3_Test
             EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        atacante.Attack( oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.Less(oponente.Health, saludInicial,"La salud del oponente debería reducirse después del ataque exitoso.");

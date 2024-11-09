@@ -27,7 +27,9 @@ public class HistoryUser4_Test
         
         Grass = new Pokemon("Venusaur", 3, 100,50 , 100, 100, 100, grassType, new List<Move>());
         Water = new Pokemon("Squirtle",7,100,50, 100,100,100,waterType,new List<Move>());
-        
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(Fire);
+        Player jugador = new Player("Ernesto_El_entrenador", listaPokemon);
         
         var flamethrower = new Move
         {
@@ -87,7 +89,9 @@ public class HistoryUser4_Test
             EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        Fire.AttackP(Water, movement);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(Fire);
+        Fire.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),Grass,movement,1);
 
         // Assert
         Assert.Less(Water.Health, saludInicial, "La salud del oponente debería reducirse mas segun la efectividad.");
