@@ -1,39 +1,62 @@
-namespace Library;
-
-
-//Revivir: Revive a un Pokémon con el 50% de su HP total.
-//clase que hereda de items
-public class Revive : Items
+namespace Library
 {
-    public Revive(int quantity) : base("Revivir", "Revive a un Pokémon con el 50% de su HP total.", quantity)
+    /// <summary>
+    /// Clase que representa el item "Revivir", un objeto utilizado para revivir a un Pokémon con el 50% de su HP total.
+    /// Esta clase hereda de la clase base "Items".
+    /// </summary>
+    public class Revive : Items
     {
-    }
-    
-    public override void Use(Pokemon pokemon)
-    {
-        if (Quantity > 0)
+        /// <summary>
+        /// Constructor de la clase "Revivir".
+        /// Inicializa una nueva instancia de "Revivir" con una cantidad específica.
+        /// </summary>
+        /// <param name="quantity">La cantidad inicial del objeto "Revivir".</param>
+        public Revive(int quantity) : base("Revivir", "Revive a un Pokémon con el 50% de su HP total.", quantity)
         {
-            if (pokemon.OutOfAction()) // Verifica si el Pokémon está fuera de combate
+        }
+
+        /// <summary>
+        /// Método que se utiliza para revivir a un Pokémon fuera de combate.
+        /// Revive al Pokémon con el 50% de su vida máxima si el Pokémon está fuera de combate.
+        /// </summary>
+        /// <param name="pokemon">El Pokémon que se desea revivir.</param>
+        public override void Use(Pokemon pokemon)
+        {
+            // Verifica si hay cantidad disponible del item para ser utilizado.
+            if (Quantity > 0)
             {
-                double HpRecovered = pokemon.MaxHealt / 2; // Calcula el 50% de la vida máxima del Pokémon
+                // Verifica si el Pokémon está fuera de combate.
+                if (pokemon.OutOfAction())
+                {
+                    // Calcula el 50% del HP máximo del Pokémon.
+                    double HpRecovered = pokemon.MaxHealt / 2;
 
-                pokemon.Health = HpRecovered; // Recupera su salud
-                pokemon.Outofaction = false; // Asegúrate de que esté marcado como en combate
+                    // Establece la salud del Pokémon al 50% de su HP máximo.
+                    pokemon.Health = HpRecovered;
 
-                // Ahora llamamos a OutOfAction para asegurar que el estado se actualice correctamente
-                pokemon.OutOfAction();
+                    // Marca el Pokémon como en combate nuevamente.
+                    pokemon.Outofaction = false;
 
-                Console.WriteLine($"El Pokémon {pokemon.Name} ha sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
-                Consume(); // Consume el objeto Revive
+                    // Asegura que el estado se actualice correctamente.
+                    pokemon.OutOfAction();
+
+                    // Mensaje que indica que el Pokémon ha sido revivido y la cantidad de HP recuperada.
+                    Console.WriteLine($"El Pokémon {pokemon.Name} ha sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
+
+                    // Consume el objeto "Revivir".
+                    Consume();
+                }
+                else
+                {
+                    // Mensaje indicando que el Pokémon no está fuera de combate y no necesita ser revivido.
+                    Console.WriteLine($"\nEl Pokémon {pokemon.Name} no está fuera de combate, no se necesita usar {ItemsName}.\n");
+                }
             }
             else
             {
-                Console.WriteLine($"\nEl Pokémon {pokemon.Name} no está fuera de combate, no se necesita usar {ItemsName}.\n");
+                // Mensaje indicando que no quedan más unidades del objeto "Revivir".
+                Console.WriteLine($"\nLa {ItemsName} no se puede usar, no quedan más unidades.\n");
             }
-        }
-        else
-        {
-            Console.WriteLine($"\nLa {ItemsName} no se puede usar, no quedan más unidades.\n");
         }
     }
 }
