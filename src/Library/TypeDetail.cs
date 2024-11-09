@@ -1,12 +1,13 @@
 namespace Library
 {
     /// <summary>
-    /// Representa un detalle de tipo con un nombre.
+    /// Clase que representa los detalles de un tipo de Pokémon.
     /// </summary>
     public class TypeDetail
     {
         /// <summary>
-        /// Obtiene o establece el nombre del tipo.
+        /// Nombre del tipo de Pokémon.
+        /// Puede representar tipos como "fire", "water", "grass", etc.
         /// </summary>
         public string Name { get; set; }
     }

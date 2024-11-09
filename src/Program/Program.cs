@@ -12,10 +12,22 @@ using System.Text.Json;
 
 namespace Program
 {
+    /// <summary>
+    /// Programa principal que permite seleccionar equipos de Pokémon para dos jugadores
+    /// y luego inicia una batalla entre ellos.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Cliente HTTP usado para realizar solicitudes a la API de Pokémon.
+        /// </summary>
         private static HttpClient client = new HttpClient();
 
+        /// <summary>
+        /// Método principal del programa.
+        /// Permite la selección de Pokémon para cada jugador y luego maneja la batalla entre ellos.
+        /// </summary>
+        /// <param name="args">Argumentos del programa (no se utilizan).</param>
         public static async Task Main(string[] args)
         {
             PokemonApi pokemonApi = new PokemonApi(client);
@@ -118,5 +130,4 @@ namespace Program
             batalla.StartBattle();
         }
     }
-}//Comentario para forzar los cambios
-
+}

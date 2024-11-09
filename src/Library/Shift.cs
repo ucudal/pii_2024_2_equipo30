@@ -1,35 +1,36 @@
 namespace Library
 {
     /// <summary>
-    /// Representa el turno en un combate, gestionando el jugador actual y el cambio de turnos entre los jugadores.
+    /// Clase que representa un turno (shift) en la batalla entre dos jugadores.
+    /// Administra qué jugador es el actual y cuál es el enemigo, así como el número de turno.
     /// </summary>
     public class Shift
     {
         /// <summary>
-        /// Jugador que tiene el turno actual.
+        /// Jugador que está tomando el turno actual.
         /// </summary>
         public Player actualPlayer { get; private set; }
 
         /// <summary>
-        /// Jugador oponente al jugador actual.
+        /// Jugador enemigo que está esperando su turno.
         /// </summary>
         public Player enemyPlayer { get; private set; }
 
         /// <summary>
-        /// Número de turno actual en el combate.
+        /// Número actual del turno en la batalla.
         /// </summary>
         public int shiftNumber { get; private set; }
 
         /// <summary>
-        /// Contador interno para gestionar los turnos.
+        /// Turno actual para el jugador. 
         /// </summary>
         private int actualShift;
 
         /// <summary>
-        /// Inicializa una nueva instancia de la clase <see cref="Shift"/>, definiendo los jugadores iniciales.
+        /// Constructor para inicializar un turno con dos jugadores.
         /// </summary>
-        /// <param name="jugador1">Jugador que inicia el turno.</param>
-        /// <param name="jugador2">Jugador oponente.</param>
+        /// <param name="jugador1">Primer jugador en iniciar el turno.</param>
+        /// <param name="jugador2">Segundo jugador.</param>
         public Shift(Player jugador1, Player jugador2)
         {
             actualPlayer = jugador1;
@@ -38,7 +39,8 @@ namespace Library
         }
 
         /// <summary>
-        /// Alterna el turno entre el jugador actual y el jugador oponente, incrementando el número de turno.
+        /// Cambia el turno entre los dos jugadores.
+        /// El jugador actual se convierte en el enemigo y viceversa.
         /// </summary>
         public void SwitchShift()
         {
@@ -49,7 +51,7 @@ namespace Library
         }
 
         /// <summary>
-        /// Muestra el turno actual y anuncia de quién es el turno.
+        /// Muestra en la consola el jugador que tiene el turno actual.
         /// </summary>
         public void ShowShift()
         {
@@ -57,13 +59,14 @@ namespace Library
         }
 
         /// <summary>
-        /// Ejecuta un ataque especial si se cumplen las condiciones de turno necesarias.
+        /// Ejecuta un ataque especial por parte del jugador con restricciones de uso.
+        /// Verifica si el jugador puede usar el ataque especial antes de ejecutarlo.
         /// </summary>
-        /// <param name="player">El jugador que realiza el ataque especial.</param>
-        /// <param name="attacker">El Pokémon que realiza el ataque.</param>
-        /// <param name="movements">Movimiento especial a ejecutar.</param>
-        /// <param name="actualShift">Turno actual en el combate.</param>
-        /// <returns>Retorna <c>true</c> si el ataque especial fue exitoso; de lo contrario, <c>false</c>.</returns>
+        /// <param name="player">Jugador que realiza el ataque especial.</param>
+        /// <param name="attacker">El Pokémon que está realizando el ataque.</param>
+        /// <param name="movements">El movimiento especial a ejecutar.</param>
+        /// <param name="actualShift">El turno actual en el que se está realizando el ataque.</param>
+        /// <returns>Devuelve true si el ataque especial fue realizado con éxito; de lo contrario, false.</returns>
         public bool ExecuteSpecialAttack(Player player, Pokemon attacker, Move movements, int actualShift)
         {
             // Verificar si el ataque especial se puede realizar

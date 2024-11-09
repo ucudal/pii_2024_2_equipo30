@@ -4,21 +4,25 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+
 namespace Library
 {
     /// <summary>
-    /// Representa una estadística de un Pokémon o personaje, con un detalle específico y un valor base.
+    /// Clase que representa una estadística de un Pokémon.
+    /// Contiene detalles sobre la estadística específica y su valor base.
     /// </summary>
     public class Stat
     {
         /// <summary>
-        /// Detalle de la estadística, incluye el nombre específico de la estadística.
+        /// Detalles específicos de la estadística.
+        /// Esta propiedad mapea el JSON de la API utilizando <see cref="JsonPropertyNameAttribute"/>.
         /// </summary>
         [JsonPropertyName("stat")]
         public StatsDetail StatsDetail { get; set; }
 
         /// <summary>
-        /// Valor base de la estadística.
+        /// Valor base de la estadística del Pokémon.
+        /// Por ejemplo, el valor base de ataque, defensa, etc.
         /// </summary>
         public int base_stat { get; set; }
     }

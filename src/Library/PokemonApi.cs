@@ -9,31 +9,29 @@ namespace Library
 {
     /// <summary>
     /// Clase que encapsula la lógica para obtener datos desde la API de Pokémon.
-    /// Implementa la interfaz "IPokemonApi".
+    /// Implementa la interfaz <see cref="IPokemonApi"/>.
     /// </summary>
     public class PokemonApi : IPokemonApi
     {
         /// <summary>
-        /// Cliente HTTP utilizado para realizar solicitudes a la API de Pokémon.
+        /// Cliente HTTP utilizado para realizar solicitudes a la API.
         /// </summary>
         private HttpClient httpclient;
 
         /// <summary>
-        /// Constructor de la clase "PokemonApi".
-        /// Inicializa una nueva instancia de "PokemonApi" con un cliente HTTP proporcionado.
+        /// Constructor para inicializar la clase `PokemonApi` con un cliente HTTP.
         /// </summary>
-        /// <param name="client">El cliente HTTP que se utilizará para realizar las solicitudes a la API.</param>
+        /// <param name="client">Instancia de <see cref="HttpClient"/> que se utilizará para realizar solicitudes a la API.</param>
         public PokemonApi(HttpClient client)
         {
             httpclient = client;
         }
 
         /// <summary>
-        /// Método asíncrono que obtiene los detalles de un Pokémon utilizando su identificador (nombre o ID).
-        /// Realiza una solicitud GET a la API de Pokémon y deserializa la respuesta en un objeto de tipo "Pokemon".
+        /// Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre.
         /// </summary>
-        /// <param name="pokemonId">El identificador del Pokémon (nombre o ID) que se desea obtener.</param>
-        /// <returns>Devuelve una tarea que se resuelve en un objeto "Pokemon" con los detalles del Pokémon.</returns>
+        /// <param name="pokemonId">Identificador o nombre del Pokémon que se desea consultar.</param>
+        /// <returns>Una tarea que representa la operación asíncrona y devuelve un objeto <see cref="Pokemon"/> con los detalles del Pokémon.</returns>
         public async Task<Pokemon> GetPokemonDetails(string pokemonId)
         {
             string apiUrl = $"https://pokeapi.co/api/v2/pokemon/{pokemonId}";
@@ -41,11 +39,10 @@ namespace Library
         }
 
         /// <summary>
-        /// Método asíncrono que obtiene los detalles de un movimiento de un Pokémon a partir de la URL específica del movimiento.
-        /// Realiza una solicitud GET a la URL del movimiento y deserializa la respuesta en un objeto de tipo "MoveDetail".
+        /// Obtiene los detalles de un movimiento específico a partir de una URL proporcionada.
         /// </summary>
-        /// <param name="url">La URL del movimiento que se desea obtener.</param>
-        /// <returns>Devuelve una tarea que se resuelve en un objeto "MoveDetail" con los detalles del movimiento.</returns>
+        /// <param name="url">URL del movimiento en la API de Pokémon para obtener sus detalles.</param>
+        /// <returns>Una tarea que representa la operación asíncrona y devuelve un objeto <see cref="MoveDetail"/> con los detalles del movimiento.</returns>
         public async Task<MoveDetail> GetMoveDetails(string url)
         {
             return await httpclient.GetFromJsonAsync<MoveDetail>(url);

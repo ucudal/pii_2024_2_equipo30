@@ -5,26 +5,24 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Library
+namespace Library;
+
+/// <summary>
+/// Interfaz que define métodos para interactuar con una API de Pokémon y obtener detalles sobre Pokémon y movimientos específicos.
+/// </summary>
+public interface IPokemonApi
 {
     /// <summary>
-    /// Interfaz que define los métodos esenciales para interactuar con la API de Pokémon.
-    /// Permite obtener detalles sobre un Pokémon y sobre sus movimientos a través de la API.
+    /// Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre.
     /// </summary>
-    public interface IPokemonApi
-    {
-        /// <summary>
-        /// Método asíncrono para obtener los detalles de un Pokémon basado en su identificador.
-        /// </summary>
-        /// <param name="pokemonId">El identificador del Pokémon (por ejemplo, su nombre o ID en la API).</param>
-        /// <returns>Devuelve una tarea que se resuelve en un objeto Pokémon con sus detalles.</returns>
-        Task<Pokemon> GetPokemonDetails(string pokemonId);
+    /// <param name="pokemonId">Identificador o nombre del Pokémon que se desea consultar.</param>
+    /// <returns>Un objeto <see cref="Pokemon"/> con los detalles del Pokémon.</returns>
+    Task<Pokemon> GetPokemonDetails(string pokemonId);
 
-        /// <summary>
-        /// Método asíncrono para obtener los detalles de un movimiento a partir de la URL proporcionada.
-        /// </summary>
-        /// <param name="url">La URL que apunta a los detalles de un movimiento en la API.</param>
-        /// <returns>Devuelve una tarea que se resuelve en un objeto que contiene los detalles del movimiento.</returns>
-        Task<MoveDetail> GetMoveDetails(string url);
-    }
+    /// <summary>
+    /// Obtiene los detalles de un movimiento específico a partir de una URL.
+    /// </summary>
+    /// <param name="url">URL del movimiento para obtener sus detalles.</param>
+    /// <returns>Un objeto <see cref="MoveDetail"/> con los detalles del movimiento.</returns>
+    Task<MoveDetail> GetMoveDetails(string url);
 }

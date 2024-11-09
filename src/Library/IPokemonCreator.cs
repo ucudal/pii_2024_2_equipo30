@@ -1,15 +1,14 @@
-namespace Library
+namespace Library;
+
+/// <summary>
+/// Interfaz que define el método para crear un objeto Pokémon a partir de un identificador o nombre.
+/// </summary>
+public interface IPokemonCreator
 {
     /// <summary>
-    /// Interfaz que define el contrato para la creación de un objeto Pokémon a partir de su identificador.
+    /// Crea un objeto Pokémon con todos sus detalles, obteniendo la información necesaria a partir de un identificador o nombre.
     /// </summary>
-    public interface IPokemonCreator
-    {
-        /// <summary>
-        /// Método asíncrono que crea un Pokémon basado en su identificador.
-        /// </summary>
-        /// <param name="pokemonId">El identificador del Pokémon (nombre o ID) utilizado para crear el objeto Pokémon.</param>
-        /// <returns>Devuelve una tarea que se resuelve en un objeto Pokémon creado.</returns>
-        Task<Pokemon> CreatePokemon(string pokemonId);
-    }
+    /// <param name="pokemonId">Identificador o nombre del Pokémon que se desea crear.</param>
+    /// <returns>Una tarea que representa la operación asíncrona de creación y devuelve un objeto <see cref="Pokemon"/>.</returns>
+    Task<Pokemon> CreatePokemon(string pokemonId);
 }

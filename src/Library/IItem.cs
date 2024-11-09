@@ -1,41 +1,40 @@
-namespace Library
+namespace Library;
+
+/// <summary>
+/// Interfaz que define la estructura de un ítem en el juego, 
+/// siguiendo una guía de diseño orientada a mantener bajo acoplamiento.
+/// </summary>
+public interface IItem
 {
     /// <summary>
-    /// Interfaz que define las propiedades y métodos básicos para un ítem en el juego.
-    /// Esta interfaz se ha diseñado para seguir la guía de diseño y mantener un bajo acoplamiento entre clases.
+    /// Máxima cantidad de salud que el ítem puede restaurar.
     /// </summary>
-    public interface IItem
-    {
-        /// <summary>
-        /// Propiedad que indica la cantidad máxima de salud que puede recuperar o modificar el ítem.
-        /// </summary>
-        int MaxHealt { get; set; }
+    int MaxHealt { get; set; }
 
-        /// <summary>
-        /// Propiedad que contiene el nombre del ítem.
-        /// </summary>
-        string ItemsName { get; set; }
+    /// <summary>
+    /// Nombre del ítem.
+    /// </summary>
+    string ItemsName { get; set; }
 
-        /// <summary>
-        /// Propiedad que describe el ítem.
-        /// </summary>
-        string ItemsDescription { get; set; }
+    /// <summary>
+    /// Descripción del ítem.
+    /// </summary>
+    string ItemsDescription { get; set; }
 
-        /// <summary>
-        /// Propiedad que indica la cantidad de este ítem disponible.
-        /// </summary>
-        int Quantity { get; set; }
+    /// <summary>
+    /// Cantidad de ítems disponibles para el jugador.
+    /// </summary>
+    int Quantity { get; set; }
 
-        /// <summary>
-        /// Método para usar el ítem. Los efectos del ítem se aplican sobre el Pokémon pasado como parámetro.
-        /// Según la guía de diseño, este método es necesario para que el ítem tenga efecto.
-        /// </summary>
-        /// <param name="pokemon">El Pokémon sobre el que se aplicará el ítem.</param>
-        void Use(Pokemon pokemon);
+    /// <summary>
+    /// Método para usar el ítem en un Pokémon específico.
+    /// Este método es necesario para aplicar el efecto del ítem en el Pokémon.
+    /// </summary>
+    /// <param name="pokemon">El Pokémon en el que se aplicará el ítem.</param>
+    void Use(Pokemon pokemon); 
 
-        /// <summary>
-        /// Método para consumir el ítem. Después de usar el ítem, se decrementa su cantidad.
-        /// </summary>
-        void Consume();
-    }
+    /// <summary>
+    /// Método para consumir el ítem, disminuyendo su cantidad disponible.
+    /// </summary>
+    void Consume();
 }

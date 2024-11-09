@@ -8,46 +8,43 @@ using System.Text.Json.Serialization;
 namespace Library
 {
     /// <summary>
-    /// Clase que representa un movimiento que un Pokémon puede realizar durante el combate.
-    /// Contiene detalles sobre el movimiento y su estado especial.
+    /// Clase que representa un movimiento que un Pokémon puede realizar durante una batalla.
     /// </summary>
     public class Move
     {
         /// <summary>
-        /// Detalles del movimiento, como nombre, poder, y precisión.
-        /// Utiliza una propiedad JSON para mapear el nombre del atributo "move".
+        /// Detalles del movimiento específico. Esta información se obtiene de la API.
         /// </summary>
         [JsonPropertyName("move")]
         public MoveDetail MoveDetails { get; set; }
 
         /// <summary>
-        /// Lista de movimientos relacionados (si se aplica).
+        /// Lista de movimientos. Puede contener múltiples movimientos que el Pokémon conoce.
         /// </summary>
         public List<Move> ListMove { get; set; }
 
         /// <summary>
-        /// Estado especial del movimiento que puede afectar al Pokémon oponente, como Parálisis, Quemadura, Veneno, Sueño, etc.
+        /// Estado especial asociado al movimiento (por ejemplo, envenenar, quemar, dormir, paralizar).
         /// </summary>
-        public SpecialStatus SpecialStatus { get; set; }
+        public EspecialStatus EspecialStatus { get; set; }
 
         /// <summary>
         /// Propiedad que indica si el movimiento es un ataque especial.
-        /// Un ataque se considera especial si tiene uno de los estados especiales definidos (Veneno, Quemadura, Sueño, Parálisis).
+        /// Un movimiento es considerado un ataque especial si tiene algún estado como Envenenado, Quemado, Dormido o Paralizado.
         /// </summary>
         public bool EspecialAttack =>
-            SpecialStatus == SpecialStatus.Poisoned ||
-            SpecialStatus == SpecialStatus.Burned ||
-            SpecialStatus == SpecialStatus.Asleep ||
-            SpecialStatus == SpecialStatus.Paralyzed;
+            EspecialStatus == EspecialStatus.Poisoned ||
+            EspecialStatus == EspecialStatus.Burned ||
+            EspecialStatus == EspecialStatus.Asleep ||
+            EspecialStatus == EspecialStatus.Paralyzed;
 
         /// <summary>
-        /// Constructor de la clase "Move".
-        /// Inicializa un movimiento con un estado especial especificado, que por defecto es "NoneStatus" (sin estado especial).
+        /// Constructor que permite crear un movimiento con un estado especial opcional.
         /// </summary>
-        /// <param name="SpecialStatus">Estado especial del movimiento, por defecto es "NoneStatus".</param>
-        public Move(SpecialStatus SpecialStatus = SpecialStatus.NoneStatus)
+        /// <param name="especialStatus">Estado especial del movimiento, por defecto es <see cref="EspecialStatus.NoneStatus"/>.</param>
+        public Move(EspecialStatus especialStatus = EspecialStatus.NoneStatus)
         {
-            this.SpecialStatus = SpecialStatus;
+            EspecialStatus = especialStatus;
         }
     }
 }
