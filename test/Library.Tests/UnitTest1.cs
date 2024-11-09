@@ -59,7 +59,9 @@ public class PokemonTests
             EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.Less(oponente.Health, saludInicial, "La salud del oponente debería reducirse después del ataque exitoso.");
@@ -75,7 +77,9 @@ public class PokemonTests
         double saludInicial = oponente.Health;
 
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.AreEqual(saludInicial, oponente.Health, "La salud del oponente no debería cambiar cuando el atacante está dormido.");
@@ -99,7 +103,9 @@ public class PokemonTests
         };
 
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.AreEqual(EspecialStatus.Paralyzed, oponente.Status, "El estado 'Paralyzed' debería aplicarse al oponente.");
@@ -125,7 +131,9 @@ public class PokemonTests
         };
 
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.AreEqual(EspecialStatus.Asleep, oponente.Status, "El estado del oponente no debería cambiar si ya tiene otro estado aplicado.");
@@ -139,7 +147,9 @@ public class PokemonTests
         atacante.Type.SetType("fire");   // Configura el tipo del atacante, efectivo contra "grass"
 
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.Less(oponente.Health, 100, "La salud del oponente debería reducirse tomando en cuenta la efectividad del tipo.");
@@ -190,7 +200,9 @@ public class PokemonTests
         };
 
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.AreEqual(95,oponente.Health, "El oponente debería perder un 5% de su salud debido a estar envenenado.");
@@ -216,7 +228,9 @@ public class PokemonTests
         };
 
         // Act
-        atacante.AttackP(oponente, movimiento);
+        List<Pokemon> listaPokemon = new List<Pokemon>();
+        listaPokemon.Add(atacante);
+        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
 
         // Assert
         Assert.AreEqual(90,oponente.Health, "El oponente debería perder un 10% de su salud debido a estar quemado.");
