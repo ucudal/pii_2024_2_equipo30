@@ -1,6 +1,6 @@
 namespace Library;
 
-public enum EspecialStatus
+public enum SpecialStatus
 {
     NoneStatus,
     Poisoned,

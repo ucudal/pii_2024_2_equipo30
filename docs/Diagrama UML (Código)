@@ -1,0 +1,209 @@
+---
+config:
+  theme: dark
+---
+classDiagram
+   
+    class Battle{
+      -Player Player1
+      -Player Player2
+      -Shift Shift
+      +StartBattle()
+      +PlayShift(Player actualPlayer, Player enemyPlayer)
+      +Attack (Player actualPlayer, Player enemyPlayer)
+      +UseItem(Player Player)
+      +SwitchPokemon(Player Player)
+      +InitializeCurrentPokemon(Player Player)
+    }
+    class SpecialStatus {
+        <<enumeration>>
+        NoneStatus
+        Asleep
+        Paralyzed
+        Poisoned
+        Burned
+    }
+    class IItem{
+        <<interface>>
+        int HealthMax
+        string ItemsName
+        string ItemsDescrpition
+        int Quantity
+        Use(Pokemon pokemon)
+        Consume()
+    }
+     class Items{
+    }
+    class Revive{
+        +Use(Pokemon pokemon)
+    }
+
+    class IBattle{
+        <<interface>>
+        StartBattle()
+        PlayShift(Player actualPlayer, Player enemyPlayer)
+        UsarItem(Player Player)
+        Attack(Player actualPlayer, Player enemyPlayer)
+        SwitchPokemon(Player Player)
+        InitializeCurrentPokemon(Player Player)
+    }
+    class IPlayer{
+        <<interface>>
+        string Name
+        List<Pokemon> Team
+        Pokemon actualPokemon
+        List<IItem> Inventory
+        SuperPotion SuperPotion
+        Revive Revive 
+        TotalCure Totalcure
+        ChooseTeam(string pokemon)
+        SwitchPokemon(int indice)
+        TAllOutOfCombat()
+    }
+    class Player{
+        -int ShiftPersonal
+        +RegisterSpecialAttack(string nombreAtaque, int ShiftActual)
+        +CanUseEspecialAtack(string nombreAtaque, int ShiftActual)
+        +ObtainLastShiftofAttack(string nombreAtaque)
+        +IncrementPersonalShift()
+        +ObtainPersonalShift()
+    }   
+    class IPokemon{
+         <<interface>>
+        string Name
+        double Health
+        double HealthMax
+        int Id
+        int Attack
+        int Defense
+        int SpecialAttack
+        int SpecialDefense
+        Type Type
+        List<Move> Moves
+        SpecialStatus Status
+        int TSleepTurnsLeft
+        CalculateDamage(Move movimiento, double efectividad, Pokemon oponente)
+        CanAtack()
+        Attack(Pokemon oponente, Move movimiento)
+        ProcessStatus(Pokemon oponente = null)
+        OutOfAction()
+    }
+    class Pokemon{
+        +List<Stat> Stats
+        +List<Type> Types
+        - Random random
+        +Paralyze()
+        +Sleep()    
+    }
+    class IPokemonApi{
+        <<interface>>
+        Task<Pokemon> GetPokemonDetails(string pokemonId)
+        Task<MoveDetail> GetMoveDetails(string url)
+    }
+    class PokemonApi{
+        -HttpClient httpclient
+    }
+    class IPokemonCreator{
+        <<interface>>
+        Task<Pokemon> CreatePokemon(string pokemonId)
+    }
+    class PokemonCreator{
+        -IPokemonApi pokeonApi
+        -GetMoves (List<Move> listmoves, string pokemonId)
+        -AssignSpecialStatus(Pokemon pokemon)
+    }
+
+    class Move{
+        +MoveDetail MoveDetails
+        +List<Move> ListMove
+        +SpecialStatus SpecialStatus
+    }
+    class MoveDetail{
+        +string Name
+        +int? Power
+        +int Accuracy?
+        +string URL
+    }
+    class Stat{
+        +StatsDetail StatsDetail
+        +int base_stat
+    }
+    class StatsDetail{
+        +string Name
+    }
+    class SuperPotion{
+        +int HpRecovered
+        +Use(Pokemon pokemon)
+    }
+    class TotalCure{
+        +Use (Pokemon pokemon)
+    }
+    class Shift{
+        + Player actualPlayer
+        +Player enemyPlayer
+        +int shiftNumber
+        +SwitchShift()
+        +ShowShift()
+    }
+    class Type{
+        +TypeDetail TypeDetail
+        +Dictionary<string, double> Effectiveness
+        +SetType(string name)
+    }
+    class TypeDetail{
+        +string Name
+    }
+Items ..|> IItem : "Realization"
+Battle ..|> IBattle : "Realization"
+Player ..|> IPlayer : "Realization"
+Pokemon ..|> IPokemon : "Realization"
+PokemonCreator ..|> IPokemonCreator : "Realization"
+PokemonApi ..|> IPokemonApi : "Realization"
+     
+Battle *-- Shift : "Composition"
+Player *-- Pokemon : "Composition"
+Move *-- MoveDetail : "Composition"
+Pokemon *-- Type : "Composition"
+Pokemon *-- Stat : "Composition"
+Pokemon *-- Move : "Composition"
+Pokemon *-- SpecialStatus : "Composition"
+Shift *-- Player : "Composition"
+Type *-- TypeDetail : "Composition"
+Stat *-- StatsDetail : "Composition"
+Battle o-- Player : "Aggregation"
+IBattle o-- Player : "Aggregation"
+IItem o-- Pokemon : "Aggregation"
+IPlayer o-- Pokemon : "Aggregation"
+IPlayer o-- IItem : "Aggregation"
+IPlayer o-- SuperPotion : "Aggregation"
+IPlayer o-- Revive : "Aggregation"
+IPlayer o-- TotalCure : "Aggregation"
+IPokemon o-- Type : "Aggregation"
+IPokemon o-- Move : "Aggregation"
+IPokemon o-- SpecialStatus : "Aggregation"
+IPokemonApi o-- Pokemon : "Aggregation"
+IPokemonApi o-- MoveDetail : "Aggregation"
+IPokemonCreator o-- Pokemon : "Aggregation"
+Items o-- Pokemon : "Aggregation"
+Player o-- Items : "Aggregation"
+Player o-- SuperPotion : "Aggregation"
+Player o-- Revive : "Aggregation"
+Player o-- TotalCure : "Aggregation"
+PokemonApi o-- Pokemon : "Aggregation"
+PokemonApi o-- MoveDetail : "Aggregation"
+PokemonCreator o-- Pokemon : "Aggregation"
+Revive o-- Pokemon : "Aggregation"
+SuperPotion o-- Pokemon : "Aggregation"
+TotalCure o-- Pokemon : "Aggregation"
+TotalCure <|-- Items : "Inheritance"
+SuperPotion <|-- Items : "Inheritance"
+Revive <|-- Items : "Inheritance"
+
+
+
+
+
+
+    
+    
+    

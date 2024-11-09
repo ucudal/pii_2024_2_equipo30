@@ -4,10 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F072ED28-D443-43D3-83EC-AC2A4F3778AC}"
-	ProjectSection(SolutionItems) = preProject
-		src\UML Proyecto v1.png = src\UML Proyecto v1.png
-		src\UML Code v1 = src\UML Code v1
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "src\Library\Library.csproj", "{A1D737C4-B913-464F-AF75-C57F492C267F}"
 EndProject
