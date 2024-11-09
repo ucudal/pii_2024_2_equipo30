@@ -9,7 +9,7 @@ public class HistoryUser4_Test
     private Pokemon Fire;
     private Pokemon Grass;
     private Pokemon Water;
-    private Move movimiento;
+    private Move movement;
 
     [SetUp]
     public void Setup()
@@ -54,13 +54,13 @@ public class HistoryUser4_Test
                 Accuracy = 100,
                 URL = "Nothing"
         };
-        movimiento = new Move
+        movement = new Move
         {
                 MoveDetails = flamethrower,
-                EstadoEspecial = EstadoEspecial.Ninguno
+                EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        Fire.Atacar(Grass, movimiento);
+        Fire.CalculateDamage( movement,100,Grass);
 
         // Assert
         Assert.Less(Grass.Health, saludInicial2, "La salud del oponente debería reducirse mas segun la efectividad.");

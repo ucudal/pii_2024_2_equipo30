@@ -8,9 +8,9 @@ public class HistoryUser6_Test
 {
     public class BatallaTests
     {
-        private Jugador jugador1;
-        private Jugador jugador2;
-        private Batalla batalla;
+        private Player jugador1;
+        private Player jugador2;
+        private Battle battle;
 
         [SetUp]
         public void Setup()
@@ -28,16 +28,16 @@ public class HistoryUser6_Test
                 new Pokemon { Health = 0 }
             };
 
-            jugador1 = new Jugador("Jugador 1", equipoJugador1);
-            jugador2 = new Jugador("Jugador 2", equipoJugador2);
-            batalla = new Batalla(jugador1, jugador2);
+            jugador1 = new Player("Jugador 1", equipoJugador1);
+            jugador2 = new Player("Jugador 2", equipoJugador2);
+            battle = new Battle(jugador1, jugador2);
         }
 
         [Test]
         public void BatallaTermina()
         {
             // Act
-            bool oponenteFueraDeCombate = jugador2.TodosFueraDeCombate();
+            bool oponenteFueraDeCombate = jugador2.AllOutOfCombat();
 
             // Assert
             Assert.IsTrue(oponenteFueraDeCombate, "El jugador 2 debería estar fuera de combate.");

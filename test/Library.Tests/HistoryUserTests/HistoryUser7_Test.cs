@@ -25,13 +25,13 @@ public class HistoryUser7_Test
                 new Pokemon { Name = "Charizard" } 
             };
 
-            var jugador1 = new Jugador("Jugador 1", equipoJugador1);
-            var jugador2 = new Jugador("Jugador 2", equipoJugador2);
-            var turno = new Turno(jugador1, jugador2);
+            var jugador1 = new Player("Jugador 1", equipoJugador1);
+            var jugador2 = new Player("Jugador 2", equipoJugador2);
+            var turno = new Shift(jugador1, jugador2);
 
             // Act
             // Jugador 1 cambia a su segundo Pokémon
-            jugador1.CambiarPokemon(1); // Cambia a Charmander
+            jugador1.SwitchPokemon(1); // Cambia a Charmander
             turno.CambiarTurno(); // Se pierde el turno, pasa a Jugador 2
 
             // Assert

@@ -55,10 +55,10 @@ public class HistoryUser3_Test
         movimiento = new Move
         {
             MoveDetails = flamethrower,
-            EstadoEspecial = EstadoEspecial.Ninguno
+            EspecialStatus = EspecialStatus.NoneStatus
         };
         // Act
-        atacante.Atacar(oponente, movimiento);
+        atacante.Attack( oponente, movimiento);
 
         // Assert
         Assert.Less(oponente.Health, saludInicial,"La salud del oponente debería reducirse después del ataque exitoso.");

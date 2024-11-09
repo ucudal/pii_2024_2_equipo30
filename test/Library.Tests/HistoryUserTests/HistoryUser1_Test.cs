@@ -30,7 +30,7 @@ public class HistoryUser1_Test
             new Pokemon("Jigglypuff", 115, 100, 45, 20, 20, 25, new Type(), new List<Move> { new Move() });
             new Pokemon("Gengar", 60, 100, 65, 60, 110, 75, new Type(), new List<Move> { new Move() });
         }
-        Jugador jugador = new Jugador("Ernesto_El_entrenador", listaPokemon); //error
+        Player jugador = new Player("Ernesto_El_entrenador", listaPokemon); //error
 
         //act
         jugador.ElegirEquipo("Pikachu");
