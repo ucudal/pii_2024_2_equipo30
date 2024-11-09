@@ -12,17 +12,17 @@ public class SuperPotion : Items
     }
     public override void Use(Pokemon pokemon)
     {
-        double nuevaVida = pokemon.Health + HpRecovered;
+        double newHealth = pokemon.Health + HpRecovered;
         
-        if (nuevaVida > pokemon.VidaMax)
+        if (newHealth > pokemon.MaxHealt)
         {
-            pokemon.Health = pokemon.VidaMax;
+            pokemon.Health = pokemon.MaxHealt;
         }
         else
         {
-            pokemon.Health = nuevaVida;
+            pokemon.Health = newHealth;
         }
         Consume();
-        Console.WriteLine($"\n El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud. Ahora tiene {pokemon.Health:F1}/{pokemon.VidaMax} puntos de vida.\n");
+        Console.WriteLine($"\n El Pokemon {pokemon.Name} ha recuperado {HpRecovered} puntos de salud. Ahora tiene {pokemon.Health:F1}/{pokemon.MaxHealt} puntos de vida.\n");
     }
 }

@@ -2,7 +2,7 @@
 
 public abstract class Items : IItem //clase abstracta que implementa interfaz
 {
-    public int VidaMax { get; set; }
+    public int MaxHealt { get; set; }
     public string ItemsName { get; set; }
     public string ItemsDescription { get; set; }
     public int Quantity { get; set; }
@@ -18,7 +18,7 @@ public abstract class Items : IItem //clase abstracta que implementa interfaz
 
     public abstract void Use(Pokemon pokemon);
     
-    public void Consume() //metodo para reducir la cantidad de items y indica al jugador(entrenador)
+    public void Consume() //metodo para reducir la cantidad de items y indica al player(entrenador)
     {
         if (Quantity > 0)
         {

@@ -3,7 +3,7 @@ namespace Library;
 //clase interface hecha para seguir la guia de diseño y que mantenga un bajo acoplamiento
 public interface IItem
 {
-    int VidaMax { get; set; }
+    int MaxHealt { get; set; }
     string ItemsName { get; set; }
     string ItemsDescription { get; set; }
     int Quantity { get; set; }

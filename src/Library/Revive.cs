@@ -13,15 +13,15 @@ public class Revive : Items
     {
         if (Quantity > 0)
         {
-            if (pokemon.EstaFueraDeCombate()) // Verifica si el Pokémon está fuera de combate
+            if (pokemon.OutOfAction()) // Verifica si el Pokémon está fuera de combate
             {
-                double HpRecovered = pokemon.VidaMax / 2; // Calcula el 50% de la vida máxima del Pokémon
+                double HpRecovered = pokemon.MaxHealt / 2; // Calcula el 50% de la vida máxima del Pokémon
 
                 pokemon.Health = HpRecovered; // Recupera su salud
-                pokemon.FueraDeCombate = false; // Asegúrate de que esté marcado como en combate
+                pokemon.Outofaction = false; // Asegúrate de que esté marcado como en combate
 
-                // Ahora llamamos a EstaFueraDeCombate para asegurar que el estado se actualice correctamente
-                pokemon.EstaFueraDeCombate();
+                // Ahora llamamos a OutOfAction para asegurar que el estado se actualice correctamente
+                pokemon.OutOfAction();
 
                 Console.WriteLine($"El Pokémon {pokemon.Name} ha sido revivido con un {ItemsName} y recuperado {HpRecovered} HP.");
                 Consume(); // Consume el objeto Revive

@@ -18,9 +18,9 @@ public class PokemonCreator : IPokemonCreator
             }
                 
 
-            Type tipo = new Type();
-            tipo.SetType(genericPokemon.Types[0].TypeDetail.Name);
-            List<Move> listaMovimientos = await GetMoves(genericPokemon.Moves, pokemonId);
+            Type type = new Type();
+            type.SetType(genericPokemon.Types[0].TypeDetail.Name);
+            List<Move> movementsList = await GetMoves(genericPokemon.Moves, pokemonId);
             
             Pokemon pokemon = new Pokemon(
                 genericPokemon.Name,
@@ -30,10 +30,10 @@ public class PokemonCreator : IPokemonCreator
                 genericPokemon.Stats[2].base_stat,  // Defensa
                 genericPokemon.Stats[3].base_stat,  // Ataque Especial
                 genericPokemon.Stats[4].base_stat,  // Defensa Especial
-                tipo,
-                listaMovimientos
+                type,
+                movementsList
             );
-            AsignarEstadoEspecial(pokemon);
+            AssignSpecialStatus(pokemon);
             return pokemon;
         }
 
@@ -68,7 +68,7 @@ public class PokemonCreator : IPokemonCreator
             return moves;
         
         }
-        private void AsignarEstadoEspecial(Pokemon pokemon) //Estado Especial de ataques
+        private void AssignSpecialStatus(Pokemon pokemon) //Status Especial de ataques
         {
             List<string> Paralize = new List<string>{"electric", "normal", "flying", "ice", "rock", "ground"};
             List<string> Poison = new List<string>{"poison", "bug", "plant", "steel", "grass"};
@@ -76,18 +76,18 @@ public class PokemonCreator : IPokemonCreator
             List<string> Burn = new List<string>{"fire", "dragon", "water"};
             if (pokemon.Moves.Count > 0 && Paralize.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Paralizado;
+                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Paralyzed;
             }
             if (pokemon.Moves.Count > 0 && Poison.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Envenenado;
+                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Poisoned;
             }
             if (pokemon.Moves.Count > 0 && Sleep.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Dormido;
+                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Asleep;
             }  if (pokemon.Moves.Count > 0 && Burn.Contains(pokemon.Type.TypeDetail.Name))
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Quemado;
+                pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Burned;
             }
             
         }

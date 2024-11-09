@@ -12,19 +12,19 @@ public class TotalCure : Items
     {
         if (Quantity > 0)
         {
-            if (pokemon.Estado == EstadoEspecial.Envenenado)
+            if (pokemon.Status == EspecialStatus.Poisoned)
             {
-                pokemon.Estado = EstadoEspecial.Ninguno;
+                pokemon.Status = EspecialStatus.NoneStatus;
                 Console.WriteLine($"El pokemon {pokemon.Name} ya no está envenenado.");
             }
-            if (pokemon.Estado == EstadoEspecial.Paralizado)
+            if (pokemon.Status == EspecialStatus.Paralyzed)
             {
-                pokemon.Estado = EstadoEspecial.Ninguno;
+                pokemon.Status = EspecialStatus.NoneStatus;
                 Console.WriteLine($"El pokemon {pokemon.Name} ya no está paralizado.");
             }
-            if (pokemon.Estado == EstadoEspecial.Quemado)
+            if (pokemon.Status == EspecialStatus.Burned)
             {
-                pokemon.Estado = EstadoEspecial.Ninguno;
+                pokemon.Status = EspecialStatus.NoneStatus;
                 Console.WriteLine($"El pokemon {pokemon.Name} ya no está quemado.");
             }
             Consume();

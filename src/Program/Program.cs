@@ -27,8 +27,8 @@ namespace Program
 
             Console.WriteLine("\n==================== SELECCIÓN DE POKÉMON ====================\n");
 
-            // Selección de Pokémon para el Jugador 1
-            Console.WriteLine("Selección de Pokémon para Jugador 1:\n");
+            // Selección de Pokémon para el Player 1
+            Console.WriteLine("Selección de Pokémon para Player 1:\n");
             for (int i = 0; i < 6; i++)
             {
                 bool pokemonAgregado = false;
@@ -36,7 +36,7 @@ namespace Program
                 {
                     try
                     {
-                        Console.WriteLine("Jugador 1, ingrese un nombre o un ID de un Pokémon: ");
+                        Console.WriteLine("Player 1, ingrese un nombre o un ID de un Pokémon: ");
                         string pokemonId = Console.ReadLine();
                         var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId.ToLower()}");
                         if (response.IsSuccessStatusCode)
@@ -62,8 +62,8 @@ namespace Program
                 }
             }
 
-            // Selección de Pokémon para el Jugador 2
-            Console.WriteLine("\nSelección de Pokémon para Jugador 2:\n");
+            // Selección de Pokémon para el Player 2
+            Console.WriteLine("\nSelección de Pokémon para Player 2:\n");
             for (int i = 0; i < 6; i++)
             {
                 bool pokemonAgregado = false;
@@ -71,7 +71,7 @@ namespace Program
                 {
                     try
                     {
-                        Console.WriteLine("Jugador 2, ingrese un nombre o un ID de un Pokémon: ");
+                        Console.WriteLine("Player 2, ingrese un nombre o un ID de un Pokémon: ");
                         string pokemonId = Console.ReadLine();
                         var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId.ToLower()}");
                         if (response.IsSuccessStatusCode)
@@ -107,15 +107,15 @@ namespace Program
             }
 
             // Crear jugadores
-            Jugador jugador1 = new Jugador("Jugador 1", listPokemonJugador1);
-            Jugador jugador2 = new Jugador("Jugador 2", listPokemonJugador2);
+            Player jugador1 = new Player("Player 1", listPokemonJugador1);
+            Player jugador2 = new Player("Player 2", listPokemonJugador2);
 
             // Crear y manejar la batalla
-            var batalla = new Batalla(jugador1, jugador2);
+            var batalla = new Battle(jugador1, jugador2);
             Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
-            Console.WriteLine($"\n {jugador1.Nombre} ha seleccionado a {jugador1.PokemonActual.Name} como su Pokémon inicial y tiene {jugador1.PokemonActual.Health}");
-            Console.WriteLine($"\n {jugador2.Nombre} ha seleccionado a {jugador2.PokemonActual.Name} como su Pokémon inicial y tiene {jugador2.PokemonActual.Health}.");
-            batalla.IniciarBatalla();
+            Console.WriteLine($"\n {jugador1.NamePlayer} ha seleccionado a {jugador1.actualPokemon.Name} como su Pokémon inicial y tiene {jugador1.actualPokemon.Health}");
+            Console.WriteLine($"\n {jugador2.NamePlayer} ha seleccionado a {jugador2.actualPokemon.Name} como su Pokémon inicial y tiene {jugador2.actualPokemon.Health}.");
+            batalla.StartBattle();
         }
     }
 }//Comentario para forzar los cambios
