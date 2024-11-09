@@ -50,7 +50,7 @@ public class Battle : IBatalla
             Console.WriteLine($"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida");
             Console.WriteLine($"{actualPlayer.NamePlayer}, elige qué quieres hacer en este _shift:");
             Console.WriteLine("1: Usar un ítem");
-            Console.WriteLine("2: AttackP con un movimiento");
+            Console.WriteLine("2: atacar a un pokemon con un movimiento");
             Console.WriteLine("3: Cambiar de Pokémon");
             int actionChoose = int.Parse(Console.ReadLine());
 
