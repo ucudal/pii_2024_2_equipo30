@@ -56,7 +56,7 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = flamethrower,
-            EspecialStatus = EspecialStatus.NoneStatus
+            SpecialStatus = SpecialStatus.NoneStatus
         };
         // Act
         atacante.AttackP(oponente, movimiento);
@@ -71,7 +71,7 @@ public class PokemonTests
     //Este metodo testea que si el atacante esta dormido no puede inflingir daño al oponente
     {
         // Arrange
-        atacante.Status = EspecialStatus.Asleep;
+        atacante.Status = SpecialStatus.Asleep;
         double saludInicial = oponente.Health;
 
         // Act
@@ -95,14 +95,14 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = paralizarMoveDetail,
-            EspecialStatus = EspecialStatus.Paralyzed
+            SpecialStatus = SpecialStatus.Paralyzed
         };
 
         // Act
         atacante.AttackP(oponente, movimiento);
 
         // Assert
-        Assert.AreEqual(EspecialStatus.Paralyzed, oponente.Status, "El estado 'Paralyzed' debería aplicarse al oponente.");
+        Assert.AreEqual(SpecialStatus.Paralyzed, oponente.Status, "El estado 'Paralyzed' debería aplicarse al oponente.");
     }
 
     [Test]
@@ -110,7 +110,7 @@ public class PokemonTests
     //En este metodo probamos que si un pokemon ya esta afectado por un estado, que no pueda ser afectado por otro
     {
         // Arrange
-        oponente.Status = EspecialStatus.Asleep;
+        oponente.Status = SpecialStatus.Asleep;
         var paralizarMoveDetail = new MoveDetail
         {
             Name = "Thunder Wave",
@@ -121,14 +121,14 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = paralizarMoveDetail,
-            EspecialStatus = EspecialStatus.Paralyzed
+            SpecialStatus = SpecialStatus.Paralyzed
         };
 
         // Act
         atacante.AttackP(oponente, movimiento);
 
         // Assert
-        Assert.AreEqual(EspecialStatus.Asleep, oponente.Status, "El estado del oponente no debería cambiar si ya tiene otro estado aplicado.");
+        Assert.AreEqual(SpecialStatus.Asleep, oponente.Status, "El estado del oponente no debería cambiar si ya tiene otro estado aplicado.");
     }
 
     [Test]
@@ -173,7 +173,7 @@ public class PokemonTests
     [Test]
     public void PoisonAttack()
     {
-        oponente.Status = EspecialStatus.NoneStatus;
+        oponente.Status = SpecialStatus.NoneStatus;
         // Arrange
         //Power is 0, however since opponent is now poisoned, he should lose 5% health
         var poisonMan = new MoveDetail
@@ -186,7 +186,7 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = poisonMan,
-            EspecialStatus = EspecialStatus.Poisoned
+            SpecialStatus = SpecialStatus.Poisoned
         };
 
         // Act
@@ -199,7 +199,7 @@ public class PokemonTests
     [Test]
     public void BurningAttack()
     {
-        oponente.Status = EspecialStatus.NoneStatus;
+        oponente.Status = SpecialStatus.NoneStatus;
         // Arrange
         //Power is 0, however since opponent is now burned, he should lose 10% health
         var burningMan = new MoveDetail
@@ -212,7 +212,7 @@ public class PokemonTests
         movimiento = new Move
         {
             MoveDetails = burningMan,
-            EspecialStatus = EspecialStatus.Burned
+            SpecialStatus = SpecialStatus.Burned
         };
 
         // Act
