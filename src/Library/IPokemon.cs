@@ -58,7 +58,7 @@ public interface IPokemon
     /// <summary>
     /// Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, etc.).
     /// </summary>
-    EspecialStatus Status { get; set; }
+    SpecialStatus Status { get; set; }
 
     /// <summary>
     /// Número de turnos que le quedan al Pokémon durmiendo, si está dormido.
@@ -93,7 +93,7 @@ public interface IPokemon
     /// Procesa el estado actual del Pokémon y aplica los efectos correspondientes.
     /// </summary>
     /// <param name="enemy">El Pokémon enemigo (opcional) en caso de que el estado afecte a ambos.</param>
-    void ProcessStatus(Pokemon enemy = null);
+    void ProcessStatus();
 
     /// <summary>
     /// Verifica si el Pokémon está fuera de combate (sin puntos de salud).

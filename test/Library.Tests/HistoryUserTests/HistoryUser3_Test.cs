@@ -55,7 +55,7 @@ public class HistoryUser3_Test
         movimiento = new Move
         {
             MoveDetails = flamethrower,
-            EspecialStatus = EspecialStatus.NoneStatus
+            SpecialStatus = SpecialStatus.NoneStatus
         };
         // Act
         List<Pokemon> listaPokemon = new List<Pokemon>();

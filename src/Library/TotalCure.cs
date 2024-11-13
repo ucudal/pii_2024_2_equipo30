@@ -24,19 +24,19 @@ namespace Library
         {
             if (Quantity > 0)
             {
-                if (pokemon.Status == EspecialStatus.Poisoned)
+                if (pokemon.Status == SpecialStatus.Poisoned)
                 {
-                    pokemon.Status = EspecialStatus.NoneStatus;
+                    pokemon.Status = SpecialStatus.NoneStatus;
                     Console.WriteLine($"El Pokémon {pokemon.Name} ya no está envenenado.");
                 }
-                if (pokemon.Status == EspecialStatus.Paralyzed)
+                if (pokemon.Status == SpecialStatus.Paralyzed)
                 {
-                    pokemon.Status = EspecialStatus.NoneStatus;
+                    pokemon.Status = SpecialStatus.NoneStatus;
                     Console.WriteLine($"El Pokémon {pokemon.Name} ya no está paralizado.");
                 }
-                if (pokemon.Status == EspecialStatus.Burned)
+                if (pokemon.Status == SpecialStatus.Burned)
                 {
-                    pokemon.Status = EspecialStatus.NoneStatus;
+                    pokemon.Status = SpecialStatus.NoneStatus;
                     Console.WriteLine($"El Pokémon {pokemon.Name} ya no está quemado.");
                 }
 

@@ -26,25 +26,25 @@ namespace Library
         /// <summary>
         /// Estado especial asociado al movimiento (por ejemplo, envenenar, quemar, dormir, paralizar).
         /// </summary>
-        public EspecialStatus EspecialStatus { get; set; }
+        public SpecialStatus SpecialStatus { get; set; }
 
         /// <summary>
         /// Propiedad que indica si el movimiento es un ataque especial.
         /// Un movimiento es considerado un ataque especial si tiene algún estado como Envenenado, Quemado, Dormido o Paralizado.
         /// </summary>
-        public bool EspecialAttack =>
-            EspecialStatus == EspecialStatus.Poisoned ||
-            EspecialStatus == EspecialStatus.Burned ||
-            EspecialStatus == EspecialStatus.Asleep ||
-            EspecialStatus == EspecialStatus.Paralyzed;
+        public bool SpecialAttack =>
+            SpecialStatus == SpecialStatus.Poisoned ||
+            SpecialStatus == SpecialStatus.Burned ||
+            SpecialStatus == SpecialStatus.Asleep ||
+            SpecialStatus == SpecialStatus.Paralyzed;
 
         /// <summary>
         /// Constructor que permite crear un movimiento con un estado especial opcional.
         /// </summary>
-        /// <param name="especialStatus">Estado especial del movimiento, por defecto es <see cref="EspecialStatus.NoneStatus"/>.</param>
-        public Move(EspecialStatus especialStatus = EspecialStatus.NoneStatus)
+        /// <param name="SpecialStatus">Estado especial del movimiento, por defecto es <see cref="SpecialStatus.NoneStatus"/>.</param>
+        public Move(SpecialStatus SpecialStatus = SpecialStatus.NoneStatus)
         {
-            EspecialStatus = especialStatus;
+            SpecialStatus = SpecialStatus;
         }
     }
 }

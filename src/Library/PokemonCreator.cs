@@ -102,19 +102,19 @@ namespace Library
             {
                 if (Paralize.Contains(pokemon.Type.TypeDetail.Name))
                 {
-                    pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Paralyzed;
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Paralyzed;
                 }
                 if (Poison.Contains(pokemon.Type.TypeDetail.Name))
                 {
-                    pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Poisoned;
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Poisoned;
                 }
                 if (Sleep.Contains(pokemon.Type.TypeDetail.Name))
                 {
-                    pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Asleep;
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Asleep;
                 }
                 if (Burn.Contains(pokemon.Type.TypeDetail.Name))
                 {
-                    pokemon.Moves[pokemon.Moves.Count - 1].EspecialStatus = EspecialStatus.Burned;
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Burned;
                 }
             }
         }

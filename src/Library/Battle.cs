@@ -115,7 +115,6 @@ public class Battle : IBatalla
 
         if (!actualPokemon.CanAtack())
         {
-            Console.WriteLine($"{actualPokemon.Name} no puede atacar este _shift debido a su estado {actualPokemon.Status}.");
             return;  // El Pokémon no puede atacar debido a su estado (dormido, paralizado, etc.)
         }
 
@@ -126,7 +125,7 @@ public class Battle : IBatalla
             for (int i = 0; i < actualPokemon.Moves.Count; i++)
             {
                 var movement = actualPokemon.Moves[i];
-                Console.WriteLine($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.EspecialStatus}");
+                Console.WriteLine($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}");
             }
 
             int selectedMovement = int.Parse(Console.ReadLine()) - 1;
@@ -139,7 +138,7 @@ public class Battle : IBatalla
 
             var MovementSelected = actualPokemon.Moves[selectedMovement];
 
-            if (MovementSelected.EspecialAttack)
+            if (MovementSelected.SpecialAttack)
             {
                 // Verificar si el ataque especial puede ser usado
                 bool canUseEspecialAtack = actualPlayer.CanUseEspecialAtack(MovementSelected.MoveDetails.Name, actualPlayer.ObtainPersonalShift());

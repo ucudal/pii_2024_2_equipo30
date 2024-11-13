@@ -59,7 +59,7 @@ public class HistoryUser4_Test
         movement = new Move
         {
                 MoveDetails = flamethrower,
-                EspecialStatus = EspecialStatus.NoneStatus
+                SpecialStatus = SpecialStatus.NoneStatus
         };
         // Act
         Fire.CalculateDamage( movement,100,Grass);
@@ -86,7 +86,7 @@ public class HistoryUser4_Test
         movement = new Move
         {
             MoveDetails = flamethrower,
-            EspecialStatus = EspecialStatus.NoneStatus
+            SpecialStatus = SpecialStatus.NoneStatus
         };
         // Act
         List<Pokemon> listaPokemon = new List<Pokemon>();

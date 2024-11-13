@@ -76,7 +76,7 @@ namespace Library
         /// <summary>
         /// Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, dormido, paralizado).
         /// </summary>
-        public EspecialStatus Status { get; set; }
+        public SpecialStatus Status { get; set; }
 
         /// <summary>
         /// Número de turnos restantes que el Pokémon estará dormido.
@@ -117,7 +117,7 @@ namespace Library
             SpecialDefense = specialDefense;
             Type = type;
             Moves = moves;
-            Status = EspecialStatus.NoneStatus;
+            Status = SpecialStatus.NoneStatus;
         }
 
         /// <summary>
@@ -134,36 +134,37 @@ namespace Library
         /// <param name="currentShift">Turno actual en el que se realiza el ataque.</param>
         public void AttackP(Player player, Pokemon enemy, Move movement, int currentShift)
         {
-            if (!CanAtack())
-            {
-                Console.WriteLine($"{Name} no puede atacar este turno debido a su estado {Status}.");
-                return;
-            }
-
-            if (movement.EspecialAttack && !player.CanUseEspecialAtack(movement.MoveDetails.Name, currentShift))
+            if (movement.SpecialAttack && !player.CanUseEspecialAtack(movement.MoveDetails.Name, currentShift))
             {
                 Console.WriteLine($"No puedes usar el ataque especial {movement.MoveDetails.Name} en este momento. Debes esperar más turnos.");
                 return;
             }
-            else if (movement.EspecialAttack)
+            if (movement.SpecialAttack)
             {
                 player.RegisterSpecialAttack(movement.MoveDetails.Name, currentShift);
             }
 
             Console.WriteLine($"{Name} usa {movement.MoveDetails.Name}!");
-
-            if (movement.EspecialStatus != EspecialStatus.NoneStatus && enemy.Status == EspecialStatus.NoneStatus)
+            if (enemy.Status == SpecialStatus.Asleep)
             {
-                enemy.Status = movement.EspecialStatus;
-                if (movement.EspecialStatus == EspecialStatus.Asleep)
+                Console.WriteLine($"{Name} ya está dormido y no puede dormir nuevamente hasta despertar.");
+            }
+
+            if (movement.SpecialStatus != SpecialStatus.NoneStatus && enemy.Status == SpecialStatus.NoneStatus)
+            {
+                enemy.Status = movement.SpecialStatus;
+                if (movement.SpecialStatus == SpecialStatus.Asleep)
                 {
-                    enemy.sleep();
+                    enemy.SleepTurnsLeft = random.Next(1, 5);
+                    Console.WriteLine($"{enemy.Name} ha sido dormido y estará dormido por {enemy.SleepTurnsLeft} turnos.");
                 }
                 else
                 {
-                    Console.WriteLine($"{enemy.Name} ahora está {movement.EspecialStatus}.");
+                    Console.WriteLine($"{enemy.Name} ahora está {movement.SpecialStatus}.");
                 }
             }
+
+            
 
             double efficacy = Type.Effectiveness.ContainsKey(enemy.Type.TypeDetail.Name) ? Type.Effectiveness[enemy.Type.TypeDetail.Name] : 1.0;
             double damage = CalculateDamage(movement, efficacy, enemy);
@@ -173,7 +174,7 @@ namespace Library
 
             Console.WriteLine($"{Name} hizo {damage:F1} puntos de daño! {enemy.Name} ahora tiene {enemy.Health:F1} puntos de vida.");
         }
-
+        
         /// <summary>
         /// Calcula el daño causado por un movimiento específico.
         /// </summary>
@@ -184,8 +185,8 @@ namespace Library
         public double CalculateDamage(Move movimiento, double efectividad, Pokemon oponente)
         {
             int power = movimiento.MoveDetails.Power ?? 0;
-            int attack = movimiento.EspecialAttack ? SpecialAttack : Attack;
-            int defence = movimiento.EspecialAttack ? oponente.SpecialDefense : oponente.Defense;
+            int attack = movimiento.SpecialAttack ? SpecialAttack : Attack;
+            int defence = movimiento.SpecialAttack ? oponente.SpecialDefense : oponente.Defense;
             int level = 100;
             double variation = random.NextDouble() * (1.0 - 0.85) + 0.85;
             double critic = random.NextDouble() < 0.1 ? 1.2 : 1.0;
@@ -199,21 +200,21 @@ namespace Library
         /// <returns>Devuelve true si el Pokémon puede atacar, de lo contrario false.</returns>
         public bool CanAtack()
         {
-            ProcessStatus();
-            if (Status == EspecialStatus.Asleep && SleepTurnsLeft > 0)
+            ProcessStatus(); 
+            if (Status == SpecialStatus.Asleep && SleepTurnsLeft > 0)
             {
                 SleepTurnsLeft--;
                 Console.WriteLine($"{Name} está dormido y no puede atacar. Turnos restantes: {SleepTurnsLeft}");
 
                 if (SleepTurnsLeft == 0)
                 {
-                    Status = EspecialStatus.NoneStatus;
+                    Status = SpecialStatus.NoneStatus;
                     Console.WriteLine($"{Name} se ha despertado.");
                 }
 
                 return false;
             }
-            else if (Status == EspecialStatus.Paralyzed && random.Next(0, 2) == 0)
+            else if (Status == SpecialStatus.Paralyzed && random.Next(0, 2) == 0)
             {
                 Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.");
                 return false;
@@ -227,52 +228,34 @@ namespace Library
         /// </summary>
         public void Paralyze()
         {
-            Status = EspecialStatus.Paralyzed;
+            Status = SpecialStatus.Paralyzed;
             Console.WriteLine($"{Name} ha sido paralizado.");
         }
-
-        /// <summary>
-        /// Aplica el estado de sueño al Pokémon.
-        /// </summary>
-        public void sleep()
-        {
-            if (Status != EspecialStatus.Asleep)
-            {
-                Status = EspecialStatus.Asleep;
-                SleepTurnsLeft = random.Next(1, 5);
-                Console.WriteLine($"{Name} ha sido dormido y estará dormido por {SleepTurnsLeft} turnos.");
-            }
-            else
-            {
-                Console.WriteLine($"{Name} ya está dormido y no puede dormir nuevamente hasta despertar.");
-            }
-        }
+        
 
         /// <summary>
         /// Procesa el estado actual del Pokémon, aplicando los efectos correspondientes.
         /// </summary>
         /// <param name="enemy">El Pokémon enemigo, si es aplicable.</param>
-        public void ProcessStatus(Pokemon enemy = null)
+        public void ProcessStatus()
         {
-            Pokemon target = enemy ?? this;
-
-            switch (target.Status)
+            switch (this.Status)
             {
-                case EspecialStatus.Poisoned:
-                    int poisonDamage = (int)(target.Health * 0.05);
-                    target.Health -= poisonDamage;
-                    Console.WriteLine($"{target.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
+                case SpecialStatus.Poisoned:
+                    int poisonDamage = (int)(this.Health * 0.05);
+                    this.Health -= poisonDamage;
+                    Console.WriteLine($"{this.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
                     break;
-                case EspecialStatus.Burned:
-                    int burnDamage = (int)(target.Health * 0.10);
-                    target.Health -= burnDamage;
-                    Console.WriteLine($"{target.Name} está quemado y pierde {burnDamage} puntos de vida.");
+                case SpecialStatus.Burned:
+                    int burnDamage = (int)(this.Health * 0.10);
+                    this.Health -= burnDamage;
+                    Console.WriteLine($"{this.Name} está quemado y pierde {burnDamage} puntos de vida.");
                     break;
-                case EspecialStatus.Asleep:
+                case SpecialStatus.Asleep:
                     break;
-                case EspecialStatus.Paralyzed:
+                case SpecialStatus.Paralyzed:
                     break;
-                case EspecialStatus.NoneStatus:
+                case SpecialStatus.NoneStatus:
                     break;
             }
         }
