@@ -33,10 +33,10 @@ public class Battle : IBattle
     /// </summary>
     public async Task StartBattle()
     {
+        Player1.InBattle = true;
+        Player2.InBattle = true;
         await Player1.PokemonElection();
         await Player2.PokemonElection();
-        InitializeCurrentPokemon(Player1);
-        InitializeCurrentPokemon(Player2);
         Console.WriteLine($"\n {Player1.NamePlayer} ha seleccionado a {Player1.actualPokemon.Name} como su Pokémon inicial y tiene {Player1.actualPokemon.Health}");
         Console.WriteLine($"\n {Player2.NamePlayer} ha seleccionado a {Player2.actualPokemon.Name} como su Pokémon inicial y tiene {Player2.actualPokemon.Health}.");
         Console.WriteLine("\n============================================================\n");
@@ -336,23 +336,4 @@ public class Battle : IBattle
         }
     }
 
-    /// <summary>
-    /// Inicializa el Pokémon actual de un jugador si no tiene uno o si el actual está fuera de combate.
-    /// </summary>
-    /// <param name="player">Jugador cuyo Pokémon será inicializado.</param>
-    public void InitializeCurrentPokemon(Player player)
-    {
-        if (player.actualPokemon == null || player.actualPokemon.OutOfAction())
-        {
-            foreach (var pokemon in player.Team)
-            {
-                if (!pokemon.OutOfAction())
-                {
-                    player.actualPokemon = pokemon;
-                    Console.WriteLine($"\n{player.NamePlayer} ha seleccionado a {pokemon.Name} como su Pokémon inicial.\n");
-                    break;
-                }
-            }
-        }
-    }
 }

@@ -30,17 +30,19 @@ namespace Program
         public static async Task Main(string[] args)
         {
             // Crear jugadores
-            Player jugador1 = new Player("Player 1");
-            Console.WriteLine("kvfiaviufvawiuvaifvauie");
+            Player jugador1 = new Player("Player 1", null,true);
             Player jugador2 = new Player("Player 2");
-            Player jugador3 = new Player("Player 2");
-            Player jugador4 = new Player("Player 2");
-            Player jugador5= new Player("Player 2");
+            Player jugador3 = new Player("Player 3");
+            Player jugador4 = new Player("Player 4");
+            Player jugador5= new Player("Player 5");
             WaitList ListaEspera = new WaitList();
             ListaEspera.AddPlayer(jugador1);
             ListaEspera.AddPlayer(jugador3);
             ListaEspera.AddPlayer(jugador4);
             ListaEspera.AddPlayer(jugador5);
+            ListaEspera.ShowPlayers();
+            jugador3.InBattle = true;
+            ListaEspera.CleanWaitList();
             ListaEspera.ShowPlayers();
             
             // Crear y manejar la batalla
@@ -48,7 +50,7 @@ namespace Program
             {
                 var batalla = new Battle(jugador1, jugador3);
                 Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
-                batalla.StartBattle();
+                await batalla.StartBattle();
             }
             else
             {

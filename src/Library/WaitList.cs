@@ -23,6 +23,13 @@ namespace Library
             if (PlayerList.Contains(player))
             {
                 Console.WriteLine($"El jugador {player.NamePlayer} ya está en la lista.");
+                return;
+            }
+
+            if (player.InBattle)
+            {
+                Console.WriteLine($"El jugador {player.NamePlayer} está en una batalla");
+                return;
             }
 
             PlayerList.Add(player);
@@ -51,7 +58,7 @@ namespace Library
 
             for (int i = 0; i < PlayerList.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {PlayerList[i].NamePlayer}");
+                Console.WriteLine($"{PlayerList[i].NamePlayer}");
             }
         }
 
@@ -59,5 +66,19 @@ namespace Library
         {
             return PlayerList.Contains(player);
         }
+
+        public void CleanWaitList()
+        {
+            for(int i=PlayerList.Count-1;i>=0;i--)
+            {
+                if (PlayerList[i].InBattle)
+                {
+                    PlayerList.Remove(PlayerList[i]);
+                }
+            }
+        }
     }
 }
+
+
+

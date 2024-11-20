@@ -37,11 +37,6 @@ namespace Library
         /// </summary>
         /// <param name="player">El jugador que realizará el cambio de Pokémon.</param>
         void SwitchPokemon(Player player);
-
-        /// <summary>
-        /// Inicializa el Pokémon actual de un jugador, asignándole el primer Pokémon disponible que no esté fuera de combate.
-        /// </summary>
-        /// <param name="player">El jugador cuyo Pokémon actual debe ser inicializado.</param>
-        void InitializeCurrentPokemon(Player player);
+        
     }
 }

@@ -14,6 +14,8 @@ public interface IPlayer
     /// Equipo de Pokémon del jugador.
     /// </summary>
     List<Pokemon> Team { get; set; }
+    
+    public bool InBattle { get; set; }
 
     /// <summary>
     /// Pokémon actualmente en combate del jugador.
