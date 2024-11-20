@@ -46,9 +46,9 @@ namespace Program
             ListaEspera.ShowPlayers();
             
             // Crear y manejar la batalla
-            if (ListaEspera.Contains(jugador1) && ListaEspera.Contains(jugador3))
+            if (ListaEspera.Contains(jugador4) && ListaEspera.Contains(jugador5))
             {
-                var batalla = new Battle(jugador1, jugador3);
+                var batalla = new Battle(jugador4, jugador5);
                 Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
                 await batalla.StartBattle();
             }
