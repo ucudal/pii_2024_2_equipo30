@@ -1,0 +1,134 @@
+\doxysection{Library.\+IItem Interface Reference}
+\hypertarget{interface_library_1_1_i_item}{}\label{interface_library_1_1_i_item}\index{Library.IItem@{Library.IItem}}
+
+
+Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento.  
+
+
+Inheritance diagram for Library.\+IItem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{interface_library_1_1_i_item}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interface_library_1_1_i_item_ac876022231c1c57b63aaa1790b52b7e5}{Use}} (\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} pokemon)
+\begin{DoxyCompactList}\small\item\em Método para usar el ítem en un Pokémon específico. Este método es necesario para aplicar el efecto del ítem en el Pokémon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_library_1_1_i_item_af6ce028b775b89535f9d4ee27d08f167}{Consume}} ()
+\begin{DoxyCompactList}\small\item\em Método para consumir el ítem, disminuyendo su cantidad disponible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{interface_library_1_1_i_item_a070314c1fc30d638555e5b3826aa1f74}{Max\+Healt}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Máxima cantidad de salud que el ítem puede restaurar. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_library_1_1_i_item_afd9262e1e767b12e8dae59d77b7f25c8}{Items\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nombre del ítem. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{interface_library_1_1_i_item_aa180312d64ba2592ac1bce5edf0240c8}{Items\+Description}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Descripción del ítem. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{interface_library_1_1_i_item_a19cc2c33a1a3171fddfb233b7b260e89}{Quantity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Cantidad de ítems disponibles para el jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_library_1_1_i_item_af6ce028b775b89535f9d4ee27d08f167}\index{Library.IItem@{Library.IItem}!Consume@{Consume}}
+\index{Consume@{Consume}!Library.IItem@{Library.IItem}}
+\doxysubsubsection{\texorpdfstring{Consume()}{Consume()}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_item_af6ce028b775b89535f9d4ee27d08f167} 
+void Library.\+IItem.\+Consume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Método para consumir el ítem, disminuyendo su cantidad disponible. 
+
+
+
+Implemented in \mbox{\hyperlink{class_items_a6370f5a6a0c358380da1b3030a1bdd8a}{Items}}.
+
+\Hypertarget{interface_library_1_1_i_item_ac876022231c1c57b63aaa1790b52b7e5}\index{Library.IItem@{Library.IItem}!Use@{Use}}
+\index{Use@{Use}!Library.IItem@{Library.IItem}}
+\doxysubsubsection{\texorpdfstring{Use()}{Use()}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_item_ac876022231c1c57b63aaa1790b52b7e5} 
+void Library.\+IItem.\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{pokemon}{}\end{DoxyParamCaption})}
+
+
+
+Método para usar el ítem en un Pokémon específico. Este método es necesario para aplicar el efecto del ítem en el Pokémon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pokemon} & El Pokémon en el que se aplicará el ítem.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_items_a85ca8d5ce5a05213a9e5a1e8b9b42ce6}{Items}}, \mbox{\hyperlink{class_library_1_1_revive_a47ae18f2b4ef08749358f638a79554f2}{Library.\+Revive}}, \mbox{\hyperlink{class_library_1_1_super_potion_a07e232268431510714928d671f84f964}{Library.\+Super\+Potion}}, and \mbox{\hyperlink{class_library_1_1_total_cure_a2141f85f198e3222096b5e62b7d81237}{Library.\+Total\+Cure}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{interface_library_1_1_i_item_aa180312d64ba2592ac1bce5edf0240c8}\index{Library.IItem@{Library.IItem}!ItemsDescription@{ItemsDescription}}
+\index{ItemsDescription@{ItemsDescription}!Library.IItem@{Library.IItem}}
+\doxysubsubsection{\texorpdfstring{ItemsDescription}{ItemsDescription}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_item_aa180312d64ba2592ac1bce5edf0240c8} 
+string Library.\+IItem.\+Items\+Description\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Descripción del ítem. 
+
+
+
+Implemented in \mbox{\hyperlink{class_items_a0504947faad7d22cdbf2e734f0bfbd04}{Items}}.
+
+\Hypertarget{interface_library_1_1_i_item_afd9262e1e767b12e8dae59d77b7f25c8}\index{Library.IItem@{Library.IItem}!ItemsName@{ItemsName}}
+\index{ItemsName@{ItemsName}!Library.IItem@{Library.IItem}}
+\doxysubsubsection{\texorpdfstring{ItemsName}{ItemsName}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_item_afd9262e1e767b12e8dae59d77b7f25c8} 
+string Library.\+IItem.\+Items\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nombre del ítem. 
+
+
+
+Implemented in \mbox{\hyperlink{class_items_a8a8c5027c73a9c9e0f22197ad11a57ed}{Items}}.
+
+\Hypertarget{interface_library_1_1_i_item_a070314c1fc30d638555e5b3826aa1f74}\index{Library.IItem@{Library.IItem}!MaxHealt@{MaxHealt}}
+\index{MaxHealt@{MaxHealt}!Library.IItem@{Library.IItem}}
+\doxysubsubsection{\texorpdfstring{MaxHealt}{MaxHealt}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_item_a070314c1fc30d638555e5b3826aa1f74} 
+int Library.\+IItem.\+Max\+Healt\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Máxima cantidad de salud que el ítem puede restaurar. 
+
+
+
+Implemented in \mbox{\hyperlink{class_items_a9a0249013bd5fec86a000897236f6792}{Items}}.
+
+\Hypertarget{interface_library_1_1_i_item_a19cc2c33a1a3171fddfb233b7b260e89}\index{Library.IItem@{Library.IItem}!Quantity@{Quantity}}
+\index{Quantity@{Quantity}!Library.IItem@{Library.IItem}}
+\doxysubsubsection{\texorpdfstring{Quantity}{Quantity}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_item_a19cc2c33a1a3171fddfb233b7b260e89} 
+int Library.\+IItem.\+Quantity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Cantidad de ítems disponibles para el jugador. 
+
+
+
+Implemented in \mbox{\hyperlink{class_items_af5e6d5a05f81e874fde950a28ec31a1b}{Items}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/IItem.\+cs\end{DoxyCompactItemize}

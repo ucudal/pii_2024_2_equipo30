@@ -5,209 +5,269 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-using System;
-using System.Collections.Generic;
-
-namespace Library;
-
-public class Pokemon : IPokemon
+namespace Library
 {
+    /// <summary>
+    /// Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante una batalla.
+    /// Implementa la interfaz <see cref="IPokemon"/>.
+    /// </summary>
+    public class Pokemon : IPokemon
+    {
+        /// <summary>
+        /// Nombre del Pokémon.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Puntos de salud actuales del Pokémon.
+        /// </summary>
         public double Health { get; set; }
-        public double VidaMax { get; set; }
+
+        /// <summary>
+        /// Máximo de puntos de salud que el Pokémon puede tener.
+        /// </summary>
+        public double MaxHealt { get; set; }
+
+        /// <summary>
+        /// Identificador único del Pokémon.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Valor de ataque del Pokémon.
+        /// </summary>
         public int Attack { get; set; }
+
+        /// <summary>
+        /// Valor de defensa del Pokémon.
+        /// </summary>
         public int Defense { get; set; }
+
+        /// <summary>
+        /// Valor de ataque especial del Pokémon.
+        /// </summary>
         public int SpecialAttack { get; set; }
+
+        /// <summary>
+        /// Valor de defensa especial del Pokémon.
+        /// </summary>
         public int SpecialDefense { get; set; }
+
+        /// <summary>
+        /// Tipo principal del Pokémon.
+        /// </summary>
         public Type Type { get; set; }
+
+        /// <summary>
+        /// Lista de estadísticas del Pokémon.
+        /// </summary>
         public List<Stat> Stats { get; set; }
+
+        /// <summary>
+        /// Lista de tipos secundarios del Pokémon.
+        /// </summary>
         public List<Type> Types { get; set; }
+
+        /// <summary>
+        /// Lista de movimientos que el Pokémon conoce.
+        /// </summary>
         public List<Move> Moves { get; set; }
-        public EstadoEspecial Estado { get; set; }
-        public int TurnosRestantesDeSueño { get; set; } = 0;
-        public bool FueraDeCombate = false;
+
+        /// <summary>
+        /// Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, dormido, paralizado).
+        /// </summary>
+        public SpecialStatus Status { get; set; }
+
+        /// <summary>
+        /// Número de turnos restantes que el Pokémon estará dormido.
+        /// </summary>
+        public int SleepTurnsLeft { get; set; } = 0;
+
+        /// <summary>
+        /// Indica si el Pokémon está fuera de combate.
+        /// </summary>
+        public bool Outofaction = false;
+
+        /// <summary>
+        /// Generador de números aleatorios, utilizado para variaciones de daño y otros efectos.
+        /// </summary>
         private Random random = new Random();
 
-        public Pokemon(string name, int id, double health, int attack, int defense, int specialAttack, int specialDefense, Type tipo, List<Move> moves)
+        /// <summary>
+        /// Constructor para inicializar un Pokémon con sus atributos básicos.
+        /// </summary>
+        /// <param name="name">Nombre del Pokémon.</param>
+        /// <param name="id">Identificador único del Pokémon.</param>
+        /// <param name="health">Puntos de salud del Pokémon.</param>
+        /// <param name="attack">Valor de ataque del Pokémon.</param>
+        /// <param name="defense">Valor de defensa del Pokémon.</param>
+        /// <param name="specialAttack">Valor de ataque especial del Pokémon.</param>
+        /// <param name="specialDefense">Valor de defensa especial del Pokémon.</param>
+        /// <param name="type">Tipo principal del Pokémon.</param>
+        /// <param name="moves">Lista de movimientos que el Pokémon conoce.</param>
+        public Pokemon(string name, int id, double health, int attack, int defense, int specialAttack, int specialDefense, Type type, List<Move> moves)
         {
             Name = name;
             Id = id;
             Health = health;
-            VidaMax = health;
+            MaxHealt = health;
             Attack = attack;
             Defense = defense;
             SpecialAttack = specialAttack;
             SpecialDefense = specialDefense;
-            Type = tipo;
+            Type = type;
             Moves = moves;
-            Estado = EstadoEspecial.Ninguno;
-        } 
-        public Pokemon (){}
-
-    public void Atacar(Jugador jugador, Pokemon oponente, Move movimiento, int turnoActual)
-{
-    // Verificar si el Pokémon atacante puede actuar en este turno
-    if (!PuedeAtacar())
-    {
-        Console.WriteLine($"{Name} no puede atacar este turno debido a su estado {Estado}.");
-        return;
-    }
-
-    // Verificar si se trata de un ataque especial
-    if (movimiento.EsAtaqueEspecial)
-    {
-        // Si el ataque especial no está permitido, salir y no atacar
-        if (!jugador.PuedeUsarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual))
-        {
-            Console.WriteLine($"No puedes usar el ataque especial {movimiento.MoveDetails.Name} en este momento. Debes esperar más turnos.");
-            return;
+            Status = SpecialStatus.NoneStatus;
         }
-        else
+
+        /// <summary>
+        /// Constructor vacío.
+        /// </summary>
+        public Pokemon() {}
+
+        /// <summary>
+        /// Realiza un ataque a un Pokémon enemigo usando un movimiento específico.
+        /// </summary>
+        /// <param name="player">Jugador que posee el Pokémon atacante.</param>
+        /// <param name="enemy">El Pokémon enemigo que recibe el ataque.</param>
+        /// <param name="movement">Movimiento usado por el Pokémon atacante.</param>
+        /// <param name="currentShift">Turno actual en el que se realiza el ataque.</param>
+        public void AttackP(Player player, Pokemon enemy, Move movement, int currentShift)
         {
-            // Si el ataque especial es válido, registrar el turno y continuar
-            jugador.RegistrarAtaqueEspecial(movimiento.MoveDetails.Name, turnoActual);
-        }
-    }
-
-    // Ataque exitoso
-    Console.WriteLine($"{Name} usa {movimiento.MoveDetails.Name}!");
-
-    // Aplicar estado especial si corresponde y si el oponente no tiene un estado ya aplicado
-    if (movimiento.EstadoEspecial != EstadoEspecial.Ninguno && oponente.Estado == EstadoEspecial.Ninguno)
-    {
-        oponente.Estado = movimiento.EstadoEspecial;
-        if (movimiento.EstadoEspecial == EstadoEspecial.Dormido)
-        {
-            oponente.Dormir();
-        }
-        else
-        {
-            Console.WriteLine($"{oponente.Name} ahora está {movimiento.EstadoEspecial}.");
-        }
-    }
-
-    // Calcular el daño
-    double efectividad = Type.Effectiveness.ContainsKey(oponente.Type.TypeDetail.Name) ? Type.Effectiveness[oponente.Type.TypeDetail.Name] : 1.0;
-    double daño = CalcularDaño(movimiento, efectividad, oponente);
-
-    // Aplicar el daño
-    oponente.Health -= daño;
-    if (oponente.Health < 0) oponente.Health = 0;
-
-    // Mostrar resultado del ataque
-    Console.WriteLine($"{Name} hizo {daño:F1} puntos de daño! {oponente.Name} ahora tiene {oponente.Health:F1} puntos de vida.");
-}
-
-public double CalcularDaño(Move movimiento, double efectividad, Pokemon oponente)
-{
-    int poder = movimiento.MoveDetails.Power ?? 0;
-    int ataque = movimiento.EsAtaqueEspecial ? SpecialAttack : Attack;
-    int defensa = movimiento.EsAtaqueEspecial ? oponente.SpecialDefense : oponente.Defense;
-    int nivel = 100;
-    double variacion = random.NextDouble() * (1.0 - 0.85) + 0.85;
-    double critico = random.NextDouble() < 0.1 ? 1.2 : 1.0;
-
-    return (0.1 * critico * efectividad * variacion * (0.2 * nivel + 1) * ataque * poder) / (25 * defensa) + 2;
-}
-
-
-        public bool PuedeAtacar()
-        {
-            // Procesar estado antes de permitir ataque
-            ProcesarEstado();
-
-            if (Estado == EstadoEspecial.Dormido)
+            if (movement.SpecialAttack && !player.CanUseEspecialAtack(movement.MoveDetails.Name, currentShift))
             {
-                if (TurnosRestantesDeSueño > 0)
+                Console.WriteLine($"No puedes usar el ataque especial {movement.MoveDetails.Name} en este momento. Debes esperar más turnos.");
+                return;
+            }
+            if (movement.SpecialAttack)
+            {
+                player.RegisterSpecialAttack(movement.MoveDetails.Name, currentShift);
+            }
+
+            Console.WriteLine($"{Name} usa {movement.MoveDetails.Name}!");
+            if (enemy.Status == SpecialStatus.Asleep)
+            {
+                Console.WriteLine($"{Name} ya está dormido y no puede dormir nuevamente hasta despertar.");
+            }
+
+            if (movement.SpecialStatus != SpecialStatus.NoneStatus && enemy.Status == SpecialStatus.NoneStatus)
+            {
+                enemy.Status = movement.SpecialStatus;
+                if (movement.SpecialStatus == SpecialStatus.Asleep)
                 {
-                    TurnosRestantesDeSueño--;
-                    Console.WriteLine($"{Name} está dormido y no puede atacar. Turnos restantes: {TurnosRestantesDeSueño}");
-
-                    // Si se agotaron los turnos de sueño, se cambia el estado a Ninguno
-                    if (TurnosRestantesDeSueño == 0)
-                    {
-                        Estado = EstadoEspecial.Ninguno;
-                        Console.WriteLine($"{Name} se ha despertado.");
-                    }
-
-                    return false;  // El Pokémon no puede atacar mientras está dormido
+                    enemy.SleepTurnsLeft = random.Next(1, 5);
+                    Console.WriteLine($"{enemy.Name} ha sido dormido y estará dormido por {enemy.SleepTurnsLeft} turnos.");
+                }
+                else
+                {
+                    Console.WriteLine($"{enemy.Name} ahora está {movement.SpecialStatus}.");
                 }
             }
-            else if (Estado == EstadoEspecial.Paralizado && random.Next(0, 2) == 0)
+
+            
+
+            double efficacy = Type.Effectiveness.ContainsKey(enemy.Type.TypeDetail.Name) ? Type.Effectiveness[enemy.Type.TypeDetail.Name] : 1.0;
+            double damage = CalculateDamage(movement, efficacy, enemy);
+
+            enemy.Health -= damage;
+            if (enemy.Health < 0) enemy.Health = 0;
+
+            Console.WriteLine($"{Name} hizo {damage:F1} puntos de daño! {enemy.Name} ahora tiene {enemy.Health:F1} puntos de vida.");
+        }
+        
+        /// <summary>
+        /// Calcula el daño causado por un movimiento específico.
+        /// </summary>
+        /// <param name="movimiento">Movimiento usado para el ataque.</param>
+        /// <param name="efectividad">Factor de efectividad del movimiento en relación al tipo del oponente.</param>
+        /// <param name="oponente">El Pokémon oponente que recibe el ataque.</param>
+        /// <returns>El daño calculado.</returns>
+        public double CalculateDamage(Move movimiento, double efectividad, Pokemon oponente)
+        {
+            int power = movimiento.MoveDetails.Power ?? 0;
+            int attack = movimiento.SpecialAttack ? SpecialAttack : Attack;
+            int defence = movimiento.SpecialAttack ? oponente.SpecialDefense : oponente.Defense;
+            int level = 100;
+            double variation = random.NextDouble() * (1.0 - 0.85) + 0.85;
+            double critic = random.NextDouble() < 0.1 ? 1.2 : 1.0;
+
+            return (0.1 * critic * efectividad * variation * (0.2 * level + 1) * attack * power) / (25 * defence) + 2;
+        }
+
+        /// <summary>
+        /// Verifica si el Pokémon puede atacar, teniendo en cuenta su estado actual.
+        /// </summary>
+        /// <returns>Devuelve true si el Pokémon puede atacar, de lo contrario false.</returns>
+        public bool CanAtack()
+        {
+            ProcessStatus(); 
+            if (Status == SpecialStatus.Asleep && SleepTurnsLeft > 0)
+            {
+                SleepTurnsLeft--;
+                Console.WriteLine($"{Name} está dormido y no puede atacar. Turnos restantes: {SleepTurnsLeft}");
+
+                if (SleepTurnsLeft == 0)
+                {
+                    Status = SpecialStatus.NoneStatus;
+                    Console.WriteLine($"{Name} se ha despertado.");
+                }
+
+                return false;
+            }
+            else if (Status == SpecialStatus.Paralyzed && random.Next(0, 2) == 0)
             {
                 Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.");
-                return false;  // No puede atacar por parálisis
+                return false;
             }
 
-            return true;  // Si no hay estado que impida, el Pokémon puede atacar
+            return true;
         }
 
-public void Paralizar()
-{
-    Estado = EstadoEspecial.Paralizado;
-    Console.WriteLine($"{Name} ha sido paralizado.");
-}
-public void Dormir()
-{
-    if (Estado != EstadoEspecial.Dormido)  // Solo se duerme si no está ya dormido
-    {
-        Estado = EstadoEspecial.Dormido;
-        TurnosRestantesDeSueño = random.Next(1, 5);  // Asigna un número aleatorio de turnos de sueño
-        Console.WriteLine($"{Name} ha sido dormido y estará dormido por {TurnosRestantesDeSueño} turnos.");
-    }
-    else
-    {
-        Console.WriteLine($"{Name} ya está dormido y no puede dormir nuevamente hasta despertar.");
-    }
-}
-
-public void ProcesarEstado(Pokemon oponente = null)
-{
-    // Si el objetivo es null, procesamos para el mismo Pokémon
-    Pokemon target = oponente ?? this; 
-
-    switch (target.Estado)
-    {
-        case EstadoEspecial.Envenenado:
-            int poisonDamage = (int)(target.Health * 0.05);
-            target.Health -= poisonDamage;
-            Console.WriteLine($"{target.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
-            break;
-
-        case EstadoEspecial.Quemado:
-            int burnDamage = (int)(target.Health * 0.10);
-            target.Health -= burnDamage;
-            Console.WriteLine($"{target.Name} está quemado y pierde {burnDamage} puntos de vida.");
-            break;
-
-        case EstadoEspecial.Dormido: ;
-            break;
-
-        case EstadoEspecial.Paralizado:
-            break;
-
-        case EstadoEspecial.Ninguno:
-            break;
-    }
-}
-
-        public bool EstaFueraDeCombate()
+        /// <summary>
+        /// Aplica el estado de parálisis al Pokémon.
+        /// </summary>
+        public void Paralyze()
         {
-            // Actualiza la propiedad FueraDeCombate según la salud del Pokémon
-            if (Health <= 0)
+            Status = SpecialStatus.Paralyzed;
+            Console.WriteLine($"{Name} ha sido paralizado.");
+        }
+        
+
+        /// <summary>
+        /// Procesa el estado actual del Pokémon, aplicando los efectos correspondientes.
+        /// </summary>
+        /// <param name="enemy">El Pokémon enemigo, si es aplicable.</param>
+        public void ProcessStatus()
+        {
+            switch (this.Status)
             {
-                FueraDeCombate = true; // Si la salud es 0 o menor, está fuera de combate
+                case SpecialStatus.Poisoned:
+                    int poisonDamage = (int)(this.Health * 0.05);
+                    this.Health -= poisonDamage;
+                    Console.WriteLine($"{this.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
+                    break;
+                case SpecialStatus.Burned:
+                    int burnDamage = (int)(this.Health * 0.10);
+                    this.Health -= burnDamage;
+                    Console.WriteLine($"{this.Name} está quemado y pierde {burnDamage} puntos de vida.");
+                    break;
+                case SpecialStatus.Asleep:
+                    break;
+                case SpecialStatus.Paralyzed:
+                    break;
+                case SpecialStatus.NoneStatus:
+                    break;
             }
-            else
-            {
-                FueraDeCombate = false; // Si la salud es mayor que 0, está en combate
-            }
-            return FueraDeCombate;
         }
 
-
+        /// <summary>
+        /// Verifica si el Pokémon está fuera de combate (sin puntos de salud).
+        /// </summary>
+        /// <returns>Devuelve true si el Pokémon está fuera de combate, de lo contrario false.</returns>
+        public bool OutOfAction()
+        {
+            Outofaction = Health <= 0;
+            return Outofaction;
+        }
     }
-
-
-
+}

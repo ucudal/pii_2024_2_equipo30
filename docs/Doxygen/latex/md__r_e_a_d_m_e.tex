@@ -1,0 +1,95 @@
+\chapter{pii\+\_\+2024\+\_\+2\+\_\+equipo30}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{pii\_2024\_2\_equipo30@{pii\_2024\_2\_equipo30}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+
+
+Somos el grupo 4GRAM tambien poco conocidos como el equipo 30
+\begin{DoxyItemize}
+\item Integrantes\+:
+\item Mauricio Segovia
+\item Rodrigo Godoy
+\item Gaston Baranov
+\item Alejandro Hernandez
+\end{DoxyItemize}
+
+Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las siguientes caracteristicas\+:
+\begin{DoxyItemize}
+\item 
+\begin{DoxyItemize}
+\item Se va a tratar de combates por turnos
+\item Se jugara mediante comandos de un Chatbot
+\item Sera multijugador (1 vs 1)
+\item Cada jugador contara con un equipo de 6 Pokémones en cada batalla
+\begin{DoxyItemize}
+\item Se muestran los pokemones en pantalla
+\end{DoxyItemize}
+\item Cada Pokémon contara con 4 movimientos de ataques y un ataque especial cada 2 turnos
+\begin{DoxyItemize}
+\item Se podra elegir hacer daño en base a la efectividad de los tipos de Pokémons(\+El sistema aplica la ventaja o desventaja)
+\end{DoxyItemize}
+\item Cada jugador tiene solo una accion por turno(\+Cambiar pokemon,atacar,etc)
+\item cada jugador puede ver la vida del Pokémon oponente,de quien es el turno y la eleccion que toma
+\item Un jugador es el ganador cuando todos los Pokemons del opononente son derrotados
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Funcionamiento general del codigo\+:}{Funcionamiento general del codigo\+:}}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Se inicializa el juego atraves del \doxylink{namespace_program}{Program}.
+\item Se utiliza la clase Pokemon\+Creator para las instancias de los Pokemon.
+\item Preparacion de la batalla con la clase Battle.
+\item Gestion del turno con Move, sus objetos y la posibilidad de cambiar de Pokemon.
+\item Acciones de los jugadores donde cada accion donde cada turno tiene un impacto en Battle.
+\item Battle gestiona el calculo del daño
+\item Al finalizar el turno de cada jugador se verifica si alguno de los jugadores perdio su Pokemon
+\item Interaccion con la \doxylink{namespace_a_p_i}{API}
+\item El combate finaliza cuando todos los Pokémon de un jugador son derrotados.
+\end{DoxyItemize}
+
+Para la estructura del programa usamos\+:
+\begin{DoxyItemize}
+\item 
+\item los principios de GRASP y Solid.
+\item Low coupling and High Coesion
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Las clases usadas en nuestro proyecto son\+:}{Las clases usadas en nuestro proyecto son\+:}}\label{md__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Revive (Utilizado para revivir Pokémon)
+\item Battle (Gestiona el flujo de las batallas)
+\item Shift (Funcionalidad para cambiar el Pokémon activo)
+\item Stat (Estadística específica del Pokémon)
+\item Stats\+Detail (Detalles adicionales de las estadísticas del Pokémon)
+\item Super\+Potion (Restaurar la salud de un Pokémon)
+\item Total\+Cure (Elimina cualquier estado negativo en el Pokémon)
+\item Pokemon\+Creator (Permite crear instancias de nuevos Pokémon)
+\item Type (Define el tipo de un Pokémon (por ejemplo, Agua, Fuego, etc.))
+\item Type\+Detail (Detalles adicionales sobre un tipo)
+\item \doxylink{namespace_program}{Program} (Punto de entrada del programa)
+\item Especial\+Status (Efectos especiales que afectan al Pokémon)
+\item IBatalla (Métodos necesarios para implementar una batalla)
+\item IItem (Interfaz que proporciona la estructura básica para los objetos)
+\item IJugador (Interfaz de métodos que deben implementarse para gestionar a un jugador)
+\item IPokemon (Interfaz de las operaciones relacionadas con un Pokémon.)
+\item IPokemon\+Api (Define los métodos para acceder y manipular datos de los Pokémon en la \doxylink{namespace_a_p_i}{API})
+\item IPokemon\+Creator (Define cómo deben crearse los Pokémon en el juego)
+\item \doxylink{class_items}{Items} (Clase base para los objetos)
+\item Move (Representa un movimiento)
+\item Move\+Detail (Proporciona detalles adicionales de un movimiento)
+\item Player (Representa al jugador que tiene un equipo de Pokémon y una colección de objetos.)
+\item Pokemon (Define un Pokémon con sus atributos, movimientos, tipo, y estados.)
+\item Pokemon\+Api (Métodos para interactuar con los datos de los Pokémon)
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{\texorpdfstring{Errores y problemas que surgieron\+:}{Errores y problemas que surgieron\+:}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Errores en la implementacion de la \doxylink{namespace_a_p_i}{API}.
+\item Correcciones para poder atacar durante la ronda con \doxylink{class_items}{Items}.
+\item Cambiar de Pokemon.
+\item Implementacion de los Test.
+\item Implementacion de turnos individuales para ataques especiales.
+\item Aplicacion de dormir al enemigo.
+\end{DoxyItemize}
+
+Muchas gracias y un saludo.
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}

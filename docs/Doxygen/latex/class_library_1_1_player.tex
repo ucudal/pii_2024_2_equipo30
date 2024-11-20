@@ -1,0 +1,312 @@
+\doxysection{Library.\+Player Class Reference}
+\hypertarget{class_library_1_1_player}{}\label{class_library_1_1_player}\index{Library.Player@{Library.Player}}
+
+
+Clase que representa a un jugador en el juego. Implementa la interfaz \doxylink{interface_library_1_1_i_jugador}{IJugador}.  
+
+
+Inheritance diagram for Library.\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_library_1_1_player}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_player_acb1b63696c20e2f5683f780748940147}{Player}} (string name\+Player, List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ team)
+\begin{DoxyCompactList}\small\item\em Constructor para inicializar el jugador con su nombre y equipo de Pokémon. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_player_a78191e984513adb327490a149bd20779}{Elegir\+Equipo}} (string pokemon)
+\begin{DoxyCompactList}\small\item\em Método que permite al jugador elegir un equipo de Pokémon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_player_a1b7326f062a19bca74ae74ae733d5aac}{Switch\+Pokemon}} (int indice)
+\begin{DoxyCompactList}\small\item\em Método para cambiar el Pokémon actual en combate. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_player_aade50533a26b79e379dffce19cef542d}{All\+Out\+Of\+Combat}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si todos los Pokémon del jugador están fuera de combate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_player_ac0003fdb095c6189e11326caa3a485b0}{Register\+Special\+Attack}} (string nombre\+Ataque, int turno\+Actual)
+\begin{DoxyCompactList}\small\item\em Registra el turno en el que se usó un ataque especial. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_player_ac9b678154173d278b43e805aa843aba2}{Can\+Use\+Especial\+Atack}} (string nombre\+Ataque, int turno\+Actual)
+\begin{DoxyCompactList}\small\item\em Verifica si un ataque especial está disponible para ser usado nuevamente. Un ataque especial requiere esperar 2 turnos antes de poder usarse nuevamente. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_player_a75d525252e624040da8581e69df73db4}{Obtain\+Last\+Shiftof\+Attack}} (string nombre\+Ataque)
+\begin{DoxyCompactList}\small\item\em Obtiene el turno en el que se usó el ataque especial por última vez. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_player_a865ba987cd847f7b260fddd1d4f86351}\label{class_library_1_1_player_a865ba987cd847f7b260fddd1d4f86351} 
+void {\bfseries Increment\+Personal\+Shift} ()
+\begin{DoxyCompactList}\small\item\em Incrementa el contador de turnos personales del jugador. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_player_afcd1d23c4dc3f46fb387dc1bd9e4e858}{Obtain\+Personal\+Shift}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el turno personal actual del jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_library_1_1_i_jugador}{Library.\+IJugador}}}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_library_1_1_player_a163f2fe87d858e9804824747e2c08e70}{Name\+Player}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nombre del jugador. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_player_a1d4891b0f333503c5f75d5aa080089e5}{Team}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Equipo de Pokémon del jugador. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} \mbox{\hyperlink{class_library_1_1_player_a35768bdb188498827ebd1c92fece1623}{actual\+Pokemon}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Pokémon actualmente en combate del jugador. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{interface_library_1_1_i_item}{IItem}} $>$ \mbox{\hyperlink{class_library_1_1_player_a22cf579fe1ba44bf09dc063f162e9935}{Inventario}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Inventario de ítems del jugador. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_super_potion}{Super\+Potion}} \mbox{\hyperlink{class_library_1_1_player_a87508432b9858ed14345355f461eac2c}{Superpotion}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Objeto Superpoción que el jugador puede usar para curar a su Pokémon. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_revive}{Revive}} \mbox{\hyperlink{class_library_1_1_player_a470475b39d6de4ea985143eb906b1a0e}{Revive}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Objeto Revivir que el jugador puede usar para revivir a un Pokémon debilitado. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_total_cure}{Total\+Cure}} \mbox{\hyperlink{class_library_1_1_player_a8eb680f9f66c41e24890a646f98b3c3b}{Totalcure}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Objeto Cura Total que el jugador puede usar para curar cualquier estado alterado de su Pokémon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{interface_library_1_1_i_jugador}{Library.\+IJugador}}}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa a un jugador en el juego. Implementa la interfaz \doxylink{interface_library_1_1_i_jugador}{IJugador}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_player_acb1b63696c20e2f5683f780748940147}\index{Library.Player@{Library.Player}!Player@{Player}}
+\index{Player@{Player}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{Player()}{Player()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_acb1b63696c20e2f5683f780748940147} 
+Library.\+Player.\+Player (\begin{DoxyParamCaption}\item[{string}]{name\+Player}{, }\item[{List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$}]{team}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor para inicializar el jugador con su nombre y equipo de Pokémon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+Player} & Nombre del jugador.\\
+\hline
+{\em team} & Lista de Pokémon que conforman el equipo del jugador.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_player_aade50533a26b79e379dffce19cef542d}\index{Library.Player@{Library.Player}!AllOutOfCombat@{AllOutOfCombat}}
+\index{AllOutOfCombat@{AllOutOfCombat}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{AllOutOfCombat()}{AllOutOfCombat()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_aade50533a26b79e379dffce19cef542d} 
+bool Library.\+Player.\+All\+Out\+Of\+Combat (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica si todos los Pokémon del jugador están fuera de combate. 
+
+\begin{DoxyReturn}{Returns}
+Devuelve true si todos los Pokémon están fuera de combate; de lo contrario, false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a0a54d86b35932f171beaa89f359fa7e5}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_ac9b678154173d278b43e805aa843aba2}\index{Library.Player@{Library.Player}!CanUseEspecialAtack@{CanUseEspecialAtack}}
+\index{CanUseEspecialAtack@{CanUseEspecialAtack}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{CanUseEspecialAtack()}{CanUseEspecialAtack()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_ac9b678154173d278b43e805aa843aba2} 
+bool Library.\+Player.\+Can\+Use\+Especial\+Atack (\begin{DoxyParamCaption}\item[{string}]{nombre\+Ataque}{, }\item[{int}]{turno\+Actual}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica si un ataque especial está disponible para ser usado nuevamente. Un ataque especial requiere esperar 2 turnos antes de poder usarse nuevamente. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Ataque} & Nombre del ataque especial a verificar.\\
+\hline
+{\em turno\+Actual} & Turno actual del jugador.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve true si el ataque especial está disponible; de lo contrario, false.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_player_a78191e984513adb327490a149bd20779}\index{Library.Player@{Library.Player}!ElegirEquipo@{ElegirEquipo}}
+\index{ElegirEquipo@{ElegirEquipo}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{ElegirEquipo()}{ElegirEquipo()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a78191e984513adb327490a149bd20779} 
+List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ Library.\+Player.\+Elegir\+Equipo (\begin{DoxyParamCaption}\item[{string}]{pokemon}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Método que permite al jugador elegir un equipo de Pokémon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pokemon} & Nombre del Pokémon para formar parte del equipo.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Una lista de Pokémon que forman el equipo.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a4dc81a9a206f00b3362c7aeebdbfd284}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a75d525252e624040da8581e69df73db4}\index{Library.Player@{Library.Player}!ObtainLastShiftofAttack@{ObtainLastShiftofAttack}}
+\index{ObtainLastShiftofAttack@{ObtainLastShiftofAttack}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{ObtainLastShiftofAttack()}{ObtainLastShiftofAttack()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a75d525252e624040da8581e69df73db4} 
+int Library.\+Player.\+Obtain\+Last\+Shiftof\+Attack (\begin{DoxyParamCaption}\item[{string}]{nombre\+Ataque}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtiene el turno en el que se usó el ataque especial por última vez. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Ataque} & Nombre del ataque especial.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve el turno del último uso del ataque especial o -\/1 si no se ha usado.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_player_afcd1d23c4dc3f46fb387dc1bd9e4e858}\index{Library.Player@{Library.Player}!ObtainPersonalShift@{ObtainPersonalShift}}
+\index{ObtainPersonalShift@{ObtainPersonalShift}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{ObtainPersonalShift()}{ObtainPersonalShift()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_afcd1d23c4dc3f46fb387dc1bd9e4e858} 
+int Library.\+Player.\+Obtain\+Personal\+Shift (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtiene el turno personal actual del jugador. 
+
+\begin{DoxyReturn}{Returns}
+Devuelve el número del turno personal actual.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_player_ac0003fdb095c6189e11326caa3a485b0}\index{Library.Player@{Library.Player}!RegisterSpecialAttack@{RegisterSpecialAttack}}
+\index{RegisterSpecialAttack@{RegisterSpecialAttack}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{RegisterSpecialAttack()}{RegisterSpecialAttack()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_ac0003fdb095c6189e11326caa3a485b0} 
+void Library.\+Player.\+Register\+Special\+Attack (\begin{DoxyParamCaption}\item[{string}]{nombre\+Ataque}{, }\item[{int}]{turno\+Actual}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Registra el turno en el que se usó un ataque especial. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Ataque} & Nombre del ataque especial utilizado.\\
+\hline
+{\em turno\+Actual} & Turno actual en el que se usó el ataque.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_player_a1b7326f062a19bca74ae74ae733d5aac}\index{Library.Player@{Library.Player}!SwitchPokemon@{SwitchPokemon}}
+\index{SwitchPokemon@{SwitchPokemon}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{SwitchPokemon()}{SwitchPokemon()}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a1b7326f062a19bca74ae74ae733d5aac} 
+void Library.\+Player.\+Switch\+Pokemon (\begin{DoxyParamCaption}\item[{int}]{indice}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Método para cambiar el Pokémon actual en combate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em indice} & Índice del Pokémon al que se desea cambiar.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a68b433e7a0c77e429ad451f45e894a16}{Library.\+IJugador}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_library_1_1_player_a35768bdb188498827ebd1c92fece1623}\index{Library.Player@{Library.Player}!actualPokemon@{actualPokemon}}
+\index{actualPokemon@{actualPokemon}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{actualPokemon}{actualPokemon}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a35768bdb188498827ebd1c92fece1623} 
+\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} Library.\+Player.\+actual\+Pokemon\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Pokémon actualmente en combate del jugador. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a4de39bf6be29906742d76945be565d59}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a22cf579fe1ba44bf09dc063f162e9935}\index{Library.Player@{Library.Player}!Inventario@{Inventario}}
+\index{Inventario@{Inventario}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{Inventario}{Inventario}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a22cf579fe1ba44bf09dc063f162e9935} 
+List$<$\mbox{\hyperlink{interface_library_1_1_i_item}{IItem}}$>$ Library.\+Player.\+Inventario\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Inventario de ítems del jugador. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_ac0b215df96380724dee4ddc24e5a5d27}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a163f2fe87d858e9804824747e2c08e70}\index{Library.Player@{Library.Player}!NamePlayer@{NamePlayer}}
+\index{NamePlayer@{NamePlayer}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{NamePlayer}{NamePlayer}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a163f2fe87d858e9804824747e2c08e70} 
+string Library.\+Player.\+Name\+Player\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nombre del jugador. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a246ddbd4573993035b6dd90bec40af33}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a470475b39d6de4ea985143eb906b1a0e}\index{Library.Player@{Library.Player}!Revive@{Revive}}
+\index{Revive@{Revive}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{Revive}{Revive}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a470475b39d6de4ea985143eb906b1a0e} 
+\mbox{\hyperlink{class_library_1_1_revive}{Revive}} Library.\+Player.\+Revive\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Objeto Revivir que el jugador puede usar para revivir a un Pokémon debilitado. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_aa4bdce1927d4281b6357f57bc4087f58}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a87508432b9858ed14345355f461eac2c}\index{Library.Player@{Library.Player}!Superpotion@{Superpotion}}
+\index{Superpotion@{Superpotion}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{Superpotion}{Superpotion}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a87508432b9858ed14345355f461eac2c} 
+\mbox{\hyperlink{class_library_1_1_super_potion}{Super\+Potion}} Library.\+Player.\+Superpotion\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Objeto Superpoción que el jugador puede usar para curar a su Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a1bad4fb6eee522dd13a3e334f9da5eee}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a1d4891b0f333503c5f75d5aa080089e5}\index{Library.Player@{Library.Player}!Team@{Team}}
+\index{Team@{Team}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{Team}{Team}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a1d4891b0f333503c5f75d5aa080089e5} 
+List$<$\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}$>$ Library.\+Player.\+Team\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Equipo de Pokémon del jugador. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a83979be08f6b3ea7b1a93437f241a78d}{Library.\+IJugador}}.
+
+\Hypertarget{class_library_1_1_player_a8eb680f9f66c41e24890a646f98b3c3b}\index{Library.Player@{Library.Player}!Totalcure@{Totalcure}}
+\index{Totalcure@{Totalcure}!Library.Player@{Library.Player}}
+\doxysubsubsection{\texorpdfstring{Totalcure}{Totalcure}}
+{\footnotesize\ttfamily \label{class_library_1_1_player_a8eb680f9f66c41e24890a646f98b3c3b} 
+\mbox{\hyperlink{class_library_1_1_total_cure}{Total\+Cure}} Library.\+Player.\+Totalcure\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Objeto Cura Total que el jugador puede usar para curar cualquier estado alterado de su Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_jugador_a4cefab508a976b5f426306fb7f324e15}{Library.\+IJugador}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Player.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,398 @@
+\doxysection{Library.\+Pokemon Class Reference}
+\hypertarget{class_library_1_1_pokemon}{}\label{class_library_1_1_pokemon}\index{Library.Pokemon@{Library.Pokemon}}
+
+
+Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante una batalla. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon}{IPokemon}.  
+
+
+Inheritance diagram for Library.\+Pokemon\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_library_1_1_pokemon}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_pokemon_a260c4e2ca8da6f5920ce50199263565a}{Pokemon}} (string name, int id, double health, int attack, int defense, int special\+Attack, int special\+Defense, \mbox{\hyperlink{class_library_1_1_type}{Type}} type, List$<$ \mbox{\hyperlink{class_library_1_1_move}{Move}} $>$ moves)
+\begin{DoxyCompactList}\small\item\em Constructor para inicializar un Pokémon con sus atributos básicos. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_pokemon_a1d8901ffecfc24e589f21eaeea0deac8}\label{class_library_1_1_pokemon_a1d8901ffecfc24e589f21eaeea0deac8} 
+{\bfseries Pokemon} ()
+\begin{DoxyCompactList}\small\item\em Constructor vacío. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_pokemon_ae6991669936aa783d94ee52b6d18b817}{AttackP}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player, \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} enemy, \mbox{\hyperlink{class_library_1_1_move}{Move}} movement, int current\+Shift)
+\begin{DoxyCompactList}\small\item\em Realiza un ataque a un Pokémon enemigo usando un movimiento específico. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_library_1_1_pokemon_a079ad1d582a35a0c0757cfe7dd900948}{Calculate\+Damage}} (\mbox{\hyperlink{class_library_1_1_move}{Move}} movimiento, double efectividad, \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} oponente)
+\begin{DoxyCompactList}\small\item\em Calcula el daño causado por un movimiento específico. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_pokemon_aa280db7966e97292a3884575a7349435}{Can\+Atack}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si el Pokémon puede atacar, teniendo en cuenta su estado actual. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_pokemon_a2a13b84b9c1c2dfc128c6f696919fa0d}\label{class_library_1_1_pokemon_a2a13b84b9c1c2dfc128c6f696919fa0d} 
+void {\bfseries Paralyze} ()
+\begin{DoxyCompactList}\small\item\em Aplica el estado de parálisis al Pokémon. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_pokemon_aaa3153baf2d5e65f2c7fefebf0aec818}\label{class_library_1_1_pokemon_aaa3153baf2d5e65f2c7fefebf0aec818} 
+void {\bfseries sleep} ()
+\begin{DoxyCompactList}\small\item\em Aplica el estado de sueño al Pokémon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_pokemon_a2ccc29640d1b862867581cb839ccd6f2}{Process\+Status}} (\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} enemy=null)
+\begin{DoxyCompactList}\small\item\em Procesa el estado actual del Pokémon, aplicando los efectos correspondientes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_pokemon_a6b55688ca3f3c8b1e5674b2a02870e00}{Out\+Of\+Action}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si el Pokémon está fuera de combate (sin puntos de salud). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_library_1_1_i_pokemon}{Library.\+IPokemon}}}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_library_1_1_pokemon_a4af2b936daeca7430c117a85472c4464}\label{class_library_1_1_pokemon_a4af2b936daeca7430c117a85472c4464} 
+bool {\bfseries Outofaction} = false
+\begin{DoxyCompactList}\small\item\em Indica si el Pokémon está fuera de combate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_library_1_1_pokemon_a68c19b133602cf71110cb160e443aa15}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nombre del Pokémon. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_library_1_1_pokemon_a4d8bd54517ef8196095412c915b7dd58}{Health}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Puntos de salud actuales del Pokémon. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_library_1_1_pokemon_a583ba8268e18804eb93be65046be5ac8}{Max\+Healt}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Máximo de puntos de salud que el Pokémon puede tener. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_pokemon_a873aee05e475206929db8e56fd88ca35}{Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Identificador único del Pokémon. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_pokemon_ad15b0c55cd786554401aec796ab16671}{Attack}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Valor de ataque del Pokémon. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_pokemon_afb92f2d8944a9aa3bf2fcddc3a6623ae}{Defense}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Valor de defensa del Pokémon. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_pokemon_af1010fed1c18c2f5f7071e32ee595d27}{Special\+Attack}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Valor de ataque especial del Pokémon. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_pokemon_a0c5b23f46c522d21fb21f647cf2db278}{Special\+Defense}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Valor de defensa especial del Pokémon. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_type}{Type}} \mbox{\hyperlink{class_library_1_1_pokemon_ac31d29af61e5c4c2bf8b8b8a4a55b2bf}{Type}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Tipo principal del Pokémon. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_pokemon_a078cf46b101e22387ca9ca32f14be5e4}\label{class_library_1_1_pokemon_a078cf46b101e22387ca9ca32f14be5e4} 
+List$<$ \mbox{\hyperlink{class_library_1_1_stat}{Stat}} $>$ {\bfseries Stats}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de estadísticas del Pokémon. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_pokemon_ab1ffac72b02bd6e2228c585852f9a542}\label{class_library_1_1_pokemon_ab1ffac72b02bd6e2228c585852f9a542} 
+List$<$ \mbox{\hyperlink{class_library_1_1_type}{Type}} $>$ {\bfseries Types}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de tipos secundarios del Pokémon. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_library_1_1_move}{Move}} $>$ \mbox{\hyperlink{class_library_1_1_pokemon_a9256bbb100c34e69e9f44b3523b85f81}{Moves}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de movimientos que el Pokémon conoce. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Especial\+Status}} \mbox{\hyperlink{class_library_1_1_pokemon_a956e26f39c60f17c164f89b490217933}{Status}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, dormido, paralizado). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_pokemon_aad593241228dbb6542165f79668f915e}{Sleep\+Turns\+Left}} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Número de turnos restantes que el Pokémon estará dormido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{interface_library_1_1_i_pokemon}{Library.\+IPokemon}}}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante una batalla. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon}{IPokemon}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_pokemon_a260c4e2ca8da6f5920ce50199263565a}\index{Library.Pokemon@{Library.Pokemon}!Pokemon@{Pokemon}}
+\index{Pokemon@{Pokemon}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Pokemon()}{Pokemon()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a260c4e2ca8da6f5920ce50199263565a} 
+Library.\+Pokemon.\+Pokemon (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{int}]{id}{, }\item[{double}]{health}{, }\item[{int}]{attack}{, }\item[{int}]{defense}{, }\item[{int}]{special\+Attack}{, }\item[{int}]{special\+Defense}{, }\item[{\mbox{\hyperlink{class_library_1_1_type}{Type}}}]{type}{, }\item[{List$<$ \mbox{\hyperlink{class_library_1_1_move}{Move}} $>$}]{moves}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor para inicializar un Pokémon con sus atributos básicos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Nombre del Pokémon.\\
+\hline
+{\em id} & Identificador único del Pokémon.\\
+\hline
+{\em health} & Puntos de salud del Pokémon.\\
+\hline
+{\em attack} & Valor de ataque del Pokémon.\\
+\hline
+{\em defense} & Valor de defensa del Pokémon.\\
+\hline
+{\em special\+Attack} & Valor de ataque especial del Pokémon.\\
+\hline
+{\em special\+Defense} & Valor de defensa especial del Pokémon.\\
+\hline
+{\em type} & Tipo principal del Pokémon.\\
+\hline
+{\em moves} & Lista de movimientos que el Pokémon conoce.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_pokemon_ae6991669936aa783d94ee52b6d18b817}\index{Library.Pokemon@{Library.Pokemon}!AttackP@{AttackP}}
+\index{AttackP@{AttackP}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{AttackP()}{AttackP()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_ae6991669936aa783d94ee52b6d18b817} 
+void Library.\+Pokemon.\+AttackP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{, }\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{enemy}{, }\item[{\mbox{\hyperlink{class_library_1_1_move}{Move}}}]{movement}{, }\item[{int}]{current\+Shift}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza un ataque a un Pokémon enemigo usando un movimiento específico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jugador que posee el Pokémon atacante.\\
+\hline
+{\em enemy} & El Pokémon enemigo que recibe el ataque.\\
+\hline
+{\em movement} & Movimiento usado por el Pokémon atacante.\\
+\hline
+{\em current\+Shift} & Turno actual en el que se realiza el ataque.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a08edcbb8200ae6b75128dfa34a7e4693}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a079ad1d582a35a0c0757cfe7dd900948}\index{Library.Pokemon@{Library.Pokemon}!CalculateDamage@{CalculateDamage}}
+\index{CalculateDamage@{CalculateDamage}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{CalculateDamage()}{CalculateDamage()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a079ad1d582a35a0c0757cfe7dd900948} 
+double Library.\+Pokemon.\+Calculate\+Damage (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_move}{Move}}}]{movimiento}{, }\item[{double}]{efectividad}{, }\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{oponente}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calcula el daño causado por un movimiento específico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em movimiento} & Movimiento usado para el ataque.\\
+\hline
+{\em efectividad} & Factor de efectividad del movimiento en relación al tipo del oponente.\\
+\hline
+{\em oponente} & El Pokémon oponente que recibe el ataque.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El daño calculado.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a5765c6f439cc4a60f71c0ffa1548581f}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_aa280db7966e97292a3884575a7349435}\index{Library.Pokemon@{Library.Pokemon}!CanAtack@{CanAtack}}
+\index{CanAtack@{CanAtack}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{CanAtack()}{CanAtack()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_aa280db7966e97292a3884575a7349435} 
+bool Library.\+Pokemon.\+Can\+Atack (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica si el Pokémon puede atacar, teniendo en cuenta su estado actual. 
+
+\begin{DoxyReturn}{Returns}
+Devuelve true si el Pokémon puede atacar, de lo contrario false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a9368fc8fa2ba0b833494402fca820b39}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a6b55688ca3f3c8b1e5674b2a02870e00}\index{Library.Pokemon@{Library.Pokemon}!OutOfAction@{OutOfAction}}
+\index{OutOfAction@{OutOfAction}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{OutOfAction()}{OutOfAction()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a6b55688ca3f3c8b1e5674b2a02870e00} 
+bool Library.\+Pokemon.\+Out\+Of\+Action (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica si el Pokémon está fuera de combate (sin puntos de salud). 
+
+\begin{DoxyReturn}{Returns}
+Devuelve true si el Pokémon está fuera de combate, de lo contrario false.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_ac1b907d20a744867aba4e85edf394c33}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a2ccc29640d1b862867581cb839ccd6f2}\index{Library.Pokemon@{Library.Pokemon}!ProcessStatus@{ProcessStatus}}
+\index{ProcessStatus@{ProcessStatus}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{ProcessStatus()}{ProcessStatus()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a2ccc29640d1b862867581cb839ccd6f2} 
+void Library.\+Pokemon.\+Process\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{enemy}{ = {\ttfamily null}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Procesa el estado actual del Pokémon, aplicando los efectos correspondientes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & El Pokémon enemigo, si es aplicable.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a14afdff8d464d84ae54210419b1a29a3}{Library.\+IPokemon}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_library_1_1_pokemon_ad15b0c55cd786554401aec796ab16671}\index{Library.Pokemon@{Library.Pokemon}!Attack@{Attack}}
+\index{Attack@{Attack}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Attack}{Attack}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_ad15b0c55cd786554401aec796ab16671} 
+int Library.\+Pokemon.\+Attack\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Valor de ataque del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_ad23c3bcad522115a1a1dcb9d862c5f9b}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_afb92f2d8944a9aa3bf2fcddc3a6623ae}\index{Library.Pokemon@{Library.Pokemon}!Defense@{Defense}}
+\index{Defense@{Defense}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Defense}{Defense}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_afb92f2d8944a9aa3bf2fcddc3a6623ae} 
+int Library.\+Pokemon.\+Defense\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Valor de defensa del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a74b388647752cecda73b7d948135fa54}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a4d8bd54517ef8196095412c915b7dd58}\index{Library.Pokemon@{Library.Pokemon}!Health@{Health}}
+\index{Health@{Health}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Health}{Health}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a4d8bd54517ef8196095412c915b7dd58} 
+double Library.\+Pokemon.\+Health\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Puntos de salud actuales del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a77a4937f205d4e3d2a3b9e69db1204c2}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a873aee05e475206929db8e56fd88ca35}\index{Library.Pokemon@{Library.Pokemon}!Id@{Id}}
+\index{Id@{Id}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Id}{Id}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a873aee05e475206929db8e56fd88ca35} 
+int Library.\+Pokemon.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Identificador único del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_afa2d1a536afc85f48ec22cb0372d2461}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a583ba8268e18804eb93be65046be5ac8}\index{Library.Pokemon@{Library.Pokemon}!MaxHealt@{MaxHealt}}
+\index{MaxHealt@{MaxHealt}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{MaxHealt}{MaxHealt}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a583ba8268e18804eb93be65046be5ac8} 
+double Library.\+Pokemon.\+Max\+Healt\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Máximo de puntos de salud que el Pokémon puede tener. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a27d85a7866406a0caef9a0de7e24d6de}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a9256bbb100c34e69e9f44b3523b85f81}\index{Library.Pokemon@{Library.Pokemon}!Moves@{Moves}}
+\index{Moves@{Moves}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Moves}{Moves}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a9256bbb100c34e69e9f44b3523b85f81} 
+List$<$\mbox{\hyperlink{class_library_1_1_move}{Move}}$>$ Library.\+Pokemon.\+Moves\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Lista de movimientos que el Pokémon conoce. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a114b98d2d9b0c2cf0a8191573a1f2c9e}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a68c19b133602cf71110cb160e443aa15}\index{Library.Pokemon@{Library.Pokemon}!Name@{Name}}
+\index{Name@{Name}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a68c19b133602cf71110cb160e443aa15} 
+string Library.\+Pokemon.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nombre del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_aded8f0ef8507aac1f7ab74167af1829b}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_aad593241228dbb6542165f79668f915e}\index{Library.Pokemon@{Library.Pokemon}!SleepTurnsLeft@{SleepTurnsLeft}}
+\index{SleepTurnsLeft@{SleepTurnsLeft}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{SleepTurnsLeft}{SleepTurnsLeft}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_aad593241228dbb6542165f79668f915e} 
+int Library.\+Pokemon.\+Sleep\+Turns\+Left = 0\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Número de turnos restantes que el Pokémon estará dormido. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a82c2bd2042df4aee75ca7c07d1a3bf19}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_af1010fed1c18c2f5f7071e32ee595d27}\index{Library.Pokemon@{Library.Pokemon}!SpecialAttack@{SpecialAttack}}
+\index{SpecialAttack@{SpecialAttack}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{SpecialAttack}{SpecialAttack}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_af1010fed1c18c2f5f7071e32ee595d27} 
+int Library.\+Pokemon.\+Special\+Attack\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Valor de ataque especial del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a9e594f7d81be50c98fbe4608fe77175c}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a0c5b23f46c522d21fb21f647cf2db278}\index{Library.Pokemon@{Library.Pokemon}!SpecialDefense@{SpecialDefense}}
+\index{SpecialDefense@{SpecialDefense}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{SpecialDefense}{SpecialDefense}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a0c5b23f46c522d21fb21f647cf2db278} 
+int Library.\+Pokemon.\+Special\+Defense\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Valor de defensa especial del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a3281711e768a6019ba5ddec5d7934d83}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_a956e26f39c60f17c164f89b490217933}\index{Library.Pokemon@{Library.Pokemon}!Status@{Status}}
+\index{Status@{Status}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_a956e26f39c60f17c164f89b490217933} 
+\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Especial\+Status}} Library.\+Pokemon.\+Status\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, dormido, paralizado). 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_aab1b0b874dcd8cb18447fda6f2b89a4d}{Library.\+IPokemon}}.
+
+\Hypertarget{class_library_1_1_pokemon_ac31d29af61e5c4c2bf8b8b8a4a55b2bf}\index{Library.Pokemon@{Library.Pokemon}!Type@{Type}}
+\index{Type@{Type}!Library.Pokemon@{Library.Pokemon}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_ac31d29af61e5c4c2bf8b8b8a4a55b2bf} 
+\mbox{\hyperlink{class_library_1_1_type}{Type}} Library.\+Pokemon.\+Type\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Tipo principal del Pokémon. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_a00e293c5b24b77dac8a0437b4ec46e0a}{Library.\+IPokemon}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Pokemon.\+cs\end{DoxyCompactItemize}

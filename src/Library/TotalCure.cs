@@ -1,37 +1,52 @@
-namespace Library;
-//cura total: Cura a un Pokémon de efectos de ataques especiales(dormido, paralizado, envenenado, o quemado.)
-//clase que hereda de items
-public class TotalCure : Items
+namespace Library
 {
-    public TotalCure(int quantity) : base("Cura Total", "Cura a un Pokémon de efectos de ataques especiales (dormido, paralizado, envenenado, o quemado).", quantity)
+    /// <summary>
+    /// Clase que representa el ítem "Cura Total", el cual cura a un Pokémon de efectos de ataques especiales (dormido, paralizado, envenenado, o quemado).
+    /// Esta clase hereda de <see cref="Items"/>.
+    /// </summary>
+    public class TotalCure : Items
     {
-
-    }
-
-    public override void Use(Pokemon pokemon)
-    {
-        if (Quantity > 0)
+        /// <summary>
+        /// Constructor para inicializar la "Cura Total" con la cantidad disponible.
+        /// </summary>
+        /// <param name="quantity">Cantidad de ítems "Cura Total" disponibles.</param>
+        public TotalCure(int quantity) : base("Cura Total", "Cura a un Pokémon de efectos de ataques especiales (dormido, paralizado, envenenado, o quemado).", quantity)
         {
-            if (pokemon.Estado == EstadoEspecial.Envenenado)
-            {
-                pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Name} ya no está envenenado.");
-            }
-            if (pokemon.Estado == EstadoEspecial.Paralizado)
-            {
-                pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Name} ya no está paralizado.");
-            }
-            if (pokemon.Estado == EstadoEspecial.Quemado)
-            {
-                pokemon.Estado = EstadoEspecial.Ninguno;
-                Console.WriteLine($"El pokemon {pokemon.Name} ya no está quemado.");
-            }
-            Consume();
+
         }
-        else
+
+        /// <summary>
+        /// Método para usar el ítem "Cura Total" en un Pokémon.
+        /// Cura los efectos de ataques especiales, incluyendo envenenamiento, parálisis, y quemaduras.
+        /// </summary>
+        /// <param name="pokemon">El Pokémon al cual se aplicará la "Cura Total".</param>
+        public override void Use(Pokemon pokemon)
         {
-            Console.WriteLine($"La cura {ItemsName} no se puede usar, no hay mas");
+            if (Quantity > 0)
+            {
+                if (pokemon.Status == SpecialStatus.Poisoned)
+                {
+                    pokemon.Status = SpecialStatus.NoneStatus;
+                    Console.WriteLine($"El Pokémon {pokemon.Name} ya no está envenenado.");
+                }
+                if (pokemon.Status == SpecialStatus.Paralyzed)
+                {
+                    pokemon.Status = SpecialStatus.NoneStatus;
+                    Console.WriteLine($"El Pokémon {pokemon.Name} ya no está paralizado.");
+                }
+                if (pokemon.Status == SpecialStatus.Burned)
+                {
+                    pokemon.Status = SpecialStatus.NoneStatus;
+                    Console.WriteLine($"El Pokémon {pokemon.Name} ya no está quemado.");
+                }
+
+                // Consumir una unidad de Cura Total
+                Consume();
+            }
+            else
+            {
+                Console.WriteLine($"La cura {ItemsName} no se puede usar, no quedan más unidades disponibles.");
+            }
         }
     }
 }
