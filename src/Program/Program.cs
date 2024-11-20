@@ -21,7 +21,6 @@ namespace Program
         /// <summary>
         /// Cliente HTTP usado para realizar solicitudes a la API de Pokémon.
         /// </summary>
-        private static HttpClient client = new HttpClient();
 
         /// <summary>
         /// Método principal del programa.
@@ -30,104 +29,32 @@ namespace Program
         /// <param name="args">Argumentos del programa (no se utilizan).</param>
         public static async Task Main(string[] args)
         {
-            PokemonApi pokemonApi = new PokemonApi(client);
-            PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
-
-            // Crear listas de Pokémon para ambos jugadores
-            List<Pokemon> listPokemonJugador1 = new List<Pokemon>();
-            List<Pokemon> listPokemonJugador2 = new List<Pokemon>();
-
-            Console.WriteLine("\n==================== SELECCIÓN DE POKÉMON ====================\n");
-
-            // Selección de Pokémon para el Player 1
-            Console.WriteLine("Selección de Pokémon para Player 1:\n");
-            for (int i = 0; i < 6; i++)
-            {
-                bool pokemonAgregado = false;
-                while (!pokemonAgregado)
-                {
-                    try
-                    {
-                        Console.WriteLine("Player 1, ingrese un nombre o un ID de un Pokémon: ");
-                        string pokemonId = Console.ReadLine();
-                        var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId.ToLower()}");
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var responseBody = await response.Content.ReadAsStringAsync();
-                            var pokemonData = JsonSerializer.Deserialize<JsonElement>(responseBody);
-                            string pokemonName = pokemonData.GetProperty("name").GetString();
-
-                            var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
-                            listPokemonJugador1.Add(pokemon);
-                            Console.WriteLine($" Has seleccionado a: {pokemonName}\n");
-                            pokemonAgregado = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.\n");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n");
-                    }
-                }
-            }
-
-            // Selección de Pokémon para el Player 2
-            Console.WriteLine("\nSelección de Pokémon para Player 2:\n");
-            for (int i = 0; i < 6; i++)
-            {
-                bool pokemonAgregado = false;
-                while (!pokemonAgregado)
-                {
-                    try
-                    {
-                        Console.WriteLine("Player 2, ingrese un nombre o un ID de un Pokémon: ");
-                        string pokemonId = Console.ReadLine();
-                        var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId.ToLower()}");
-                        if (response.IsSuccessStatusCode)
-                        {
-                            var responseBody = await response.Content.ReadAsStringAsync();
-                            var pokemonData = JsonSerializer.Deserialize<JsonElement>(responseBody);
-                            string pokemonName = pokemonData.GetProperty("name").GetString();
-
-                            var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
-                            listPokemonJugador2.Add(pokemon);
-                            Console.WriteLine($" Has seleccionado a: {pokemonName}\n");
-                            pokemonAgregado = true;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"No se pudo obtener datos para: {pokemonId}. Por favor, intente nuevamente.\n");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n");
-                    }
-                }
-            }
-
-            Console.WriteLine("\n============================================================\n");
-
-            // Validar si ambos jugadores tienen al menos un Pokémon
-            if (listPokemonJugador1.Count == 0 || listPokemonJugador2.Count == 0)
-            {
-                Console.WriteLine("No se pudo obtener suficientes Pokémon para ambos jugadores.");
-                return;
-            }
-
             // Crear jugadores
-            Player jugador1 = new Player("Player 1", listPokemonJugador1);
-            Player jugador2 = new Player("Player 2", listPokemonJugador2);
-
+            Player jugador1 = new Player("Player 1");
+            Console.WriteLine("kvfiaviufvawiuvaifvauie");
+            Player jugador2 = new Player("Player 2");
+            Player jugador3 = new Player("Player 2");
+            Player jugador4 = new Player("Player 2");
+            Player jugador5= new Player("Player 2");
+            WaitList ListaEspera = new WaitList();
+            ListaEspera.AddPlayer(jugador1);
+            ListaEspera.AddPlayer(jugador3);
+            ListaEspera.AddPlayer(jugador4);
+            ListaEspera.AddPlayer(jugador5);
+            ListaEspera.ShowPlayers();
+            
             // Crear y manejar la batalla
-            var batalla = new Battle(jugador1, jugador2);
-            Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
-            Console.WriteLine($"\n {jugador1.NamePlayer} ha seleccionado a {jugador1.actualPokemon.Name} como su Pokémon inicial y tiene {jugador1.actualPokemon.Health}");
-            Console.WriteLine($"\n {jugador2.NamePlayer} ha seleccionado a {jugador2.actualPokemon.Name} como su Pokémon inicial y tiene {jugador2.actualPokemon.Health}.");
-            batalla.StartBattle();
+            if (ListaEspera.Contains(jugador1) && ListaEspera.Contains(jugador3))
+            {
+                var batalla = new Battle(jugador1, jugador3);
+                Console.WriteLine("\n==================== INICIANDO BATALLA ====================\n");
+                batalla.StartBattle();
+            }
+            else
+            {
+                Console.WriteLine($"La batalla no ha sido iniciada debido a que un jugador no estaba en la lista de espera");
+            }
+            
         }
     }
 }

@@ -1,4 +1,6 @@
 using System.Threading.Channels;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Collections.Generic;
 
 namespace Library;
@@ -6,11 +8,12 @@ namespace Library;
 /// <summary>
 /// Clase que representa una batalla entre dos jugadores y maneja toda la lógica de turnos, ataques y uso de ítems.
 /// </summary>
-public class Battle : IBatalla
+public class Battle : IBattle
 {
     private Player Player1;
     private Player Player2;
     private Shift _shift;
+    
 
     /// <summary>
     /// Constructor que inicializa la batalla con dos jugadores.
@@ -22,15 +25,28 @@ public class Battle : IBatalla
         this.Player1 = player1;
         this.Player2 = player2;
         this._shift = new Shift(player1, player2);
-        InitializeCurrentPokemon(player1);
-        InitializeCurrentPokemon(player2);
     }
 
+    
     /// <summary>
     /// Método para iniciar la batalla. Se continúa hasta que uno de los jugadores quede sin Pokémon en combate.
     /// </summary>
-    public void StartBattle()
+    public async Task StartBattle()
     {
+        await Player1.PokemonElection();
+        await Player2.PokemonElection();
+        InitializeCurrentPokemon(Player1);
+        InitializeCurrentPokemon(Player2);
+        Console.WriteLine($"\n {Player1.NamePlayer} ha seleccionado a {Player1.actualPokemon.Name} como su Pokémon inicial y tiene {Player1.actualPokemon.Health}");
+        Console.WriteLine($"\n {Player2.NamePlayer} ha seleccionado a {Player2.actualPokemon.Name} como su Pokémon inicial y tiene {Player2.actualPokemon.Health}.");
+        Console.WriteLine("\n============================================================\n");
+
+        // Validar si ambos jugadores tienen al menos un Pokémon
+        if (Player1.Team.Count == 0 || Player2.Team.Count == 0)
+        {
+            Console.WriteLine("No se pudo obtener suficientes Pokémon para ambos jugadores.");
+            return;
+        }
         while (!Player1.AllOutOfCombat() && !Player2.AllOutOfCombat())
         {
             Console.WriteLine("\n================ TURNOS DE BATALLA ================\n");

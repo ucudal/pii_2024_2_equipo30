@@ -10,8 +10,7 @@ namespace Library
         /// <summary>
         /// Inicia la batalla entre dos jugadores.
         /// Este método se encarga de gestionar el flujo principal de la batalla.
-        /// </summary>
-        void StartBattle();
+        /// </summary
 
         /// <summary>
         /// Método que maneja un turno de batalla, donde el jugador actual y el enemigo realizan sus acciones.

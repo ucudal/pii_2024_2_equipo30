@@ -3,7 +3,7 @@ namespace Library;
 /// <summary>
 /// Interfaz que define la estructura y comportamiento de un jugador en el juego.
 /// </summary>
-public interface IJugador
+public interface IPlayer
 {
     /// <summary>
     /// Nombre del jugador.
