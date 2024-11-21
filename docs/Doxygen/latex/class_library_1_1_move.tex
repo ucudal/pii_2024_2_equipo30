@@ -1,0 +1,53 @@
+\doxysection{Library.\+Move Class Reference}
+\hypertarget{class_library_1_1_move}{}\label{class_library_1_1_move}\index{Library.Move@{Library.Move}}
+
+
+Clase que representa un movimiento que un Pokémon puede realizar durante una batalla.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_move_a214d222d7c420fbf4110526b5bcb5275}{Move}} (\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Especial\+Status}} especial\+Status=\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632acb2f5c5c7eaffead48032ab5825d4f26}{Especial\+Status.\+None\+Status}})
+\begin{DoxyCompactList}\small\item\em Constructor que permite crear un movimiento con un estado especial opcional. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_library_1_1_move_a277a348e5210f2019d19352cb426755c}\label{class_library_1_1_move_a277a348e5210f2019d19352cb426755c} 
+\mbox{\hyperlink{class_library_1_1_move_detail}{Move\+Detail}} {\bfseries Move\+Details}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Detalles del movimiento específico. Esta información se obtiene de la \doxylink{namespace_a_p_i}{API}. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_move_a78db2e0356d850a8673e64330ebed8a4}\label{class_library_1_1_move_a78db2e0356d850a8673e64330ebed8a4} 
+List$<$ \mbox{\hyperlink{class_library_1_1_move}{Move}} $>$ {\bfseries List\+Move}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de movimientos. Puede contener múltiples movimientos que el Pokémon conoce. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_move_a6c4ea8ad4b16ce2df6e77f8fe612fbe0}\label{class_library_1_1_move_a6c4ea8ad4b16ce2df6e77f8fe612fbe0} 
+\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Especial\+Status}} {\bfseries Especial\+Status}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Estado especial asociado al movimiento (por ejemplo, envenenar, quemar, dormir, paralizar). \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_move_a244e550be07b835a4bbf283c7702a18d}\label{class_library_1_1_move_a244e550be07b835a4bbf283c7702a18d} 
+bool {\bfseries Especial\+Attack}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Propiedad que indica si el movimiento es un ataque especial. Un movimiento es considerado un ataque especial si tiene algún estado como Envenenado, Quemado, Dormido o Paralizado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa un movimiento que un Pokémon puede realizar durante una batalla. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_move_a214d222d7c420fbf4110526b5bcb5275}\index{Library.Move@{Library.Move}!Move@{Move}}
+\index{Move@{Move}!Library.Move@{Library.Move}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily \label{class_library_1_1_move_a214d222d7c420fbf4110526b5bcb5275} 
+Library.\+Move.\+Move (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Especial\+Status}}}]{especial\+Status}{ = {\ttfamily \mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632acb2f5c5c7eaffead48032ab5825d4f26}{Especial\+Status\+::\+None\+Status}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor que permite crear un movimiento con un estado especial opcional. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em especial\+Status} & Estado especial del movimiento, por defecto es \doxylink{namespace_library_a69db74b7a005c0dcfe483a078dacb632acb2f5c5c7eaffead48032ab5825d4f26}{Especial\+Status.\+None\+Status}.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Move.\+cs\end{DoxyCompactItemize}

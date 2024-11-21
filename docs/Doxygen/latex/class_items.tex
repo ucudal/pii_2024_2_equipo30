@@ -1,0 +1,160 @@
+\doxysection{Items Class Reference}
+\hypertarget{class_items}{}\label{class_items}\index{Items@{Items}}
+
+
+Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem.  
+
+
+Inheritance diagram for Items\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_items}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_items_a94184cbb94c66faf8ca8104688e0a013}{Items}} (string items\+Name, string items\+Description, int quantity)
+\begin{DoxyCompactList}\small\item\em Constructor que inicializa un ítem con su nombre, descripción y cantidad. Creado para cumplir con el patrón Creator y asignar la responsabilidad de la creación de ítems. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_items_a85ca8d5ce5a05213a9e5a1e8b9b42ce6}{Use}} (\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} pokemon)
+\begin{DoxyCompactList}\small\item\em Método abstracto para usar un ítem en un Pokémon específico. Debe ser implementado por las clases derivadas para definir el comportamiento específico del ítem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_items_a6370f5a6a0c358380da1b3030a1bdd8a}{Consume}} ()
+\begin{DoxyCompactList}\small\item\em Método para reducir la cantidad de ítems disponibles. Indica al jugador cuántos ítems le quedan. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_library_1_1_i_item}{Library.\+IItem}}}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_items_a9a0249013bd5fec86a000897236f6792}{Max\+Healt}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Máxima cantidad de salud que el ítem puede restaurar. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_items_a8a8c5027c73a9c9e0f22197ad11a57ed}{Items\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nombre del ítem. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_items_a0504947faad7d22cdbf2e734f0bfbd04}{Items\+Description}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Descripción del ítem. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_items_af5e6d5a05f81e874fde950a28ec31a1b}{Quantity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Cantidad de ítems disponibles para el jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{interface_library_1_1_i_item}{Library.\+IItem}}}
+
+
+\doxysubsection{Detailed Description}
+Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_items_a94184cbb94c66faf8ca8104688e0a013}\index{Items@{Items}!Items@{Items}}
+\index{Items@{Items}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{Items()}{Items()}}
+{\footnotesize\ttfamily \label{class_items_a94184cbb94c66faf8ca8104688e0a013} 
+Items.\+Items (\begin{DoxyParamCaption}\item[{string}]{items\+Name}{, }\item[{string}]{items\+Description}{, }\item[{int}]{quantity}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor que inicializa un ítem con su nombre, descripción y cantidad. Creado para cumplir con el patrón Creator y asignar la responsabilidad de la creación de ítems. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em items\+Name} & Nombre del ítem.\\
+\hline
+{\em items\+Description} & Descripción del ítem.\\
+\hline
+{\em quantity} & Cantidad de ítems disponibles.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_items_a6370f5a6a0c358380da1b3030a1bdd8a}\index{Items@{Items}!Consume@{Consume}}
+\index{Consume@{Consume}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{Consume()}{Consume()}}
+{\footnotesize\ttfamily \label{class_items_a6370f5a6a0c358380da1b3030a1bdd8a} 
+void Items.\+Consume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Método para reducir la cantidad de ítems disponibles. Indica al jugador cuántos ítems le quedan. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_item_af6ce028b775b89535f9d4ee27d08f167}{Library.\+IItem}}.
+
+\Hypertarget{class_items_a85ca8d5ce5a05213a9e5a1e8b9b42ce6}\index{Items@{Items}!Use@{Use}}
+\index{Use@{Use}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{Use()}{Use()}}
+{\footnotesize\ttfamily \label{class_items_a85ca8d5ce5a05213a9e5a1e8b9b42ce6} 
+void Items.\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{pokemon}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [abstract]}}
+
+
+
+Método abstracto para usar un ítem en un Pokémon específico. Debe ser implementado por las clases derivadas para definir el comportamiento específico del ítem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pokemon} & El Pokémon en el cual se usará el ítem.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_item_ac876022231c1c57b63aaa1790b52b7e5}{Library.\+IItem}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_items_a0504947faad7d22cdbf2e734f0bfbd04}\index{Items@{Items}!ItemsDescription@{ItemsDescription}}
+\index{ItemsDescription@{ItemsDescription}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{ItemsDescription}{ItemsDescription}}
+{\footnotesize\ttfamily \label{class_items_a0504947faad7d22cdbf2e734f0bfbd04} 
+string Items.\+Items\+Description\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Descripción del ítem. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_item_aa180312d64ba2592ac1bce5edf0240c8}{Library.\+IItem}}.
+
+\Hypertarget{class_items_a8a8c5027c73a9c9e0f22197ad11a57ed}\index{Items@{Items}!ItemsName@{ItemsName}}
+\index{ItemsName@{ItemsName}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{ItemsName}{ItemsName}}
+{\footnotesize\ttfamily \label{class_items_a8a8c5027c73a9c9e0f22197ad11a57ed} 
+string Items.\+Items\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Nombre del ítem. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_item_afd9262e1e767b12e8dae59d77b7f25c8}{Library.\+IItem}}.
+
+\Hypertarget{class_items_a9a0249013bd5fec86a000897236f6792}\index{Items@{Items}!MaxHealt@{MaxHealt}}
+\index{MaxHealt@{MaxHealt}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{MaxHealt}{MaxHealt}}
+{\footnotesize\ttfamily \label{class_items_a9a0249013bd5fec86a000897236f6792} 
+int Items.\+Max\+Healt\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Máxima cantidad de salud que el ítem puede restaurar. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_item_a070314c1fc30d638555e5b3826aa1f74}{Library.\+IItem}}.
+
+\Hypertarget{class_items_af5e6d5a05f81e874fde950a28ec31a1b}\index{Items@{Items}!Quantity@{Quantity}}
+\index{Quantity@{Quantity}!Items@{Items}}
+\doxysubsubsection{\texorpdfstring{Quantity}{Quantity}}
+{\footnotesize\ttfamily \label{class_items_af5e6d5a05f81e874fde950a28ec31a1b} 
+int Items.\+Quantity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Cantidad de ítems disponibles para el jugador. 
+
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_item_a19cc2c33a1a3171fddfb233b7b260e89}{Library.\+IItem}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Items.\+cs\end{DoxyCompactItemize}

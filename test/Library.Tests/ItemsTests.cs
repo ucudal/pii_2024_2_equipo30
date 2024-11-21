@@ -19,7 +19,7 @@ public class ItemsTests
     public void Setup()
     {
         _pokemon = new Pokemon("Pikachu", 1, 100, 55, 40, 50, 50, new Type(), new List<Move>());
-        _pokemon.VidaMax = 200;
+        _pokemon.MaxHealt = 200;
     }  
 
     [Test]
@@ -27,7 +27,7 @@ public class ItemsTests
     {
         //Asserts
 
-        _pokemon.VidaMax = 100;
+        _pokemon.MaxHealt = 100;
         _pokemon.Health = 50;
 
         var superPotion = new SuperPotion(quantity: 1, hpRecovered: 60);
@@ -45,52 +45,52 @@ public class ItemsTests
     public void TotalCure_poison()
     {
         //Arrange
-        _pokemon.Estado = EstadoEspecial.Envenenado;
+        _pokemon.Status = SpecialStatus.Poisoned;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Estado, Is.EqualTo(EstadoEspecial.Ninguno));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.NoneStatus));
 
     }
     [Test]
     public void TotalCure_burned()
     {
         //Arrange
-        _pokemon.Estado = EstadoEspecial.Quemado;
+        _pokemon.Status = SpecialStatus.Burned;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Estado, Is.EqualTo(EstadoEspecial.Ninguno));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.NoneStatus));
 
     }
     [Test]
     public void TotalCure_Paralized()
     {
         //Arrange
-        _pokemon.Estado = EstadoEspecial.Paralizado;
+        _pokemon.Status = SpecialStatus.Paralyzed;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Estado, Is.EqualTo(EstadoEspecial.Ninguno));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.NoneStatus));
 
     }
     [Test]
     public void TotalCure_Dormido()
     {
         //Arrange
-        _pokemon.Estado = EstadoEspecial.Dormido;
+        _pokemon.Status = SpecialStatus.Asleep;
         var totalCure = new TotalCure(quantity: 1);
         //act
         totalCure.Use(_pokemon);
         
         //Assert
-        Assert.That(_pokemon.Estado, Is.EqualTo(EstadoEspecial.Dormido));
+        Assert.That(_pokemon.Status, Is.EqualTo(SpecialStatus.Asleep));
 
     }
     
@@ -99,8 +99,8 @@ public class ItemsTests
     public void Revive_CanRevive()
     {
         //arrange
-        _pokemon.VidaMax = 200;
-        _pokemon.FueraDeCombate = true;
+        _pokemon.MaxHealt = 200;
+        _pokemon.Outofaction = true;
         _pokemon.Health = 0;
         var revive = new Revive(quantity: 1);
         
@@ -108,7 +108,7 @@ public class ItemsTests
         revive.Use(_pokemon);
 
         //Assert
-        Assert.That(_pokemon.FueraDeCombate, Is.False);
+        Assert.That(_pokemon.Outofaction, Is.False);
         Assert.That(_pokemon.Health, Is.EqualTo(100));
 
     }
@@ -117,12 +117,12 @@ public class ItemsTests
     public void Revive_isnotdead()
     {
         //arrange
-        _pokemon.VidaMax = 200;
-        _pokemon.FueraDeCombate = false;
+        _pokemon.MaxHealt = 200;
+        _pokemon.Outofaction = false;
         
         
         var revive = new Revive(quantity: 1);
-        Assert.That(_pokemon.FueraDeCombate, Is.False);
+        Assert.That(_pokemon.Outofaction, Is.False);
         Assert.That(100, Is.EqualTo(_pokemon.Health));
         Assert.That(revive.Quantity, Is.EqualTo(1));
     }

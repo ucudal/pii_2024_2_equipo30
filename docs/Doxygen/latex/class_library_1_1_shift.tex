@@ -1,0 +1,87 @@
+\doxysection{Library.\+Shift Class Reference}
+\hypertarget{class_library_1_1_shift}{}\label{class_library_1_1_shift}\index{Library.Shift@{Library.Shift}}
+
+
+Clase que representa un turno (shift) en la batalla entre dos jugadores. Administra qué jugador es el actual y cuál es el enemigo, así como el número de turno.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_shift_af57841c5e8aa4654a60f045eb2c497bf}{Shift}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} jugador1, \mbox{\hyperlink{class_library_1_1_player}{Player}} jugador2)
+\begin{DoxyCompactList}\small\item\em Constructor para inicializar un turno con dos jugadores. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_shift_a6f5d1a23baf604f5ab8020cb3240c4d0}\label{class_library_1_1_shift_a6f5d1a23baf604f5ab8020cb3240c4d0} 
+void {\bfseries Switch\+Shift} ()
+\begin{DoxyCompactList}\small\item\em Cambia el turno entre los dos jugadores. El jugador actual se convierte en el enemigo y viceversa. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_shift_a751daf8b0de50c5a58355c75fdcdc726}\label{class_library_1_1_shift_a751daf8b0de50c5a58355c75fdcdc726} 
+void {\bfseries Show\+Shift} ()
+\begin{DoxyCompactList}\small\item\em Muestra en la consola el jugador que tiene el turno actual. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_shift_af3ac4f941c6409af6796dc03283e2f01}{Execute\+Special\+Attack}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player, \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} attacker, \mbox{\hyperlink{class_library_1_1_move}{Move}} movements, int actual\+Shift)
+\begin{DoxyCompactList}\small\item\em Ejecuta un ataque especial por parte del jugador con restricciones de uso. Verifica si el jugador puede usar el ataque especial antes de ejecutarlo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_library_1_1_shift_acbab861e6e449c1c66a6723e5b50b5d7}\label{class_library_1_1_shift_acbab861e6e449c1c66a6723e5b50b5d7} 
+\mbox{\hyperlink{class_library_1_1_player}{Player}} {\bfseries actual\+Player}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Jugador que está tomando el turno actual. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_shift_a2af1b4719323cdab1573f50ee72ec19d}\label{class_library_1_1_shift_a2af1b4719323cdab1573f50ee72ec19d} 
+\mbox{\hyperlink{class_library_1_1_player}{Player}} {\bfseries enemy\+Player}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Jugador enemigo que está esperando su turno. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_shift_a0c09636a0d358663111e9ad47d268310}\label{class_library_1_1_shift_a0c09636a0d358663111e9ad47d268310} 
+int {\bfseries shift\+Number}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Número actual del turno en la batalla. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa un turno (shift) en la batalla entre dos jugadores. Administra qué jugador es el actual y cuál es el enemigo, así como el número de turno. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_shift_af57841c5e8aa4654a60f045eb2c497bf}\index{Library.Shift@{Library.Shift}!Shift@{Shift}}
+\index{Shift@{Shift}!Library.Shift@{Library.Shift}}
+\doxysubsubsection{\texorpdfstring{Shift()}{Shift()}}
+{\footnotesize\ttfamily \label{class_library_1_1_shift_af57841c5e8aa4654a60f045eb2c497bf} 
+Library.\+Shift.\+Shift (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{jugador1}{, }\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{jugador2}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor para inicializar un turno con dos jugadores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jugador1} & Primer jugador en iniciar el turno.\\
+\hline
+{\em jugador2} & Segundo jugador.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_shift_af3ac4f941c6409af6796dc03283e2f01}\index{Library.Shift@{Library.Shift}!ExecuteSpecialAttack@{ExecuteSpecialAttack}}
+\index{ExecuteSpecialAttack@{ExecuteSpecialAttack}!Library.Shift@{Library.Shift}}
+\doxysubsubsection{\texorpdfstring{ExecuteSpecialAttack()}{ExecuteSpecialAttack()}}
+{\footnotesize\ttfamily \label{class_library_1_1_shift_af3ac4f941c6409af6796dc03283e2f01} 
+bool Library.\+Shift.\+Execute\+Special\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{, }\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{attacker}{, }\item[{\mbox{\hyperlink{class_library_1_1_move}{Move}}}]{movements}{, }\item[{int}]{actual\+Shift}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ejecuta un ataque especial por parte del jugador con restricciones de uso. Verifica si el jugador puede usar el ataque especial antes de ejecutarlo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Jugador que realiza el ataque especial.\\
+\hline
+{\em attacker} & El Pokémon que está realizando el ataque.\\
+\hline
+{\em movements} & El movimiento especial a ejecutar.\\
+\hline
+{\em actual\+Shift} & El turno actual en el que se está realizando el ataque.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Devuelve true si el ataque especial fue realizado con éxito; de lo contrario, false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Shift.\+cs\end{DoxyCompactItemize}

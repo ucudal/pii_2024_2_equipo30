@@ -1,0 +1,72 @@
+\doxysection{Library.\+Pokemon\+Creator Class Reference}
+\hypertarget{class_library_1_1_pokemon_creator}{}\label{class_library_1_1_pokemon_creator}\index{Library.PokemonCreator@{Library.PokemonCreator}}
+
+
+Clase que implementa \doxylink{interface_library_1_1_i_pokemon_creator}{IPokemon\+Creator} y se encarga de crear un objeto Pokémon a partir de la \doxylink{namespace_a_p_i}{API}.  
+
+
+Inheritance diagram for Library.\+Pokemon\+Creator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_library_1_1_pokemon_creator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_pokemon_creator_a2d601e688a7c46c424cb330db0797fec}{Pokemon\+Creator}} (\mbox{\hyperlink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}} \+\_\+pokemon\+Api)
+\begin{DoxyCompactList}\small\item\em Constructor que inicializa la clase {\ttfamily \doxylink{class_library_1_1_pokemon_creator}{Pokemon\+Creator}} con una instancia de la \doxylink{namespace_a_p_i}{API} de Pokémon. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_pokemon_creator_a3b1e67d0336f44fcf42c2f52efab83af}{Create\+Pokemon}} (string pokemon\+Id)
+\begin{DoxyCompactList}\small\item\em Crea un objeto \doxylink{class_library_1_1_pokemon}{Pokemon} con todos sus detalles utilizando la \doxylink{namespace_a_p_i}{API} de Pokémon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_library_1_1_i_pokemon_creator}{Library.\+IPokemon\+Creator}}}
+
+
+\doxysubsection{Detailed Description}
+Clase que implementa \doxylink{interface_library_1_1_i_pokemon_creator}{IPokemon\+Creator} y se encarga de crear un objeto Pokémon a partir de la \doxylink{namespace_a_p_i}{API}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_pokemon_creator_a2d601e688a7c46c424cb330db0797fec}\index{Library.PokemonCreator@{Library.PokemonCreator}!PokemonCreator@{PokemonCreator}}
+\index{PokemonCreator@{PokemonCreator}!Library.PokemonCreator@{Library.PokemonCreator}}
+\doxysubsubsection{\texorpdfstring{PokemonCreator()}{PokemonCreator()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_creator_a2d601e688a7c46c424cb330db0797fec} 
+Library.\+Pokemon\+Creator.\+Pokemon\+Creator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}}}]{\+\_\+pokemon\+Api}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor que inicializa la clase {\ttfamily \doxylink{class_library_1_1_pokemon_creator}{Pokemon\+Creator}} con una instancia de la \doxylink{namespace_a_p_i}{API} de Pokémon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pokemon\+Api} & Instancia de la \doxylink{namespace_a_p_i}{API} de Pokémon para realizar las solicitudes necesarias.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_pokemon_creator_a3b1e67d0336f44fcf42c2f52efab83af}\index{Library.PokemonCreator@{Library.PokemonCreator}!CreatePokemon@{CreatePokemon}}
+\index{CreatePokemon@{CreatePokemon}!Library.PokemonCreator@{Library.PokemonCreator}}
+\doxysubsubsection{\texorpdfstring{CreatePokemon()}{CreatePokemon()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_creator_a3b1e67d0336f44fcf42c2f52efab83af} 
+async Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ Library.\+Pokemon\+Creator.\+Create\+Pokemon (\begin{DoxyParamCaption}\item[{string}]{pokemon\+Id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Crea un objeto \doxylink{class_library_1_1_pokemon}{Pokemon} con todos sus detalles utilizando la \doxylink{namespace_a_p_i}{API} de Pokémon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pokemon\+Id} & Identificador o nombre del Pokémon que se desea crear.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Una tarea que representa la operación asíncrona y devuelve un objeto \doxylink{class_library_1_1_pokemon}{Pokemon}.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{interface_library_1_1_i_pokemon_creator_a69f357acae801e8aecd2dfae865ddeb7}{Library.\+IPokemon\+Creator}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Pokemon\+Creator.\+cs\end{DoxyCompactItemize}
