@@ -10,59 +10,26 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Runtime.Intrinsics.Arm;
 using System.Text.Json.Serialization;
-namespace Program;
 
 class Program
 {
-    /*private static HttpClient client = new HttpClient();
-
-    public static async Task Main(string[] args)
+    private static async Task Main(string[] args)
     {
-        {
-            var bot = new Bot();
-            await bot.StartAsync();
+        var mainApp = new BotTester(); // Instancia de tu programa principal
+        var bot = new Bot(mainApp); // Pasamos la instancia al bot
+        await bot.StartAsync();
 
-            await Task.Delay(-1);
-        }
-        PokemonApi pokemonApi = new PokemonApi(client);
-        PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
-
-        List<Pokemon> listPokemon = new List<Pokemon>();
-        for (int i = 0; i < 6; i++)
-        {
-            Console.WriteLine("Ingrese un nombre o un ID de un pokemon: ");
-            string pokemonId = Console.ReadLine();
-            var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
-            if (pokemon != null)
-            {
-                listPokemon.Add(pokemon);
-            }
-            else
-            {
-                Console.WriteLine($"No se pudo obtener datos para: {pokemonId}");
-            }
-        }
-
-        if (listPokemon.Count == 0)
-        {
-            Console.WriteLine("No se pudo obtener ningún Pokémon.");
-            return;
-        }
-
-        // Crear jugadores
-        Jugador jugador1 = new Jugador("Jugador 1", listPokemon);
-        Jugador jugador2 = new Jugador("Jugador 2", listPokemon);
-
-        // Crear y manejar la batalla
-        var batalla = new Batalla(jugador1, jugador2);
-        batalla.IniciarBatalla();
+        await Task.Delay(-1);
     }
+
     class Bot
     {
         private readonly DiscordSocketClient _client;
+        private readonly BotTester _botTester; // Referencia a la clase principal
 
-        public Bot()
+        public Bot(BotTester botTester)
         {
+            _botTester = botTester; // Guardamos la instancia para usarla luego
             _client = new DiscordSocketClient();
             _client.Log += Log;
             _client.MessageReceived += MessageReceived;
@@ -70,7 +37,7 @@ class Program
 
         public async Task StartAsync()
         {
-            string token = "MTMwNDIwMTYwMjE4MTIzNDczOQ.Gi_jKI.Pa8pvwJsaGVAxR6mzdm41C1EGN0Nrn1uDNpNn4";
+            string token = "MTMwNDIwMTYwMjE4MTIzNDczOQ.GRoN3o.VoEA7XdA99BO_yrmINRgw8fufG8YSIIVFzZwDo";
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
@@ -92,13 +59,30 @@ class Program
                 await arg.Channel.SendMessageAsync("Pong!");
             }
 
-            else if (arg.Content == "!hello")
+            else if (arg.Content.StartsWith("!hello"))
             {
-                await arg.Channel.SendMessageAsync("¡Hola, soy tu bot!");
+                string userName = arg.Author.Username;
+                string greeting = _botTester.GetGreeting(userName); // Lógica del programa principal
+                await arg.Channel.SendMessageAsync(greeting);
             }
-        }*/
-}
 
+            else if (arg.Content.StartsWith("!add"))
+            {
+                // Ejemplo de comando "!add 5 10"
+                var parts = arg.Content.Split(' ');
+                if (parts.Length == 3 && int.TryParse(parts[1], out int a) && int.TryParse(parts[2], out int b))
+                {
+                    string result = _botTester.PerformCalculation(a, b); // Lógica del programa principal
+                    await arg.Channel.SendMessageAsync(result);
+                }
+                else
+                {
+                    await arg.Channel.SendMessageAsync("Uso: !add <número1> <número2>");
+                }
+            }
+        }
+    }
+}
 
 
 
