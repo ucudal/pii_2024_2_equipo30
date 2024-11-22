@@ -11,7 +11,7 @@ using System.Data.Common;
 using System.Runtime.Intrinsics.Arm;
 using System.Text.Json.Serialization;
 
-class Program
+/*class Program
 {
     private static async Task Main(string[] args)
     {
@@ -37,7 +37,7 @@ class Program
 
         public async Task StartAsync()
         {
-            string token = "MTMwNDIwMTYwMjE4MTIzNDczOQ.GRoN3o.VoEA7XdA99BO_yrmINRgw8fufG8YSIIVFzZwDo";
+            string token = "";
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
@@ -82,7 +82,5 @@ class Program
             }
         }
     }
-}
-
-
+}*/
 
