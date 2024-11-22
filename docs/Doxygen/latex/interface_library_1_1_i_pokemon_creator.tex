@@ -1,0 +1,51 @@
+\doxysection{Library.\+IPokemon\+Creator Interface Reference}
+\hypertarget{interface_library_1_1_i_pokemon_creator}{}\label{interface_library_1_1_i_pokemon_creator}\index{Library.IPokemonCreator@{Library.IPokemonCreator}}
+
+
+Interfaz que define el método para crear un objeto Pokémon a partir de un identificador o nombre.  
+
+
+Inheritance diagram for Library.\+IPokemon\+Creator\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_library_1_1_i_pokemon_creator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{interface_library_1_1_i_pokemon_creator_a69f357acae801e8aecd2dfae865ddeb7}{Create\+Pokemon}} (string pokemon\+Id)
+\begin{DoxyCompactList}\small\item\em Crea un objeto Pokémon con todos sus detalles, obteniendo la información necesaria a partir de un identificador o nombre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interfaz que define el método para crear un objeto Pokémon a partir de un identificador o nombre. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{interface_library_1_1_i_pokemon_creator_a69f357acae801e8aecd2dfae865ddeb7}\index{Library.IPokemonCreator@{Library.IPokemonCreator}!CreatePokemon@{CreatePokemon}}
+\index{CreatePokemon@{CreatePokemon}!Library.IPokemonCreator@{Library.IPokemonCreator}}
+\doxysubsubsection{\texorpdfstring{CreatePokemon()}{CreatePokemon()}}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_pokemon_creator_a69f357acae801e8aecd2dfae865ddeb7} 
+Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ Library.\+IPokemon\+Creator.\+Create\+Pokemon (\begin{DoxyParamCaption}\item[{string}]{pokemon\+Id}{}\end{DoxyParamCaption})}
+
+
+
+Crea un objeto Pokémon con todos sus detalles, obteniendo la información necesaria a partir de un identificador o nombre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pokemon\+Id} & Identificador o nombre del Pokémon que se desea crear.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Una tarea que representa la operación asíncrona de creación y devuelve un objeto \doxylink{class_library_1_1_pokemon}{Pokemon}.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_library_1_1_pokemon_creator_a3b1e67d0336f44fcf42c2f52efab83af}{Library.\+Pokemon\+Creator}}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/IPokemon\+Creator.\+cs\end{DoxyCompactItemize}

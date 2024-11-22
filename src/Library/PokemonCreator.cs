@@ -1,14 +1,29 @@
-namespace Library;
-
-public class PokemonCreator : IPokemonCreator
+namespace Library
+{
+    /// <summary>
+    /// Clase que implementa <see cref="IPokemonCreator"/> y se encarga de crear un objeto Pokémon a partir de la API.
+    /// </summary>
+    public class PokemonCreator : IPokemonCreator
     {
-        private readonly IPokemonApi pokemonApi;
+        /// <summary>
+        /// Instancia de <see cref="IPokemonApi"/> utilizada para interactuar con la API de Pokémon.
+        /// </summary>
+        private IPokemonApi pokemonApi;
 
+        /// <summary>
+        /// Constructor que inicializa la clase `PokemonCreator` con una instancia de la API de Pokémon.
+        /// </summary>
+        /// <param name="_pokemonApi">Instancia de la API de Pokémon para realizar las solicitudes necesarias.</param>
         public PokemonCreator(IPokemonApi _pokemonApi)
         {
             pokemonApi = _pokemonApi;
         }
 
+        /// <summary>
+        /// Crea un objeto <see cref="Pokemon"/> con todos sus detalles utilizando la API de Pokémon.
+        /// </summary>
+        /// <param name="pokemonId">Identificador o nombre del Pokémon que se desea crear.</param>
+        /// <returns>Una tarea que representa la operación asíncrona y devuelve un objeto <see cref="Pokemon"/>.</returns>
         public async Task<Pokemon> CreatePokemon(string pokemonId)
         {
             var genericPokemon = await pokemonApi.GetPokemonDetails(pokemonId);
@@ -16,11 +31,10 @@ public class PokemonCreator : IPokemonCreator
             {
                 return null;
             }
-                
 
-            Type tipo = new Type();
-            tipo.SetType(genericPokemon.Types[0].TypeDetail.Name);
-            List<Move> listaMovimientos = await GetMoves(genericPokemon.Moves, pokemonId);
+            Type type = new Type();
+            type.SetType(genericPokemon.Types[0].TypeDetail.Name);
+            List<Move> movementsList = await GetMoves(genericPokemon.Moves, pokemonId);
             
             Pokemon pokemon = new Pokemon(
                 genericPokemon.Name,
@@ -30,18 +44,25 @@ public class PokemonCreator : IPokemonCreator
                 genericPokemon.Stats[2].base_stat,  // Defensa
                 genericPokemon.Stats[3].base_stat,  // Ataque Especial
                 genericPokemon.Stats[4].base_stat,  // Defensa Especial
-                tipo,
-                listaMovimientos
+                type,
+                movementsList
             );
-            AsignarEstadoEspecial(pokemon);
+            AssignSpecialStatus(pokemon);
             return pokemon;
         }
 
+        /// <summary>
+        /// Obtiene la lista de movimientos para un Pokémon específico utilizando la API.
+        /// </summary>
+        /// <param name="listmoves">Lista de movimientos genéricos del Pokémon.</param>
+        /// <param name="pokemonId">Identificador o nombre del Pokémon.</param>
+        /// <returns>Una tarea que representa la operación asíncrona y devuelve una lista de <see cref="Move"/>.</returns>
         private async Task<List<Move>> GetMoves(List<Move> listmoves, string pokemonId)
         {
             var genericPokemon = await pokemonApi.GetPokemonDetails(pokemonId);
             var moves = new List<Move>();
             int counter = 0;
+
             foreach (var move in listmoves)
             {
                 if (counter < 4)
@@ -63,34 +84,39 @@ public class PokemonCreator : IPokemonCreator
                 }
             }
 
-            // Verificar si existe al menos 4 movimientos y si genericPokemon tiene la información de tipo
-
             return moves;
-        
         }
-        private void AsignarEstadoEspecial(Pokemon pokemon) //Estado Especial de ataques
+
+        /// <summary>
+        /// Asigna un estado especial a los movimientos del Pokémon en función de su tipo.
+        /// </summary>
+        /// <param name="pokemon">El Pokémon al cual se le asignarán los estados especiales a sus movimientos.</param>
+        private void AssignSpecialStatus(Pokemon pokemon)
         {
-            List<string> Paralize = new List<string>{"electric", "normal", "flying", "ice", "rock", "ground"};
-            List<string> Poison = new List<string>{"poison", "bug", "plant", "steel", "grass"};
-            List<string> Sleep = new List<string>{"psychic", "fairy", "fighting", "ghost"};
-            List<string> Burn = new List<string>{"fire", "dragon", "water"};
-            if (pokemon.Moves.Count > 0 && Paralize.Contains(pokemon.Type.TypeDetail.Name))
+            List<string> Paralize = new List<string> { "electric", "normal", "flying", "ice", "rock", "ground" };
+            List<string> Poison = new List<string> { "poison", "bug", "plant", "steel", "grass" };
+            List<string> Sleep = new List<string> { "psychic", "fairy", "fighting", "ghost" };
+            List<string> Burn = new List<string> { "fire", "dragon", "water" };
+
+            if (pokemon.Moves.Count > 0)
             {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Paralizado;
+                if (Paralize.Contains(pokemon.Type.TypeDetail.Name))
+                {
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Paralyzed;
+                }
+                if (Poison.Contains(pokemon.Type.TypeDetail.Name))
+                {
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Poisoned;
+                }
+                if (Sleep.Contains(pokemon.Type.TypeDetail.Name))
+                {
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Asleep;
+                }
+                if (Burn.Contains(pokemon.Type.TypeDetail.Name))
+                {
+                    pokemon.Moves[pokemon.Moves.Count - 1].SpecialStatus = SpecialStatus.Burned;
+                }
             }
-            if (pokemon.Moves.Count > 0 && Poison.Contains(pokemon.Type.TypeDetail.Name))
-            {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Envenenado;
-            }
-            if (pokemon.Moves.Count > 0 && Sleep.Contains(pokemon.Type.TypeDetail.Name))
-            {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Dormido;
-            }  if (pokemon.Moves.Count > 0 && Burn.Contains(pokemon.Type.TypeDetail.Name))
-            {
-                pokemon.Moves[pokemon.Moves.Count - 1].EstadoEspecial = EstadoEspecial.Quemado;
-            }
-            
         }
     }
-
-
+}
