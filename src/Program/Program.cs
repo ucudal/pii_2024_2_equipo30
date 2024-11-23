@@ -59,4 +59,19 @@ namespace Program
             
         }
     }
+    /* Este seria el program del bot que use, inicializa el bot.
+    using Library;
+
+    namespace Program;
+
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+        DiscordBot bot = new DiscordBot();
+        await bot.Iniciate();
+        }
+    }
+    
+    */
 }
