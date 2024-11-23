@@ -49,13 +49,13 @@ public class BotController
         var availableMoves = botPokemon.Moves;  // Movimientos disponibles del Pokémon del bot
 
         // Si el Pokémon del bot está debilitado, cambiar de Pokémon
-        if (botPokemon.Outofaction())
+        if (botPokemon.OutOfAction())
         {
-            var faintedPokemon = _player2.Team.FirstOrDefault(pokemon => pokemon.Outofaction());
+            var faintedPokemon = _player2.Team.FirstOrDefault(pokemon => pokemon.OutOfAction()); // Llama al método aquí también
             if (faintedPokemon != null)
             {
                 int pokemonIndex = _player2.Team.IndexOf(faintedPokemon);
-                _player2.SwitchPokemon(pokemonIndex);  // Cambiar al siguiente Pokémon disponible
+                _player2.SwitchPokemon(pokemonIndex); // Cambiar al siguiente Pokémon disponible
                 await channel.SendMessageAsync($"¡El bot cambia a {botPokemon.Name}!");
             }
         }
