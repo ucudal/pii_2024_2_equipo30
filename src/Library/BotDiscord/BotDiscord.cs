@@ -1,7 +1,6 @@
-﻿using DSharpPlus;
+﻿﻿using DSharpPlus;
 using DSharpPlus.SlashCommands;
-
-namespace BotDiscord
+namespace Library.BotDiscord
 {
     /// <summary>
     /// Clase para la inicialización y configuración del bot de Discord.
@@ -32,7 +31,6 @@ namespace BotDiscord
         {
             var token = Environment.GetEnvironmentVariable("DISCORD_TOKEN") 
                         ?? throw new Exception("No se ha encontrado el token del bot de discord.");
-
             var discordConfig = new DiscordConfiguration()
             {
                 Intents = DiscordIntents.All, 
@@ -40,12 +38,20 @@ namespace BotDiscord
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
-
+            
             Client = new DiscordClient(discordConfig);
-            /*
+            Client.Ready += async (sender, e) =>//basicamente para saber si el bot logro conectarse con el gateway de ds
+            {
+                Console.WriteLine("¡El bot está conectado y listo para recibir comandos!");
+            };
+            
             SlashCommands = Client.UseSlashCommands();
-            SlashCommands.RegisterCommands<>();
-            */
+            
+            
+            SlashCommands.RegisterCommands<BotDiscord.BattleCommands>();
+            SlashCommands.RegisterCommands<BotDiscord.BotQueuePlayers>();
+            SlashCommands.RegisterCommands<BotDiscord.BotCommands>();
+            
             await Client.ConnectAsync();
             await Task.Delay(-1);
         }
