@@ -1,6 +1,6 @@
 namespace Library
 {
-    public class BotTester
+    public class MainApp
     {
         public string GetGreeting(string userName)
         {
