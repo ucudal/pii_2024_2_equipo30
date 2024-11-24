@@ -2,6 +2,7 @@ using System.Threading.Channels;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Collections.Generic;
+using DSharpPlus.SlashCommands;
 
 namespace Library;
 
@@ -31,25 +32,32 @@ public class Battle : IBattle
     /// <summary>
     /// Método para iniciar la batalla. Se continúa hasta que uno de los jugadores quede sin Pokémon en combate.
     /// </summary>
-    public async Task StartBattle()
+    public async Task StartBattle(InteractionContext ctx)
     {
         Player1.InBattle = true;
         Player2.InBattle = true;
-        await Player1.PokemonElection();
-        await Player2.PokemonElection();
-        Console.WriteLine($"\n {Player1.NamePlayer} ha seleccionado a {Player1.actualPokemon.Name} como su Pokémon inicial y tiene {Player1.actualPokemon.Health}");
-        Console.WriteLine($"\n {Player2.NamePlayer} ha seleccionado a {Player2.actualPokemon.Name} como su Pokémon inicial y tiene {Player2.actualPokemon.Health}.");
-        Console.WriteLine("\n============================================================\n");
-
+        
+        await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer}, selecciona tu Pokémon inicial.");
+        await Player1.PokemonElection(ctx);
+        
+        
+        await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer}, selecciona tu Pokémon inicial.");
+        await Player2.PokemonElection(ctx);
+        
+        
+        await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer} ha seleccionado a {Player1.actualPokemon.Name} con {Player1.actualPokemon.Health} puntos de salud.");
+        await ctx.Channel.SendMessageAsync($"{Player2.NamePlayer} ha seleccionado a {Player2.actualPokemon.Name} con {Player2.actualPokemon.Health} puntos de salud.");
         // Validar si ambos jugadores tienen al menos un Pokémon
         if (Player1.Team.Count == 0 || Player2.Team.Count == 0)
         {
-            Console.WriteLine("No se pudo obtener suficientes Pokémon para ambos jugadores.");
+            await ctx.Channel.SendMessageAsync("No se pudo obtener suficientes Pokémon para ambos jugadores.");
             return;
         }
+
+        await ctx.Channel.SendMessageAsync("La batalla ha iniciado");
         while (!Player1.AllOutOfCombat() && !Player2.AllOutOfCombat())
         {
-            Console.WriteLine("\n================ TURNOS DE BATALLA ================\n");
+            await ctx.Channel.SendMessageAsync("\n================ TURNOS DE BATALLA ================\n");
             _shift.ShowShift();
             PlayShift(_shift.actualPlayer, _shift.enemyPlayer);
             _shift.SwitchShift();
@@ -59,11 +67,11 @@ public class Battle : IBattle
         Console.WriteLine("\n===================================================");
         if (Player1.AllOutOfCombat())
         {
-            Console.WriteLine($"\n {Player2.NamePlayer} gana la batalla! \n");
+            await ctx.Channel.SendMessageAsync($"\n {Player2.NamePlayer} gana la batalla! \n");
         }
         else
         {
-            Console.WriteLine($"\n {Player1.NamePlayer} gana la batalla! \n");
+            await ctx.Channel.SendMessageAsync($"\n {Player1.NamePlayer} gana la batalla! \n");
         }
     }
 

@@ -14,6 +14,6 @@ public class BotCommands : ApplicationCommandModule
     [SlashCommand("Hello", "Saludo")]
     public async Task HelloCommand(InteractionContext ctx)
     {
-        await ctx.CreateResponseAsync($"Hola {ctx.User.Username}, sos un culon!");
+        await ctx.CreateResponseAsync($"Hola {ctx.User.Username}!");
     }
 }
