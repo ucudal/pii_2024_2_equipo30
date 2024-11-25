@@ -1,4 +1,4 @@
-namespace Library;
+/*namespace Library;
 using Discord;
 using Discord.WebSocket;
 
@@ -68,4 +68,4 @@ public class BattleSystem
         currentTurn++;
     }
     
-}
+}*/

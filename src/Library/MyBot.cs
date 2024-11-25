@@ -1,4 +1,4 @@
-namespace Library
+/*namespace Library
 {
     using Discord;
     using Discord.WebSocket;
@@ -49,4 +49,4 @@ namespace Library
             }
         }
     }
-}
+}*/

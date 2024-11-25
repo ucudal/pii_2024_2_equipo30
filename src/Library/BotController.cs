@@ -1,4 +1,4 @@
-namespace Library;
+/*namespace Library;
 using Discord;
 using Discord.WebSocket;
 
@@ -74,4 +74,4 @@ public class BotController
         // Aquí puedes agregar más lógica si el bot quiere hacer algo adicional
         await channel.SendMessageAsync("Turno del bot finalizado.");
     }
-}
+}*/

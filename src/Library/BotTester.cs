@@ -1,4 +1,4 @@
-namespace Library
+/*namespace Library
 {
     public class MainApp
     {
@@ -12,4 +12,4 @@ namespace Library
             return $"El resultado de sumar {a} y {b} es {a + b}.";
         }
     }
-}
+}*/
