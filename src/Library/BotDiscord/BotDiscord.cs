@@ -1,5 +1,6 @@
 ﻿﻿using DSharpPlus;
 using DSharpPlus.SlashCommands;
+ using DSharpPlus.Exceptions;
 namespace Library.BotDiscord
 {
     /// <summary>
