@@ -1,4 +1,10 @@
 using System.Collections.Generic;
+using System.Threading.Channels;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.Collections.Generic;
+using DSharpPlus.SlashCommands;
+using DSharpPlus.Interactivity;
 
 namespace Library
 {
@@ -17,26 +23,26 @@ namespace Library
         /// </summary>
         /// <param name="actualPlayer">El jugador que está realizando su turno.</param>
         /// <param name="enemyPlayer">El jugador enemigo que está esperando su turno.</param>
-        void PlayShift(Player actualPlayer, Player enemyPlayer);
+        class PlayShift(Player actualPlayer, Player enemyPlayer);
 
         /// <summary>
         /// Permite a un jugador usar un ítem durante su turno en la batalla.
         /// </summary>
         /// <param name="player">El jugador que usará el ítem.</param>
-        void UseItem(Player player);
+        class UseItem(Player player);
 
         /// <summary>
         /// Método para que el jugador realice un ataque contra el Pokémon enemigo.
         /// </summary>
         /// <param name="actualPlayer">El jugador que está atacando.</param>
         /// <param name="enemyPlayer">El jugador cuyo Pokémon será atacado.</param>
-        void Attack(Player actualPlayer, Player enemyPlayer);
+        class Attack(Player actualPlayer, Player enemyPlayer);
 
         /// <summary>
         /// Permite al jugador cambiar de Pokémon durante su turno.
         /// </summary>
         /// <param name="player">El jugador que realizará el cambio de Pokémon.</param>
-        void SwitchPokemon(Player player);
+        class SwitchPokemon(Player player);
         
     }
 }

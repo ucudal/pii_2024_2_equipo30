@@ -16,7 +16,7 @@ public class BotCommands : ApplicationCommandModule
     {
         await ctx.CreateResponseAsync($"Hola {ctx.User.Username}!");
     }
-    [SlashCommand("startbattle", "Comienza la batalla")]
+    //[SlashCommand("startbattle", "Comienza la batalla")]
     public async Task StartBattleCommand(InteractionContext ctx, string player1Name, string player2Name)
     {
         // Buscar jugadores existentes o crear nuevos

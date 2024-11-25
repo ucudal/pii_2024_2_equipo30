@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Collections.Generic;
 using DSharpPlus.SlashCommands;
+using DSharpPlus.Interactivity.Extensions;
 
 namespace Library;
 
@@ -58,8 +59,8 @@ public class Battle : IBattle
         while (!Player1.AllOutOfCombat() && !Player2.AllOutOfCombat())
         {
             await ctx.Channel.SendMessageAsync("\n================ TURNOS DE BATALLA ================\n");
-            _shift.ShowShift();
-            PlayShift(_shift.actualPlayer, _shift.enemyPlayer);
+            _shift.ShowShift(ctx);
+            PlayShift(ctx,_shift.actualPlayer, _shift.enemyPlayer);
             _shift.SwitchShift();
         }
 
@@ -80,7 +81,7 @@ public class Battle : IBattle
     /// </summary>
     /// <param name="actualPlayer">Jugador que realiza la acción en este turno.</param>
     /// <param name="enemyPlayer">Jugador enemigo que recibe la acción.</param>
-    public void PlayShift(Player actualPlayer, Player enemyPlayer)
+    /*public void PlayShift(Player actualPlayer, Player enemyPlayer)
     {
         if (!actualPlayer.actualPokemon.OutOfAction())
         {
@@ -120,14 +121,74 @@ public class Battle : IBattle
         {
             Console.WriteLine("\n---------------------------------------------------");
         }
-    }
+    }*/
+    public async Task PlayShift(InteractionContext ctx,Player actualPlayer, Player enemyPlayer)
+    {
+        if (!actualPlayer.actualPokemon.OutOfAction())
+        {
+            await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
+            actualPlayer.actualPokemon.ProcessStatus();
+            await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, tu Pokémon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida");
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, elige qué quieres hacer en este turno:");
+            await ctx.Channel.SendMessageAsync("1: Usar un ítem\n2: Atacar a un Pokémon con un movimiento\n3: Cambiar de Pokémon");
+
+            // Esperar la elección del jugador
+            var interactivity = ctx.Client.GetInteractivity();
+            var response = await interactivity.WaitForMessageAsync(
+                m => m.Author.Id == ctx.User.Id && m.ChannelId == ctx.Channel.Id,
+                TimeSpan.FromMinutes(1)
+            );
+
+            if (response.TimedOut || response.Result == null)
+            {
+                await ctx.Channel.SendMessageAsync("No se recibió respuesta a tiempo. Pierdes tu turno.");
+                return;
+            }
+            
+            if (int.TryParse(response.Result.Content, out int actionChoose))
+            {
+                switch (actionChoose)
+                {
+                    case 1:
+                        await UseItem(ctx, actualPlayer);
+                        break;
+                    case 2:
+                        await Attack(ctx, actualPlayer, enemyPlayer);
+                        break;
+                    case 3:
+                        await SwitchPokemon(ctx, actualPlayer);
+                        break;
+                    default:
+                        await ctx.Channel.SendMessageAsync("Elección inválida. Pierdes tu turno.");
+                        break;
+                }
+            }
+            else
+            {
+                await ctx.Channel.SendMessageAsync("Entrada no válida. Por favor, responde con un número.");
+            }
+        }
+        else if (actualPlayer.actualPokemon.OutOfAction())
+            {
+                await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, tu Pokémon actual está fuera de combate. Debes elegir otro.");
+                await SwitchPokemon(ctx, actualPlayer);
+                await PlayShift(ctx, actualPlayer, enemyPlayer);
+            }
+        else
+            {
+                await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
+            }
+}
+
+    
 
     /// <summary>
     /// Método para realizar un ataque del Pokémon del jugador actual al del jugador enemigo.
     /// </summary>
     /// <param name="actualPlayer">Jugador que realiza el ataque.</param>
     /// <param name="enemyPlayer">Jugador enemigo que recibe el ataque.</param>
-    public void Attack(Player actualPlayer, Player enemyPlayer)
+    public async Task Attack(InteractionContext ctx, Player actualPlayer, Player enemyPlayer)
     {
         Pokemon actualPokemon = actualPlayer.actualPokemon;
 
@@ -201,7 +262,7 @@ public class Battle : IBattle
     /// Método para usar un ítem durante el turno de un jugador.
     /// </summary>
     /// <param name="player">Jugador que va a usar el ítem.</param>
-    public void UseItem(Player player)
+    public async Task UseItem(InteractionContext ctx,Player player)
     {
         bool usedItem = false;
         while (!usedItem)
@@ -220,7 +281,7 @@ public class Battle : IBattle
                         if (player.actualPokemon == null || player.actualPokemon.OutOfAction())
                         {
                             Console.WriteLine("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
-                            SwitchPokemon(player);
+                            SwitchPokemon(ctx,player);
                         }
                         player.Superpotion.Use(player.actualPokemon);
                         Console.WriteLine($"\n Superpoción usada con éxito en {player.actualPokemon.Name}.\n");
@@ -301,7 +362,7 @@ public class Battle : IBattle
     /// Método para cambiar el Pokémon del jugador durante un turno.
     /// </summary>
     /// <param name="player">Jugador que cambiará su Pokémon.</param>
-    public void SwitchPokemon(Player player)
+    public async Task SwitchPokemon(InteractionContext ctx,Player player)
     {
         while (true)
         {

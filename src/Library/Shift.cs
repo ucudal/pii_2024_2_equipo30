@@ -1,3 +1,6 @@
+using DSharpPlus.SlashCommands;
+using DSharpPlus.Interactivity.Extensions;
+
 namespace Library
 {
     /// <summary>
@@ -53,10 +56,12 @@ namespace Library
         /// <summary>
         /// Muestra en la consola el jugador que tiene el turno actual.
         /// </summary>
-        public void ShowShift()
+        public async Task ShowShift(InteractionContext ctx)
         {
             Console.WriteLine($"-- Shift {shiftNumber} / {actualPlayer.NamePlayer} es tu turno! --");
+            await ctx.Channel.SendMessageAsync($"-- Shift {shiftNumber} / {actualPlayer.NamePlayer} es tu turno! --");
         }
+        
 
         /// <summary>
         /// Ejecuta un ataque especial por parte del jugador con restricciones de uso.

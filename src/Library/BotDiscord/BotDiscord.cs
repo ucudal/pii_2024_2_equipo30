@@ -49,7 +49,7 @@ namespace Library.BotDiscord
             
             
             SlashCommands.RegisterCommands<BotDiscord.BattleCommands>();
-            //SlashCommands.RegisterCommands<BotDiscord.BotQueuePlayers>();
+            SlashCommands.RegisterCommands<BotDiscord.BotQueuePlayers>();
             SlashCommands.RegisterCommands<BotDiscord.BotCommands>();
             
             await Client.ConnectAsync();

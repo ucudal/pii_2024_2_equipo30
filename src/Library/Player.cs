@@ -87,7 +87,7 @@ namespace Library
         {
             return new List<Pokemon>();
         }
-       public async Task PokemonElection(InteractionContext ctx)
+       /*public async Task PokemonElection(InteractionContext ctx)
 {
     PokemonApi pokemonApi = new PokemonApi(client);
     PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
@@ -139,7 +139,47 @@ namespace Library
 
     Team = PokemonList;
     actualPokemon = PokemonList.FirstOrDefault(); // Asignar el primer Pokémon si existe
-}
+}*/
+       public async Task PokemonElection(InteractionContext ctx)
+       {
+           PokemonApi pokemonApi = new PokemonApi(client);
+           PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
+
+           List<Pokemon> PokemonList = new List<Pokemon>();
+           Random random = new Random();
+
+           await ctx.Channel.SendMessageAsync("\n==================== SELECCIÓN DE POKÉMON ====================\n");
+           await ctx.Channel.SendMessageAsync($"Selección de Pokémon para el jugador {NamePlayer}:\n");
+
+           // Generar 6 IDs aleatorios
+           List<int> randomPokemonIds = Enumerable.Range(0, 6).Select(_ => random.Next(1, 1001)).ToList();
+
+           foreach (var pokemonId in randomPokemonIds)
+           {
+               try
+               {
+                   var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId}");
+                   if (response.IsSuccessStatusCode)
+                   {
+                       var pokemon = await pokemonCreator.CreatePokemon(pokemonId.ToString());
+                       PokemonList.Add(pokemon);
+                       await ctx.Channel.SendMessageAsync($"Has seleccionado a: {pokemon.Name}\n");
+                   }
+                   else
+                   {
+                       await ctx.Channel.SendMessageAsync($"No se pudo obtener datos para el ID: {pokemonId}. Omite este Pokémon.\n");
+                   }
+               }
+               catch (Exception ex)
+               {
+                   await ctx.Channel.SendMessageAsync($"Ocurrió un error al intentar obtener el Pokémon con ID {pokemonId}: {ex.Message}. \n");
+               }
+           }
+
+           Team = PokemonList;
+           actualPokemon = PokemonList.FirstOrDefault(); // Asignar el primer Pokémon si existe
+       }
+
 
 
 
