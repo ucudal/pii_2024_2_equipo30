@@ -1,3 +1,5 @@
+using DSharpPlus.SlashCommands;
+
 namespace Library;
 
 /// <summary>
@@ -15,7 +17,7 @@ public interface IPlayer
     /// </summary>
     List<Pokemon> Team { get; set; }
     
-    public bool InBattle { get; set; }
+    public bool InGame { get; set; }
 
     /// <summary>
     /// Pokémon actualmente en combate del jugador.
@@ -53,7 +55,7 @@ public interface IPlayer
     /// Método para cambiar el Pokémon en combate por otro del equipo.
     /// </summary>
     /// <param name="indice">Índice del Pokémon del equipo al que se desea cambiar.</param>
-    void SwitchPokemon(int indice);
+    void SwitchPokemon(int indice, InteractionContext ctx);
 
     /// <summary>
     /// Método para verificar si todos los Pokémon del jugador están fuera de combate.

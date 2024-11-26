@@ -26,7 +26,7 @@ namespace Library
                 return;
             }
 
-            if (player.InBattle)
+            if (player.InGame)
             {
                 Console.WriteLine($"El jugador {player.NamePlayer} está en una batalla");
                 return;
@@ -71,7 +71,7 @@ namespace Library
         {
             for(int i=PlayerList.Count-1;i>=0;i--)
             {
-                if (PlayerList[i].InBattle)
+                if (PlayerList[i].InGame)
                 {
                     PlayerList.Remove(PlayerList[i]);
                 }

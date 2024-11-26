@@ -1,3 +1,5 @@
+using DSharpPlus.SlashCommands;
+
 namespace Library
 {
     /// <summary>
@@ -44,18 +46,16 @@ namespace Library
         /// </summary>
         public void SwitchShift()
         {
-            var temp = actualPlayer;
-            actualPlayer = enemyPlayer;
-            enemyPlayer = temp;
+            (actualPlayer, enemyPlayer) = (enemyPlayer, actualPlayer);
             shiftNumber++;
         }
 
         /// <summary>
         /// Muestra en la consola el jugador que tiene el turno actual.
         /// </summary>
-        public void ShowShift()
+        public async void ShowShift(InteractionContext ctx)
         {
-            Console.WriteLine($"-- Shift {shiftNumber} / {actualPlayer.NamePlayer} es tu turno! --");
+            await ctx.Channel.SendMessageAsync($"-- turno {shiftNumber} / {actualPlayer.NamePlayer} es tu turno! --");
         }
 
         /// <summary>
@@ -67,18 +67,18 @@ namespace Library
         /// <param name="movements">El movimiento especial a ejecutar.</param>
         /// <param name="actualShift">El turno actual en el que se está realizando el ataque.</param>
         /// <returns>Devuelve true si el ataque especial fue realizado con éxito; de lo contrario, false.</returns>
-        public bool ExecuteSpecialAttack(Player player, Pokemon attacker, Move movements, int actualShift)
+        public bool ExecuteSpecialAttack(Player player, Pokemon attacker, Move movements, int actualShift, InteractionContext ctx)
         {
             // Verificar si el ataque especial se puede realizar
             if (!player.CanUseEspecialAtack(movements.MoveDetails.Name, actualShift))
             {
-                Console.WriteLine($"No puedes usar el ataque especial {movements.MoveDetails.Name} en este momento. Debes esperar más turnos.");
+                ctx.Channel.SendMessageAsync($"No puedes usar el ataque especial {movements.MoveDetails.Name} en este momento. Debes esperar más turnos.");
                 return false;
             }
 
             // Realizar el ataque especial
-            attacker.AttackP(player, enemyPlayer.actualPokemon, movements, actualShift);
-            Console.WriteLine($"{player.NamePlayer} usó el ataque especial {movements.MoveDetails.Name} causando daño!");
+            attacker.AttackP(player, enemyPlayer.actualPokemon, movements, actualShift, ctx);
+            ctx.Channel.SendMessageAsync($"{player.NamePlayer} usó el ataque especial {movements.MoveDetails.Name} causando daño!");
 
             // Registrar el ataque especial solo si el ataque fue exitoso
             player.RegisterSpecialAttack(movements.MoveDetails.Name, actualShift);

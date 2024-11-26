@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DSharpPlus.SlashCommands;
 
 namespace Library
 {
@@ -17,26 +18,26 @@ namespace Library
         /// </summary>
         /// <param name="actualPlayer">El jugador que está realizando su turno.</param>
         /// <param name="enemyPlayer">El jugador enemigo que está esperando su turno.</param>
-        void PlayShift(Player actualPlayer, Player enemyPlayer);
+        void PlayShift(Player actualPlayer, Player enemyPlayer, InteractionContext ctx);
 
         /// <summary>
         /// Permite a un jugador usar un ítem durante su turno en la batalla.
         /// </summary>
         /// <param name="player">El jugador que usará el ítem.</param>
-        void UseItem(Player player);
+        void UseItem(Player player, int itemNumber, string pokemonName, InteractionContext ctx);
 
         /// <summary>
         /// Método para que el jugador realice un ataque contra el Pokémon enemigo.
         /// </summary>
         /// <param name="actualPlayer">El jugador que está atacando.</param>
         /// <param name="enemyPlayer">El jugador cuyo Pokémon será atacado.</param>
-        void Attack(Player actualPlayer, Player enemyPlayer);
+        void Attack(Player actualPlayer, Player enemyPlayer, int moveNumber, InteractionContext ctx);
 
         /// <summary>
         /// Permite al jugador cambiar de Pokémon durante su turno.
         /// </summary>
         /// <param name="player">El jugador que realizará el cambio de Pokémon.</param>
-        void SwitchPokemon(Player player);
+        void SwitchPokemon(Player player, int pokemonIndex, InteractionContext ctx);
         
     }
 }

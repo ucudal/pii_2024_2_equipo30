@@ -2,6 +2,8 @@ using System.Threading.Channels;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Collections.Generic;
+using DSharpPlus.SlashCommands;
+using Library.BotDiscord;
 
 namespace Library;
 
@@ -12,8 +14,8 @@ public class Battle : IBattle
 {
     private Player Player1;
     private Player Player2;
-    private Shift _shift;
-    
+    public Shift shift { get; }
+    private int maxpokemons = 6;
 
     /// <summary>
     /// Constructor que inicializa la batalla con dos jugadores.
@@ -24,47 +26,38 @@ public class Battle : IBattle
     {
         this.Player1 = player1;
         this.Player2 = player2;
-        this._shift = new Shift(player1, player2);
+        this.shift = new Shift(player1, player2);
     }
-
     
     /// <summary>
-    /// Método para iniciar la batalla. Se continúa hasta que uno de los jugadores quede sin Pokémon en combate.
+    /// Método para iniciar una batalla.
     /// </summary>
-    public async Task StartBattle()
+    public async Task StartBattle(InteractionContext ctx)
     {
-        Player1.InBattle = true;
-        Player2.InBattle = true;
-        await Player1.PokemonElection();
-        await Player2.PokemonElection();
-        Console.WriteLine($"\n {Player1.NamePlayer} ha seleccionado a {Player1.actualPokemon.Name} como su Pokémon inicial y tiene {Player1.actualPokemon.Health}");
-        Console.WriteLine($"\n {Player2.NamePlayer} ha seleccionado a {Player2.actualPokemon.Name} como su Pokémon inicial y tiene {Player2.actualPokemon.Health}.");
-        Console.WriteLine("\n============================================================\n");
-
-        // Validar si ambos jugadores tienen al menos un Pokémon
-        if (Player1.Team.Count == 0 || Player2.Team.Count == 0)
+        if (!Player1.InGame || !Player2.InGame)
         {
-            Console.WriteLine("No se pudo obtener suficientes Pokémon para ambos jugadores.");
+            await ctx.Channel.SendMessageAsync("El juego no ha iniciado.");
             return;
         }
-        while (!Player1.AllOutOfCombat() && !Player2.AllOutOfCombat())
+        if (Player1.Team.Count < 6 || Player2.Team.Count < 6)
         {
-            Console.WriteLine("\n================ TURNOS DE BATALLA ================\n");
-            _shift.ShowShift();
-            PlayShift(_shift.actualPlayer, _shift.enemyPlayer);
-            _shift.SwitchShift();
+            await ctx.Channel.SendMessageAsync("Ambos jugadores deben tener al menos 6 Pokémons.");
+            return;
         }
+        await ctx.Channel.SendMessageAsync("La batalla ha iniciado.\n================ TURNOS DE BATALLA ================\n");
+        shift.ShowShift(ctx);
+        PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
+    }
 
-        // Mostrar quién ganó la batalla
-        Console.WriteLine("\n===================================================");
-        if (Player1.AllOutOfCombat())
-        {
-            Console.WriteLine($"\n {Player2.NamePlayer} gana la batalla! \n");
-        }
-        else
-        {
-            Console.WriteLine($"\n {Player1.NamePlayer} gana la batalla! \n");
-        }
+
+    /// <summary>
+    /// Método para iniciar el juego.
+    /// </summary>
+    public async Task StartGame(InteractionContext ctx)
+    {
+        Player1.InGame = true;
+        Player2.InGame = true;
+        await ctx.CreateResponseAsync($"Utiliza el comando /choose para elegir un pokemon. Deben elegir 6 pokemons.");
     }
 
     /// <summary>
@@ -72,45 +65,27 @@ public class Battle : IBattle
     /// </summary>
     /// <param name="actualPlayer">Jugador que realiza la acción en este turno.</param>
     /// <param name="enemyPlayer">Jugador enemigo que recibe la acción.</param>
-    public void PlayShift(Player actualPlayer, Player enemyPlayer)
+    public async void PlayShift(Player actualPlayer, Player enemyPlayer, InteractionContext ctx)
     {
         if (!actualPlayer.actualPokemon.OutOfAction())
         {
-            Console.WriteLine("\n---------------------------------------------------");
-            actualPlayer.actualPokemon.ProcessStatus();
-            Console.WriteLine("\n---------------------------------------------------");
-            Console.WriteLine($"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida");
-            Console.WriteLine($"{actualPlayer.NamePlayer}, elige qué quieres hacer en este _shift:");
-            Console.WriteLine("1: Usar un ítem");
-            Console.WriteLine("2: atacar a un pokemon con un movimiento");
-            Console.WriteLine("3: Cambiar de Pokémon");
-            int actionChoose = int.Parse(Console.ReadLine());
-
-            switch (actionChoose)
-            {
-                case 1:
-                    UseItem(actualPlayer);
-                    break;
-                case 2:
-                    Attack(actualPlayer, enemyPlayer);
-                    break;
-                case 3:
-                    SwitchPokemon(actualPlayer);
-                    break;
-                default:
-                    Console.WriteLine("Elección inválida. Pierdes tu _shift.");
-                    break;
-            }
-        }
-        else if (actualPlayer.actualPokemon.OutOfAction())
-        {
-            Console.WriteLine($"{actualPlayer.NamePlayer} tu pokemon actual está fuera de combate. Debes elegir otro\n");
-            SwitchPokemon(actualPlayer);
-            PlayShift(actualPlayer, enemyPlayer);
+            await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
+            actualPlayer.actualPokemon.ProcessStatus(ctx);
+            await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida");
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, puedes utilizar los siguientes comandos:");
+            await ctx.Channel.SendMessageAsync("/SelectItem <ItemNumber> <PokemonName>");
+            ShowItemsByPlayer(actualPlayer, ctx);
+            await ctx.Channel.SendMessageAsync("/Attack <MoveNumber>");
+            ShowAttacksByPlayer(actualPlayer, ctx);
+            await ctx.Channel.SendMessageAsync("/Switch <PokemonIndex>");
+            ShowPokemonsToSwitch(actualPlayer, ctx);
         }
         else
         {
-            Console.WriteLine("\n---------------------------------------------------");
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer} tu pokemon actual está fuera de combate. Debes elegir otro\n");
+            await ctx.Channel.SendMessageAsync("Utiliza el siguiente comando: /Switch <PokemonIndex>");
+            ShowPokemonsToSwitch(actualPlayer, ctx);
         }
     }
 
@@ -119,221 +94,239 @@ public class Battle : IBattle
     /// </summary>
     /// <param name="actualPlayer">Jugador que realiza el ataque.</param>
     /// <param name="enemyPlayer">Jugador enemigo que recibe el ataque.</param>
-    public void Attack(Player actualPlayer, Player enemyPlayer)
+    public async void Attack(Player actualPlayer, Player enemyPlayer, int moveNumber, InteractionContext ctx)
     {
         Pokemon actualPokemon = actualPlayer.actualPokemon;
 
         if (actualPokemon == null || actualPokemon.Moves == null || actualPokemon.Moves.Count == 0)
         {
-            Console.WriteLine($"{actualPokemon?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.");
+            await ctx.Channel.SendMessageAsync($"{actualPokemon?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.");
+            shift.ShowShift(ctx);
+            PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
             return;  // No tiene movimientos disponibles, salir de la función
         }
 
-        if (!actualPokemon.CanAtack())
+        if (!(await actualPokemon.CanAtack(ctx)))
         {
+            shift.ShowShift(ctx);
+            PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
             return;  // El Pokémon no puede atacar debido a su estado (dormido, paralizado, etc.)
         }
 
-        while (true)
+        int selectedMovement = moveNumber - 1;
+        
+        if (selectedMovement < 0 || selectedMovement >= actualPokemon.Moves.Count)
         {
-            Console.WriteLine($"\n{actualPlayer.NamePlayer}, elige un movimiento de: {actualPokemon.Name}");
+            await ctx.Channel.SendMessageAsync("Selección de movimiento inválida. Intenta nuevamente.");
+            shift.ShowShift(ctx);
+            PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
+            return;
+        }
 
-            for (int i = 0; i < actualPokemon.Moves.Count; i++)
+        var MovementSelected = actualPokemon.Moves[selectedMovement];
+
+        if (MovementSelected.SpecialAttack)
+        {
+            // Verificar si el ataque especial puede ser usado
+            bool canUseEspecialAtack = actualPlayer.CanUseEspecialAtack(MovementSelected.MoveDetails.Name, actualPlayer.ObtainPersonalShift());
+
+            await ctx.Channel.SendMessageAsync($"Verificando uso de ataque especial: {MovementSelected.MoveDetails.Name}. Shift personal actual: {actualPlayer.ObtainPersonalShift()}, Shift último uso: {actualPlayer.ObtainLastShiftofAttack(MovementSelected.MoveDetails.Name)}");
+
+            if (canUseEspecialAtack)
             {
-                var movement = actualPokemon.Moves[i];
-                Console.WriteLine($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}");
-            }
-
-            int selectedMovement = int.Parse(Console.ReadLine()) - 1;
-            
-            if (selectedMovement < 0 || selectedMovement >= actualPokemon.Moves.Count)
-            {
-                Console.WriteLine("Selección de movimiento inválida. Intenta nuevamente.");
-                continue; // Permitir al player elegir de nuevo
-            }
-
-            var MovementSelected = actualPokemon.Moves[selectedMovement];
-
-            if (MovementSelected.SpecialAttack)
-            {
-                // Verificar si el ataque especial puede ser usado
-                bool canUseEspecialAtack = actualPlayer.CanUseEspecialAtack(MovementSelected.MoveDetails.Name, actualPlayer.ObtainPersonalShift());
-
-                Console.WriteLine($"Verificando uso de ataque especial: {MovementSelected.MoveDetails.Name}. Shift personal actual: {actualPlayer.ObtainPersonalShift()}, Shift último uso: {actualPlayer.ObtainLastShiftofAttack(MovementSelected.MoveDetails.Name)}");
-
-                if (canUseEspecialAtack)
+                // Ejecutar ataque especial y registrar el _shift
+                bool succefulAttack = shift.ExecuteSpecialAttack(actualPlayer, actualPokemon, MovementSelected, actualPlayer.ObtainPersonalShift(), ctx);
+                if (succefulAttack)
                 {
-                    // Ejecutar ataque especial y registrar el _shift
-                    bool succefulAttack = _shift.ExecuteSpecialAttack(actualPlayer, actualPokemon, MovementSelected, actualPlayer.ObtainPersonalShift());
-                    if (succefulAttack)
-                    {
-                        actualPlayer.RegisterSpecialAttack(MovementSelected.MoveDetails.Name, actualPlayer.ObtainPersonalShift());
-                        break; // Salir del bucle si el ataque fue ejecutado exitosamente
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"No puedes usar el ataque especial {MovementSelected.MoveDetails.Name} en este momento. Debes esperar más turnos. Selecciona otro movimiento.");
+                    actualPlayer.RegisterSpecialAttack(MovementSelected.MoveDetails.Name, actualPlayer.ObtainPersonalShift());
                 }
             }
             else
             {
-                // Realizar un ataque regular si no es un ataque especial
-                actualPokemon.AttackP(actualPlayer, enemyPlayer.actualPokemon, MovementSelected, actualPlayer.ObtainPersonalShift());
-                Console.WriteLine($"{actualPlayer.NamePlayer}'s {actualPokemon.Name} ha atacado a {enemyPlayer.NamePlayer}'s {enemyPlayer.actualPokemon.Name} causando daño.");
-                break; // Salir del bucle si el ataque regular fue ejecutado
+                await ctx.Channel.SendMessageAsync($"No puedes usar el ataque especial {MovementSelected.MoveDetails.Name} en este momento. Debes esperar más turnos. Selecciona otro movimiento.");
+                shift.ShowShift(ctx);
+                PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
+                return;
             }
         }
-
+        else
+        {
+            // Realizar un ataque regular si no es un ataque especial
+            actualPokemon.AttackP(actualPlayer, enemyPlayer.actualPokemon, MovementSelected, actualPlayer.ObtainPersonalShift(), ctx);
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}'s {actualPokemon.Name} ha atacado a {enemyPlayer.NamePlayer}'s {enemyPlayer.actualPokemon.Name} causando daño.");
+        }
+        
         // Incrementar _shift personal del player actual después de que termine su _shift
         actualPlayer.IncrementPersonalShift();
+        
+        // Verifica el ganador
+        if (Player1.AllOutOfCombat())
+        {
+            await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.");
+            await ctx.Channel.SendMessageAsync($"¡{Player2.NamePlayer} ha ganado!");
+            Player1.InGame = false;
+            Player2.InGame = false;
+            return;
+        }
+        if (Player2.AllOutOfCombat())
+        {
+            await ctx.Channel.SendMessageAsync($"{Player2.NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.");
+            await ctx.Channel.SendMessageAsync($"¡{Player1.NamePlayer} ha ganado!");
+            Player1.InGame = false;
+            Player2.InGame = false;
+            return;
+        }
+        
+        shift.SwitchShift();
+        shift.ShowShift(ctx);
+        PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
 
     /// <summary>
     /// Método para usar un ítem durante el turno de un jugador.
     /// </summary>
     /// <param name="player">Jugador que va a usar el ítem.</param>
-    public void UseItem(Player player)
+    public async void UseItem(Player player, int itemNumber, string pokemonName , InteractionContext ctx)
     {
-        bool usedItem = false;
-        while (!usedItem)
+        Pokemon pokemonToUseItem = player.Team.Find(pokemon => pokemon.Name == pokemonName);
+        switch (itemNumber)
         {
-            Console.WriteLine("\nElige un ítem para usar:");
-            Console.WriteLine("1: Superpoción");
-            Console.WriteLine("2: Revivir");
-            Console.WriteLine("3: Cura Total");
-            int choose = int.Parse(Console.ReadLine());
-
-            switch (choose)
-            {
-                case 1:
-                    if (player.Superpotion.Quantity > 0)
+            case 1:
+                if (player.Superpotion.Quantity > 0)
+                {
+                    if (player.actualPokemon == null || player.actualPokemon.OutOfAction())
                     {
-                        if (player.actualPokemon == null || player.actualPokemon.OutOfAction())
+                        await ctx.Channel.SendMessageAsync("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
+                        shift.ShowShift(ctx);
+                        PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
+                        return;
+                    }
+
+                    player.Superpotion.Use(pokemonToUseItem);
+                    shift.SwitchShift();
+                    await ctx.Channel.SendMessageAsync($"\n Superpoción usada con éxito en {player.actualPokemon.Name}.\n");
+                }
+                else
+                {
+                    await ctx.Channel.SendMessageAsync("No te quedan Superpociones.");
+                }
+                break;
+            case 2:
+                if (player.Revive.Quantity > 0)
+                {
+                    List<string> deadPokemons = new List<string>();
+                    foreach (var pokemon in player.Team)
+                    {
+                        if (pokemon.OutOfAction())
                         {
-                            Console.WriteLine("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
-                            SwitchPokemon(player);
+                            deadPokemons.Add(pokemon.Name);
                         }
-                        player.Superpotion.Use(player.actualPokemon);
-                        Console.WriteLine($"\n Superpoción usada con éxito en {player.actualPokemon.Name}.\n");
-                        usedItem = true;
+                    }
+
+                    if (deadPokemons.Count == 0)
+                    {
+                        await ctx.Channel.SendMessageAsync("No hay Pokémon muertos para revivir.");
+                        shift.ShowShift(ctx);
+                        PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
+                        return;
+                    }
+                    
+                    if (deadPokemons.Contains(pokemonName))
+                    {
+                        player.Revive.Use(pokemonToUseItem);
+                        await ctx.Channel.SendMessageAsync($"\n {pokemonToUseItem.Name} ha sido revivido con éxito.\n");
+                        shift.SwitchShift();
                     }
                     else
                     {
-                        Console.WriteLine("No te quedan Superpociones.");
+                        await ctx.Channel.SendMessageAsync("NamePlayer inválido o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.");
                     }
-                    break;
-                case 2:
-                    if (player.Revive.Quantity > 0)
-                    {
-                        List<string> deadPokemons = new List<string>();
-                        foreach (var pokemon in player.Team)
-                        {
-                            if (pokemon.OutOfAction())
-                            {
-                                deadPokemons.Add(pokemon.Name);
-                            }
-                        }
-
-                        if (deadPokemons.Count == 0)
-                        {
-                            Console.WriteLine("No hay Pokémon muertos para revivir.");
-                            return;
-                        }
-
-                        bool revivedPokemons = false;
-                        while (!revivedPokemons)
-                        {
-                            Console.WriteLine("\nElige el nombre del Pokémon para revivir (lista de Pokémon muertos):");
-                            foreach (var name in deadPokemons)
-                            {
-                                Console.WriteLine(name);
-                            }
-
-                            string pokemonName = Console.ReadLine();
-                            if (deadPokemons.Contains(pokemonName))
-                            {
-                                Pokemon pokemonToRevive = player.Team.Find(ok => ok.Name == pokemonName);
-                                player.Revive.Use(pokemonToRevive);
-                                Console.WriteLine($"\n {pokemonToRevive.Name} ha sido revivido con éxito.\n");
-                                revivedPokemons = true;
-                                usedItem = true;
-                            }
-                            else
-                            {
-                                Console.WriteLine("NamePlayer inválido o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("No te quedan Revivir.");
-                    }
-                    break;
-                case 3:
-                    if (player.Totalcure.Quantity > 0)
-                    {
-                        player.Totalcure.Use(player.actualPokemon);
-                        Console.WriteLine($"\n Cura Total usada con éxito en {player.actualPokemon.Name}.\n");
-                        usedItem = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("No te quedan Cura Total.");
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Elección inválida. Por favor, intenta nuevamente.");
-                    break;
-            }
+                }
+                else
+                {
+                    await ctx.Channel.SendMessageAsync("No te quedan pociones para Revivir.");
+                }
+                break;
+            case 3:
+                if (player.Totalcure.Quantity > 0)
+                {
+                    player.Totalcure.Use(pokemonToUseItem);
+                    await ctx.Channel.SendMessageAsync($"\n Cura Total usada con éxito en {player.actualPokemon.Name}.\n");
+                    shift.SwitchShift();
+                }
+                else
+                {
+                    await ctx.Channel.SendMessageAsync("No te quedan Cura Total.");
+                }
+                break;
+            default:
+                await ctx.Channel.SendMessageAsync("Elección inválida. Por favor, intenta nuevamente.");
+                break;
         }
+        
+        shift.ShowShift(ctx);
+        PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
 
     /// <summary>
     /// Método para cambiar el Pokémon del jugador durante un turno.
     /// </summary>
     /// <param name="player">Jugador que cambiará su Pokémon.</param>
-    public void SwitchPokemon(Player player)
+    public async void SwitchPokemon(Player player, int pokemonIndex, InteractionContext ctx)
     {
-        while (true)
+        if (pokemonIndex > 0 && pokemonIndex <= player.Team.Count)
         {
-            Console.WriteLine($"\n{player.NamePlayer}, elige un Pokémon para cambiar:\n");
-            for (int i = 0; i < player.Team.Count; i++)
+            var choosedPokemon = player.Team[pokemonIndex - 1];
+            if (choosedPokemon != player.actualPokemon && !choosedPokemon.OutOfAction())
             {
-                var pokemon = player.Team[i];
-                if (!pokemon.OutOfAction() && (pokemon != player.actualPokemon))
-                {
-                    Console.WriteLine($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
-                }
+                player.SwitchPokemon(pokemonIndex - 1, ctx);
+                shift.SwitchShift();
+                await ctx.Channel.SendMessageAsync($"\nCambio realizado. Ahora tu Pokémon es {player.actualPokemon.Name}\n");
             }
-            try
+            else
             {
-                int choose = int.Parse(Console.ReadLine());
-                if (choose > 0 && choose <= player.Team.Count)
-                {
-                    var choosedPokemon = player.Team[choose - 1];
-                    if (choosedPokemon != player.actualPokemon && !choosedPokemon.OutOfAction())
-                    {
-                        player.SwitchPokemon(choose - 1);
-                        Console.WriteLine($"\nCambio realizado. Ahora tu Pokémon es {player.actualPokemon.Name}\n");
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("El Pokémon seleccionado está fuera de combate o ya es tu Pokémon actual.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Elección inválida. Intenta nuevamente.");
-                }
+                await ctx.Channel.SendMessageAsync("El Pokémon seleccionado está fuera de combate o ya es tu Pokémon actual.");
             }
-            catch
-            {
-                Console.WriteLine("Entrada inválida. Intenta nuevamente.");
-            }
-
         }
+        else
+        {
+            await ctx.Channel.SendMessageAsync("Elección inválida. Intenta nuevamente.");
+        }
+        
+        shift.ShowShift(ctx);
+        PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
 
+    public async void ShowItemsByPlayer(Player player, InteractionContext ctx)
+    {
+        string message = "\nItems disponibles:\n" +
+                         $"1- Superpoción: {player.Superpotion.Quantity}\n" +
+                         $"2- Revivir: {player.Revive.Quantity}\n" +
+                         $"3- Cura Total: {player.Totalcure.Quantity}";
+        await ctx.Channel.SendMessageAsync(message);
+    }
+
+    public async void ShowAttacksByPlayer(Player player, InteractionContext ctx)
+    {
+        await ctx.Channel.SendMessageAsync($"\n{player.NamePlayer}, elige un movimiento de: {player.actualPokemon.Name}");
+
+        for (int i = 0; i < player.actualPokemon.Moves.Count; i++)
+        {
+            var movement = player.actualPokemon.Moves[i];
+            await ctx.Channel.SendMessageAsync($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}");
+        }
+    }
+    
+    public async void ShowPokemonsToSwitch(Player player, InteractionContext ctx)
+    {
+        await ctx.Channel.SendMessageAsync($"\nPokemons disponibles para cambiar:\n");
+        for (int i = 0; i < player.Team.Count; i++)
+        {
+            var pokemon = player.Team[i];
+            if (!pokemon.OutOfAction() && (pokemon != player.actualPokemon))
+            {
+                await ctx.Channel.SendMessageAsync($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+            }
+        }
+    }
 }

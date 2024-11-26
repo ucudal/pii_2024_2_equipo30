@@ -42,9 +42,9 @@ namespace Library
         /// Constructor que permite crear un movimiento con un estado especial opcional.
         /// </summary>
         /// <param name="SpecialStatus">Estado especial del movimiento, por defecto es <see cref="SpecialStatus.NoneStatus"/>.</param>
-        public Move(SpecialStatus SpecialStatus = SpecialStatus.NoneStatus)
+        public Move(SpecialStatus specialStatus = SpecialStatus.NoneStatus)
         {
-            SpecialStatus = SpecialStatus;
+            SpecialStatus = specialStatus;
         }
     }
 }
