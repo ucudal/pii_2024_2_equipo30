@@ -7,7 +7,6 @@ namespace Library.BotDiscord;
 public class BattleCommands : ApplicationCommandModule
 {
     private readonly PokemonService _pokemonService = new PokemonService();
-    static readonly BotQueuePlayers BotQueuePlayers = new BotQueuePlayers();
 
     // Diccionario para mapear usuarios de Discord a instancias de Player
     static readonly Dictionary<string, Player> PlayersRegistry = new Dictionary<string, Player>();
@@ -26,7 +25,7 @@ public class BattleCommands : ApplicationCommandModule
         }
 
         // Intentar unir al jugador a la cola
-        var mens = BotQueuePlayers.JoinQueue(player);
+        var mens = BotQueuePlayers.GetInstance().JoinQueue(player);
         await ctx.CreateResponseAsync(mens);
     }
 
@@ -43,85 +42,138 @@ public class BattleCommands : ApplicationCommandModule
         }
 
         // Intentar sacar al jugador de la cola
-        var mens = BotQueuePlayers.ExitQueue(player);
+        var mens = BotQueuePlayers.GetInstance().ExitQueue(player);
         await ctx.CreateResponseAsync(mens);
     }
-
-    /*[SlashCommand("Start", "Inicia una batalla con los primeros jugadores de la cola.")]
-    public async Task Start(InteractionContext ctx)
+    
+    [SlashCommand("StartBattle", "Inicia una batalla.")]
+    public async Task StartBattle(InteractionContext ctx)
     {
-        var jugadores = BotQueuePlayers.ObtenerProximosJugadores();
-        if (jugadores == null)
+        await BotQueuePlayers.GetInstance().Battle.StartBattle(ctx);
+    }
+    
+    [SlashCommand("StartGame", "Inicia el juego con los primeros jugadores de la cola.")]
+    public async Task StartGame(InteractionContext ctx)
+    {
+        if (BotQueuePlayers.GetInstance().Battle != null)
         {
-            await ctx.CreateResponseAsync("No hay suficientes jugadores en la cola para iniciar una batalla.");
+            await ctx.CreateResponseAsync("Ya hay jugadores en batalla. Espera a que termine.");
+            return;
+        }
+        BotQueuePlayers.GetInstance().PlayersInGame = BotQueuePlayers.GetInstance().ObtenerProximosJugadores();
+        if (BotQueuePlayers.GetInstance().PlayersInGame == null)
+        {
+            await ctx.CreateResponseAsync("No hay suficientes jugadores en la cola para iniciar el juego.");
             return;
         }
 
-        Battle battle = new Battle(jugadores[0], jugadores[1]);
-        
-        await battle.StartBattle(ctx);
-        //agregar lógica de batalla
-        // var ganador = jugadores[0]; // Por ahora, asumimos que el primero gana
-        // await ctx.CreateResponseAsync($"¡La batalla entre {jugadores[0]} y {jugadores[1]} ha comenzado!\nEl ganador es {ganador}.");
-    }*/
+        BotQueuePlayers.GetInstance().Battle = new Battle(BotQueuePlayers.GetInstance().PlayersInGame[0], BotQueuePlayers.GetInstance().PlayersInGame[1]);
+
+        await BotQueuePlayers.GetInstance().Battle.StartGame(ctx);
+    }
 
     [SlashCommand("ShowQueue", "Muestra la lista de jugadores en espera.")]
     public async Task ShowQueue(InteractionContext ctx)
     {
-        var mens = BotQueuePlayers.MostrarJugadores();
+        var mens = BotQueuePlayers.GetInstance().MostrarJugadores();
         await ctx.CreateResponseAsync(mens);
     }
 
     [SlashCommand("Choose", "Permite elegir un Pokémon.")]
-    public async Task ChoosePokemon(InteractionContext ctx,
+    public async Task Choose(InteractionContext ctx,
         [Option("Pokemon", "Ingrese el nombre o ID del Pokémon.")] string pokemonName)
     {
-        var player =_pokemonService.PokemonElection(ctx.Member.Username,InteractionContext ctx); // Utiliza el ID del usuario para obtener el jugador
+        if (BotQueuePlayers.GetInstance().PlayersInGame == null)
+        {
+            await ctx.CreateResponseAsync("La partida aun no ha comenzado.");
+            return;
+        }
+        
+        var player = BotQueuePlayers.GetInstance().GetPlayerByName(ctx.Member.Username, BotQueuePlayers.GetInstance().PlayersInGame);
         if (player == null)
         {
-            await ctx.CreateResponseAsync("Jugador no encontrado.");
+            await ctx.CreateResponseAsync($"Debes esperar tu turno. Es el turno de {BotQueuePlayers.GetInstance().Battle.shift.actualPlayer}");
+            return;
+        }
+        if (player.Team.Count == 6)
+        {
+            await ctx.CreateResponseAsync($"{ctx.User.Username} ha completado la selección de sus 6 Pokémon.");
             return;
         }
 
         var pokemon = await _pokemonService.PokemonElection(pokemonName, ctx);
-        if (pokemon != null)
+        if (pokemon == null)
         {
-            player.TempTeam.Add(pokemon); // Agregar el Pokémon a la lista temporal
-            await ctx.CreateResponseAsync($"¡El Pokémon {pokemon.Name} ha sido elegido con éxito! Tienes {player.TempTeam.Count} Pokémon(s) en tu equipo temporal.");
+            await ctx.CreateResponseAsync($"El pokemon {pokemonName} no se ha encontrado.");
+            return;
         }
-        else
+        
+        player.Team.Add(pokemon);
+        if (player.Team.Count == 6)
         {
-            await ctx.CreateResponseAsync("No se pudo elegir el Pokémon, intenta nuevamente.");
+            player.actualPokemon = player.Team[0];
+        }
+        await ctx.Channel.SendMessageAsync($"¡El Pokémon {pokemon.Name} ha sido elegido con éxito!  {player.NamePlayer} ha seleccionado a {pokemon.Name} con {pokemon.Health} puntos de salud.");
+        await ctx.CreateResponseAsync($"Tienes {player.Team.Count} Pokémon(s) en tu equipo.");
+    }
+    
+    [SlashCommand("Switch", "Cambia el pokemon actual.")]
+    public async Task Switch(InteractionContext ctx,
+        [Option("PokemonIndex", "Ingrese el indice del Pokémon.")] string pokemonIndex)
+    {
+        if (BotQueuePlayers.GetInstance().PlayersInGame == null)
+        {
+            await ctx.CreateResponseAsync("La partida aun no ha comenzado.");
+            return;
+        }
+        var player = BotQueuePlayers.GetInstance().GetPlayerByName(ctx.Member.Username, BotQueuePlayers.GetInstance().PlayersInGame);
+        if (player == null)
+        {
+            await ctx.CreateResponseAsync($"Debes esperar tu turno. Es el turno de {BotQueuePlayers.GetInstance().Battle.shift.actualPlayer}");
+            return;
         }
 
-        if (player.TempTeam.Count == 6)
-        {
-            await ctx.Channel.SendMessageAsync($"{ctx.User.Username} ha completado la selección de sus 6 Pokémon.");
-        }
+        BotQueuePlayers.GetInstance().Battle.SwitchPokemon(BotQueuePlayers.GetInstance().Battle.shift.actualPlayer, int.Parse(pokemonIndex), ctx);
     }
+    
     [SlashCommand("SelectItem", "Selecciona un item del inventario")]
-    public async Task SelecItem(InteractionContext ctx)
+    public async Task SelectItem(InteractionContext ctx,
+        [Option("ItemNumber", "Ingrese el número del item a usar.")] string itemNumber,
+        [Option("PokemonName", "Ingrese el nombre del Pokémon.")] string pokemonName)
     {
-
-    }
-
-    [SlashCommand("TotalCure", "Usar la poscion TotalCure para eleminar efectos de estado")]
-    public async Task Totalcure_Bot(InteractionContext ctx)
-    {
-
+        if (BotQueuePlayers.GetInstance().PlayersInGame == null)
+        {
+            await ctx.CreateResponseAsync("La partida aun no ha comenzado.");
+            return;
+        }
+        
+        var player = BotQueuePlayers.GetInstance().GetPlayerByName(ctx.Member.Username, BotQueuePlayers.GetInstance().PlayersInGame);
+        if (player == null)
+        {
+            await ctx.CreateResponseAsync($"Debes esperar tu turno. Es el turno de {BotQueuePlayers.GetInstance().Battle.shift.actualPlayer}");
+            return;
+        }
+        
+        BotQueuePlayers.GetInstance().Battle.UseItem(BotQueuePlayers.GetInstance().Battle.shift.actualPlayer, int.Parse(itemNumber), pokemonName, ctx);
     }
     
-    [SlashCommand("Revive", "Usa el item revive para revivir un pokemon muerto")]
-    public async Task Revive_Bot(InteractionContext ctx)
+    [SlashCommand("Attack", "Ataca a un pokemon")]
+    public async Task Attack(InteractionContext ctx,
+        [Option("MoveNumber", "Ingrese el número del movimiento a usar.")] string moveNumber)
     {
+        if (BotQueuePlayers.GetInstance().PlayersInGame == null)
+        {
+            await ctx.CreateResponseAsync("La partida aun no ha comenzado.");
+            return;
+        }
         
-    }
-    
-    [SlashCommand("SuperPotion", "Usa la pocion SuperPotion para curar a un pokemon")]
-    public async Task SuperPotion_bot(InteractionContext ctx)
-    {
+        var player = BotQueuePlayers.GetInstance().GetPlayerByName(ctx.Member.Username, BotQueuePlayers.GetInstance().PlayersInGame);
+        if (player == null)
+        {
+            await ctx.CreateResponseAsync($"Debes esperar tu turno. Es el turno de {BotQueuePlayers.GetInstance().Battle.shift.actualPlayer}");
+            return;
+        }
         
+        BotQueuePlayers.GetInstance().Battle.Attack(BotQueuePlayers.GetInstance().Battle.shift.actualPlayer, BotQueuePlayers.GetInstance().Battle.shift.enemyPlayer, int.Parse(moveNumber), ctx);
     }
-
-
 }

@@ -1,3 +1,5 @@
+using DSharpPlus.SlashCommands;
+
 namespace Library;
 
 /// <summary>
@@ -78,7 +80,7 @@ public interface IPokemon
     /// Verifica si el Pokémon puede atacar en su turno, teniendo en cuenta su estado actual.
     /// </summary>
     /// <returns>Devuelve true si el Pokémon puede atacar, de lo contrario false.</returns>
-    bool CanAtack();
+    Task<bool> CanAtack(InteractionContext ctx);
 
     /// <summary>
     /// Realiza un ataque al Pokémon enemigo.
@@ -87,13 +89,13 @@ public interface IPokemon
     /// <param name="enemy">El Pokémon enemigo que recibe el ataque.</param>
     /// <param name="movement">El movimiento utilizado para el ataque.</param>
     /// <param name="currentShift">El turno actual en el que se realiza el ataque.</param>
-    void AttackP(Player player, Pokemon enemy, Move movement, int currentShift);
+    void AttackP(Player player, Pokemon enemy, Move movement, int currentShift, InteractionContext ctx);
 
     /// <summary>
     /// Procesa el estado actual del Pokémon y aplica los efectos correspondientes.
     /// </summary>
     /// <param name="enemy">El Pokémon enemigo (opcional) en caso de que el estado afecte a ambos.</param>
-    void ProcessStatus();
+    void ProcessStatus(InteractionContext ctx);
 
     /// <summary>
     /// Verifica si el Pokémon está fuera de combate (sin puntos de salud).

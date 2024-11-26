@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using DSharpPlus.SlashCommands;
 
 namespace Library
 {
@@ -132,11 +133,11 @@ namespace Library
         /// <param name="enemy">El Pokémon enemigo que recibe el ataque.</param>
         /// <param name="movement">Movimiento usado por el Pokémon atacante.</param>
         /// <param name="currentShift">Turno actual en el que se realiza el ataque.</param>
-        public void AttackP(Player player, Pokemon enemy, Move movement, int currentShift)
+        public async void AttackP(Player player, Pokemon enemy, Move movement, int currentShift, InteractionContext ctx)
         {
             if (movement.SpecialAttack && !player.CanUseEspecialAtack(movement.MoveDetails.Name, currentShift))
             {
-                Console.WriteLine($"No puedes usar el ataque especial {movement.MoveDetails.Name} en este momento. Debes esperar más turnos.");
+                await ctx.Channel.SendMessageAsync($"No puedes usar el ataque especial {movement.MoveDetails.Name} en este momento. Debes esperar más turnos.");
                 return;
             }
             if (movement.SpecialAttack)
@@ -144,10 +145,10 @@ namespace Library
                 player.RegisterSpecialAttack(movement.MoveDetails.Name, currentShift);
             }
 
-            Console.WriteLine($"{Name} usa {movement.MoveDetails.Name}!");
+            await ctx.Channel.SendMessageAsync($"{Name} usa {movement.MoveDetails.Name}!");
             if (enemy.Status == SpecialStatus.Asleep)
             {
-                Console.WriteLine($"{Name} ya está dormido y no puede dormir nuevamente hasta despertar.");
+                await ctx.Channel.SendMessageAsync($"{Name} ya está dormido y no puede dormir nuevamente hasta despertar.");
             }
 
             if (movement.SpecialStatus != SpecialStatus.NoneStatus && enemy.Status == SpecialStatus.NoneStatus)
@@ -156,11 +157,11 @@ namespace Library
                 if (movement.SpecialStatus == SpecialStatus.Asleep)
                 {
                     enemy.SleepTurnsLeft = random.Next(1, 5);
-                    Console.WriteLine($"{enemy.Name} ha sido dormido y estará dormido por {enemy.SleepTurnsLeft} turnos.");
+                    await ctx.Channel.SendMessageAsync($"{enemy.Name} ha sido dormido y estará dormido por {enemy.SleepTurnsLeft} turnos.");
                 }
                 else
                 {
-                    Console.WriteLine($"{enemy.Name} ahora está {movement.SpecialStatus}.");
+                    await ctx.Channel.SendMessageAsync($"{enemy.Name} ahora está {movement.SpecialStatus}.");
                 }
             }
 
@@ -172,7 +173,7 @@ namespace Library
             enemy.Health -= damage;
             if (enemy.Health < 0) enemy.Health = 0;
 
-            Console.WriteLine($"{Name} hizo {damage:F1} puntos de daño! {enemy.Name} ahora tiene {enemy.Health:F1} puntos de vida.");
+            await ctx.Channel.SendMessageAsync($"{Name} hizo {damage:F1} puntos de daño! {enemy.Name} ahora tiene {enemy.Health:F1} puntos de vida.");
         }
         
         /// <summary>
@@ -198,25 +199,25 @@ namespace Library
         /// Verifica si el Pokémon puede atacar, teniendo en cuenta su estado actual.
         /// </summary>
         /// <returns>Devuelve true si el Pokémon puede atacar, de lo contrario false.</returns>
-        public bool CanAtack()
+        public async Task<bool> CanAtack(InteractionContext ctx)
         {
-            ProcessStatus(); 
+            ProcessStatus(ctx); 
             if (Status == SpecialStatus.Asleep && SleepTurnsLeft > 0)
             {
                 SleepTurnsLeft--;
-                Console.WriteLine($"{Name} está dormido y no puede atacar. Turnos restantes: {SleepTurnsLeft}");
+                await ctx.Channel.SendMessageAsync($"{Name} está dormido y no puede atacar. Turnos restantes: {SleepTurnsLeft}");
 
                 if (SleepTurnsLeft == 0)
                 {
                     Status = SpecialStatus.NoneStatus;
-                    Console.WriteLine($"{Name} se ha despertado.");
+                    await ctx.Channel.SendMessageAsync($"{Name} se ha despertado.");
                 }
 
                 return false;
             }
-            else if (Status == SpecialStatus.Paralyzed && random.Next(0, 2) == 0)
+            if (Status == SpecialStatus.Paralyzed && random.Next(0, 2) == 0)
             {
-                Console.WriteLine($"{Name} está paralizado y no puede atacar este turno.");
+                await ctx.Channel.SendMessageAsync($"{Name} está paralizado y no puede atacar este turno.");
                 return false;
             }
 
@@ -237,19 +238,19 @@ namespace Library
         /// Procesa el estado actual del Pokémon, aplicando los efectos correspondientes.
         /// </summary>
         /// <param name="enemy">El Pokémon enemigo, si es aplicable.</param>
-        public void ProcessStatus()
+        public async void ProcessStatus(InteractionContext ctx)
         {
             switch (this.Status)
             {
                 case SpecialStatus.Poisoned:
                     int poisonDamage = (int)(this.Health * 0.05);
                     this.Health -= poisonDamage;
-                    Console.WriteLine($"{this.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
+                    await ctx.Channel.SendMessageAsync($"{this.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
                     break;
                 case SpecialStatus.Burned:
                     int burnDamage = (int)(this.Health * 0.10);
                     this.Health -= burnDamage;
-                    Console.WriteLine($"{this.Name} está quemado y pierde {burnDamage} puntos de vida.");
+                    await ctx.Channel.SendMessageAsync($"{this.Name} está quemado y pierde {burnDamage} puntos de vida.");
                     break;
                 case SpecialStatus.Asleep:
                     break;
