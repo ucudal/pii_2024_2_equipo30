@@ -67,26 +67,32 @@ public class Battle : IBattle
     /// <param name="enemyPlayer">Jugador enemigo que recibe la acción.</param>
     public async void PlayShift(Player actualPlayer, Player enemyPlayer, InteractionContext ctx)
     {
+        string message = "";
         if (!actualPlayer.actualPokemon.OutOfAction())
         {
-            await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
-            actualPlayer.actualPokemon.ProcessStatus(ctx);
-            await ctx.Channel.SendMessageAsync("\n---------------------------------------------------");
-            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida");
-            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}, puedes utilizar los siguientes comandos:");
-            await ctx.Channel.SendMessageAsync("/SelectItem <ItemNumber> <PokemonName>");
-            ShowItemsByPlayer(actualPlayer, ctx);
-            await ctx.Channel.SendMessageAsync("/Attack <MoveNumber>");
-            ShowAttacksByPlayer(actualPlayer, ctx);
-            await ctx.Channel.SendMessageAsync("/Switch <PokemonIndex>");
-            ShowPokemonsToSwitch(actualPlayer, ctx);
+            message += "\n\n";
+            message += actualPlayer.actualPokemon.ProcessStatus();
+            message += "\n\n" +
+                       $"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida" +
+                       $"{actualPlayer.NamePlayer}, puedes utilizar los siguientes comandos:" +
+                       $"/SelectItem <ItemNumber> <PokemonName>";
+            message += ShowItemsByPlayer(actualPlayer, ctx);
+            message += "\n\n" +
+                       $"/Attack <MoveNumber>";
+            message += ShowAttacksByPlayer(actualPlayer, ctx);
+            message += "\n\n" +
+                       $"/Switch <PokemonIndex>";
+            message += ShowPokemonsToSwitch(actualPlayer, ctx);
+            
         }
         else
         {
-            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer} tu pokemon actual está fuera de combate. Debes elegir otro\n");
-            await ctx.Channel.SendMessageAsync("Utiliza el siguiente comando: /Switch <PokemonIndex>");
-            ShowPokemonsToSwitch(actualPlayer, ctx);
+            message += $"{actualPlayer.NamePlayer} tu pokemon actual está fuera de combate. Debes elegir otro\n" +
+                       $"Utiliza el siguiente comando: /Switch <PokemonIndex>";
+            message += ShowPokemonsToSwitch(actualPlayer, ctx);
         }
+
+        await ctx.Channel.SendMessageAsync(message);
     }
 
     /// <summary>
@@ -297,36 +303,40 @@ public class Battle : IBattle
         PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
 
-    public async void ShowItemsByPlayer(Player player, InteractionContext ctx)
+    public string ShowItemsByPlayer(Player player, InteractionContext ctx)
     {
         string message = "\nItems disponibles:\n" +
                          $"1- Superpoción: {player.Superpotion.Quantity}\n" +
                          $"2- Revivir: {player.Revive.Quantity}\n" +
                          $"3- Cura Total: {player.Totalcure.Quantity}";
-        await ctx.Channel.SendMessageAsync(message);
+        return message;
     }
 
-    public async void ShowAttacksByPlayer(Player player, InteractionContext ctx)
+    public string ShowAttacksByPlayer(Player player, InteractionContext ctx)
     {
-        await ctx.Channel.SendMessageAsync($"\n{player.NamePlayer}, elige un movimiento de: {player.actualPokemon.Name}");
-
+        string message = $"\n{player.NamePlayer}, elige un movimiento de: {player.actualPokemon.Name}";
+    
         for (int i = 0; i < player.actualPokemon.Moves.Count; i++)
         {
             var movement = player.actualPokemon.Moves[i];
-            await ctx.Channel.SendMessageAsync($"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}");
+            message += $"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}";
         }
+
+        return message;
     }
     
-    public async void ShowPokemonsToSwitch(Player player, InteractionContext ctx)
+    public string ShowPokemonsToSwitch(Player player, InteractionContext ctx)
     {
-        await ctx.Channel.SendMessageAsync($"\nPokemons disponibles para cambiar:\n");
+        string message = $"\nPokemons disponibles para cambiar:\n";
         for (int i = 0; i < player.Team.Count; i++)
-        {
+        {   
             var pokemon = player.Team[i];
             if (!pokemon.OutOfAction() && (pokemon != player.actualPokemon))
             {
-                await ctx.Channel.SendMessageAsync($"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida");
+                message += $"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida";
             }
         }
+
+        return message;
     }
 }

@@ -201,7 +201,7 @@ namespace Library
         /// <returns>Devuelve true si el Pokémon puede atacar, de lo contrario false.</returns>
         public async Task<bool> CanAtack(InteractionContext ctx)
         {
-            ProcessStatus(ctx); 
+            ProcessStatus(); 
             if (Status == SpecialStatus.Asleep && SleepTurnsLeft > 0)
             {
                 SleepTurnsLeft--;
@@ -238,20 +238,18 @@ namespace Library
         /// Procesa el estado actual del Pokémon, aplicando los efectos correspondientes.
         /// </summary>
         /// <param name="enemy">El Pokémon enemigo, si es aplicable.</param>
-        public async void ProcessStatus(InteractionContext ctx)
+        public string ProcessStatus()
         {
             switch (this.Status)
             {
                 case SpecialStatus.Poisoned:
                     int poisonDamage = (int)(this.Health * 0.05);
                     this.Health -= poisonDamage;
-                    await ctx.Channel.SendMessageAsync($"{this.Name} está envenenado y pierde {poisonDamage} puntos de vida.");
-                    break;
+                    return $"{this.Name} está envenenado y pierde {poisonDamage} puntos de vida.";
                 case SpecialStatus.Burned:
                     int burnDamage = (int)(this.Health * 0.10);
                     this.Health -= burnDamage;
-                    await ctx.Channel.SendMessageAsync($"{this.Name} está quemado y pierde {burnDamage} puntos de vida.");
-                    break;
+                    return $"{this.Name} está quemado y pierde {burnDamage} puntos de vida.";
                 case SpecialStatus.Asleep:
                     break;
                 case SpecialStatus.Paralyzed:
@@ -259,6 +257,8 @@ namespace Library
                 case SpecialStatus.NoneStatus:
                     break;
             }
+
+            return "";
         }
 
         /// <summary>

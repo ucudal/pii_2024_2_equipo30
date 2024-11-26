@@ -25,7 +25,7 @@ namespace Library
         /// </summary>
         /// <param name="player">El jugador que usará el ítem.</param>
         void UseItem(Player player, int itemNumber, string pokemonName, InteractionContext ctx);
-
+        
         /// <summary>
         /// Método para que el jugador realice un ataque contra el Pokémon enemigo.
         /// </summary>

@@ -19,26 +19,30 @@ public class PokemonService
     {   
         PokemonApi pokemonApi = new PokemonApi(client);
         PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
-        await ctx.Channel.SendMessageAsync("\n==================== SELECCIÓN DE POKÉMON ====================\n");
-        await ctx.Channel.SendMessageAsync($"Selección de Pokémon para el jugador {ctx.User.Username}:\n");
+        string message = "\n\n" +
+                   "==================== SELECCIÓN DE POKÉMON ====================\n" +
+                   $"Selección de Pokémon para el jugador {ctx.User.Username}:\n";
         try
         {
             var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId}");
             if (response.IsSuccessStatusCode)
             {
                 var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
-                await ctx.Channel.SendMessageAsync($"Has seleccionado a: {pokemon.Name}\n");
+                message += $"Has seleccionado a: {pokemon.Name}\n";
+                await ctx.Channel.SendMessageAsync(message);
                 return pokemon;
             }
             else
             {
-                await ctx.Channel.SendMessageAsync($"No se pudo obtener datos para: {pokemonId}. Por favor, intenta nuevamente.\n");
+                message += $"No se pudo obtener datos para: {pokemonId}. Por favor, intenta nuevamente.\n";
             }
         }
         catch (Exception ex)
         {
-            await ctx.Channel.SendMessageAsync($"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n");
+            message += $"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n";
         }
+
+        await ctx.Channel.SendMessageAsync(message);
         return null;
     }
 }

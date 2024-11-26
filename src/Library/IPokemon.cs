@@ -95,7 +95,7 @@ public interface IPokemon
     /// Procesa el estado actual del Pokémon y aplica los efectos correspondientes.
     /// </summary>
     /// <param name="enemy">El Pokémon enemigo (opcional) en caso de que el estado afecte a ambos.</param>
-    void ProcessStatus(InteractionContext ctx);
+    string ProcessStatus();
 
     /// <summary>
     /// Verifica si el Pokémon está fuera de combate (sin puntos de salud).

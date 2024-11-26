@@ -90,10 +90,5 @@ namespace Library
         {
             return turnoPersonal;
         }
-
-        public void GetTeam(List<Pokemon> listapokemon)
-        {
-            Team = listapokemon;
-        }
     }
 }
