@@ -38,7 +38,6 @@ namespace Library.BotDiscord
                 TokenType = TokenType.Bot,
                 AutoReconnect = true
             };
-            
             Client = new DiscordClient(discordConfig);
             Client.Ready += async (sender, e) =>//basicamente para saber si el bot logro conectarse con el gateway de ds
             {
@@ -51,7 +50,7 @@ namespace Library.BotDiscord
             SlashCommands.RegisterCommands<BotDiscord.BattleCommands>();
             SlashCommands.RegisterCommands<BotDiscord.BotQueuePlayers>();
             SlashCommands.RegisterCommands<BotDiscord.BotCommands>();
-            
+            SlashCommands.RegisterCommands<RoomBot.BattleRoom>();
             await Client.ConnectAsync();
             await Task.Delay(-1);
         }

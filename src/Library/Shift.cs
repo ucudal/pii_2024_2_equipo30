@@ -55,7 +55,7 @@ namespace Library
         /// </summary>
         public void ShowShift()
         {
-            Console.WriteLine($"-- Shift {shiftNumber} / {actualPlayer.NamePlayer} es tu turno! --");
+            Console.WriteLine($"-- turno {shiftNumber} / {actualPlayer.NamePlayer} es tu turno! --");
         }
 
         /// <summary>

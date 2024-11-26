@@ -50,4 +50,8 @@ public class BotQueuePlayers : ApplicationCommandModule
         }
         return $"Jugadores en cola: {string.Join(", ", namelist)}";
     }
+    
+    
+    
+    
 }//Enqueue y Dequeue no se pueden traducir mas a ingles

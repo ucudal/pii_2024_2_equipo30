@@ -14,7 +14,8 @@ public class Battle : IBattle
     private Player Player1;
     private Player Player2;
     private Shift _shift;
-    
+    private PokemonService _service = new PokemonService();
+    private int maxpokemons = 6;
 
     /// <summary>
     /// Constructor que inicializa la batalla con dos jugadores.
@@ -37,12 +38,16 @@ public class Battle : IBattle
         Player1.InBattle = true;
         Player2.InBattle = true;
         
-        await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer}, selecciona tu Pokémon inicial.");
-        await Player1.PokemonElection(ctx);
+        //elegir pokemon,logica.
+        //batalla
         
         
+        await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer}, selecciona un pokemon para la pelea.");
+        //await _service.PokemonElection(ctx);
+        
+        //cambiar
         await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer}, selecciona tu Pokémon inicial.");
-        await Player2.PokemonElection(ctx);
+        //await Player2.PokemonElection(ctx);
         
         
         await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer} ha seleccionado a {Player1.actualPokemon.Name} con {Player1.actualPokemon.Health} puntos de salud.");
@@ -97,7 +102,7 @@ public class Battle : IBattle
             switch (actionChoose)
             {
                 case 1:
-                    UseItem(actualPlayer);
+                    
                     break;
                 case 2:
                     Attack(actualPlayer, enemyPlayer);

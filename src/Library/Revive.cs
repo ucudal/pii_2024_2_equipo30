@@ -24,15 +24,15 @@ namespace Library
             {
                 if (pokemon.OutOfAction()) // Verifica si el Pokémon está fuera de combate
                 {
-                    double HpRecovered = pokemon.MaxHealt / 2; // Calcula el 50% de la vida máxima del Pokémon
+                    double hpRecovered = pokemon.MaxHealt / 2; // Calcula el 50% de la vida máxima del Pokémon
 
-                    pokemon.Health = HpRecovered; // Recupera su salud
+                    pokemon.Health = hpRecovered; // Recupera su salud
                     pokemon.Outofaction = false; // Asegura que el Pokémon esté marcado como en combate
 
                     // Llama a OutOfAction para asegurar que el estado se actualice correctamente
                     pokemon.OutOfAction();
 
-                    Console.WriteLine($"El Pokémon {pokemon.Name} ha sido revivido con un {ItemsName} y ha recuperado {HpRecovered} HP.");
+                    Console.WriteLine($"El Pokémon {pokemon.Name} ha sido revivido con un {ItemsName} y ha recuperado {hpRecovered} HP.");
                     Consume(); // Consume el objeto Revive
                 }
                 else
