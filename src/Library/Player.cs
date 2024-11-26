@@ -142,16 +142,16 @@ namespace Library
 }*/
        public async Task PokemonElection(InteractionContext ctx)
        {
-           PokemonApi pokemonApi = new PokemonApi(client);
-           PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
+           //PokemonApi pokemonApi = new PokemonApi(client);
+          // PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
 
            List<Pokemon> PokemonList = new List<Pokemon>();
-           Random random = new Random();
+           // Random random = new Random();
 
            await ctx.Channel.SendMessageAsync("\n==================== SELECCIÓN DE POKÉMON ====================\n");
            await ctx.Channel.SendMessageAsync($"Selección de Pokémon para el jugador {NamePlayer}:\n");
 
-           // Generar 6 IDs aleatorios
+           /*// Generar 6 IDs aleatorios
            List<int> randomPokemonIds = Enumerable.Range(0, 6).Select(_ => random.Next(1, 1001)).ToList();
 
            foreach (var pokemonId in randomPokemonIds)
@@ -174,17 +174,47 @@ namespace Library
                {
                    await ctx.Channel.SendMessageAsync($"Ocurrió un error al intentar obtener el Pokémon con ID {pokemonId}: {ex.Message}. \n");
                }
+           }*/
+           for (int i = 0; i < 6; i++)
+           {
+               bool pokemonAgregado = false;
+               while (!pokemonAgregado)
+               {
+                   try
+                   {
+                       string pokemonId = 
+                       var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId}");
+                       if (response.IsSuccessStatusCode)
+                       {
+                           var pokemon = await pokemonCreator.CreatePokemon(pokemonId);
+                           PokemonList.Add(pokemon);
+                           await ctx.Channel.SendMessageAsync($"Has seleccionado a: {pokemon.Name}\n");
+                           pokemonAgregado = true;
+                       }
+                       else
+                       {
+                           await ctx.Channel.SendMessageAsync(
+                               $"No se pudo obtener datos para: {pokemonId}. Por favor, intenta nuevamente.\n");
+                       }
+                   }
+                   catch (Exception ex)
+                   {
+                       await ctx.Channel.SendMessageAsync(
+                           $"Ocurrió un error al intentar obtener el Pokémon: {ex.Message}. Por favor, intente nuevamente.\n");
+                   }
+               }
+
+               Team = PokemonList;
+               actualPokemon = PokemonList.FirstOrDefault(); // Asignar el primer Pokémon si existe
            }
-
-           Team = PokemonList;
-           actualPokemon = PokemonList.FirstOrDefault(); // Asignar el primer Pokémon si existe
        }
+       
 
 
 
 
 
-        /// <summary>
+       /// <summary>
         /// Método para cambiar el Pokémon actual en combate.
         /// </summary>
         /// <param name="indice">Índice del Pokémon al que se desea cambiar.</param>

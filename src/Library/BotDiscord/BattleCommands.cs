@@ -6,7 +6,9 @@ namespace Library.BotDiscord;
 
 public class BattleCommands : ApplicationCommandModule
 {
+    private static readonly HttpClient client = new HttpClient();
     static readonly BotQueuePlayers BotQueuePlayers = new BotQueuePlayers();
+    //public Battle _battle = new Battle(Player actualPlayer, Player enemyPlayer);
 
     // Diccionario para mapear usuarios de Discord a instancias de Player
     static readonly Dictionary<string, Player> PlayersRegistry = new Dictionary<string, Player>();
@@ -45,6 +47,7 @@ public class BattleCommands : ApplicationCommandModule
         var mens = BotQueuePlayers.ExitQueue(player);
         await ctx.CreateResponseAsync(mens);
     }
+
     [SlashCommand("Start", "Inicia una batalla con los primeros jugadores de la cola.")]
     public async Task Start(InteractionContext ctx)
     {
@@ -69,37 +72,69 @@ public class BattleCommands : ApplicationCommandModule
         await ctx.CreateResponseAsync(mens);
     }
 
-    
-    [SlashCommand("option1", "Elige la opción 1.")]
-    public async Task Opcion1(InteractionContext ctx, Player actualPlayer, Player enemyPlayer, Battle _battle)
+    [SlashCommand("Choose", "Permite elegir un pokemon.")]
+    public async Task ChoosePokemon(InteractionContext ctx,
+        [Option("Pokemon", "Pokemon a elegir.")]
+        string pokemonId)
     {
-        // Enviar una respuesta inicial para evitar timeout
-        await ctx.CreateResponseAsync("Procesando la opción 1...");
-        Battle battle = new Battle(actualPlayer,enemyPlayer);
+        PokemonApi pokemonApi = new PokemonApi(client);
+        PokemonCreator pokemonCreator = new PokemonCreator(pokemonApi);
+        List<Pokemon> PokemonList = new List<Pokemon>();
 
-        // Llamar al método UseItem de forma correcta
-        var resultado = await battle.UseItem(ctx, actualPlayer); // Corrige los parámetros
-        await ctx.Channel.SendMessageAsync(resultado);
-    }
-
-    [SlashCommand("option2", "Elige la opción 2.")]
-    public async Task Opcion2(InteractionContext ctx, Player actualPlayer, Player enemyPlayer)
-    {
-        // Enviar una respuesta inicial para evitar timeout
-        await ctx.CreateResponseAsync("Procesando la opción 2...");
-
-        // Crear una instancia de Battle
-        var battle = new Battle(actualPlayer, enemyPlayer);
-
-        // Llamar al método Attack de forma correcta
-        var resultado = await Battle.Attack(ctx, actualPlayer, enemyPlayer); // Corrige los parámetros
-        await ctx.Channel.SendMessageAsync(resultado);
-    }
-
-    [SlashCommand("Option 3", "Elige la opcion 3.")]
-    public async Task Opcion3(InteractionContext ctx)
-    {
-        var Op3 = Battle.UseItem(ctx, Player actualPlayer);
-        await ctx.CreateResponseAsync(Op3);
+        try
+        {
+            var response = await client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{pokemonId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var pokemon = await pokemonCreator.CreatePokemon(pokemonId.ToString());
+                PokemonList.Add(pokemon);
+                await ctx.Channel.SendMessageAsync($"Has seleccionado a: {pokemon.Name}\n");
+            }
+            else
+            {
+                await ctx.Channel.SendMessageAsync(
+                    $"No se pudo obtener datos para el ID: {pokemonId}. Omite este Pokémon.\n");
+            }
+        }
+        catch (Exception ex)
+        {
+            await ctx.Channel.SendMessageAsync(
+                $"Ocurrió un error al intentar obtener el Pokémon con ID {pokemonId}: {ex.Message}. \n");
+        }
     }
 }
+
+
+/*[SlashCommand("option1", "Elige la opción 1.")]
+public async Task Opcion1(InteractionContext ctx, Player actualPlayer, Player enemyPlayer, Battle _battle)
+{
+    // Enviar una respuesta inicial para evitar timeout
+    await ctx.CreateResponseAsync("Procesando la opción 1...");
+    Battle battle = new Battle(actualPlayer,enemyPlayer);
+
+    // Llamar al método UseItem de forma correcta
+    var resultado = await battle.UseItem(ctx, actualPlayer);
+    await ctx.Channel.SendMessageAsync(resultado);
+}
+
+[SlashCommand("option2", "Elige la opción 2.")]
+public async Task Opcion2(InteractionContext ctx, Player actualPlayer, Player enemyPlayer)
+{
+    // Enviar una respuesta inicial para evitar timeout
+    await ctx.CreateResponseAsync("Procesando la opción 2...");
+
+    // Crear una instancia de Battle
+    var battle = new Battle(actualPlayer, enemyPlayer);
+
+    // Llamar al método Attack de forma correcta
+    var resultado = await Battle.Attack(ctx, actualPlayer, enemyPlayer); // Corrige los parámetros
+    await ctx.Channel.SendMessageAsync(resultado);
+}
+
+[SlashCommand("Option 3", "Elige la opcion 3.")]
+public async Task Opcion3(InteractionContext ctx, Player actualPlayer)
+{
+    var Op3 = Battle.SwitchPokemon(ctx, actualPlayer);
+    await ctx.CreateResponseAsync(Op3);
+}
+}*/
