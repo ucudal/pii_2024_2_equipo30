@@ -68,4 +68,38 @@ public class BattleCommands : ApplicationCommandModule
         var mens = BotQueuePlayers.MostrarJugadores();
         await ctx.CreateResponseAsync(mens);
     }
+
+    
+    [SlashCommand("option1", "Elige la opción 1.")]
+    public async Task Opcion1(InteractionContext ctx, Player actualPlayer, Player enemyPlayer, Battle _battle)
+    {
+        // Enviar una respuesta inicial para evitar timeout
+        await ctx.CreateResponseAsync("Procesando la opción 1...");
+        Battle battle = new Battle(actualPlayer,enemyPlayer);
+
+        // Llamar al método UseItem de forma correcta
+        var resultado = await battle.UseItem(ctx, actualPlayer); // Corrige los parámetros
+        await ctx.Channel.SendMessageAsync(resultado);
+    }
+
+    [SlashCommand("option2", "Elige la opción 2.")]
+    public async Task Opcion2(InteractionContext ctx, Player actualPlayer, Player enemyPlayer)
+    {
+        // Enviar una respuesta inicial para evitar timeout
+        await ctx.CreateResponseAsync("Procesando la opción 2...");
+
+        // Crear una instancia de Battle
+        var battle = new Battle(actualPlayer, enemyPlayer);
+
+        // Llamar al método Attack de forma correcta
+        var resultado = await Battle.Attack(ctx, actualPlayer, enemyPlayer); // Corrige los parámetros
+        await ctx.Channel.SendMessageAsync(resultado);
+    }
+
+    [SlashCommand("Option 3", "Elige la opcion 3.")]
+    public async Task Opcion3(InteractionContext ctx)
+    {
+        var Op3 = Battle.UseItem(ctx, Player actualPlayer);
+        await ctx.CreateResponseAsync(Op3);
+    }
 }

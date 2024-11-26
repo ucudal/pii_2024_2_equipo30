@@ -62,9 +62,9 @@ public class Battle : IBattle
         while (!Player1.AllOutOfCombat() && !Player2.AllOutOfCombat())
         {
             await ctx.Channel.SendMessageAsync("\n================ TURNOS DE BATALLA ================\n");
-            _shift.ShowShift(ctx);
-            PlayShift(ctx,_shift.actualPlayer, _shift.enemyPlayer);
-            _shift.SwitchShift();
+            await _shift.ShowShift(ctx);
+            await PlayShift(ctx,_shift.actualPlayer, _shift.enemyPlayer);
+            //_shift.SwitchShift();
         }
 
         // Mostrar quién ganó la batalla

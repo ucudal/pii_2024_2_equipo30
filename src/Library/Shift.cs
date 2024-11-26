@@ -1,5 +1,6 @@
 using DSharpPlus.SlashCommands;
 using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.Entities;
 
 namespace Library
 {
@@ -45,13 +46,21 @@ namespace Library
         /// Cambia el turno entre los dos jugadores.
         /// El jugador actual se convierte en el enemigo y viceversa.
         /// </summary>
-        public void SwitchShift()
+        /*public void SwitchShift()
+        {
+            var temp = actualPlayer;
+            actualPlayer = enemyPlayer;
+            enemyPlayer = temp;
+            shiftNumber++;
+        }*/
+        public async Task SwitchShift()
         {
             var temp = actualPlayer;
             actualPlayer = enemyPlayer;
             enemyPlayer = temp;
             shiftNumber++;
         }
+
 
         /// <summary>
         /// Muestra en la consola el jugador que tiene el turno actual.
