@@ -53,12 +53,12 @@ public class Battle : IBattle
     {
         if (!Player1.InGame || !Player2.InGame)
         {
-            await ctx.Channel.SendMessageAsync("El juego no ha iniciado.");
+            await ctx.Channel.SendMessageAsync("El juego no ha iniciado.\n");
             return;
         }
         if (Player1.Team.Count < 6 || Player2.Team.Count < 6)
         {
-            await ctx.Channel.SendMessageAsync("Ambos jugadores deben tener al menos 6 Pokémons.");
+            await ctx.Channel.SendMessageAsync("Ambos jugadores deben tener al menos 6 Pokémons.\n");
             return;
         }
         await ctx.Channel.SendMessageAsync("La batalla ha iniciado.\n================ TURNOS DE BATALLA ================\n");
@@ -74,7 +74,7 @@ public class Battle : IBattle
     {
         Player1.InGame = true;
         Player2.InGame = true;
-        await ctx.CreateResponseAsync($"Utiliza el comando /choose para elegir un pokemon. Deben elegir 6 pokemons.");
+        await ctx.CreateResponseAsync($"Utiliza el comando /choose para elegir un pokemon. Deben elegir 6 pokemons.\n");
     }
 
     /// <summary>
@@ -91,22 +91,22 @@ public class Battle : IBattle
             message += "\n\n";
             message += actualPlayer.actualPokemon.ProcessStatus();
             message += "\n\n" +
-                       $"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida" +
-                       $"{actualPlayer.NamePlayer}, puedes utilizar los siguientes comandos:" +
-                       $"/SelectItem <ItemNumber> <PokemonName>";
+                       $"{actualPlayer.NamePlayer}, tu pokemon actual es {actualPlayer.actualPokemon.Name} y tiene {actualPlayer.actualPokemon.Health:F1} puntos de vida.\n" +
+                       $"{actualPlayer.NamePlayer}, puedes utilizar los siguientes comandos:\n\n" +
+                       $"/SelectItem <ItemNumber> <PokemonName>\n";
             message += ShowItemsByPlayer(actualPlayer, ctx);
             message += "\n\n" +
-                       $"/Attack <MoveNumber>";
+                       $"/Attack <MoveNumber>\n";
             message += ShowAttacksByPlayer(actualPlayer, ctx);
             message += "\n\n" +
-                       $"/Switch <PokemonIndex>";
+                       $"/Switch <PokemonIndex>\n";
             message += ShowPokemonsToSwitch(actualPlayer, ctx);
             
         }
         else
         {
             message += $"{actualPlayer.NamePlayer} tu pokemon actual está fuera de combate. Debes elegir otro\n" +
-                       $"Utiliza el siguiente comando: /Switch <PokemonIndex>";
+                       $"Utiliza el siguiente comando: /Switch <PokemonIndex>\n";
             message += ShowPokemonsToSwitch(actualPlayer, ctx);
         }
 
@@ -126,7 +126,7 @@ public class Battle : IBattle
 
         if (actualPokemon == null || actualPokemon.Moves == null || actualPokemon.Moves.Count == 0)
         {
-            await ctx.Channel.SendMessageAsync($"{actualPokemon?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.");
+            await ctx.Channel.SendMessageAsync($"{actualPokemon?.Name ?? "Ningún Pokémon"} no tiene movimientos disponibles.\n");
             shift.ShowShift(ctx);
             PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
             return;  // No tiene movimientos disponibles, salir de la función
@@ -143,7 +143,7 @@ public class Battle : IBattle
         
         if (selectedMovement < 0 || selectedMovement >= actualPokemon.Moves.Count)
         {
-            await ctx.Channel.SendMessageAsync("Selección de movimiento inválida. Intenta nuevamente.");
+            await ctx.Channel.SendMessageAsync("Selección de movimiento inválida. Intenta nuevamente.\n");
             shift.ShowShift(ctx);
             PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
             return;
@@ -156,7 +156,7 @@ public class Battle : IBattle
             // Verificar si el ataque especial puede ser usado
             bool canUseEspecialAtack = actualPlayer.CanUseEspecialAtack(MovementSelected.MoveDetails.Name, actualPlayer.ObtainPersonalShift());
 
-            await ctx.Channel.SendMessageAsync($"Verificando uso de ataque especial: {MovementSelected.MoveDetails.Name}. Shift personal actual: {actualPlayer.ObtainPersonalShift()}, Shift último uso: {actualPlayer.ObtainLastShiftofAttack(MovementSelected.MoveDetails.Name)}");
+            await ctx.Channel.SendMessageAsync($"Verificando uso de ataque especial: {MovementSelected.MoveDetails.Name}. Shift personal actual: {actualPlayer.ObtainPersonalShift()}, Shift último uso: {actualPlayer.ObtainLastShiftofAttack(MovementSelected.MoveDetails.Name)}\n");
 
             if (canUseEspecialAtack)
             {
@@ -169,7 +169,7 @@ public class Battle : IBattle
             }
             else
             {
-                await ctx.Channel.SendMessageAsync($"No puedes usar el ataque especial {MovementSelected.MoveDetails.Name} en este momento. Debes esperar más turnos. Selecciona otro movimiento.");
+                await ctx.Channel.SendMessageAsync($"No puedes usar el ataque especial {MovementSelected.MoveDetails.Name} en este momento. Debes esperar más turnos. Selecciona otro movimiento.\n");
                 shift.ShowShift(ctx);
                 PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
                 return;
@@ -179,7 +179,7 @@ public class Battle : IBattle
         {
             // Realizar un ataque regular si no es un ataque especial
             actualPokemon.AttackP(actualPlayer, enemyPlayer.actualPokemon, MovementSelected, actualPlayer.ObtainPersonalShift(), ctx);
-            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}'s {actualPokemon.Name} ha atacado a {enemyPlayer.NamePlayer}'s {enemyPlayer.actualPokemon.Name} causando daño.");
+            await ctx.Channel.SendMessageAsync($"{actualPlayer.NamePlayer}'s {actualPokemon.Name} ha atacado a {enemyPlayer.NamePlayer}'s {enemyPlayer.actualPokemon.Name} causando daño.\n");
         }
         
         // Incrementar _shift personal del player actual después de que termine su _shift
@@ -188,16 +188,16 @@ public class Battle : IBattle
         // Verifica el ganador
         if (Player1.AllOutOfCombat())
         {
-            await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.");
-            await ctx.Channel.SendMessageAsync($"¡{Player2.NamePlayer} ha ganado!");
+            await ctx.Channel.SendMessageAsync($"{Player1.NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
+            await ctx.Channel.SendMessageAsync($"¡{Player2.NamePlayer} ha ganado!\n");
             Player1.InGame = false;
             Player2.InGame = false;
             return;
         }
         if (Player2.AllOutOfCombat())
         {
-            await ctx.Channel.SendMessageAsync($"{Player2.NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.");
-            await ctx.Channel.SendMessageAsync($"¡{Player1.NamePlayer} ha ganado!");
+            await ctx.Channel.SendMessageAsync($"{Player2.NamePlayer} no tiene Pokémon disponibles. Todos están fuera de combate.\n");
+            await ctx.Channel.SendMessageAsync($"¡{Player1.NamePlayer} ha ganado!\n");
             Player1.InGame = false;
             Player2.InGame = false;
             return;
@@ -225,7 +225,7 @@ public class Battle : IBattle
                 {
                     if (player.actualPokemon == null || player.actualPokemon.OutOfAction())
                     {
-                        await ctx.Channel.SendMessageAsync("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.");
+                        await ctx.Channel.SendMessageAsync("No hay un Pokémon activo que pueda ser curado. Por favor, selecciona otro Pokémon para curar.\n");
                         shift.ShowShift(ctx);
                         PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
                         return;
@@ -237,7 +237,7 @@ public class Battle : IBattle
                 }
                 else
                 {
-                    await ctx.Channel.SendMessageAsync("No te quedan Superpociones.");
+                    await ctx.Channel.SendMessageAsync("No te quedan Superpociones.\n");
                 }
                 break;
             case 2:
@@ -254,7 +254,7 @@ public class Battle : IBattle
 
                     if (deadPokemons.Count == 0)
                     {
-                        await ctx.Channel.SendMessageAsync("No hay Pokémon muertos para revivir.");
+                        await ctx.Channel.SendMessageAsync("No hay Pokémon muertos para revivir.\n");
                         shift.ShowShift(ctx);
                         PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
                         return;
@@ -268,12 +268,12 @@ public class Battle : IBattle
                     }
                     else
                     {
-                        await ctx.Channel.SendMessageAsync("NamePlayer inválido o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.");
+                        await ctx.Channel.SendMessageAsync("NamePlayer inválido o el Pokémon no está fuera de combate. Por favor, intenta nuevamente.\n");
                     }
                 }
                 else
                 {
-                    await ctx.Channel.SendMessageAsync("No te quedan pociones para Revivir.");
+                    await ctx.Channel.SendMessageAsync("No te quedan pociones para Revivir.\n");
                 }
                 break;
             case 3:
@@ -285,11 +285,11 @@ public class Battle : IBattle
                 }
                 else
                 {
-                    await ctx.Channel.SendMessageAsync("No te quedan Cura Total.");
+                    await ctx.Channel.SendMessageAsync("No te quedan Cura Total.n");
                 }
                 break;
             default:
-                await ctx.Channel.SendMessageAsync("Elección inválida. Por favor, intenta nuevamente.");
+                await ctx.Channel.SendMessageAsync("Elección inválida. Por favor, intenta nuevamente.\n");
                 break;
         }
         
@@ -316,12 +316,12 @@ public class Battle : IBattle
             }
             else
             {
-                await ctx.Channel.SendMessageAsync("El Pokémon seleccionado está fuera de combate o ya es tu Pokémon actual.");
+                await ctx.Channel.SendMessageAsync("El Pokémon seleccionado está fuera de combate o ya es tu Pokémon actual.\n");
             }
         }
         else
         {
-            await ctx.Channel.SendMessageAsync("Elección inválida. Intenta nuevamente.");
+            await ctx.Channel.SendMessageAsync("Elección inválida. Intenta nuevamente.\n");
         }
         
         shift.ShowShift(ctx);
@@ -339,7 +339,7 @@ public class Battle : IBattle
         string message = "\nItems disponibles:\n" +
                          $"1- Superpoción: {player.Superpotion.Quantity}\n" +
                          $"2- Revivir: {player.Revive.Quantity}\n" +
-                         $"3- Cura Total: {player.Totalcure.Quantity}";
+                         $"3- Cura Total: {player.Totalcure.Quantity}\n";
         return message;
     }
 
@@ -351,12 +351,12 @@ public class Battle : IBattle
     /// <returns>Mensaje con los ataques disponibles del Pokémon actual del jugador.</returns>
     public string ShowAttacksByPlayer(Player player, InteractionContext ctx)
     {
-        string message = $"\n{player.NamePlayer}, elige un movimiento de: {player.actualPokemon.Name}";
+        string message = $"\n Movimientos disponibles de: {player.actualPokemon.Name}\n";
     
         for (int i = 0; i < player.actualPokemon.Moves.Count; i++)
         {
             var movement = player.actualPokemon.Moves[i];
-            message += $"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}";
+            message += $"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}\n";
         }
 
         return message;
@@ -376,7 +376,7 @@ public class Battle : IBattle
             var pokemon = player.Team[i];
             if (!pokemon.OutOfAction() && (pokemon != player.actualPokemon))
             {
-                message += $"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida";
+                message += $"{i + 1}: {pokemon.Name} - {pokemon.Health} de vida\n";
             }
         }
 
