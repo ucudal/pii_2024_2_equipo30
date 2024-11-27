@@ -1,20 +1,30 @@
 ﻿namespace Library.Tests.HistoryUserTests;
+using NUnit.Framework;
+using System.Collections.Generic;
+using Library.BotDiscord;
 
+
+[TestFixture]
 public class HistoryUser9_Test
 {
+    private BotQueuePlayers _botQueuePlayers;
     [SetUp]
-    public void Setup()
+    public void SetUp()
     {
-
+        _botQueuePlayers = BotQueuePlayers.GetInstance();
     }
 
     [Test]
-    public void HistoryUser9_Test1()
+    public void JoinQueue_Test()
     {
-        //arrange
+        // Arrange
+        Player player = new Player(null,"Ash");
 
-        //act
-
-        //assert
+        
+        // Act
+        string result = _botQueuePlayers.JoinQueue(player);
+        
+        // Assert
+        Assert.AreEqual("Ash se ha unido a la cola de batalla.", result);
     }
 }

@@ -71,8 +71,8 @@ public class HistoryUser5_Test
             Pokemon2 = new Pokemon("Venusaur", 3, 100, 82, 83, 100, 100, grassType, new List<Move>());
             listaPokemon.Add(Pokemon1);
             listaPokemon.Add(Pokemon2);
-            var jugador1 = new Player("Jugador1",listaPokemon);
-            var jugador2 = new Player("Jugador2",listaPokemon);
+            var jugador1 = new Player(null,"Jugador1",listaPokemon);
+            var jugador2 = new Player(null,"Jugador2",listaPokemon);
             var turno = new Shift(jugador1, jugador2);
 
             // Captura la salida de la consola
@@ -81,7 +81,7 @@ public class HistoryUser5_Test
                 Console.SetOut(sw);
 
                 // Act
-                turno.ShowShift();
+                turno.ShowShift(null);
 
                 // Assert
                 var expectedOutput = $"-- Turno 1 / {jugador1.NamePlayer} es tu turno! --{Environment.NewLine}";
@@ -93,8 +93,8 @@ public class HistoryUser5_Test
         public void CambiarTurno_ActualizaTurnoCorrectamente()
         {
             // Arrange
-            var jugador1 = new Player("Jugador1",listaPokemon);
-            var jugador2 = new Player("Jugador2",listaPokemon);
+            var jugador1 = new Player(null,"Jugador1",listaPokemon);
+            var jugador2 = new Player(null,"Jugador2",listaPokemon);
             var turno = new Shift(jugador1, jugador2);
 
             // Act - Cambio de turno
@@ -106,7 +106,7 @@ public class HistoryUser5_Test
                 Console.SetOut(sw);
 
                 // Act
-                turno.ShowShift();
+                turno.ShowShift(null);
 
                 // Assert
                 var expectedOutput = $"-- Turno 2 / {jugador2.NamePlayer} es tu turno! --{Environment.NewLine}";

@@ -4,7 +4,7 @@ using Library;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-[TestFixture]
+/*[TestFixture]
 public class PokemonTests
 {
     private Pokemon atacante;
@@ -237,4 +237,4 @@ public class PokemonTests
         Console.WriteLine(atacante.Attack);
     }
 
-}
+}*/

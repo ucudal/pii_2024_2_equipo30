@@ -28,8 +28,8 @@ public class HistoryUser6_Test
                 new Pokemon { Health = 0 }
             };
 
-            jugador1 = new Player("Jugador 1", equipoJugador1);
-            jugador2 = new Player("Jugador 2", equipoJugador2);
+            jugador1 = new Player(null,"Jugador 1", equipoJugador1);
+            jugador2 = new Player(null,"Jugador 2", equipoJugador2);
             battle = new Battle(jugador1, jugador2);
         }
 

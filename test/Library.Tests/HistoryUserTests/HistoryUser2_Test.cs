@@ -1,6 +1,6 @@
 ﻿namespace Library.Tests.HistoryUserTests;
 
-public class HistoryUser2_Test
+/*public class HistoryUser2_Test
 {
     [SetUp]
     public void Setup()
@@ -17,4 +17,4 @@ public class HistoryUser2_Test
         
         //assert
     }
-}
+}*/

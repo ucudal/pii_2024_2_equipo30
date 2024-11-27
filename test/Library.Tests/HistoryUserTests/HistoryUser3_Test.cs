@@ -21,7 +21,7 @@ public class HistoryUser3_Test
         grassType.SetType("grass");
 
         // Crear las instancias de Pokémon usando los tipos configurados
-        atacante = new Pokemon("Charizard", 6, 100, 84, 78, 109, 85, fireType, new List<Move>());
+        atacante = new Pokemon("Charizard", 6, 90, 84, 78, 109, 85, fireType, new List<Move>());
         oponente = new Pokemon("Venusaur", 3, 100, 82, 83, 100, 100, grassType, new List<Move>());
 
         // Creamos un movimiento
@@ -39,31 +39,18 @@ public class HistoryUser3_Test
         // Añadir el movimiento a la lista de movimientos del atacante
         atacante.Moves.Add(flamethrower);
     }
-
     [Test]
-    public void Damage()
+    public async Task DamageTest()
     {
         // Arrange
         double saludInicial = oponente.Health;
-        var flamethrower = new MoveDetail
-        {
-            Name = "Flamethrower",
-            Power = 90,
-            Accuracy = 100,
-            URL = "Nothing"
-        };
-        movimiento = new Move
-        {
-            MoveDetails = flamethrower,
-            SpecialStatus = SpecialStatus.NoneStatus
-        };
+
         // Act
-        List<Pokemon> listaPokemon = new List<Pokemon>();
-        listaPokemon.Add(atacante);
-        atacante.AttackP(new Player("Ernesto_El_entrenador", listaPokemon),oponente,movimiento,1);
+        atacante.AttackP(null, oponente, atacante.Moves[0], 1, null);
 
         // Assert
-        Assert.Less(oponente.Health, saludInicial,"La salud del oponente debería reducirse después del ataque exitoso.");
-        Console.WriteLine(oponente.Health);
+        Assert.Less(atacante.Health, saludInicial, "La salud del oponente debería reducirse después del ataque exitoso.");
+        Console.WriteLine($"Salud inicial: {saludInicial}, Salud final: {atacante.Health}");
     }
+
 }

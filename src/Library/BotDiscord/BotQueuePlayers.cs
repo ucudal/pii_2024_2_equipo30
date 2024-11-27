@@ -80,6 +80,4 @@ public class BotQueuePlayers : ApplicationCommandModule
         // Si no se encuentra, devuelve null
         return null;
     }
-    
-    
-}//Enqueue y Dequeue no se pueden traducir mas a ingles
+}

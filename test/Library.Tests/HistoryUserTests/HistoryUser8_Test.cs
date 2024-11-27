@@ -25,8 +25,8 @@ public class HistoryUser8_Test
                 new Pokemon { Health = 100 }
             };
 
-            var jugador1 = new Player("Jugador 1", equipoJugador1);
-            var jugador2 = new Player("Jugador 2", equipoJugador2);
+            var jugador1 = new Player(null,"Jugador 1", equipoJugador1);
+            var jugador2 = new Player(null,"Jugador 2", equipoJugador2);
             var turno = new Shift(jugador1, jugador2);
             var pokemon1Jugador1 = equipoJugador1[0]; // Charmander
             var pokemon2Jugador1 = equipoJugador1[1]; // Pikachu
