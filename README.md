@@ -1,86 +1,116 @@
-﻿# pii_2024_2_equipo30
+﻿# 🎮pii_2024_2_equipo30 - Poke Fight🐾
 
-Somos el grupo 4GRAM tambien poco conocidos como el equipo 30
--
+## Somos el grupo 4GRAM tambien poco conocidos como el equipo 30
 
-Integrantes:
-- Mauricio Segovia
-- Rodrigo Godoy
-- Gaston Baranov
-- Alejandro Hernandez
+---
 
-Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las siguientes caracteristicas:
--
-  -  Se va a tratar de combates por turnos
-  -  Se jugara mediante comandos de un Chatbot
-  -  Sera multijugador (1 vs 1)
-  -  Cada jugador contara con un equipo de 6 Pokémones en cada batalla
-          - Se muestran los pokemones en pantalla
-     
-  -  Cada Pokémon contara con 4 movimientos de ataques y un ataque especial cada 2 turnos
-          - Se podra elegir hacer daño en base a la efectividad de los tipos de Pokémons(El sistema aplica la ventaja o desventaja)
-  -  Cada jugador tiene solo una accion por turno(Cambiar pokemon,atacar,etc)
-  -  cada jugador puede ver la vida del Pokémon oponente,de quien es el turno y la eleccion que toma
-  -  Un jugador es el ganador cuando todos los Pokemons del opononente son derrotados
+## 👨‍💻 *Integrantes:*  ‍💻
+- ### __*Mauricio Segovia*__
+- ### __*Rodrigo Godoy*__
+- ### __*Gaston Baranov*__
+- ### __*Alejandro Hernandez*__
 
-## Funcionamiento general del codigo:
-- Se inicializa el juego atraves del Program.
-- Se utiliza la clase PokemonCreator para las instancias de los Pokemon.
-- Preparacion de la batalla con la clase Battle.
-- Gestion del turno con Move, sus objetos y la posibilidad de cambiar de Pokemon.
-- Acciones de los jugadores donde cada accion donde cada turno tiene un impacto en Battle.
-- Battle gestiona el calculo del daño
-- Al finalizar el turno de cada jugador se verifica si alguno de los jugadores perdio su Pokemon
-- Interaccion con la API
-- El combate finaliza cuando todos los Pokémon de un jugador son derrotados.
+---
+> ## 🔧 Cómo usar el proyecto🌟
+>   1. ### Requisitos previos:
+>      - Bot de Discord: tener un token del bot previamente creado en [Discord Developer Portal](https://discord.com/developers/applications).
+>   2. ### Configuracion Inicial: 
+>      - Configurar el token como una variable de entorno con el siguiente comando: setx DISCORD_TOKEN "token del bot"
+> 3. ### Ejecuta y juega
 
+## 🌟Nuestro proyecto se basa en un combate de Pokémons🌟
 
-Para la estructura del programa usamos:
--
--   los principios de GRASP y Solid.
--   el principio más se usó es el ISP. Esto se implementó en las interfaces IBattle, IPlayer, IPokemon, etc.
+*El juego es un sistema de combate por turnos multijugador, diseñado en un formato 1 vs 1 mediante comandos de un chatbot. Cada jugador tendrá un equipo de 6 Pokémon disponibles para la batalla, los cuales se mostrarán en pantalla para facilitar la selección estratégica. Cada Pokémon podrá utilizar 4 movimientos de ataque estándar, además de contar con un ataque especial disponible cada dos turnos. El sistema calculará automáticamente la efectividad de los ataques según los tipos de los Pokémon, aplicando ventajas o desventajas de manera dinámica.*
 
--   Low coupling and High Coesion
+![Pelea 1vs1](https://imgur.com/CBLMbd9)
 
+*Durante cada turno, los jugadores podrán realizar una sola acción, como atacar, cambiar de Pokémon u optar por usar un item. La interfaz del juego permitirá a cada jugador visualizar la vida restante de los Pokémon del oponente, de quién es el turno actual y la acción seleccionada. El combate continuará hasta que todos los Pokémon de un jugador sean derrotados, declarando como ganador al último entrenador con Pokémon en pie.*
 
+---
 
+## 💻 Funcionamiento general del codigo: 🛠️
 
-## Las clases usadas en nuestro proyecto son:
-- Revive (Utilizado para revivir Pokémon)
-- Battle (Gestiona el flujo de las batallas)
-- Shift (Funcionalidad para cambiar el Pokémon activo)
-- Stat (Estadística específica del Pokémon)
-- StatsDetail (Detalles adicionales de las estadísticas del Pokémon)
-- SuperPotion (Restaurar la salud de un Pokémon)
-- TotalCure (Elimina cualquier estado negativo en el Pokémon)
-- PokemonCreator (Permite crear instancias de nuevos Pokémon)
-- Type (Define el tipo de un Pokémon (por ejemplo, Agua, Fuego, etc.))
-- TypeDetail (Detalles adicionales sobre un tipo)
-- Program (Punto de entrada del programa)
-- EspecialStatus (Efectos especiales que afectan al Pokémon)
-- IBatalla (Métodos necesarios para implementar una batalla)
-- IItem (Interfaz que proporciona la estructura básica para los objetos)
-- IJugador (Interfaz de métodos que deben implementarse para gestionar a un jugador)
-- IPokemon (Interfaz de las operaciones relacionadas con un Pokémon.)
-- IPokemonApi (Define los métodos para acceder y manipular datos de los Pokémon en la API)
-- IPokemonCreator (Define cómo deben crearse los Pokémon en el juego)
-- Items (Clase base para los objetos)
-- Move (Representa un movimiento)
-- MoveDetail (Proporciona detalles adicionales de un movimiento)
-- Player (Representa al jugador que tiene un equipo de Pokémon y una colección de objetos.)
-- Pokemon (Define un Pokémon con sus atributos, movimientos, tipo, y estados.)
-- PokemonApi (Métodos para interactuar con los datos de los Pokémon)
+### 🛠️ Sistema de combate 1vs1
 
+- Equipo de 6 Pokémon: Cada jugador seleccionar su equipo.
+
+- Combates por turnos
+- Ataques especiales
+
+### 🎮 Integración con Discord
+- Juega desde la comodidad de un chatbot.
+- Comandos amigables para facilitar la interacción.
+
+### 🌈 Cálculo de Daño
+- Efectividad basada en tipos (fuego, agua, planta, etc.).
+- Estados especiales como Dormido y Envenenado.
+
+### 🔧 Interacción con APIs
+- Implementación de APIs para enriquecer la experiencia de juego y agregar datos personalizados.
+
+### 💎 Objetos y estrategias
+- Usa ítems como Pociones, Revive o TotalCure para cambiar la batalla.
+- 
+- Cambia de Pokémon en el momento
+---
+
+## 📂 En la estructura del programa usamos:
+
+## 🧱 Principios y Patrones de Diseños 
+-   ### Principios de GRASP y Solid.
+
+-   ### Interfaz Segregation Principle (ISP) 
+>   - Fue usado en: Clases con interfaces como IBattle, IPlayer, IPokemon, IItems.
+>   - Por que: Modularidad
+
+-   ### Low Coupling, High Cohesion.
+> - Fue usado en: Generalmente, Items se basa en este principio
+> - Por que: Mayor capacidad de adaptacion de las clases y ayudar 
+
+-   ### Patron de Diseño: Singleton
+>   - Fue usado en : BotQueuePlayers 
+>   - Por que: A medida que se ejecutaba el programa se instanciaban varias filas
+> 
+
+---
+
+## 📝 Clases principales
+### Core del juego
+
+- **Battle**: Coordina el flujo de los combates.
+
+- **Shift**: Cambia el Pokémon activo durante el combate.
+
+- **Pokemon**: Define características, movimientos y estados de un Pokémon.
+
+- **Move y MoveDetail**: Modelan los ataques y sus detalles.
+
+- **Type y TypeDetail**: Definen los tipos y sus ventajas/desventajas.
+- 
+### Interacción con jugadores
+
+- **Player**: Administra el equipo y los objetos del jugador. 
+- **Items**: Clases base para objetos como <ins>SuperPotion </ins>, <ins>Revive </ins> y <ins>TotalCure </ins>.
+### Integración y APIs
+- **PokemonApi**: Proporciona datos adicionales para los Pokémon.
+- **IPokemonCreator**: Genera Pokémon personalizados con atributos definidos.
+
+---
 
 ## Errores y problemas que surgieron:
 
-- Errores en la implementacion de la API.
-- Correcciones para poder atacar durante la ronda con Items.
-- Cambiar de Pokemon.
-- Implementacion de los Test.
-- Implementacion de turnos individuales para ataques especiales.
-- Aplicacion de dormir al enemigo.
+### Segunda Entrega
+- Errores en la implementacion de la API. (solucionado)
+- Correcciones para poder atacar durante la ronda con Items. (solucionado)
+- Cambiar de Pokemon.(solucionado)
+- Implementacion de los Test.(echo)
+- Implementacion de turnos individuales para ataques especiales.(echo)
+- Aplicacion de dormir al enemigo.(echo)
 
+### Tercera entrega
+>Tuvimos muchos problemas con el discord,su integracion y la sintaxis.
+
+- El que creaba mas problemas en esta entrega fue battle,botqueue y battle commands, ya que la logica nueva mayormente esta albergada en estas clases.
+Lo solucionamos
  
-Muchas gracias y un saludo. 
--
+# Muchas gracias y un saludo. 

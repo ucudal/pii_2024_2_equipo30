@@ -24,13 +24,22 @@ namespace Library
         /// Las claves son los nombres de otros tipos, y los valores son los multiplicadores de daño.
         /// Por ejemplo, si el valor es 2, significa que el ataque es súper efectivo; si es 0.5, es menos efectivo.
         /// </summary>
-        public Dictionary<string, double> Effectiveness { get; set; } 
+        public Dictionary<string, double> Effectiveness { get; set; }
 
         /// <summary>
         /// Constructor por defecto.
         /// </summary>
         public Type()
         {
+        }
+
+        /// <summary>
+        /// Constructor que acepta el nombre del tipo.
+        /// </summary>
+        /// <param name="name">El nombre del tipo de Pokémon.</param>
+        public Type(string name)
+        {
+            SetType(name);
         }
 
         /// <summary>
@@ -44,7 +53,7 @@ namespace Library
             Effectiveness = new Dictionary<string, double>();
 
             // Define las relaciones de efectividad según el tipo del Pokémon
-            switch (name)
+            switch (name.ToLower())
             {
                 case "fire":
                     TypeDetail.Name = "fire";
@@ -90,7 +99,7 @@ namespace Library
                     TypeDetail.Name = "electric";
                     Effectiveness.Add("ground", 2);
                     Effectiveness.Add("flying", 0.5);
-                    Effectiveness.Add("electric", 0);
+                    Effectiveness.Add("electric", 0.5);
                     break;
 
                 case "ghost":
@@ -98,7 +107,7 @@ namespace Library
                     Effectiveness.Add("ghost", 2);
                     Effectiveness.Add("poison", 0.5);
                     Effectiveness.Add("fighting", 0.5);
-                    Effectiveness.Add("normal", 0.5);
+                    Effectiveness.Add("normal", 0);
                     break;
 
                 case "ice":
@@ -113,8 +122,8 @@ namespace Library
                     TypeDetail.Name = "fighting";
                     Effectiveness.Add("psychic", 2);
                     Effectiveness.Add("flying", 2);
-                    Effectiveness.Add("bug", 2);
-                    Effectiveness.Add("rock", 2);
+                    Effectiveness.Add("bug", 0.5);
+                    Effectiveness.Add("rock", 0.5);
                     break;
 
                 case "normal":
@@ -139,7 +148,7 @@ namespace Library
                 case "psychic":
                     TypeDetail.Name = "psychic";
                     Effectiveness.Add("bug", 2);
-                    Effectiveness.Add("fighting", 2);
+                    Effectiveness.Add("fighting", 0.5);
                     Effectiveness.Add("ghost", 2);
                     break;
 
@@ -160,9 +169,9 @@ namespace Library
                     Effectiveness.Add("water", 2);
                     Effectiveness.Add("ice", 2);
                     Effectiveness.Add("grass", 2);
-                    Effectiveness.Add("rock", 2);
-                    Effectiveness.Add("poison", 2);
-                    Effectiveness.Add("electric", 0.5);
+                    Effectiveness.Add("rock", 0.5);
+                    Effectiveness.Add("poison", 0.5);
+                    Effectiveness.Add("electric", 0);
                     break;
 
                 case "poison":
@@ -170,8 +179,8 @@ namespace Library
                     Effectiveness.Add("bug", 2);
                     Effectiveness.Add("psychic", 2);
                     Effectiveness.Add("ground", 2);
-                    Effectiveness.Add("fighting", 2);
-                    Effectiveness.Add("grass", 2);
+                    Effectiveness.Add("fighting", 0.5);
+                    Effectiveness.Add("grass", 0.5);
                     Effectiveness.Add("poison", 0.5);
                     break;
 
@@ -183,7 +192,7 @@ namespace Library
                     Effectiveness.Add("bug", 0.5);
                     Effectiveness.Add("fighting", 0.5);
                     Effectiveness.Add("grass", 0.5);
-                    Effectiveness.Add("ground", 0.5);
+                    Effectiveness.Add("ground", 0);
                     break;
 
                 case "fairy":
