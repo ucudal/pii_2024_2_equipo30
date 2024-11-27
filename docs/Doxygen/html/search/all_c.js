@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['obtainlastshiftofattack_0',['ObtainLastShiftofAttack',['../class_library_1_1_player.html#a75d525252e624040da8581e69df73db4',1,'Library::Player']]],
-  ['obtainpersonalshift_1',['ObtainPersonalShift',['../class_library_1_1_player.html#afcd1d23c4dc3f46fb387dc1bd9e4e858',1,'Library::Player']]],
-  ['outofaction_2',['OutOfAction',['../interface_library_1_1_i_pokemon.html#ac1b907d20a744867aba4e85edf394c33',1,'Library.IPokemon.OutOfAction()'],['../class_library_1_1_pokemon.html#a6b55688ca3f3c8b1e5674b2a02870e00',1,'Library.Pokemon.OutOfAction()']]],
-  ['outofaction_3',['Outofaction',['../class_library_1_1_pokemon.html#a4af2b936daeca7430c117a85472c4464',1,'Library::Pokemon']]]
+  ['joinqueue_0',['JoinQueue',['../class_library_1_1_bot_discord_1_1_battle_commands.html#a6785cce7ba79eafb1caa1d465ca2ecf8',1,'Library.BotDiscord.BattleCommands.JoinQueue()'],['../class_library_1_1_bot_discord_1_1_bot_queue_players.html#a536c880b7b61ac32697dbba8d1c93f4a',1,'Library.BotDiscord.BotQueuePlayers.JoinQueue()']]],
+  ['joinqueue_5ftest_1',['JoinQueue_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user9___test.html#a0f69a65d6f783b9ef2f98479b562de82',1,'Library::Tests::HistoryUserTests::HistoryUser9_Test']]],
+  ['juego_2',['Core del juego',['../md__r_e_a_d_m_e.html#autotoc_md18',1,'']]],
+  ['jugadores_3',['Interacción con jugadores',['../md__r_e_a_d_m_e.html#autotoc_md19',1,'']]]
 ];

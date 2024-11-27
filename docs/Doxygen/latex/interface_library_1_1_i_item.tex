@@ -2,7 +2,7 @@
 \hypertarget{interface_library_1_1_i_item}{}\label{interface_library_1_1_i_item}\index{Library.IItem@{Library.IItem}}
 
 
-Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento.  
+Interfaz que define las propiedades y métodos básicos para un ítem.  
 
 
 Inheritance diagram for Library.\+IItem\+:\begin{figure}[H]
@@ -15,24 +15,24 @@ Inheritance diagram for Library.\+IItem\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{interface_library_1_1_i_item_ac876022231c1c57b63aaa1790b52b7e5}{Use}} (\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} pokemon)
-\begin{DoxyCompactList}\small\item\em Método para usar el ítem en un Pokémon específico. Este método es necesario para aplicar el efecto del ítem en el Pokémon. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Usa el ítem en un Pokémon específico. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{interface_library_1_1_i_item_af6ce028b775b89535f9d4ee27d08f167}{Consume}} ()
-\begin{DoxyCompactList}\small\item\em Método para consumir el ítem, disminuyendo su cantidad disponible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reduce la cantidad del ítem después de ser consumido. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Properties}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{interface_library_1_1_i_item_a070314c1fc30d638555e5b3826aa1f74}{Max\+Healt}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Máxima cantidad de salud que el ítem puede restaurar. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obtiene o establece la cantidad máxima de salud que puede restaurar el ítem. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{interface_library_1_1_i_item_afd9262e1e767b12e8dae59d77b7f25c8}{Items\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Nombre del ítem. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obtiene o establece el nombre del ítem. \end{DoxyCompactList}\item 
 string \mbox{\hyperlink{interface_library_1_1_i_item_aa180312d64ba2592ac1bce5edf0240c8}{Items\+Description}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Descripción del ítem. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obtiene o establece la descripción del ítem. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{interface_library_1_1_i_item_a19cc2c33a1a3171fddfb233b7b260e89}{Quantity}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Cantidad de ítems disponibles para el jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Obtiene o establece la cantidad de ítems disponibles. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento. 
+Interfaz que define las propiedades y métodos básicos para un ítem. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{interface_library_1_1_i_item_af6ce028b775b89535f9d4ee27d08f167}\index{Library.IItem@{Library.IItem}!Consume@{Consume}}
@@ -43,7 +43,7 @@ void Library.\+IItem.\+Consume (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaptio
 
 
 
-Método para consumir el ítem, disminuyendo su cantidad disponible. 
+Reduce la cantidad del ítem después de ser consumido. 
 
 
 
@@ -57,11 +57,11 @@ void Library.\+IItem.\+Use (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clas
 
 
 
-Método para usar el ítem en un Pokémon específico. Este método es necesario para aplicar el efecto del ítem en el Pokémon. 
+Usa el ítem en un Pokémon específico. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em pokemon} & El Pokémon en el que se aplicará el ítem.\\
+{\em pokemon} & El Pokémon sobre el cual se va a usar el ítem.\\
 \hline
 \end{DoxyParams}
 
@@ -79,7 +79,7 @@ string Library.\+IItem.\+Items\+Description\hspace{0.3cm}{\ttfamily [get]}, {\tt
 
 
 
-Descripción del ítem. 
+Obtiene o establece la descripción del ítem. 
 
 
 
@@ -93,7 +93,7 @@ string Library.\+IItem.\+Items\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily 
 
 
 
-Nombre del ítem. 
+Obtiene o establece el nombre del ítem. 
 
 
 
@@ -107,7 +107,7 @@ int Library.\+IItem.\+Max\+Healt\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set
 
 
 
-Máxima cantidad de salud que el ítem puede restaurar. 
+Obtiene o establece la cantidad máxima de salud que puede restaurar el ítem. 
 
 
 
@@ -121,7 +121,7 @@ int Library.\+IItem.\+Quantity\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}
 
 
 
-Cantidad de ítems disponibles para el jugador. 
+Obtiene o establece la cantidad de ítems disponibles. 
 
 
 

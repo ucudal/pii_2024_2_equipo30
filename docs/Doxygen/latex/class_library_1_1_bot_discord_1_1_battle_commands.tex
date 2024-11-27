@@ -1,0 +1,190 @@
+\doxysection{Library.\+Bot\+Discord.\+Battle\+Commands Class Reference}
+\hypertarget{class_library_1_1_bot_discord_1_1_battle_commands}{}\label{class_library_1_1_bot_discord_1_1_battle_commands}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+
+
+Clase que contiene los comandos para manejar las batallas y las colas de espera en Discord. Hereda de Application\+Command\+Module de DSharp\+Plus.  
+
+
+Inheritance diagram for Library.\+Bot\+Discord.\+Battle\+Commands\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_library_1_1_bot_discord_1_1_battle_commands}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_a6785cce7ba79eafb1caa1d465ca2ecf8}{Join\+Queue}} (Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Comando para unirse a la cola de espera. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_af446d29fb70f6228220ddafdf393c0b7}{Exit\+Queue}} (Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Comando para salir de la cola de espera. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_a31bda38f31052b34611e6b423dd0f48c}{Start\+Battle}} (Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Comando para iniciar una batalla. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_ae7d599b7905cf81984a0f33f660fad57}{Start\+Game}} (Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Comando para iniciar el juego con los primeros jugadores en la cola. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_a79312f7beb512f69e97030e30d2032d7}{Show\+Queue}} (Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Comando para mostrar la lista de jugadores en espera. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_aa41ec68bd9c886acd6efe20d531eea91}{Choose}} (Interaction\+Context ctx, \mbox{[}Option("{}Pokemon"{}, "{}Ingrese el nombre o ID del Pokémon."{})\mbox{]} string pokemon\+Name)
+\begin{DoxyCompactList}\small\item\em Comando para elegir un Pokémon. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_a45fc651eb9b5497c0fd2218b1f7cf227}{Switch}} (Interaction\+Context ctx, \mbox{[}Option("{}Pokemon\+Index"{}, "{}Ingrese el índice del Pokémon."{})\mbox{]} string pokemon\+Index)
+\begin{DoxyCompactList}\small\item\em Comando para cambiar el Pokémon actual. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_a6c9ea31c78f30a15919003edced7d36f}{Select\+Item}} (Interaction\+Context ctx, \mbox{[}Option("{}Item\+Number"{}, "{}Ingrese el número del ítem a usar."{})\mbox{]} string item\+Number, \mbox{[}Option("{}Pokemon\+Name"{}, "{}Ingrese el nombre del Pokémon."{})\mbox{]} string pokemon\+Name)
+\begin{DoxyCompactList}\small\item\em Comando para seleccionar un ítem del inventario. \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_battle_commands_aafa5b1ad86070e6e8afe6e2b84829595}{Attack}} (Interaction\+Context ctx, \mbox{[}Option("{}Move\+Number"{}, "{}Ingrese el número del movimiento a usar."{})\mbox{]} string move\+Number)
+\begin{DoxyCompactList}\small\item\em Comando para atacar al Pokémon enemigo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que contiene los comandos para manejar las batallas y las colas de espera en Discord. Hereda de Application\+Command\+Module de DSharp\+Plus. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_aafa5b1ad86070e6e8afe6e2b84829595}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!Attack@{Attack}}
+\index{Attack@{Attack}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{Attack()}{Attack()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_aafa5b1ad86070e6e8afe6e2b84829595} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Attack (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{, }\item[{\mbox{[}\+Option("{}\+Move\+Number"{}, "{}\+Ingrese el número del movimiento a usar."{})\mbox{]} string}]{move\+Number}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para atacar al Pokémon enemigo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+{\em move\+Number} & Número del movimiento a usar.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_aa41ec68bd9c886acd6efe20d531eea91}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!Choose@{Choose}}
+\index{Choose@{Choose}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{Choose()}{Choose()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_aa41ec68bd9c886acd6efe20d531eea91} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Choose (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{, }\item[{\mbox{[}\+Option("{}\+Pokemon"{}, "{}\+Ingrese el nombre o ID del Pokémon."{})\mbox{]} string}]{pokemon\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para elegir un Pokémon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+{\em pokemon\+Name} & Nombre o ID del Pokémon que se desea seleccionar.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_af446d29fb70f6228220ddafdf393c0b7}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!ExitQueue@{ExitQueue}}
+\index{ExitQueue@{ExitQueue}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{ExitQueue()}{ExitQueue()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_af446d29fb70f6228220ddafdf393c0b7} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Exit\+Queue (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para salir de la cola de espera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_a6785cce7ba79eafb1caa1d465ca2ecf8}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!JoinQueue@{JoinQueue}}
+\index{JoinQueue@{JoinQueue}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{JoinQueue()}{JoinQueue()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_a6785cce7ba79eafb1caa1d465ca2ecf8} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Join\+Queue (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para unirse a la cola de espera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_a6c9ea31c78f30a15919003edced7d36f}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!SelectItem@{SelectItem}}
+\index{SelectItem@{SelectItem}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{SelectItem()}{SelectItem()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_a6c9ea31c78f30a15919003edced7d36f} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Select\+Item (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{, }\item[{\mbox{[}\+Option("{}\+Item\+Number"{}, "{}\+Ingrese el número del ítem a usar."{})\mbox{]} string}]{item\+Number}{, }\item[{\mbox{[}\+Option("{}\+Pokemon\+Name"{}, "{}\+Ingrese el nombre del Pokémon."{})\mbox{]} string}]{pokemon\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para seleccionar un ítem del inventario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+{\em item\+Number} & Número del ítem a usar.\\
+\hline
+{\em pokemon\+Name} & Nombre del Pokémon sobre el cual usar el ítem.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_a79312f7beb512f69e97030e30d2032d7}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!ShowQueue@{ShowQueue}}
+\index{ShowQueue@{ShowQueue}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{ShowQueue()}{ShowQueue()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_a79312f7beb512f69e97030e30d2032d7} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Show\+Queue (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para mostrar la lista de jugadores en espera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_a31bda38f31052b34611e6b423dd0f48c}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!StartBattle@{StartBattle}}
+\index{StartBattle@{StartBattle}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{StartBattle()}{StartBattle()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_a31bda38f31052b34611e6b423dd0f48c} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Start\+Battle (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para iniciar una batalla. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_ae7d599b7905cf81984a0f33f660fad57}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!StartGame@{StartGame}}
+\index{StartGame@{StartGame}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{StartGame()}{StartGame()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_ae7d599b7905cf81984a0f33f660fad57} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Start\+Game (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para iniciar el juego con los primeros jugadores en la cola. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_bot_discord_1_1_battle_commands_a45fc651eb9b5497c0fd2218b1f7cf227}\index{Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}!Switch@{Switch}}
+\index{Switch@{Switch}!Library.BotDiscord.BattleCommands@{Library.BotDiscord.BattleCommands}}
+\doxysubsubsection{\texorpdfstring{Switch()}{Switch()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_battle_commands_a45fc651eb9b5497c0fd2218b1f7cf227} 
+async Task Library.\+Bot\+Discord.\+Battle\+Commands.\+Switch (\begin{DoxyParamCaption}\item[{Interaction\+Context}]{ctx}{, }\item[{\mbox{[}\+Option("{}\+Pokemon\+Index"{}, "{}\+Ingrese el índice del Pokémon."{})\mbox{]} string}]{pokemon\+Index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comando para cambiar el Pokémon actual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+{\em pokemon\+Index} & Índice del Pokémon al que se desea cambiar.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/\+Bot\+Discord/Battle\+Commands.\+cs\end{DoxyCompactItemize}

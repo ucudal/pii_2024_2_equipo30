@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>4GRAM_Equipo30: Library.Pokemon Class Reference</title>
+<title>4GRAM_Equipo30 - Poke Fight: Library.Pokemon Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">4GRAM_Equipo30
+   <div id="projectname">4GRAM_Equipo30 - Poke Fight
    </div>
   </td>
  </tr>
@@ -97,7 +97,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante una batalla. Implementa la interfaz <a class="el" href="interface_library_1_1_i_pokemon.html" title="Interfaz que define la estructura y el comportamiento de un Pokémon en el juego.">IPokemon</a>.  
+<p>Clase que representa un Pokémon en el contexto del juego.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Library.Pokemon:</div>
@@ -105,41 +105,37 @@ Inheritance diagram for Library.Pokemon:</div>
  <div class="center">
   <img src="class_library_1_1_pokemon.png" usemap="#Library.Pokemon_map" alt=""/>
   <map id="Library.Pokemon_map" name="Library.Pokemon_map">
-<area href="interface_library_1_1_i_pokemon.html" title="Interfaz que define la estructura y el comportamiento de un Pokémon en el juego." alt="Library.IPokemon" shape="rect" coords="0,0,111,24"/>
+<area href="interface_library_1_1_i_pokemon.html" title="Interfaz que define las propiedades y métodos básicos de un Pokémon en el contexto de un juego." alt="Library.IPokemon" shape="rect" coords="0,0,111,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a260c4e2ca8da6f5920ce50199263565a" id="r_a260c4e2ca8da6f5920ce50199263565a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a260c4e2ca8da6f5920ce50199263565a">Pokemon</a> (string name, int id, double health, int attack, int defense, int specialAttack, int specialDefense, <a class="el" href="class_library_1_1_type.html">Type</a> type, List&lt; <a class="el" href="class_library_1_1_move.html">Move</a> &gt; moves)</td></tr>
-<tr class="memdesc:a260c4e2ca8da6f5920ce50199263565a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor para inicializar un Pokémon con sus atributos básicos.  <br /></td></tr>
+<tr class="memdesc:a260c4e2ca8da6f5920ce50199263565a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon en el contexto del juego.">Pokemon</a>.  <br /></td></tr>
 <tr class="separator:a260c4e2ca8da6f5920ce50199263565a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d8901ffecfc24e589f21eaeea0deac8" id="r_a1d8901ffecfc24e589f21eaeea0deac8"><td class="memItemLeft" align="right" valign="top"><a id="a1d8901ffecfc24e589f21eaeea0deac8" name="a1d8901ffecfc24e589f21eaeea0deac8"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Pokemon</b> ()</td></tr>
-<tr class="memdesc:a1d8901ffecfc24e589f21eaeea0deac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor vacío. <br /></td></tr>
+<tr class="memdesc:a1d8901ffecfc24e589f21eaeea0deac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor sin parámetros de la clase <a class="el" href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon en el contexto del juego.">Pokemon</a>. <br /></td></tr>
 <tr class="separator:a1d8901ffecfc24e589f21eaeea0deac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6991669936aa783d94ee52b6d18b817" id="r_ae6991669936aa783d94ee52b6d18b817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6991669936aa783d94ee52b6d18b817">AttackP</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player, <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> enemy, <a class="el" href="class_library_1_1_move.html">Move</a> movement, int currentShift)</td></tr>
-<tr class="memdesc:ae6991669936aa783d94ee52b6d18b817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza un ataque a un Pokémon enemigo usando un movimiento específico.  <br /></td></tr>
-<tr class="separator:ae6991669936aa783d94ee52b6d18b817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b04f60edd669245067600e3aeb9437" id="r_a57b04f60edd669245067600e3aeb9437"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57b04f60edd669245067600e3aeb9437">AttackP</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player, <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> enemy, <a class="el" href="class_library_1_1_move.html">Move</a> movement, int currentShift, InteractionContext ctx)</td></tr>
+<tr class="memdesc:a57b04f60edd669245067600e3aeb9437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza un ataque hacia un Pokémon enemigo.  <br /></td></tr>
+<tr class="separator:a57b04f60edd669245067600e3aeb9437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a079ad1d582a35a0c0757cfe7dd900948" id="r_a079ad1d582a35a0c0757cfe7dd900948"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a079ad1d582a35a0c0757cfe7dd900948">CalculateDamage</a> (<a class="el" href="class_library_1_1_move.html">Move</a> movimiento, double efectividad, <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> oponente)</td></tr>
-<tr class="memdesc:a079ad1d582a35a0c0757cfe7dd900948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el daño causado por un movimiento específico.  <br /></td></tr>
+<tr class="memdesc:a079ad1d582a35a0c0757cfe7dd900948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el daño infligido por un movimiento específico al oponente.  <br /></td></tr>
 <tr class="separator:a079ad1d582a35a0c0757cfe7dd900948"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa280db7966e97292a3884575a7349435" id="r_aa280db7966e97292a3884575a7349435"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa280db7966e97292a3884575a7349435">CanAtack</a> ()</td></tr>
-<tr class="memdesc:aa280db7966e97292a3884575a7349435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si el Pokémon puede atacar, teniendo en cuenta su estado actual.  <br /></td></tr>
-<tr class="separator:aa280db7966e97292a3884575a7349435"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66684c1d2b412ebb723d6f88070677e4" id="r_a66684c1d2b412ebb723d6f88070677e4"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66684c1d2b412ebb723d6f88070677e4">CanAtack</a> (InteractionContext ctx)</td></tr>
+<tr class="memdesc:a66684c1d2b412ebb723d6f88070677e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determina si el Pokémon puede atacar según su estado actual.  <br /></td></tr>
+<tr class="separator:a66684c1d2b412ebb723d6f88070677e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a13b84b9c1c2dfc128c6f696919fa0d" id="r_a2a13b84b9c1c2dfc128c6f696919fa0d"><td class="memItemLeft" align="right" valign="top"><a id="a2a13b84b9c1c2dfc128c6f696919fa0d" name="a2a13b84b9c1c2dfc128c6f696919fa0d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Paralyze</b> ()</td></tr>
-<tr class="memdesc:a2a13b84b9c1c2dfc128c6f696919fa0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplica el estado de parálisis al Pokémon. <br /></td></tr>
+<tr class="memdesc:a2a13b84b9c1c2dfc128c6f696919fa0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Paraliza al Pokémon, cambiando su estado a paralizado. <br /></td></tr>
 <tr class="separator:a2a13b84b9c1c2dfc128c6f696919fa0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa3153baf2d5e65f2c7fefebf0aec818" id="r_aaa3153baf2d5e65f2c7fefebf0aec818"><td class="memItemLeft" align="right" valign="top"><a id="aaa3153baf2d5e65f2c7fefebf0aec818" name="aaa3153baf2d5e65f2c7fefebf0aec818"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sleep</b> ()</td></tr>
-<tr class="memdesc:aaa3153baf2d5e65f2c7fefebf0aec818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aplica el estado de sueño al Pokémon. <br /></td></tr>
-<tr class="separator:aaa3153baf2d5e65f2c7fefebf0aec818"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ccc29640d1b862867581cb839ccd6f2" id="r_a2ccc29640d1b862867581cb839ccd6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ccc29640d1b862867581cb839ccd6f2">ProcessStatus</a> (<a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> enemy=null)</td></tr>
-<tr class="memdesc:a2ccc29640d1b862867581cb839ccd6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa el estado actual del Pokémon, aplicando los efectos correspondientes.  <br /></td></tr>
-<tr class="separator:a2ccc29640d1b862867581cb839ccd6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf5ba4bbdb8fe39c8d58b5630387432" id="r_a5cf5ba4bbdb8fe39c8d58b5630387432"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cf5ba4bbdb8fe39c8d58b5630387432">ProcessStatus</a> ()</td></tr>
+<tr class="memdesc:a5cf5ba4bbdb8fe39c8d58b5630387432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa el estado actual del Pokémon y aplica los efectos correspondientes.  <br /></td></tr>
+<tr class="separator:a5cf5ba4bbdb8fe39c8d58b5630387432"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b55688ca3f3c8b1e5674b2a02870e00" id="r_a6b55688ca3f3c8b1e5674b2a02870e00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b55688ca3f3c8b1e5674b2a02870e00">OutOfAction</a> ()</td></tr>
-<tr class="memdesc:a6b55688ca3f3c8b1e5674b2a02870e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si el Pokémon está fuera de combate (sin puntos de salud).  <br /></td></tr>
+<tr class="memdesc:a6b55688ca3f3c8b1e5674b2a02870e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si el Pokémon está fuera de combate.  <br /></td></tr>
 <tr class="separator:a6b55688ca3f3c8b1e5674b2a02870e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_interface_library_1_1_i_pokemon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_interface_library_1_1_i_pokemon')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_library_1_1_i_pokemon.html">Library.IPokemon</a></td></tr>
 </table><table class="memberdecls">
@@ -156,10 +152,10 @@ Properties</h2></td></tr>
 <tr class="memdesc:a68c19b133602cf71110cb160e443aa15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre del Pokémon.  <br /></td></tr>
 <tr class="separator:a68c19b133602cf71110cb160e443aa15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d8bd54517ef8196095412c915b7dd58" id="r_a4d8bd54517ef8196095412c915b7dd58"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4d8bd54517ef8196095412c915b7dd58">Health</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a4d8bd54517ef8196095412c915b7dd58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos de salud actuales del Pokémon.  <br /></td></tr>
+<tr class="memdesc:a4d8bd54517ef8196095412c915b7dd58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salud actual del Pokémon.  <br /></td></tr>
 <tr class="separator:a4d8bd54517ef8196095412c915b7dd58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a583ba8268e18804eb93be65046be5ac8" id="r_a583ba8268e18804eb93be65046be5ac8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a583ba8268e18804eb93be65046be5ac8">MaxHealt</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a583ba8268e18804eb93be65046be5ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máximo de puntos de salud que el Pokémon puede tener.  <br /></td></tr>
+<tr class="memdesc:a583ba8268e18804eb93be65046be5ac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salud máxima del Pokémon.  <br /></td></tr>
 <tr class="separator:a583ba8268e18804eb93be65046be5ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a873aee05e475206929db8e56fd88ca35" id="r_a873aee05e475206929db8e56fd88ca35"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a873aee05e475206929db8e56fd88ca35">Id</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a873aee05e475206929db8e56fd88ca35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identificador único del Pokémon.  <br /></td></tr>
@@ -177,7 +173,7 @@ Properties</h2></td></tr>
 <tr class="memdesc:a0c5b23f46c522d21fb21f647cf2db278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor de defensa especial del Pokémon.  <br /></td></tr>
 <tr class="separator:a0c5b23f46c522d21fb21f647cf2db278"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac31d29af61e5c4c2bf8b8b8a4a55b2bf" id="r_ac31d29af61e5c4c2bf8b8b8a4a55b2bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_library_1_1_type.html">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac31d29af61e5c4c2bf8b8b8a4a55b2bf">Type</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ac31d29af61e5c4c2bf8b8b8a4a55b2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo principal del Pokémon.  <br /></td></tr>
+<tr class="memdesc:ac31d29af61e5c4c2bf8b8b8a4a55b2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo del Pokémon (por ejemplo, fuego, agua, planta).  <br /></td></tr>
 <tr class="separator:ac31d29af61e5c4c2bf8b8b8a4a55b2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a078cf46b101e22387ca9ca32f14be5e4" id="r_a078cf46b101e22387ca9ca32f14be5e4"><td class="memItemLeft" align="right" valign="top"><a id="a078cf46b101e22387ca9ca32f14be5e4" name="a078cf46b101e22387ca9ca32f14be5e4"></a>
 List&lt; <a class="el" href="class_library_1_1_stat.html">Stat</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Stats</b><code> [get, set]</code></td></tr>
@@ -185,21 +181,21 @@ List&lt; <a class="el" href="class_library_1_1_stat.html">Stat</a> &gt;&#160;</t
 <tr class="separator:a078cf46b101e22387ca9ca32f14be5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1ffac72b02bd6e2228c585852f9a542" id="r_ab1ffac72b02bd6e2228c585852f9a542"><td class="memItemLeft" align="right" valign="top"><a id="ab1ffac72b02bd6e2228c585852f9a542" name="ab1ffac72b02bd6e2228c585852f9a542"></a>
 List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Types</b><code> [get, set]</code></td></tr>
-<tr class="memdesc:ab1ffac72b02bd6e2228c585852f9a542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista de tipos secundarios del Pokémon. <br /></td></tr>
+<tr class="memdesc:ab1ffac72b02bd6e2228c585852f9a542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista de tipos del Pokémon. <br /></td></tr>
 <tr class="separator:ab1ffac72b02bd6e2228c585852f9a542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9256bbb100c34e69e9f44b3523b85f81" id="r_a9256bbb100c34e69e9f44b3523b85f81"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_library_1_1_move.html">Move</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9256bbb100c34e69e9f44b3523b85f81">Moves</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a9256bbb100c34e69e9f44b3523b85f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista de movimientos que el Pokémon conoce.  <br /></td></tr>
 <tr class="separator:a9256bbb100c34e69e9f44b3523b85f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a956e26f39c60f17c164f89b490217933" id="r_a956e26f39c60f17c164f89b490217933"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_library.html#a69db74b7a005c0dcfe483a078dacb632">EspecialStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a956e26f39c60f17c164f89b490217933">Status</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a956e26f39c60f17c164f89b490217933"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, dormido, paralizado).  <br /></td></tr>
-<tr class="separator:a956e26f39c60f17c164f89b490217933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a423bc044a39b6c3842dfffa0df76b442" id="r_a423bc044a39b6c3842dfffa0df76b442"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_library.html#a03ed32d35690e2393e40c937480102b6">SpecialStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a423bc044a39b6c3842dfffa0df76b442">Status</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a423bc044a39b6c3842dfffa0df76b442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado especial del Pokémon (por ejemplo, envenenado, paralizado).  <br /></td></tr>
+<tr class="separator:a423bc044a39b6c3842dfffa0df76b442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad593241228dbb6542165f79668f915e" id="r_aad593241228dbb6542165f79668f915e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad593241228dbb6542165f79668f915e">SleepTurnsLeft</a> = 0<code> [get, set]</code></td></tr>
-<tr class="memdesc:aad593241228dbb6542165f79668f915e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Número de turnos restantes que el Pokémon estará dormido.  <br /></td></tr>
+<tr class="memdesc:aad593241228dbb6542165f79668f915e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Número de turnos restantes que el Pokémon permanecerá dormido.  <br /></td></tr>
 <tr class="separator:aad593241228dbb6542165f79668f915e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_interface_library_1_1_i_pokemon"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interface_library_1_1_i_pokemon')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_library_1_1_i_pokemon.html">Library.IPokemon</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante una batalla. Implementa la interfaz <a class="el" href="interface_library_1_1_i_pokemon.html" title="Interfaz que define la estructura y el comportamiento de un Pokémon en el juego.">IPokemon</a>. </p>
+<div class="textblock"><p>Clase que representa un Pokémon en el contexto del juego. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a260c4e2ca8da6f5920ce50199263565a" name="a260c4e2ca8da6f5920ce50199263565a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a260c4e2ca8da6f5920ce50199263565a">&#9670;&#160;</a></span>Pokemon()</h2>
@@ -263,17 +259,17 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Constructor para inicializar un Pokémon con sus atributos básicos. </p>
+<p>Constructor de la clase <a class="el" href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon en el contexto del juego.">Pokemon</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Nombre del Pokémon.</td></tr>
     <tr><td class="paramname">id</td><td>Identificador único del Pokémon.</td></tr>
-    <tr><td class="paramname">health</td><td>Puntos de salud del Pokémon.</td></tr>
+    <tr><td class="paramname">health</td><td>Salud del Pokémon.</td></tr>
     <tr><td class="paramname">attack</td><td>Valor de ataque del Pokémon.</td></tr>
     <tr><td class="paramname">defense</td><td>Valor de defensa del Pokémon.</td></tr>
     <tr><td class="paramname">specialAttack</td><td>Valor de ataque especial del Pokémon.</td></tr>
     <tr><td class="paramname">specialDefense</td><td>Valor de defensa especial del Pokémon.</td></tr>
-    <tr><td class="paramname">type</td><td>Tipo principal del Pokémon.</td></tr>
+    <tr><td class="paramname">type</td><td>Tipo del Pokémon.</td></tr>
     <tr><td class="paramname">moves</td><td>Lista de movimientos que el Pokémon conoce.</td></tr>
   </table>
   </dd>
@@ -282,8 +278,8 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae6991669936aa783d94ee52b6d18b817" name="ae6991669936aa783d94ee52b6d18b817"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6991669936aa783d94ee52b6d18b817">&#9670;&#160;</a></span>AttackP()</h2>
+<a id="a57b04f60edd669245067600e3aeb9437" name="a57b04f60edd669245067600e3aeb9437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57b04f60edd669245067600e3aeb9437">&#9670;&#160;</a></span>AttackP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,7 +288,7 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Library.Pokemon.AttackP </td>
+          <td class="memname">async void Library.Pokemon.AttackP </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>, </td>
         </tr>
@@ -309,7 +305,12 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>currentShift</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>currentShift</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -319,18 +320,19 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Realiza un ataque a un Pokémon enemigo usando un movimiento específico. </p>
+<p>Realiza un ataque hacia un Pokémon enemigo. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>Jugador que posee el Pokémon atacante.</td></tr>
-    <tr><td class="paramname">enemy</td><td>El Pokémon enemigo que recibe el ataque.</td></tr>
-    <tr><td class="paramname">movement</td><td>Movimiento usado por el Pokémon atacante.</td></tr>
-    <tr><td class="paramname">currentShift</td><td>Turno actual en el que se realiza el ataque.</td></tr>
+    <tr><td class="paramname">player</td><td>El jugador propietario del Pokémon atacante.</td></tr>
+    <tr><td class="paramname">enemy</td><td>El Pokémon enemigo que recibirá el ataque.</td></tr>
+    <tr><td class="paramname">movement</td><td>El movimiento utilizado para el ataque.</td></tr>
+    <tr><td class="paramname">currentShift</td><td>El turno actual en la batalla.</td></tr>
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a08edcbb8200ae6b75128dfa34a7e4693">Library.IPokemon</a>.</p>
+<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#ae4c5e6adfe9b1d389fdfff901ef83eef">Library.IPokemon</a>.</p>
 
 </div>
 </div>
@@ -366,23 +368,23 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Calcula el daño causado por un movimiento específico. </p>
+<p>Calcula el daño infligido por un movimiento específico al oponente. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">movimiento</td><td>Movimiento usado para el ataque.</td></tr>
-    <tr><td class="paramname">efectividad</td><td>Factor de efectividad del movimiento en relación al tipo del oponente.</td></tr>
-    <tr><td class="paramname">oponente</td><td>El Pokémon oponente que recibe el ataque.</td></tr>
+    <tr><td class="paramname">movimiento</td><td>El movimiento que el Pokémon usará para atacar.</td></tr>
+    <tr><td class="paramname">efectividad</td><td>El factor de efectividad del movimiento.</td></tr>
+    <tr><td class="paramname">oponente</td><td>El Pokémon enemigo que recibirá el daño.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>El daño calculado.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>El valor de daño calculado.</dd></dl>
 
 <p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a5765c6f439cc4a60f71c0ffa1548581f">Library.IPokemon</a>.</p>
 
 </div>
 </div>
-<a id="aa280db7966e97292a3884575a7349435" name="aa280db7966e97292a3884575a7349435"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa280db7966e97292a3884575a7349435">&#9670;&#160;</a></span>CanAtack()</h2>
+<a id="a66684c1d2b412ebb723d6f88070677e4" name="a66684c1d2b412ebb723d6f88070677e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66684c1d2b412ebb723d6f88070677e4">&#9670;&#160;</a></span>CanAtack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -391,9 +393,9 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Library.Pokemon.CanAtack </td>
+          <td class="memname">async Task&lt; bool &gt; Library.Pokemon.CanAtack </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -404,10 +406,16 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Verifica si el Pokémon puede atacar, teniendo en cuenta su estado actual. </p>
-<dl class="section return"><dt>Returns</dt><dd>Devuelve true si el Pokémon puede atacar, de lo contrario false.</dd></dl>
+<p>Determina si el Pokémon puede atacar según su estado actual. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True si el Pokémon puede atacar, de lo contrario false.</dd></dl>
 
-<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a9368fc8fa2ba0b833494402fca820b39">Library.IPokemon</a>.</p>
+<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a8ae2410cae07928c04b3a22feb1b83e4">Library.IPokemon</a>.</p>
 
 </div>
 </div>
@@ -434,15 +442,15 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Verifica si el Pokémon está fuera de combate (sin puntos de salud). </p>
-<dl class="section return"><dt>Returns</dt><dd>Devuelve true si el Pokémon está fuera de combate, de lo contrario false.</dd></dl>
+<p>Verifica si el Pokémon está fuera de combate. </p>
+<dl class="section return"><dt>Returns</dt><dd>True si el Pokémon ya no puede combatir, de lo contrario false.</dd></dl>
 
 <p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#ac1b907d20a744867aba4e85edf394c33">Library.IPokemon</a>.</p>
 
 </div>
 </div>
-<a id="a2ccc29640d1b862867581cb839ccd6f2" name="a2ccc29640d1b862867581cb839ccd6f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ccc29640d1b862867581cb839ccd6f2">&#9670;&#160;</a></span>ProcessStatus()</h2>
+<a id="a5cf5ba4bbdb8fe39c8d58b5630387432" name="a5cf5ba4bbdb8fe39c8d58b5630387432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf5ba4bbdb8fe39c8d58b5630387432">&#9670;&#160;</a></span>ProcessStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -451,9 +459,9 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Library.Pokemon.ProcessStatus </td>
+          <td class="memname">string Library.Pokemon.ProcessStatus </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_pokemon.html">Pokemon</a></td>          <td class="paramname"><span class="paramname"><em>enemy</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -464,15 +472,10 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Procesa el estado actual del Pokémon, aplicando los efectos correspondientes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">enemy</td><td>El Pokémon enemigo, si es aplicable.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Procesa el estado actual del Pokémon y aplica los efectos correspondientes. </p>
+<dl class="section return"><dt>Returns</dt><dd>Una cadena de texto que describe el efecto del estado especial del Pokémon.</dd></dl>
 
-<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a14afdff8d464d84ae54210419b1a29a3">Library.IPokemon</a>.</p>
+<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#ab0037d21967d7fe9412e2c532ab35e00">Library.IPokemon</a>.</p>
 
 </div>
 </div>
@@ -549,7 +552,7 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Puntos de salud actuales del Pokémon. </p>
+<p>Salud actual del Pokémon. </p>
 
 <p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a77a4937f205d4e3d2a3b9e69db1204c2">Library.IPokemon</a>.</p>
 
@@ -601,7 +604,7 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Máximo de puntos de salud que el Pokémon puede tener. </p>
+<p>Salud máxima del Pokémon. </p>
 
 <p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a27d85a7866406a0caef9a0de7e24d6de">Library.IPokemon</a>.</p>
 
@@ -679,7 +682,7 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Número de turnos restantes que el Pokémon estará dormido. </p>
+<p>Número de turnos restantes que el Pokémon permanecerá dormido. </p>
 
 <p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a82c2bd2042df4aee75ca7c07d1a3bf19">Library.IPokemon</a>.</p>
 
@@ -737,8 +740,8 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 
 </div>
 </div>
-<a id="a956e26f39c60f17c164f89b490217933" name="a956e26f39c60f17c164f89b490217933"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a956e26f39c60f17c164f89b490217933">&#9670;&#160;</a></span>Status</h2>
+<a id="a423bc044a39b6c3842dfffa0df76b442" name="a423bc044a39b6c3842dfffa0df76b442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a423bc044a39b6c3842dfffa0df76b442">&#9670;&#160;</a></span>Status</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -747,7 +750,7 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_library.html#a69db74b7a005c0dcfe483a078dacb632">EspecialStatus</a> Library.Pokemon.Status</td>
+          <td class="memname"><a class="el" href="namespace_library.html#a03ed32d35690e2393e40c937480102b6">SpecialStatus</a> Library.Pokemon.Status</td>
         </tr>
       </table>
   </td>
@@ -757,9 +760,9 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, dormido, paralizado). </p>
+<p>Estado especial del Pokémon (por ejemplo, envenenado, paralizado). </p>
 
-<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#aab1b0b874dcd8cb18447fda6f2b89a4d">Library.IPokemon</a>.</p>
+<p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#aa85b8f5191b2157fbd196878a1c2acb6">Library.IPokemon</a>.</p>
 
 </div>
 </div>
@@ -783,7 +786,7 @@ List&lt; <a class="el" href="class_library_1_1_type.html">Type</a> &gt;&#160;</t
 </table>
 </div><div class="memdoc">
 
-<p>Tipo principal del Pokémon. </p>
+<p>Tipo del Pokémon (por ejemplo, fuego, agua, planta). </p>
 
 <p>Implements <a class="el" href="interface_library_1_1_i_pokemon.html#a00e293c5b24b77dac8a0437b4ec46e0a">Library.IPokemon</a>.</p>
 

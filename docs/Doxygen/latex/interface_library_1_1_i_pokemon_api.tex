@@ -2,7 +2,7 @@
 \hypertarget{interface_library_1_1_i_pokemon_api}{}\label{interface_library_1_1_i_pokemon_api}\index{Library.IPokemonApi@{Library.IPokemonApi}}
 
 
-Interfaz que define métodos para interactuar con una \doxylink{namespace_a_p_i}{API} de Pokémon y obtener detalles sobre Pokémon y movimientos específicos.  
+Interfaz que define los métodos para interactuar con la API de Pokémon y obtener detalles de Pokémon y movimientos.  
 
 
 Inheritance diagram for Library.\+IPokemon\+Api\+:\begin{figure}[H]
@@ -15,13 +15,13 @@ Inheritance diagram for Library.\+IPokemon\+Api\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{interface_library_1_1_i_pokemon_api_aabd023ca37f5ae94f4baec7bc53641b0}{Get\+Pokemon\+Details}} (string pokemon\+Id)
-\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un Pokémon a partir de su identificador utilizando la API de Pokémon. \end{DoxyCompactList}\item 
 Task$<$ \mbox{\hyperlink{class_library_1_1_move_detail}{Move\+Detail}} $>$ \mbox{\hyperlink{interface_library_1_1_i_pokemon_api_a9806426a8724f63f84248f41f23bde9f}{Get\+Move\+Details}} (string url)
-\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un movimiento específico a partir de una URL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un movimiento específico a partir de una URL proporcionada por la API de Pokémon. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Interfaz que define métodos para interactuar con una \doxylink{namespace_a_p_i}{API} de Pokémon y obtener detalles sobre Pokémon y movimientos específicos. 
+Interfaz que define los métodos para interactuar con la API de Pokémon y obtener detalles de Pokémon y movimientos. 
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{interface_library_1_1_i_pokemon_api_a9806426a8724f63f84248f41f23bde9f}\index{Library.IPokemonApi@{Library.IPokemonApi}!GetMoveDetails@{GetMoveDetails}}
@@ -32,15 +32,15 @@ Task$<$ \mbox{\hyperlink{class_library_1_1_move_detail}{Move\+Detail}} $>$ Libra
 
 
 
-Obtiene los detalles de un movimiento específico a partir de una URL. 
+Obtiene los detalles de un movimiento específico a partir de una URL proporcionada por la API de Pokémon. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em url} & URL del movimiento para obtener sus detalles.\\
+{\em url} & La URL que apunta al recurso del movimiento específico en la API.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Un objeto \doxylink{class_library_1_1_move_detail}{Move\+Detail} con los detalles del movimiento.
+Devuelve un objeto \doxylink{class_library_1_1_move_detail}{Move\+Detail} con los detalles del movimiento solicitado.
 \end{DoxyReturn}
 
 
@@ -54,15 +54,15 @@ Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ Library.\+IPok
 
 
 
-Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre. 
+Obtiene los detalles de un Pokémon a partir de su identificador utilizando la API de Pokémon. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em pokemon\+Id} & Identificador o nombre del Pokémon que se desea consultar.\\
+{\em pokemon\+Id} & El identificador del Pokémon (nombre o número).\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Un objeto \doxylink{class_library_1_1_pokemon}{Pokemon} con los detalles del Pokémon.
+Devuelve un objeto \doxylink{class_library_1_1_pokemon}{Pokemon} con los detalles del Pokémon solicitado.
 \end{DoxyReturn}
 
 

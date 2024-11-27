@@ -22,8 +22,6 @@
 
 *El juego es un sistema de combate por turnos multijugador, diseñado en un formato 1 vs 1 mediante comandos de un chatbot. Cada jugador tendrá un equipo de 6 Pokémon disponibles para la batalla, los cuales se mostrarán en pantalla para facilitar la selección estratégica. Cada Pokémon podrá utilizar 4 movimientos de ataque estándar, además de contar con un ataque especial disponible cada dos turnos. El sistema calculará automáticamente la efectividad de los ataques según los tipos de los Pokémon, aplicando ventajas o desventajas de manera dinámica.*
 
-![Pelea 1vs1](https://imgur.com/CBLMbd9)
-
 *Durante cada turno, los jugadores podrán realizar una sola acción, como atacar, cambiar de Pokémon u optar por usar un item. La interfaz del juego permitirá a cada jugador visualizar la vida restante de los Pokémon del oponente, de quién es el turno actual y la acción seleccionada. El combate continuará hasta que todos los Pokémon de un jugador sean derrotados, declarando como ganador al último entrenador con Pokémon en pie.*
 
 ---
@@ -111,6 +109,8 @@
 >Tuvimos muchos problemas con el discord,su integracion y la sintaxis.
 
 - El que creaba mas problemas en esta entrega fue battle,botqueue y battle commands, ya que la logica nueva mayormente esta albergada en estas clases.
-Lo solucionamos
+
+- Un problema recurrente es la sobresaturacion de "await" que hay, crea una demora la respuesta del bot en la batalla y en general. Puede incluso generar un desorder en mensajes que se muestra en el chat.
+
  
 # Muchas gracias y un saludo. 

@@ -4,19 +4,17 @@
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{class_library_1_1_battle}{Battle}}
-\begin{DoxyCompactList}\small\item\em Clase que representa una batalla entre dos jugadores y maneja toda la lógica de turnos, ataques y uso de ítems. \end{DoxyCompactList}\item 
-interface \mbox{\hyperlink{interface_library_1_1_i_batalla}{IBatalla}}
-\begin{DoxyCompactList}\small\item\em Interfaz que define los métodos necesarios para llevar a cabo una batalla entre dos jugadores. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Clase "{}\+Battle"{} que maneja la lógica de la batalla entre dos jugadores en un entorno de Discord. \end{DoxyCompactList}\item 
 interface \mbox{\hyperlink{interface_library_1_1_i_battle}{IBattle}}
-\begin{DoxyCompactList}\small\item\em Interfaz que define los métodos para la batalla entre dos jugadores en un juego de Pokémon. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interfaz que define las operaciones básicas que deben implementarse para una batalla. \end{DoxyCompactList}\item 
 interface \mbox{\hyperlink{interface_library_1_1_i_item}{IItem}}
-\begin{DoxyCompactList}\small\item\em Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento. \end{DoxyCompactList}\item 
-interface \mbox{\hyperlink{interface_library_1_1_i_jugador}{IJugador}}
-\begin{DoxyCompactList}\small\item\em Interfaz que define la estructura y comportamiento de un jugador en el juego. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interfaz que define las propiedades y métodos básicos para un ítem. \end{DoxyCompactList}\item 
+interface \mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}}
+\begin{DoxyCompactList}\small\item\em Interfaz que define las propiedades y métodos básicos de un jugador en el contexto de un juego. \end{DoxyCompactList}\item 
 interface \mbox{\hyperlink{interface_library_1_1_i_pokemon}{IPokemon}}
-\begin{DoxyCompactList}\small\item\em Interfaz que define la estructura y el comportamiento de un Pokémon en el juego. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interfaz que define las propiedades y métodos básicos de un Pokémon en el contexto de un juego. \end{DoxyCompactList}\item 
 interface \mbox{\hyperlink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}}
-\begin{DoxyCompactList}\small\item\em Interfaz que define métodos para interactuar con una \doxylink{namespace_a_p_i}{API} de Pokémon y obtener detalles sobre Pokémon y movimientos específicos. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interfaz que define los métodos para interactuar con la API de Pokémon y obtener detalles de Pokémon y movimientos. \end{DoxyCompactList}\item 
 interface \mbox{\hyperlink{interface_library_1_1_i_pokemon_creator}{IPokemon\+Creator}}
 \begin{DoxyCompactList}\small\item\em Interfaz que define el método para crear un objeto Pokémon a partir de un identificador o nombre. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_move}{Move}}
@@ -24,13 +22,15 @@ class \mbox{\hyperlink{class_library_1_1_move}{Move}}
 class \mbox{\hyperlink{class_library_1_1_move_detail}{Move\+Detail}}
 \begin{DoxyCompactList}\small\item\em Clase que representa los detalles de un movimiento específico que un Pokémon puede realizar. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_player}{Player}}
-\begin{DoxyCompactList}\small\item\em Clase que representa a un jugador en el juego. Implementa la interfaz \doxylink{interface_library_1_1_i_jugador}{IJugador}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Clase que representa a un jugador en el juego, implementando la interfaz \doxylink{interface_library_1_1_i_player}{IPlayer}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}
-\begin{DoxyCompactList}\small\item\em Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante una batalla. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon}{IPokemon}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Clase que representa un Pokémon en el contexto del juego. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_pokemon_api}{Pokemon\+Api}}
-\begin{DoxyCompactList}\small\item\em Clase que encapsula la lógica para obtener datos desde la \doxylink{namespace_a_p_i}{API} de Pokémon. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Clase que proporciona métodos para interactuar con la API de Pokémon. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_pokemon_creator}{Pokemon\+Creator}}
-\begin{DoxyCompactList}\small\item\em Clase que implementa \doxylink{interface_library_1_1_i_pokemon_creator}{IPokemon\+Creator} y se encarga de crear un objeto Pokémon a partir de la \doxylink{namespace_a_p_i}{API}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Clase que implementa \doxylink{interface_library_1_1_i_pokemon_creator}{IPokemon\+Creator} y se encarga de crear un objeto Pokémon a partir de la API. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_library_1_1_pokemon_service}{Pokemon\+Service}}
+\begin{DoxyCompactList}\small\item\em Servicio que proporciona funcionalidades relacionadas con la selección y gestión de Pokémon. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_revive}{Revive}}
 \begin{DoxyCompactList}\small\item\em Clase que representa el ítem Revivir, el cual se utiliza para revivir a un Pokémon con el 50\% de su salud total. Esta clase hereda de \doxylink{class_items}{Items}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_shift}{Shift}}
@@ -46,19 +46,12 @@ class \mbox{\hyperlink{class_library_1_1_total_cure}{Total\+Cure}}
 class \mbox{\hyperlink{class_library_1_1_type}{Type}}
 \begin{DoxyCompactList}\small\item\em Clase que representa el tipo de un Pokémon. Contiene detalles sobre el tipo y su efectividad contra otros tipos. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_library_1_1_type_detail}{Type\+Detail}}
-\begin{DoxyCompactList}\small\item\em Clase que representa los detalles de un tipo de Pokémon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clase que representa los detalles de un tipo de Pokémon. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_library_1_1_wait_list}{Wait\+List}}
+\begin{DoxyCompactList}\small\item\em Clase que representa una lista de espera para los jugadores. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Especial\+Status}} \{ \newline
-\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632acb2f5c5c7eaffead48032ab5825d4f26}{None\+Status}}
-, \mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632aa3bdbf2434870a6548df06309bb536b1}{Poisoned}}
-, \mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632a26087341433e59614e8a48d71b91f72e}{Burned}}
-, \mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632a56a8ddcbbee153b7f751514c8b607b3e}{Asleep}}
-, \newline
-\mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632a7b5c5fcb680360f4f7ef17bfb483ce56}{Paralyzed}}
- \}
-\begin{DoxyCompactList}\small\item\em Enumeración que representa los distintos estados especiales que un Pokémon puede tener. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{namespace_library_a03ed32d35690e2393e40c937480102b6}{Special\+Status}} \{ \newline
 \mbox{\hyperlink{namespace_library_a03ed32d35690e2393e40c937480102b6acb2f5c5c7eaffead48032ab5825d4f26}{None\+Status}}
 , \mbox{\hyperlink{namespace_library_a03ed32d35690e2393e40c937480102b6aa3bdbf2434870a6548df06309bb536b1}{Poisoned}}
@@ -71,38 +64,6 @@ enum \mbox{\hyperlink{namespace_library_a03ed32d35690e2393e40c937480102b6}{Speci
 
 
 \doxysubsection{Enumeration Type Documentation}
-\Hypertarget{namespace_library_a69db74b7a005c0dcfe483a078dacb632}\index{Library@{Library}!EspecialStatus@{EspecialStatus}}
-\index{EspecialStatus@{EspecialStatus}!Library@{Library}}
-\doxysubsubsection{\texorpdfstring{EspecialStatus}{EspecialStatus}}
-{\footnotesize\ttfamily \label{namespace_library_a69db74b7a005c0dcfe483a078dacb632} 
-enum \mbox{\hyperlink{namespace_library_a69db74b7a005c0dcfe483a078dacb632}{Library.\+Especial\+Status}}}
-
-
-
-Enumeración que representa los distintos estados especiales que un Pokémon puede tener. 
-
-\begin{DoxyEnumFields}[2]{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{NoneStatus@{NoneStatus}!Library@{Library}}\index{Library@{Library}!NoneStatus@{NoneStatus}}}\Hypertarget{namespace_library_a69db74b7a005c0dcfe483a078dacb632acb2f5c5c7eaffead48032ab5825d4f26}\label{namespace_library_a69db74b7a005c0dcfe483a078dacb632} 
-None\+Status&Sin estado especial. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Poisoned@{Poisoned}!Library@{Library}}\index{Library@{Library}!Poisoned@{Poisoned}}}\Hypertarget{namespace_library_a69db74b7a005c0dcfe483a078dacb632aa3bdbf2434870a6548df06309bb536b1}\label{namespace_library_a69db74b7a005c0dcfe483a078dacb632} 
-Poisoned&El Pokémon está envenenado. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Burned@{Burned}!Library@{Library}}\index{Library@{Library}!Burned@{Burned}}}\Hypertarget{namespace_library_a69db74b7a005c0dcfe483a078dacb632a26087341433e59614e8a48d71b91f72e}\label{namespace_library_a69db74b7a005c0dcfe483a078dacb632} 
-Burned&El Pokémon está quemado. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Asleep@{Asleep}!Library@{Library}}\index{Library@{Library}!Asleep@{Asleep}}}\Hypertarget{namespace_library_a69db74b7a005c0dcfe483a078dacb632a56a8ddcbbee153b7f751514c8b607b3e}\label{namespace_library_a69db74b7a005c0dcfe483a078dacb632} 
-Asleep&El Pokémon está dormido. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Paralyzed@{Paralyzed}!Library@{Library}}\index{Library@{Library}!Paralyzed@{Paralyzed}}}\Hypertarget{namespace_library_a69db74b7a005c0dcfe483a078dacb632a7b5c5fcb680360f4f7ef17bfb483ce56}\label{namespace_library_a69db74b7a005c0dcfe483a078dacb632} 
-Paralyzed&El Pokémon está paralizado. \\
-\hline
-
-\end{DoxyEnumFields}
 \Hypertarget{namespace_library_a03ed32d35690e2393e40c937480102b6}\index{Library@{Library}!SpecialStatus@{SpecialStatus}}
 \index{SpecialStatus@{SpecialStatus}!Library@{Library}}
 \doxysubsubsection{\texorpdfstring{SpecialStatus}{SpecialStatus}}

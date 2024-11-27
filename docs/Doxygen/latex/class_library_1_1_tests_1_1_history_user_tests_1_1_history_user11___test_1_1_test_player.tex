@@ -1,0 +1,89 @@
+\doxysection{Library.\+Tests.\+History\+User\+Tests.\+History\+User11\+\_\+\+Test.\+Test\+Player Class Reference}
+\hypertarget{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player}{}\label{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player}\index{Library.Tests.HistoryUserTests.HistoryUser11\_Test.TestPlayer@{Library.Tests.HistoryUserTests.HistoryUser11\_Test.TestPlayer}}
+
+
+Clase derivada de \doxylink{class_library_1_1_player}{Player} utilizada únicamente con fines de prueba.  
+
+
+Inheritance diagram for Library.\+Tests.\+History\+User\+Tests.\+History\+User11\+\_\+\+Test.\+Test\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player_ae0095ace0688c5687d517985ce632d7d}{Test\+Player}} (string name\+Player)
+\begin{DoxyCompactList}\small\item\em Constructor para la clase de prueba \doxylink{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player}{Test\+Player}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_library_1_1_player}{Library.\+Player}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_library_1_1_player_a45d93ebc88619eff6e8d576a00ad1eaf}{Player}} (Discord\+Member member, string name\+Player, List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$? team=null, bool in\+Game=false)
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_library_1_1_player}{Player}. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_player_a78191e984513adb327490a149bd20779}{Elegir\+Equipo}} (string pokemon)
+\begin{DoxyCompactList}\small\item\em Método para elegir un equipo de Pokémon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_player_abf1e7eef9716afd406a059cfe68c544d}{Switch\+Pokemon}} (int indice, Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Cambia el Pokémon activo del jugador. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_player_aade50533a26b79e379dffce19cef542d}{All\+Out\+Of\+Combat}} ()
+\begin{DoxyCompactList}\small\item\em Verifica si todos los Pokémon del equipo están fuera de combate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_player_ac0003fdb095c6189e11326caa3a485b0}{Register\+Special\+Attack}} (string nombre\+Ataque, int turno\+Actual)
+\begin{DoxyCompactList}\small\item\em Registra el uso de un ataque especial en el turno actual. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_player_ac9b678154173d278b43e805aa843aba2}{Can\+Use\+Especial\+Atack}} (string nombre\+Ataque, int turno\+Actual)
+\begin{DoxyCompactList}\small\item\em Verifica si un ataque especial puede ser utilizado en el turno actual. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_player_a75d525252e624040da8581e69df73db4}{Obtain\+Last\+Shiftof\+Attack}} (string nombre\+Ataque)
+\begin{DoxyCompactList}\small\item\em Obtiene el turno en el que se utilizó por última vez un ataque especial. \end{DoxyCompactList}\item 
+void {\bfseries Increment\+Personal\+Shift} ()
+\begin{DoxyCompactList}\small\item\em Incrementa el turno personal del jugador. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_library_1_1_player_afcd1d23c4dc3f46fb387dc1bd9e4e858}{Obtain\+Personal\+Shift}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el número del turno personal actual del jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_library_1_1_i_player}{Library.\+IPlayer}}}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_library_1_1_player}{Library.\+Player}}}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_library_1_1_player_a163f2fe87d858e9804824747e2c08e70}{Name\+Player}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Nombre del jugador. \end{DoxyCompactList}\item 
+Discord\+Member {\bfseries Member}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Miembro de Discord asociado al jugador. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_player_a1d4891b0f333503c5f75d5aa080089e5}{Team}} = new List$<$\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}$>$()\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Equipo de Pokémon del jugador. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} \mbox{\hyperlink{class_library_1_1_player_a35768bdb188498827ebd1c92fece1623}{actual\+Pokemon}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Pokémon actualmente activo del jugador. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{interface_library_1_1_i_item}{IItem}} $>$ \mbox{\hyperlink{class_library_1_1_player_a22cf579fe1ba44bf09dc063f162e9935}{Inventario}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Inventario de ítems del jugador. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_super_potion}{Super\+Potion}} \mbox{\hyperlink{class_library_1_1_player_a87508432b9858ed14345355f461eac2c}{Superpotion}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Objeto \doxylink{class_library_1_1_super_potion}{Super\+Potion} del jugador, usado para curar a sus Pokémon. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_revive}{Revive}} \mbox{\hyperlink{class_library_1_1_player_a470475b39d6de4ea985143eb906b1a0e}{Revive}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Objeto \doxylink{class_library_1_1_revive}{Revive} del jugador, usado para revivir a sus Pokémon caídos. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_total_cure}{Total\+Cure}} \mbox{\hyperlink{class_library_1_1_player_a8eb680f9f66c41e24890a646f98b3c3b}{Totalcure}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Objeto \doxylink{class_library_1_1_total_cure}{Total\+Cure} del jugador, usado para curar completamente a sus Pokémon. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_player_a78c0a8e7770d4a7b8dc56450124b7f05}{In\+Game}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indica si el jugador está en una partida activa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{interface_library_1_1_i_player}{Library.\+IPlayer}}}
+
+
+\doxysubsection{Detailed Description}
+Clase derivada de \doxylink{class_library_1_1_player}{Player} utilizada únicamente con fines de prueba. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player_ae0095ace0688c5687d517985ce632d7d}\index{Library.Tests.HistoryUserTests.HistoryUser11\_Test.TestPlayer@{Library.Tests.HistoryUserTests.HistoryUser11\_Test.TestPlayer}!TestPlayer@{TestPlayer}}
+\index{TestPlayer@{TestPlayer}!Library.Tests.HistoryUserTests.HistoryUser11\_Test.TestPlayer@{Library.Tests.HistoryUserTests.HistoryUser11\_Test.TestPlayer}}
+\doxysubsubsection{\texorpdfstring{TestPlayer()}{TestPlayer()}}
+{\footnotesize\ttfamily \label{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player_ae0095ace0688c5687d517985ce632d7d} 
+Library.\+Tests.\+History\+User\+Tests.\+History\+User11\+\_\+\+Test.\+Test\+Player.\+Test\+Player (\begin{DoxyParamCaption}\item[{string}]{name\+Player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor para la clase de prueba \doxylink{class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test_1_1_test_player}{Test\+Player}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+Player} & Nombre del jugador.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+test/\+Library.\+Tests/\+History\+User\+Tests/History\+User11\+\_\+\+Test.\+cs\end{DoxyCompactItemize}

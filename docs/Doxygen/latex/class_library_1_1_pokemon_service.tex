@@ -1,0 +1,43 @@
+\doxysection{Library.\+Pokemon\+Service Class Reference}
+\hypertarget{class_library_1_1_pokemon_service}{}\label{class_library_1_1_pokemon_service}\index{Library.PokemonService@{Library.PokemonService}}
+
+
+Servicio que proporciona funcionalidades relacionadas con la selección y gestión de Pokémon.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_pokemon_service_a75d1b33dcd81b13e86c1045b47f697c7}{Pokemon\+Election}} (string pokemon\+Id, Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Método para seleccionar un Pokémon utilizando su identificador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Servicio que proporciona funcionalidades relacionadas con la selección y gestión de Pokémon. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_pokemon_service_a75d1b33dcd81b13e86c1045b47f697c7}\index{Library.PokemonService@{Library.PokemonService}!PokemonElection@{PokemonElection}}
+\index{PokemonElection@{PokemonElection}!Library.PokemonService@{Library.PokemonService}}
+\doxysubsubsection{\texorpdfstring{PokemonElection()}{PokemonElection()}}
+{\footnotesize\ttfamily \label{class_library_1_1_pokemon_service_a75d1b33dcd81b13e86c1045b47f697c7} 
+async Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ Library.\+Pokemon\+Service.\+Pokemon\+Election (\begin{DoxyParamCaption}\item[{string}]{pokemon\+Id}{, }\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Método para seleccionar un Pokémon utilizando su identificador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pokemon\+Id} & El identificador del Pokémon que se desea seleccionar (nombre o número).\\
+\hline
+{\em ctx} & El contexto de la interacción en Discord.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Una tarea que representa la operación asincrónica, que contiene el Pokémon seleccionado si la operación es exitosa, de lo contrario devuelve null.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Pokemon\+Service.\+cs\end{DoxyCompactItemize}

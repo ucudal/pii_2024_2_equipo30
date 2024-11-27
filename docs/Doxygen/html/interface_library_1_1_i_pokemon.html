@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>4GRAM_Equipo30: Library.IPokemon Interface Reference</title>
+<title>4GRAM_Equipo30 - Poke Fight: Library.IPokemon Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">4GRAM_Equipo30
+   <div id="projectname">4GRAM_Equipo30 - Poke Fight
    </div>
   </td>
  </tr>
@@ -96,7 +96,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Interfaz que define la estructura y el comportamiento de un Pokémon en el juego.  
+<p>Interfaz que define las propiedades y métodos básicos de un Pokémon en el contexto de un juego.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Library.IPokemon:</div>
@@ -104,72 +104,72 @@ Inheritance diagram for Library.IPokemon:</div>
  <div class="center">
   <img src="interface_library_1_1_i_pokemon.png" usemap="#Library.IPokemon_map" alt=""/>
   <map id="Library.IPokemon_map" name="Library.IPokemon_map">
-<area href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante un..." alt="Library.Pokemon" shape="rect" coords="0,56,111,80"/>
+<area href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon en el contexto del juego." alt="Library.Pokemon" shape="rect" coords="0,56,111,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5765c6f439cc4a60f71c0ffa1548581f" id="r_a5765c6f439cc4a60f71c0ffa1548581f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5765c6f439cc4a60f71c0ffa1548581f">CalculateDamage</a> (<a class="el" href="class_library_1_1_move.html">Move</a> movimiento, double efectividad, <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> oponente)</td></tr>
-<tr class="memdesc:a5765c6f439cc4a60f71c0ffa1548581f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el daño infligido al oponente por un movimiento.  <br /></td></tr>
+<tr class="memdesc:a5765c6f439cc4a60f71c0ffa1548581f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula el daño infligido por un movimiento específico al oponente.  <br /></td></tr>
 <tr class="separator:a5765c6f439cc4a60f71c0ffa1548581f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9368fc8fa2ba0b833494402fca820b39" id="r_a9368fc8fa2ba0b833494402fca820b39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9368fc8fa2ba0b833494402fca820b39">CanAtack</a> ()</td></tr>
-<tr class="memdesc:a9368fc8fa2ba0b833494402fca820b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si el Pokémon puede atacar en su turno, teniendo en cuenta su estado actual.  <br /></td></tr>
-<tr class="separator:a9368fc8fa2ba0b833494402fca820b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08edcbb8200ae6b75128dfa34a7e4693" id="r_a08edcbb8200ae6b75128dfa34a7e4693"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08edcbb8200ae6b75128dfa34a7e4693">AttackP</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player, <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> enemy, <a class="el" href="class_library_1_1_move.html">Move</a> movement, int currentShift)</td></tr>
-<tr class="memdesc:a08edcbb8200ae6b75128dfa34a7e4693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza un ataque al Pokémon enemigo.  <br /></td></tr>
-<tr class="separator:a08edcbb8200ae6b75128dfa34a7e4693"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14afdff8d464d84ae54210419b1a29a3" id="r_a14afdff8d464d84ae54210419b1a29a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14afdff8d464d84ae54210419b1a29a3">ProcessStatus</a> (<a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> enemy=null)</td></tr>
-<tr class="memdesc:a14afdff8d464d84ae54210419b1a29a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa el estado actual del Pokémon y aplica los efectos correspondientes.  <br /></td></tr>
-<tr class="separator:a14afdff8d464d84ae54210419b1a29a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae2410cae07928c04b3a22feb1b83e4" id="r_a8ae2410cae07928c04b3a22feb1b83e4"><td class="memItemLeft" align="right" valign="top">Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ae2410cae07928c04b3a22feb1b83e4">CanAtack</a> (InteractionContext ctx)</td></tr>
+<tr class="memdesc:a8ae2410cae07928c04b3a22feb1b83e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determina si el Pokémon puede atacar según su estado actual.  <br /></td></tr>
+<tr class="separator:a8ae2410cae07928c04b3a22feb1b83e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c5e6adfe9b1d389fdfff901ef83eef" id="r_ae4c5e6adfe9b1d389fdfff901ef83eef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4c5e6adfe9b1d389fdfff901ef83eef">AttackP</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player, <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> enemy, <a class="el" href="class_library_1_1_move.html">Move</a> movement, int currentShift, InteractionContext ctx)</td></tr>
+<tr class="memdesc:ae4c5e6adfe9b1d389fdfff901ef83eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza un ataque hacia un Pokémon enemigo.  <br /></td></tr>
+<tr class="separator:ae4c5e6adfe9b1d389fdfff901ef83eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0037d21967d7fe9412e2c532ab35e00" id="r_ab0037d21967d7fe9412e2c532ab35e00"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0037d21967d7fe9412e2c532ab35e00">ProcessStatus</a> ()</td></tr>
+<tr class="memdesc:ab0037d21967d7fe9412e2c532ab35e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Procesa el estado actual del Pokémon y aplica los efectos correspondientes (por ejemplo, daño por veneno).  <br /></td></tr>
+<tr class="separator:ab0037d21967d7fe9412e2c532ab35e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1b907d20a744867aba4e85edf394c33" id="r_ac1b907d20a744867aba4e85edf394c33"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1b907d20a744867aba4e85edf394c33">OutOfAction</a> ()</td></tr>
-<tr class="memdesc:ac1b907d20a744867aba4e85edf394c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si el Pokémon está fuera de combate (sin puntos de salud).  <br /></td></tr>
+<tr class="memdesc:ac1b907d20a744867aba4e85edf394c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si el Pokémon está fuera de combate.  <br /></td></tr>
 <tr class="separator:ac1b907d20a744867aba4e85edf394c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:aded8f0ef8507aac1f7ab74167af1829b" id="r_aded8f0ef8507aac1f7ab74167af1829b"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aded8f0ef8507aac1f7ab74167af1829b">Name</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aded8f0ef8507aac1f7ab74167af1829b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre del Pokémon.  <br /></td></tr>
+<tr class="memdesc:aded8f0ef8507aac1f7ab74167af1829b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el nombre del Pokémon.  <br /></td></tr>
 <tr class="separator:aded8f0ef8507aac1f7ab74167af1829b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77a4937f205d4e3d2a3b9e69db1204c2" id="r_a77a4937f205d4e3d2a3b9e69db1204c2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a4937f205d4e3d2a3b9e69db1204c2">Health</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a77a4937f205d4e3d2a3b9e69db1204c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puntos de salud actuales del Pokémon.  <br /></td></tr>
+<tr class="memdesc:a77a4937f205d4e3d2a3b9e69db1204c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece la salud actual del Pokémon.  <br /></td></tr>
 <tr class="separator:a77a4937f205d4e3d2a3b9e69db1204c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27d85a7866406a0caef9a0de7e24d6de" id="r_a27d85a7866406a0caef9a0de7e24d6de"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27d85a7866406a0caef9a0de7e24d6de">MaxHealt</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a27d85a7866406a0caef9a0de7e24d6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máximo de puntos de salud que el Pokémon puede tener.  <br /></td></tr>
+<tr class="memdesc:a27d85a7866406a0caef9a0de7e24d6de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece la salud máxima del Pokémon.  <br /></td></tr>
 <tr class="separator:a27d85a7866406a0caef9a0de7e24d6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa2d1a536afc85f48ec22cb0372d2461" id="r_afa2d1a536afc85f48ec22cb0372d2461"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa2d1a536afc85f48ec22cb0372d2461">Id</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:afa2d1a536afc85f48ec22cb0372d2461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identificador único del Pokémon.  <br /></td></tr>
+<tr class="memdesc:afa2d1a536afc85f48ec22cb0372d2461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el identificador único del Pokémon.  <br /></td></tr>
 <tr class="separator:afa2d1a536afc85f48ec22cb0372d2461"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad23c3bcad522115a1a1dcb9d862c5f9b" id="r_ad23c3bcad522115a1a1dcb9d862c5f9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad23c3bcad522115a1a1dcb9d862c5f9b">Attack</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:ad23c3bcad522115a1a1dcb9d862c5f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor de ataque del Pokémon.  <br /></td></tr>
+<tr class="memdesc:ad23c3bcad522115a1a1dcb9d862c5f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el valor de ataque del Pokémon.  <br /></td></tr>
 <tr class="separator:ad23c3bcad522115a1a1dcb9d862c5f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74b388647752cecda73b7d948135fa54" id="r_a74b388647752cecda73b7d948135fa54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74b388647752cecda73b7d948135fa54">Defense</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a74b388647752cecda73b7d948135fa54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor de defensa del Pokémon.  <br /></td></tr>
+<tr class="memdesc:a74b388647752cecda73b7d948135fa54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el valor de defensa del Pokémon.  <br /></td></tr>
 <tr class="separator:a74b388647752cecda73b7d948135fa54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e594f7d81be50c98fbe4608fe77175c" id="r_a9e594f7d81be50c98fbe4608fe77175c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e594f7d81be50c98fbe4608fe77175c">SpecialAttack</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a9e594f7d81be50c98fbe4608fe77175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor de ataque especial del Pokémon.  <br /></td></tr>
+<tr class="memdesc:a9e594f7d81be50c98fbe4608fe77175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el valor de ataque especial del Pokémon.  <br /></td></tr>
 <tr class="separator:a9e594f7d81be50c98fbe4608fe77175c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3281711e768a6019ba5ddec5d7934d83" id="r_a3281711e768a6019ba5ddec5d7934d83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3281711e768a6019ba5ddec5d7934d83">SpecialDefense</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a3281711e768a6019ba5ddec5d7934d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor de defensa especial del Pokémon.  <br /></td></tr>
+<tr class="memdesc:a3281711e768a6019ba5ddec5d7934d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el valor de defensa especial del Pokémon.  <br /></td></tr>
 <tr class="separator:a3281711e768a6019ba5ddec5d7934d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00e293c5b24b77dac8a0437b4ec46e0a" id="r_a00e293c5b24b77dac8a0437b4ec46e0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_library_1_1_type.html">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00e293c5b24b77dac8a0437b4ec46e0a">Type</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a00e293c5b24b77dac8a0437b4ec46e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tipo del Pokémon (por ejemplo, Agua, Fuego, Planta, etc.).  <br /></td></tr>
+<tr class="memdesc:a00e293c5b24b77dac8a0437b4ec46e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el tipo del Pokémon (por ejemplo, fuego, agua, planta).  <br /></td></tr>
 <tr class="separator:a00e293c5b24b77dac8a0437b4ec46e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a114b98d2d9b0c2cf0a8191573a1f2c9e" id="r_a114b98d2d9b0c2cf0a8191573a1f2c9e"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_library_1_1_move.html">Move</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a114b98d2d9b0c2cf0a8191573a1f2c9e">Moves</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a114b98d2d9b0c2cf0a8191573a1f2c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista de movimientos que el Pokémon puede realizar.  <br /></td></tr>
+<tr class="memdesc:a114b98d2d9b0c2cf0a8191573a1f2c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece la lista de movimientos que el Pokémon conoce.  <br /></td></tr>
 <tr class="separator:a114b98d2d9b0c2cf0a8191573a1f2c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab1b0b874dcd8cb18447fda6f2b89a4d" id="r_aab1b0b874dcd8cb18447fda6f2b89a4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_library.html#a69db74b7a005c0dcfe483a078dacb632">EspecialStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab1b0b874dcd8cb18447fda6f2b89a4d">Status</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aab1b0b874dcd8cb18447fda6f2b89a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, etc.).  <br /></td></tr>
-<tr class="separator:aab1b0b874dcd8cb18447fda6f2b89a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85b8f5191b2157fbd196878a1c2acb6" id="r_aa85b8f5191b2157fbd196878a1c2acb6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_library.html#a03ed32d35690e2393e40c937480102b6">SpecialStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa85b8f5191b2157fbd196878a1c2acb6">Status</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:aa85b8f5191b2157fbd196878a1c2acb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el estado especial del Pokémon (por ejemplo, envenenado, paralizado).  <br /></td></tr>
+<tr class="separator:aa85b8f5191b2157fbd196878a1c2acb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82c2bd2042df4aee75ca7c07d1a3bf19" id="r_a82c2bd2042df4aee75ca7c07d1a3bf19"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82c2bd2042df4aee75ca7c07d1a3bf19">SleepTurnsLeft</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a82c2bd2042df4aee75ca7c07d1a3bf19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Número de turnos que le quedan al Pokémon durmiendo, si está dormido.  <br /></td></tr>
+<tr class="memdesc:a82c2bd2042df4aee75ca7c07d1a3bf19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el número de turnos restantes que el Pokémon permanecerá dormido.  <br /></td></tr>
 <tr class="separator:a82c2bd2042df4aee75ca7c07d1a3bf19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfaz que define la estructura y el comportamiento de un Pokémon en el juego. </p>
+<div class="textblock"><p>Interfaz que define las propiedades y métodos básicos de un Pokémon en el contexto de un juego. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a08edcbb8200ae6b75128dfa34a7e4693" name="a08edcbb8200ae6b75128dfa34a7e4693"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08edcbb8200ae6b75128dfa34a7e4693">&#9670;&#160;</a></span>AttackP()</h2>
+<a id="ae4c5e6adfe9b1d389fdfff901ef83eef" name="ae4c5e6adfe9b1d389fdfff901ef83eef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c5e6adfe9b1d389fdfff901ef83eef">&#9670;&#160;</a></span>AttackP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,23 +192,29 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>currentShift</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>currentShift</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Realiza un ataque al Pokémon enemigo. </p>
+<p>Realiza un ataque hacia un Pokémon enemigo. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>El jugador que posee el Pokémon que ataca.</td></tr>
-    <tr><td class="paramname">enemy</td><td>El Pokémon enemigo que recibe el ataque.</td></tr>
-    <tr><td class="paramname">movement</td><td>El movimiento utilizado para el ataque.</td></tr>
-    <tr><td class="paramname">currentShift</td><td>El turno actual en el que se realiza el ataque.</td></tr>
+    <tr><td class="paramname">player</td><td>El jugador propietario del Pokémon que ataca.</td></tr>
+    <tr><td class="paramname">enemy</td><td>El Pokémon enemigo que recibirá el ataque.</td></tr>
+    <tr><td class="paramname">movement</td><td>El movimiento que se usará para atacar.</td></tr>
+    <tr><td class="paramname">currentShift</td><td>El turno actual en la batalla.</td></tr>
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#ae6991669936aa783d94ee52b6d18b817">Library.Pokemon</a>.</p>
+<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a57b04f60edd669245067600e3aeb9437">Library.Pokemon</a>.</p>
 
 </div>
 </div>
@@ -236,40 +242,46 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calcula el daño infligido al oponente por un movimiento. </p>
+<p>Calcula el daño infligido por un movimiento específico al oponente. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">movimiento</td><td>Movimiento que realiza el ataque.</td></tr>
-    <tr><td class="paramname">efectividad</td><td>Factor de efectividad del ataque.</td></tr>
-    <tr><td class="paramname">oponente</td><td>El Pokémon oponente que recibe el ataque.</td></tr>
+    <tr><td class="paramname">movimiento</td><td>El movimiento que el Pokémon usará para atacar.</td></tr>
+    <tr><td class="paramname">efectividad</td><td>El factor de efectividad del movimiento (por ejemplo, si es súper efectivo).</td></tr>
+    <tr><td class="paramname">oponente</td><td>El Pokémon enemigo que recibirá el daño.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Devuelve el daño calculado.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve el valor de daño infligido.</dd></dl>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a079ad1d582a35a0c0757cfe7dd900948">Library.Pokemon</a>.</p>
 
 </div>
 </div>
-<a id="a9368fc8fa2ba0b833494402fca820b39" name="a9368fc8fa2ba0b833494402fca820b39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9368fc8fa2ba0b833494402fca820b39">&#9670;&#160;</a></span>CanAtack()</h2>
+<a id="a8ae2410cae07928c04b3a22feb1b83e4" name="a8ae2410cae07928c04b3a22feb1b83e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ae2410cae07928c04b3a22feb1b83e4">&#9670;&#160;</a></span>CanAtack()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Library.IPokemon.CanAtack </td>
+          <td class="memname">Task&lt; bool &gt; Library.IPokemon.CanAtack </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica si el Pokémon puede atacar en su turno, teniendo en cuenta su estado actual. </p>
-<dl class="section return"><dt>Returns</dt><dd>Devuelve true si el Pokémon puede atacar, de lo contrario false.</dd></dl>
+<p>Determina si el Pokémon puede atacar según su estado actual. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve un valor booleano indicando si el Pokémon puede atacar.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#aa280db7966e97292a3884575a7349435">Library.Pokemon</a>.</p>
+<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a66684c1d2b412ebb723d6f88070677e4">Library.Pokemon</a>.</p>
 
 </div>
 </div>
@@ -288,37 +300,32 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Verifica si el Pokémon está fuera de combate (sin puntos de salud). </p>
-<dl class="section return"><dt>Returns</dt><dd>Devuelve true si el Pokémon está fuera de combate, de lo contrario false.</dd></dl>
+<p>Verifica si el Pokémon está fuera de combate. </p>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve true si el Pokémon ya no puede combatir, de lo contrario false.</dd></dl>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a6b55688ca3f3c8b1e5674b2a02870e00">Library.Pokemon</a>.</p>
 
 </div>
 </div>
-<a id="a14afdff8d464d84ae54210419b1a29a3" name="a14afdff8d464d84ae54210419b1a29a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14afdff8d464d84ae54210419b1a29a3">&#9670;&#160;</a></span>ProcessStatus()</h2>
+<a id="ab0037d21967d7fe9412e2c532ab35e00" name="ab0037d21967d7fe9412e2c532ab35e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0037d21967d7fe9412e2c532ab35e00">&#9670;&#160;</a></span>ProcessStatus()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Library.IPokemon.ProcessStatus </td>
+          <td class="memname">string Library.IPokemon.ProcessStatus </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_pokemon.html">Pokemon</a></td>          <td class="paramname"><span class="paramname"><em>enemy</em></span><span class="paramdefsep"> = </span><span class="paramdefval">null</span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Procesa el estado actual del Pokémon y aplica los efectos correspondientes. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">enemy</td><td>El Pokémon enemigo (opcional) en caso de que el estado afecte a ambos.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Procesa el estado actual del Pokémon y aplica los efectos correspondientes (por ejemplo, daño por veneno). </p>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve una descripción del estado actual del Pokémon.</dd></dl>
 
-<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a2ccc29640d1b862867581cb839ccd6f2">Library.Pokemon</a>.</p>
+<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a5cf5ba4bbdb8fe39c8d58b5630387432">Library.Pokemon</a>.</p>
 
 </div>
 </div>
@@ -343,7 +350,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Valor de ataque del Pokémon. </p>
+<p>Obtiene o establece el valor de ataque del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#ad15b0c55cd786554401aec796ab16671">Library.Pokemon</a>.</p>
 
@@ -369,7 +376,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Valor de defensa del Pokémon. </p>
+<p>Obtiene o establece el valor de defensa del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#afb92f2d8944a9aa3bf2fcddc3a6623ae">Library.Pokemon</a>.</p>
 
@@ -395,7 +402,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Puntos de salud actuales del Pokémon. </p>
+<p>Obtiene o establece la salud actual del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a4d8bd54517ef8196095412c915b7dd58">Library.Pokemon</a>.</p>
 
@@ -421,7 +428,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Identificador único del Pokémon. </p>
+<p>Obtiene o establece el identificador único del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a873aee05e475206929db8e56fd88ca35">Library.Pokemon</a>.</p>
 
@@ -447,7 +454,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Máximo de puntos de salud que el Pokémon puede tener. </p>
+<p>Obtiene o establece la salud máxima del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a583ba8268e18804eb93be65046be5ac8">Library.Pokemon</a>.</p>
 
@@ -473,7 +480,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Lista de movimientos que el Pokémon puede realizar. </p>
+<p>Obtiene o establece la lista de movimientos que el Pokémon conoce. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a9256bbb100c34e69e9f44b3523b85f81">Library.Pokemon</a>.</p>
 
@@ -499,7 +506,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Nombre del Pokémon. </p>
+<p>Obtiene o establece el nombre del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a68c19b133602cf71110cb160e443aa15">Library.Pokemon</a>.</p>
 
@@ -525,7 +532,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Número de turnos que le quedan al Pokémon durmiendo, si está dormido. </p>
+<p>Obtiene o establece el número de turnos restantes que el Pokémon permanecerá dormido. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#aad593241228dbb6542165f79668f915e">Library.Pokemon</a>.</p>
 
@@ -551,7 +558,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Valor de ataque especial del Pokémon. </p>
+<p>Obtiene o establece el valor de ataque especial del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#af1010fed1c18c2f5f7071e32ee595d27">Library.Pokemon</a>.</p>
 
@@ -577,14 +584,14 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Valor de defensa especial del Pokémon. </p>
+<p>Obtiene o establece el valor de defensa especial del Pokémon. </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a0c5b23f46c522d21fb21f647cf2db278">Library.Pokemon</a>.</p>
 
 </div>
 </div>
-<a id="aab1b0b874dcd8cb18447fda6f2b89a4d" name="aab1b0b874dcd8cb18447fda6f2b89a4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab1b0b874dcd8cb18447fda6f2b89a4d">&#9670;&#160;</a></span>Status</h2>
+<a id="aa85b8f5191b2157fbd196878a1c2acb6" name="aa85b8f5191b2157fbd196878a1c2acb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85b8f5191b2157fbd196878a1c2acb6">&#9670;&#160;</a></span>Status</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -593,7 +600,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespace_library.html#a69db74b7a005c0dcfe483a078dacb632">EspecialStatus</a> Library.IPokemon.Status</td>
+          <td class="memname"><a class="el" href="namespace_library.html#a03ed32d35690e2393e40c937480102b6">SpecialStatus</a> Library.IPokemon.Status</td>
         </tr>
       </table>
   </td>
@@ -603,9 +610,9 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, etc.). </p>
+<p>Obtiene o establece el estado especial del Pokémon (por ejemplo, envenenado, paralizado). </p>
 
-<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a956e26f39c60f17c164f89b490217933">Library.Pokemon</a>.</p>
+<p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#a423bc044a39b6c3842dfffa0df76b442">Library.Pokemon</a>.</p>
 
 </div>
 </div>
@@ -629,7 +636,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Tipo del Pokémon (por ejemplo, Agua, Fuego, Planta, etc.). </p>
+<p>Obtiene o establece el tipo del Pokémon (por ejemplo, fuego, agua, planta). </p>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon.html#ac31d29af61e5c4c2bf8b8b8a4a55b2bf">Library.Pokemon</a>.</p>
 

@@ -13,10 +13,10 @@ Clase que representa un turno (shift) en la batalla entre dos jugadores. Adminis
 \Hypertarget{class_library_1_1_shift_a6f5d1a23baf604f5ab8020cb3240c4d0}\label{class_library_1_1_shift_a6f5d1a23baf604f5ab8020cb3240c4d0} 
 void {\bfseries Switch\+Shift} ()
 \begin{DoxyCompactList}\small\item\em Cambia el turno entre los dos jugadores. El jugador actual se convierte en el enemigo y viceversa. \end{DoxyCompactList}\item 
-\Hypertarget{class_library_1_1_shift_a751daf8b0de50c5a58355c75fdcdc726}\label{class_library_1_1_shift_a751daf8b0de50c5a58355c75fdcdc726} 
-void {\bfseries Show\+Shift} ()
+\Hypertarget{class_library_1_1_shift_ae8ecf8c295d2375ea048fcf9bfa9fe0e}\label{class_library_1_1_shift_ae8ecf8c295d2375ea048fcf9bfa9fe0e} 
+async void {\bfseries Show\+Shift} (Interaction\+Context ctx)
 \begin{DoxyCompactList}\small\item\em Muestra en la consola el jugador que tiene el turno actual. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_library_1_1_shift_af3ac4f941c6409af6796dc03283e2f01}{Execute\+Special\+Attack}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player, \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} attacker, \mbox{\hyperlink{class_library_1_1_move}{Move}} movements, int actual\+Shift)
+bool \mbox{\hyperlink{class_library_1_1_shift_a1100183e374e64260c3e1919de81ff7c}{Execute\+Special\+Attack}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player, \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} attacker, \mbox{\hyperlink{class_library_1_1_move}{Move}} movements, int actual\+Shift, Interaction\+Context ctx)
 \begin{DoxyCompactList}\small\item\em Ejecuta un ataque especial por parte del jugador con restricciones de uso. Verifica si el jugador puede usar el ataque especial antes de ejecutarlo. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Properties}
 \begin{DoxyCompactItemize}
@@ -56,11 +56,11 @@ Constructor para inicializar un turno con dos jugadores.
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{class_library_1_1_shift_af3ac4f941c6409af6796dc03283e2f01}\index{Library.Shift@{Library.Shift}!ExecuteSpecialAttack@{ExecuteSpecialAttack}}
+\Hypertarget{class_library_1_1_shift_a1100183e374e64260c3e1919de81ff7c}\index{Library.Shift@{Library.Shift}!ExecuteSpecialAttack@{ExecuteSpecialAttack}}
 \index{ExecuteSpecialAttack@{ExecuteSpecialAttack}!Library.Shift@{Library.Shift}}
 \doxysubsubsection{\texorpdfstring{ExecuteSpecialAttack()}{ExecuteSpecialAttack()}}
-{\footnotesize\ttfamily \label{class_library_1_1_shift_af3ac4f941c6409af6796dc03283e2f01} 
-bool Library.\+Shift.\+Execute\+Special\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{, }\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{attacker}{, }\item[{\mbox{\hyperlink{class_library_1_1_move}{Move}}}]{movements}{, }\item[{int}]{actual\+Shift}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{class_library_1_1_shift_a1100183e374e64260c3e1919de81ff7c} 
+bool Library.\+Shift.\+Execute\+Special\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{, }\item[{\mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}}}]{attacker}{, }\item[{\mbox{\hyperlink{class_library_1_1_move}{Move}}}]{movements}{, }\item[{int}]{actual\+Shift}{, }\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

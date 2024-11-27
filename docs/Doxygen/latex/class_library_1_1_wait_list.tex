@@ -1,0 +1,104 @@
+\doxysection{Library.\+Wait\+List Class Reference}
+\hypertarget{class_library_1_1_wait_list}{}\label{class_library_1_1_wait_list}\index{Library.WaitList@{Library.WaitList}}
+
+
+Clase que representa una lista de espera para los jugadores.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_library_1_1_wait_list_a0842f05b0c2804b8d9f3541e15d6d0c1}\label{class_library_1_1_wait_list_a0842f05b0c2804b8d9f3541e15d6d0c1} 
+{\bfseries Wait\+List} ()
+\begin{DoxyCompactList}\small\item\em Constructor que inicializa una nueva lista de espera vacía. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_wait_list_a6fa675be6951261de48b587ff9e23625}{Wait\+List}} (IEnumerable$<$ \mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}} $>$ players)
+\begin{DoxyCompactList}\small\item\em Constructor que inicializa una nueva lista de espera con jugadores existentes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_wait_list_ab195354bb69c0033b59689be39d9b0fb}{Add\+Player}} (\mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}} player)
+\begin{DoxyCompactList}\small\item\em Añade un jugador a la lista de espera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_library_1_1_wait_list_a5c10b317b0de3432a8d1ad15700a1dd0}{Delete\+Player}} (\mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}} player)
+\begin{DoxyCompactList}\small\item\em Elimina un jugador de la lista de espera. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_wait_list_a011450b4c3b584b4e9b9b738da75ae11}\label{class_library_1_1_wait_list_a011450b4c3b584b4e9b9b738da75ae11} 
+void {\bfseries Show\+Players} ()
+\begin{DoxyCompactList}\small\item\em Muestra todos los jugadores en la lista de espera. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_library_1_1_wait_list_add28291ac60214e5c6633ffc37f9efb7}{Contains}} (\mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}} player)
+\begin{DoxyCompactList}\small\item\em Comprueba si un jugador está en la lista de espera. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_wait_list_a32573d7842cea0bf8a956930a252c905}\label{class_library_1_1_wait_list_a32573d7842cea0bf8a956930a252c905} 
+void {\bfseries Clean\+Wait\+List} ()
+\begin{DoxyCompactList}\small\item\em Limpia la lista de espera eliminando jugadores que estén actualmente en una batalla. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que representa una lista de espera para los jugadores. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_wait_list_a6fa675be6951261de48b587ff9e23625}\index{Library.WaitList@{Library.WaitList}!WaitList@{WaitList}}
+\index{WaitList@{WaitList}!Library.WaitList@{Library.WaitList}}
+\doxysubsubsection{\texorpdfstring{WaitList()}{WaitList()}}
+{\footnotesize\ttfamily \label{class_library_1_1_wait_list_a6fa675be6951261de48b587ff9e23625} 
+Library.\+Wait\+List.\+Wait\+List (\begin{DoxyParamCaption}\item[{IEnumerable$<$ \mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}} $>$}]{players}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor que inicializa una nueva lista de espera con jugadores existentes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em players} & Una enumeración de jugadores para añadir a la lista de espera.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_wait_list_ab195354bb69c0033b59689be39d9b0fb}\index{Library.WaitList@{Library.WaitList}!AddPlayer@{AddPlayer}}
+\index{AddPlayer@{AddPlayer}!Library.WaitList@{Library.WaitList}}
+\doxysubsubsection{\texorpdfstring{AddPlayer()}{AddPlayer()}}
+{\footnotesize\ttfamily \label{class_library_1_1_wait_list_ab195354bb69c0033b59689be39d9b0fb} 
+void Library.\+Wait\+List.\+Add\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Añade un jugador a la lista de espera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & El jugador que se desea añadir a la lista de espera.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_library_1_1_wait_list_add28291ac60214e5c6633ffc37f9efb7}\index{Library.WaitList@{Library.WaitList}!Contains@{Contains}}
+\index{Contains@{Contains}!Library.WaitList@{Library.WaitList}}
+\doxysubsubsection{\texorpdfstring{Contains()}{Contains()}}
+{\footnotesize\ttfamily \label{class_library_1_1_wait_list_add28291ac60214e5c6633ffc37f9efb7} 
+bool Library.\+Wait\+List.\+Contains (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comprueba si un jugador está en la lista de espera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & El jugador que se desea comprobar si está en la lista.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True si el jugador está en la lista, de lo contrario false.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_wait_list_a5c10b317b0de3432a8d1ad15700a1dd0}\index{Library.WaitList@{Library.WaitList}!DeletePlayer@{DeletePlayer}}
+\index{DeletePlayer@{DeletePlayer}!Library.WaitList@{Library.WaitList}}
+\doxysubsubsection{\texorpdfstring{DeletePlayer()}{DeletePlayer()}}
+{\footnotesize\ttfamily \label{class_library_1_1_wait_list_a5c10b317b0de3432a8d1ad15700a1dd0} 
+void Library.\+Wait\+List.\+Delete\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_library_1_1_i_player}{IPlayer}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Elimina un jugador de la lista de espera. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & El jugador que se desea eliminar de la lista de espera.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/Wait\+List.\+cs\end{DoxyCompactItemize}

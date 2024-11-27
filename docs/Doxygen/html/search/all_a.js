@@ -1,9 +1,16 @@
 var searchData=
 [
-  ['main_0',['Main',['../class_program_1_1_program.html#a66948d289feeeded0392bb7b06ef5c57',1,'Program::Program']]],
-  ['maxhealt_1',['MaxHealt',['../interface_library_1_1_i_item.html#a070314c1fc30d638555e5b3826aa1f74',1,'Library.IItem.MaxHealt'],['../interface_library_1_1_i_pokemon.html#a27d85a7866406a0caef9a0de7e24d6de',1,'Library.IPokemon.MaxHealt'],['../class_items.html#a9a0249013bd5fec86a000897236f6792',1,'Items.MaxHealt'],['../class_library_1_1_pokemon.html#a583ba8268e18804eb93be65046be5ac8',1,'Library.Pokemon.MaxHealt']]],
-  ['move_2',['Move',['../class_a_p_i_1_1_move.html',1,'API.Move'],['../class_library_1_1_move.html',1,'Library.Move'],['../class_library_1_1_move.html#a214d222d7c420fbf4110526b5bcb5275',1,'Library.Move.Move()']]],
-  ['movedetail_3',['MoveDetail',['../class_a_p_i_1_1_move_detail.html',1,'API.MoveDetail'],['../class_library_1_1_move_detail.html',1,'Library.MoveDetail']]],
-  ['movedetails_4',['MoveDetails',['../class_library_1_1_move.html#a277a348e5210f2019d19352cb426755c',1,'Library::Move']]],
-  ['moves_5',['Moves',['../interface_library_1_1_i_pokemon.html#a114b98d2d9b0c2cf0a8191573a1f2c9e',1,'Library.IPokemon.Moves'],['../class_library_1_1_pokemon.html#a9256bbb100c34e69e9f44b3523b85f81',1,'Library.Pokemon.Moves']]]
+  ['health_0',['Health',['../interface_library_1_1_i_pokemon.html#a77a4937f205d4e3d2a3b9e69db1204c2',1,'Library.IPokemon.Health'],['../class_library_1_1_pokemon.html#a4d8bd54517ef8196095412c915b7dd58',1,'Library.Pokemon.Health']]],
+  ['hellocommand_1',['HelloCommand',['../class_library_1_1_bot_discord_1_1_bot_commands.html#a8e846f766312b0a88f2e0fcc63c50d06',1,'Library::BotDiscord::BotCommands']]],
+  ['historyuser10_5ftest_2',['HistoryUser10_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user10___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser11_5ftest_3',['HistoryUser11_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user11___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser1_5ftest_4',['HistoryUser1_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user1___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser1_5ftest1_5',['HistoryUser1_Test1',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user1___test.html#aa6061d12723ca0905543db2818ccf4d3',1,'Library::Tests::HistoryUserTests::HistoryUser1_Test']]],
+  ['historyuser3_5ftest_6',['HistoryUser3_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user3___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser4_5ftest_7',['HistoryUser4_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user4___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser5_5ftest_8',['HistoryUser5_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user5___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser6_5ftest_9',['HistoryUser6_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user6___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser7_5ftest_10',['HistoryUser7_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user7___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser8_5ftest_11',['HistoryUser8_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user8___test.html',1,'Library::Tests::HistoryUserTests']]],
+  ['historyuser9_5ftest_12',['HistoryUser9_Test',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user9___test.html',1,'Library::Tests::HistoryUserTests']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['especialstatus_0',['EspecialStatus',['../namespace_library.html#a69db74b7a005c0dcfe483a078dacb632',1,'Library']]]
+  ['specialstatus_0',['SpecialStatus',['../namespace_library.html#a03ed32d35690e2393e40c937480102b6',1,'Library']]]
 ];

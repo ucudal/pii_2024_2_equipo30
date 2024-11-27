@@ -2,7 +2,7 @@
 \hypertarget{class_library_1_1_pokemon_api}{}\label{class_library_1_1_pokemon_api}\index{Library.PokemonApi@{Library.PokemonApi}}
 
 
-Clase que encapsula la lógica para obtener datos desde la \doxylink{namespace_a_p_i}{API} de Pokémon. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}.  
+Clase que proporciona métodos para interactuar con la API de Pokémon. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}.  
 
 
 Inheritance diagram for Library.\+Pokemon\+Api\+:\begin{figure}[H]
@@ -15,16 +15,16 @@ Inheritance diagram for Library.\+Pokemon\+Api\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_library_1_1_pokemon_api_a5e6665c88bcb2e1318518db892133199}{Pokemon\+Api}} (Http\+Client client)
-\begin{DoxyCompactList}\small\item\em Constructor para inicializar la clase {\ttfamily \doxylink{class_library_1_1_pokemon_api}{Pokemon\+Api}} con un cliente HTTP. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructor de la clase \doxylink{class_library_1_1_pokemon_api}{Pokemon\+Api}. \end{DoxyCompactList}\item 
 async Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ \mbox{\hyperlink{class_library_1_1_pokemon_api_a5793999b384b9e82007e6580eeec6b53}{Get\+Pokemon\+Details}} (string pokemon\+Id)
-\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un Pokémon específico desde la API de Pokémon. \end{DoxyCompactList}\item 
 async Task$<$ \mbox{\hyperlink{class_library_1_1_move_detail}{Move\+Detail}} $>$ \mbox{\hyperlink{class_library_1_1_pokemon_api_af997c2c31f6e027a69acd912c2e01f84}{Get\+Move\+Details}} (string url)
-\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un movimiento específico a partir de una URL proporcionada. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Obtiene los detalles de un movimiento específico desde la API de Pokémon. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{interface_library_1_1_i_pokemon_api}{Library.\+IPokemon\+Api}}}
 
 
 \doxysubsection{Detailed Description}
-Clase que encapsula la lógica para obtener datos desde la \doxylink{namespace_a_p_i}{API} de Pokémon. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}. 
+Clase que proporciona métodos para interactuar con la API de Pokémon. Implementa la interfaz \doxylink{interface_library_1_1_i_pokemon_api}{IPokemon\+Api}. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{class_library_1_1_pokemon_api_a5e6665c88bcb2e1318518db892133199}\index{Library.PokemonApi@{Library.PokemonApi}!PokemonApi@{PokemonApi}}
@@ -35,11 +35,11 @@ Library.\+Pokemon\+Api.\+Pokemon\+Api (\begin{DoxyParamCaption}\item[{Http\+Clie
 
 
 
-Constructor para inicializar la clase {\ttfamily \doxylink{class_library_1_1_pokemon_api}{Pokemon\+Api}} con un cliente HTTP. 
+Constructor de la clase \doxylink{class_library_1_1_pokemon_api}{Pokemon\+Api}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em client} & Instancia de Http\+Client que se utilizará para realizar solicitudes a la \doxylink{namespace_a_p_i}{API}.\\
+{\em client} & Una instancia de Http\+Client para realizar las solicitudes.\\
 \hline
 \end{DoxyParams}
 
@@ -53,15 +53,15 @@ async Task$<$ \mbox{\hyperlink{class_library_1_1_move_detail}{Move\+Detail}} $>$
 
 
 
-Obtiene los detalles de un movimiento específico a partir de una URL proporcionada. 
+Obtiene los detalles de un movimiento específico desde la API de Pokémon. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em url} & URL del movimiento en la \doxylink{namespace_a_p_i}{API} de Pokémon para obtener sus detalles.\\
+{\em url} & La URL del recurso que contiene los detalles del movimiento.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Una tarea que representa la operación asíncrona y devuelve un objeto \doxylink{class_library_1_1_move_detail}{Move\+Detail} con los detalles del movimiento.
+Una tarea que representa la operación asincrónica. El resultado contiene los detalles del movimiento solicitado.
 \end{DoxyReturn}
 
 
@@ -75,15 +75,15 @@ async Task$<$ \mbox{\hyperlink{class_library_1_1_pokemon}{Pokemon}} $>$ Library.
 
 
 
-Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre. 
+Obtiene los detalles de un Pokémon específico desde la API de Pokémon. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em pokemon\+Id} & Identificador o nombre del Pokémon que se desea consultar.\\
+{\em pokemon\+Id} & El identificador (nombre o número) del Pokémon.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Una tarea que representa la operación asíncrona y devuelve un objeto \doxylink{class_library_1_1_pokemon}{Pokemon} con los detalles del Pokémon.
+Una tarea que representa la operación asincrónica. El resultado contiene los detalles del Pokémon solicitado.
 \end{DoxyReturn}
 
 

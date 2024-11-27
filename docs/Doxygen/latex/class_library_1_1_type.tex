@@ -11,6 +11,8 @@ Clase que representa el tipo de un Pokémon. Contiene detalles sobre el tipo y s
 \Hypertarget{class_library_1_1_type_a8ed04715814a32f471dc9b709a949e7b}\label{class_library_1_1_type_a8ed04715814a32f471dc9b709a949e7b} 
 {\bfseries Type} ()
 \begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_type_a83ab2fce325b150e82ba62cf03b3d4d5}{Type}} (string name)
+\begin{DoxyCompactList}\small\item\em Constructor que acepta el nombre del tipo. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_library_1_1_type_a3e295c04b1c537dc4530616663929226}{Set\+Type}} (string name)
 \begin{DoxyCompactList}\small\item\em Establece el tipo de Pokémon y su efectividad contra otros tipos. Llena el \doxylink{class_library_1_1_type_a48840116d7c0bdc4744772760e94e0f7}{Effectiveness} con las relaciones de daño específicas. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Properties}
@@ -18,7 +20,7 @@ void \mbox{\hyperlink{class_library_1_1_type_a3e295c04b1c537dc4530616663929226}{
 \item 
 \Hypertarget{class_library_1_1_type_a874ee78d571068b6ff57a77c7c1552cb}\label{class_library_1_1_type_a874ee78d571068b6ff57a77c7c1552cb} 
 \mbox{\hyperlink{class_library_1_1_type_detail}{Type\+Detail}} {\bfseries Type\+Detail}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
-\begin{DoxyCompactList}\small\item\em Detalles del tipo, incluyendo el nombre del tipo de Pokémon. Esta propiedad se mapea del JSON de la \doxylink{namespace_a_p_i}{API} utilizando Json\+Property\+Name\+Attribute. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Detalles del tipo, incluyendo el nombre del tipo de Pokémon. Esta propiedad se mapea del JSON de la API utilizando Json\+Property\+Name\+Attribute. \end{DoxyCompactList}\item 
 \Hypertarget{class_library_1_1_type_a48840116d7c0bdc4744772760e94e0f7}\label{class_library_1_1_type_a48840116d7c0bdc4744772760e94e0f7} 
 Dictionary$<$ string, double $>$ {\bfseries Effectiveness}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \begin{DoxyCompactList}\small\item\em Diccionario que define la efectividad de un tipo contra otros tipos. Las claves son los nombres de otros tipos, y los valores son los multiplicadores de daño. Por ejemplo, si el valor es 2, significa que el ataque es súper efectivo; si es 0.\+5, es menos efectivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -26,6 +28,24 @@ Dictionary$<$ string, double $>$ {\bfseries Effectiveness}\hspace{0.3cm}{\ttfami
 
 \doxysubsection{Detailed Description}
 Clase que representa el tipo de un Pokémon. Contiene detalles sobre el tipo y su efectividad contra otros tipos. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_library_1_1_type_a83ab2fce325b150e82ba62cf03b3d4d5}\index{Library.Type@{Library.Type}!Type@{Type}}
+\index{Type@{Type}!Library.Type@{Library.Type}}
+\doxysubsubsection{\texorpdfstring{Type()}{Type()}}
+{\footnotesize\ttfamily \label{class_library_1_1_type_a83ab2fce325b150e82ba62cf03b3d4d5} 
+Library.\+Type.\+Type (\begin{DoxyParamCaption}\item[{string}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor que acepta el nombre del tipo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & El nombre del tipo de Pokémon.\\
+\hline
+\end{DoxyParams}
+
 
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_library_1_1_type_a3e295c04b1c537dc4530616663929226}\index{Library.Type@{Library.Type}!SetType@{SetType}}
