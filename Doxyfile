@@ -42,7 +42,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "4GRAM_Equipo30"
+PROJECT_NAME           = "4GRAM_Equipo30 - Poke Fight"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -74,7 +74,7 @@ PROJECT_ICON           =
 # entered, it will be relative to the location where Doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = "C:\Users\gasto\OneDrive\Escritorio\ORDENAS\Pokemon\Equipo30\docs\Doxygen"
+OUTPUT_DIRECTORY       = "C:\4GRAM\Proyecto4gram\pii_2024_2_equipo30\docs\Doxygen"
 
 # If the CREATE_SUBDIRS tag is set to YES then Doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format

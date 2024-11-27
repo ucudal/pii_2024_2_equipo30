@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>4GRAM_Equipo30: pii_2024_2_equipo30</title>
+<title>4GRAM_Equipo30 - Poke Fight: 🎮pii_2024_2_equipo30 - Poke Fight🐾</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">4GRAM_Equipo30
+   <div id="projectname">4GRAM_Equipo30 - Poke Fight
    </div>
   </td>
  </tr>
@@ -84,95 +84,149 @@ $(function(){ initResizable(false); });
 </div><!-- top -->
 <div id="doc-content">
 <div><div class="header">
-  <div class="headertitle"><div class="title">pii_2024_2_equipo30</div></div>
+  <div class="headertitle"><div class="title">🎮pii_2024_2_equipo30 - Poke Fight🐾</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
-<p>Somos el grupo 4GRAM tambien poco conocidos como el equipo 30</p><ul>
-<li>Integrantes:</li>
-<li>Mauricio Segovia</li>
-<li>Rodrigo Godoy</li>
-<li>Gaston Baranov</li>
-<li>Alejandro Hernandez</li>
-</ul>
-<p>Nuestro proyecto se basa en el famoso modo de combate de Pokémon,tendra las siguientes caracteristicas:</p><ul>
-<li><ul>
-<li>Se va a tratar de combates por turnos</li>
-<li>Se jugara mediante comandos de un Chatbot</li>
-<li>Sera multijugador (1 vs 1)</li>
-<li>Cada jugador contara con un equipo de 6 Pokémones en cada batalla<ul>
-<li>Se muestran los pokemones en pantalla</li>
-</ul>
-</li>
-<li>Cada Pokémon contara con 4 movimientos de ataques y un ataque especial cada 2 turnos<ul>
-<li>Se podra elegir hacer daño en base a la efectividad de los tipos de Pokémons(El sistema aplica la ventaja o desventaja)</li>
-</ul>
-</li>
-<li>Cada jugador tiene solo una accion por turno(Cambiar pokemon,atacar,etc)</li>
-<li>cada jugador puede ver la vida del Pokémon oponente,de quien es el turno y la eleccion que toma</li>
-<li>Un jugador es el ganador cuando todos los Pokemons del opononente son derrotados</li>
-</ul>
-</li>
-</ul>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Funcionamiento general del codigo:</h1>
-<ul>
-<li>Se inicializa el juego atraves del <a class="el" href="namespace_program.html">Program</a>.</li>
-<li>Se utiliza la clase PokemonCreator para las instancias de los Pokemon.</li>
-<li>Preparacion de la batalla con la clase Battle.</li>
-<li>Gestion del turno con Move, sus objetos y la posibilidad de cambiar de Pokemon.</li>
-<li>Acciones de los jugadores donde cada accion donde cada turno tiene un impacto en Battle.</li>
-<li>Battle gestiona el calculo del daño</li>
-<li>Al finalizar el turno de cada jugador se verifica si alguno de los jugadores perdio su Pokemon</li>
-<li>Interaccion con la <a class="el" href="namespace_a_p_i.html">API</a></li>
-<li>El combate finaliza cuando todos los Pokémon de un jugador son derrotados.</li>
-</ul>
-<p>Para la estructura del programa usamos:</p><ul>
-<li></li>
-<li>los principios de GRASP y Solid.</li>
-<li>Low coupling and High Coesion</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Las clases usadas en nuestro proyecto son:</h1>
-<ul>
-<li>Revive (Utilizado para revivir Pokémon)</li>
-<li>Battle (Gestiona el flujo de las batallas)</li>
-<li>Shift (Funcionalidad para cambiar el Pokémon activo)</li>
-<li>Stat (Estadística específica del Pokémon)</li>
-<li>StatsDetail (Detalles adicionales de las estadísticas del Pokémon)</li>
-<li>SuperPotion (Restaurar la salud de un Pokémon)</li>
-<li>TotalCure (Elimina cualquier estado negativo en el Pokémon)</li>
-<li>PokemonCreator (Permite crear instancias de nuevos Pokémon)</li>
-<li>Type (Define el tipo de un Pokémon (por ejemplo, Agua, Fuego, etc.))</li>
-<li>TypeDetail (Detalles adicionales sobre un tipo)</li>
-<li><a class="el" href="namespace_program.html">Program</a> (Punto de entrada del programa)</li>
-<li>EspecialStatus (Efectos especiales que afectan al Pokémon)</li>
-<li>IBatalla (Métodos necesarios para implementar una batalla)</li>
-<li>IItem (Interfaz que proporciona la estructura básica para los objetos)</li>
-<li>IJugador (Interfaz de métodos que deben implementarse para gestionar a un jugador)</li>
-<li>IPokemon (Interfaz de las operaciones relacionadas con un Pokémon.)</li>
-<li>IPokemonApi (Define los métodos para acceder y manipular datos de los Pokémon en la <a class="el" href="namespace_a_p_i.html">API</a>)</li>
-<li>IPokemonCreator (Define cómo deben crearse los Pokémon en el juego)</li>
-<li><a class="el" href="class_items.html" title="Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem.">Items</a> (Clase base para los objetos)</li>
-<li>Move (Representa un movimiento)</li>
-<li>MoveDetail (Proporciona detalles adicionales de un movimiento)</li>
-<li>Player (Representa al jugador que tiene un equipo de Pokémon y una colección de objetos.)</li>
-<li>Pokemon (Define un Pokémon con sus atributos, movimientos, tipo, y estados.)</li>
-<li>PokemonApi (Métodos para interactuar con los datos de los Pokémon)</li>
-</ul>
+Somos el grupo 4GRAM tambien poco conocidos como el equipo 30</h1>
+<hr  />
 <h1><a class="anchor" id="autotoc_md3"></a>
-Errores y problemas que surgieron:</h1>
+👨‍💻 <em>Integrantes:</em> ‍💻</h1>
 <ul>
-<li>Errores en la implementacion de la <a class="el" href="namespace_a_p_i.html">API</a>.</li>
-<li>Correcciones para poder atacar durante la ronda con <a class="el" href="class_items.html" title="Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem.">Items</a>.</li>
-<li>Cambiar de Pokemon.</li>
-<li>Implementacion de los Test.</li>
-<li>Implementacion de turnos individuales para ataques especiales.</li>
-<li>Aplicacion de dormir al enemigo.</li>
+<li>### <b><em>Mauricio Segovia</em></b></li>
+<li>### <b><em>Rodrigo Godoy</em></b></li>
+<li>### <b><em>Gaston Baranov</em></b></li>
+<li>### <b><em>Alejandro Hernandez</em></b></li>
 </ul>
-<p>Muchas gracias y un saludo.</p><ul>
+<hr  />
+ <blockquote class="doxtable">
+<p>&zwj;## 🔧 Cómo usar el proyecto🌟</p><ol type="1">
+<li>### Requisitos previos:<ul>
+<li>Bot de Discord: tener un token del bot previamente creado en <a href="https://discord.com/developers/applications">Discord Developer Portal</a>.</li>
+</ul>
+</li>
+<li>### Configuracion Inicial:<ul>
+<li>Configurar el token como una variable de entorno con el siguiente comando: setx DISCORD_TOKEN "token del bot"</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>### Ejecuta y juega  </p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+🌟Nuestro proyecto se basa en un combate de Pokémons🌟</h1>
+<p><em>El juego es un sistema de combate por turnos multijugador, diseñado en un formato 1 vs 1 mediante comandos de un chatbot. Cada jugador tendrá un equipo de 6 Pokémon disponibles para la batalla, los cuales se mostrarán en pantalla para facilitar la selección estratégica. Cada Pokémon podrá utilizar 4 movimientos de ataque estándar, además de contar con un ataque especial disponible cada dos turnos. El sistema calculará automáticamente la efectividad de los ataques según los tipos de los Pokémon, aplicando ventajas o desventajas de manera dinámica.</em></p>
+<p><em>Durante cada turno, los jugadores podrán realizar una sola acción, como atacar, cambiar de Pokémon u optar por usar un item. La interfaz del juego permitirá a cada jugador visualizar la vida restante de los Pokémon del oponente, de quién es el turno actual y la acción seleccionada. El combate continuará hasta que todos los Pokémon de un jugador sean derrotados, declarando como ganador al último entrenador con Pokémon en pie.</em></p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md7"></a>
+💻 Funcionamiento general del codigo: 🛠️</h1>
+<h2><a class="anchor" id="autotoc_md8"></a>
+🛠️ Sistema de combate 1vs1</h2>
+<ul>
+<li>Equipo de 6 Pokémon: Cada jugador seleccionar su equipo.</li>
+<li>Combates por turnos</li>
+<li>Ataques especiales</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md9"></a>
+🎮 Integración con Discord</h2>
+<ul>
+<li>Juega desde la comodidad de un chatbot.</li>
+<li>Comandos amigables para facilitar la interacción.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+🌈 Cálculo de Daño</h2>
+<ul>
+<li>Efectividad basada en tipos (fuego, agua, planta, etc.).</li>
+<li>Estados especiales como Dormido y Envenenado.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md11"></a>
+🔧 Interacción con APIs</h2>
+<ul>
+<li>Implementación de APIs para enriquecer la experiencia de juego y agregar datos personalizados.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md12"></a>
+💎 Objetos y estrategias</h2>
+<ul>
+<li>Usa ítems como Pociones, Revive o TotalCure para cambiar la batalla.</li>
 <li></li>
 </ul>
+<h1><a class="anchor" id="autotoc_md13"></a>
+- Cambia de Pokémon en el momento</h1>
+<h1><a class="anchor" id="autotoc_md14"></a>
+📂 En la estructura del programa usamos:</h1>
+<h1><a class="anchor" id="autotoc_md15"></a>
+🧱 Principios y Patrones de Diseños</h1>
+<ul>
+<li>### Principios de GRASP y Solid.</li>
+<li>### Interfaz Segregation Principle (ISP) <blockquote class="doxtable">
+<p>&zwj; - Fue usado en: Clases con interfaces como IBattle, IPlayer, IPokemon, IItems.</p><ul>
+<li>Por que: Modularidad </li>
+</ul>
+</blockquote>
+</li>
+<li>### Low Coupling, High Cohesion. <blockquote class="doxtable">
+<p>&zwj;- Fue usado en: Generalmente, <a class="el" href="class_items.html" title="Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem.">Items</a> se basa en este principio</p>
+</blockquote>
+</li>
+<li>Por que: Mayor capacidad de adaptacion de las clases y ayudar </li>
+</ul>
+<ul>
+<li>### Patron de Diseño: Singleton <blockquote class="doxtable">
+<p>&zwj; - Fue usado en : BotQueuePlayers</p><ul>
+<li>Por que: A medida que se ejecutaba el programa se instanciaban varias filas</li>
+</ul>
+<p></p>
+</blockquote>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md16"></a>
+</h1>
+<h1><a class="anchor" id="autotoc_md17"></a>
+📝 Clases principales</h1>
+<h2><a class="anchor" id="autotoc_md18"></a>
+Core del juego</h2>
+<ul>
+<li><b>Battle</b>: Coordina el flujo de los combates.</li>
+<li><b>Shift</b>: Cambia el Pokémon activo durante el combate.</li>
+<li><b>Pokemon</b>: Define características, movimientos y estados de un Pokémon.</li>
+<li><b>Move y MoveDetail</b>: Modelan los ataques y sus detalles.</li>
+<li><b>Type y TypeDetail</b>: Definen los tipos y sus ventajas/desventajas.</li>
+<li></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Interacción con jugadores</h2>
+<ul>
+<li><b>Player</b>: Administra el equipo y los objetos del jugador.</li>
+<li><b><a class="el" href="class_items.html" title="Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem.">Items</a></b>: Clases base para objetos como <ins>SuperPotion </ins>, <ins>Revive </ins> y <ins>TotalCure </ins>. </li>
+</ul>
+<h2><a class="anchor" id="autotoc_md20"></a>
+Integración y APIs</h2>
+<ul>
+<li><b>PokemonApi</b>: Proporciona datos adicionales para los Pokémon.</li>
+<li><b>IPokemonCreator</b>: Genera Pokémon personalizados con atributos definidos.</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md22"></a>
+Errores y problemas que surgieron:</h1>
+<h2><a class="anchor" id="autotoc_md23"></a>
+Segunda Entrega</h2>
+<ul>
+<li>Errores en la implementacion de la API. (solucionado)</li>
+<li>Correcciones para poder atacar durante la ronda con <a class="el" href="class_items.html" title="Clase abstracta que representa un ítem en el juego. Implementa la interfaz IItem.">Items</a>. (solucionado)</li>
+<li>Cambiar de Pokemon.(solucionado)</li>
+<li>Implementacion de los Test.(echo)</li>
+<li>Implementacion de turnos individuales para ataques especiales.(echo)</li>
+<li>Aplicacion de dormir al enemigo.(echo)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md24"></a>
+Tercera entrega</h2>
+<p>&gt;Tuvimos muchos problemas con el discord,su integracion y la sintaxis.</p>
+<ul>
+<li>El que creaba mas problemas en esta entrega fue battle,botqueue y battle commands, ya que la logica nueva mayormente esta albergada en estas clases.</li>
+<li>Un problema recurrente es la sobresaturacion de "await" que hay, crea una demora la respuesta del bot en la batalla y en general. Puede incluso generar un desorder en mensajes que se muestra en el chat.</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md25"></a>
+Muchas gracias y un saludo.</h1>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

@@ -2,110 +2,128 @@
 \hypertarget{interface_library_1_1_i_battle}{}\label{interface_library_1_1_i_battle}\index{Library.IBattle@{Library.IBattle}}
 
 
-Interfaz que define los métodos para la batalla entre dos jugadores en un juego de Pokémon.  
+Interfaz que define las operaciones básicas que deben implementarse para una batalla.  
 
 
+Inheritance diagram for Library.\+IBattle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_library_1_1_i_battle}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{interface_library_1_1_i_battle_ad0f73ccfc519928d3aec184acc3e35cb}\label{interface_library_1_1_i_battle_ad0f73ccfc519928d3aec184acc3e35cb} 
-void {\bfseries Start\+Battle} ()
-\begin{DoxyCompactList}\small\item\em Inicia la batalla entre dos jugadores. Este método se encarga de gestionar el flujo principal de la batalla. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_library_1_1_i_battle_a1dd7d35a64daa0e271731a32cbe64ec8}{Play\+Shift}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} actual\+Player, \mbox{\hyperlink{class_library_1_1_player}{Player}} enemy\+Player)
-\begin{DoxyCompactList}\small\item\em Método que maneja un turno de batalla, donde el jugador actual y el enemigo realizan sus acciones. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_library_1_1_i_battle_a4694176b1a1c9c42da198ad529c71ba3}{Use\+Item}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Permite a un jugador usar un ítem durante su turno en la batalla. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_library_1_1_i_battle_a30991a87e75542cff263fe02cee0a23d}{Attack}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} actual\+Player, \mbox{\hyperlink{class_library_1_1_player}{Player}} enemy\+Player)
-\begin{DoxyCompactList}\small\item\em Método para que el jugador realice un ataque contra el Pokémon enemigo. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_library_1_1_i_battle_a5272ed8b41696bfffdb9b238b283caf6}{Switch\+Pokemon}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Permite al jugador cambiar de Pokémon durante su turno. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{interface_library_1_1_i_battle_ac621ba7d6c0ab309e7f813ede4c6e060}{Initialize\+Current\+Pokemon}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player)
-\begin{DoxyCompactList}\small\item\em Inicializa el Pokémon actual de un jugador, asignándole el primer Pokémon disponible que no esté fuera de combate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{interface_library_1_1_i_battle_a05d1689e384731d06d76becd1a8a074c}{Play\+Shift}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} actual\+Player, \mbox{\hyperlink{class_library_1_1_player}{Player}} enemy\+Player, Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Juega un turno entre dos jugadores en una batalla. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_library_1_1_i_battle_ac80bfdfdb925c012e69fc727fb633ffd}{Use\+Item}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player, int item\+Number, string pokemon\+Name, Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Utiliza un ítem del inventario de un jugador sobre un Pokémon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_library_1_1_i_battle_a439dfa49795330528ac260400b7d10f6}{Attack}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} actual\+Player, \mbox{\hyperlink{class_library_1_1_player}{Player}} enemy\+Player, int move\+Number, Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Ejecuta un ataque desde el jugador actual hacia el jugador enemigo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{interface_library_1_1_i_battle_a0ec286df0266ba695ead803d70f4840c}{Switch\+Pokemon}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player, int pokemon\+Index, Interaction\+Context ctx)
+\begin{DoxyCompactList}\small\item\em Cambia el Pokémon activo de un jugador. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Interfaz que define los métodos para la batalla entre dos jugadores en un juego de Pokémon. 
+Interfaz que define las operaciones básicas que deben implementarse para una batalla. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{interface_library_1_1_i_battle_a30991a87e75542cff263fe02cee0a23d}\index{Library.IBattle@{Library.IBattle}!Attack@{Attack}}
+\Hypertarget{interface_library_1_1_i_battle_a439dfa49795330528ac260400b7d10f6}\index{Library.IBattle@{Library.IBattle}!Attack@{Attack}}
 \index{Attack@{Attack}!Library.IBattle@{Library.IBattle}}
 \doxysubsubsection{\texorpdfstring{Attack()}{Attack()}}
-{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a30991a87e75542cff263fe02cee0a23d} 
-void Library.\+IBattle.\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{actual\+Player}{, }\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{enemy\+Player}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a439dfa49795330528ac260400b7d10f6} 
+void Library.\+IBattle.\+Attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{actual\+Player}{, }\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{enemy\+Player}{, }\item[{int}]{move\+Number}{, }\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})}
 
 
 
-Método para que el jugador realice un ataque contra el Pokémon enemigo. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em actual\+Player} & El jugador que está atacando.\\
-\hline
-{\em enemy\+Player} & El jugador cuyo Pokémon será atacado.\\
-\hline
-\end{DoxyParams}
-\Hypertarget{interface_library_1_1_i_battle_ac621ba7d6c0ab309e7f813ede4c6e060}\index{Library.IBattle@{Library.IBattle}!InitializeCurrentPokemon@{InitializeCurrentPokemon}}
-\index{InitializeCurrentPokemon@{InitializeCurrentPokemon}!Library.IBattle@{Library.IBattle}}
-\doxysubsubsection{\texorpdfstring{InitializeCurrentPokemon()}{InitializeCurrentPokemon()}}
-{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_ac621ba7d6c0ab309e7f813ede4c6e060} 
-void Library.\+IBattle.\+Initialize\+Current\+Pokemon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{}\end{DoxyParamCaption})}
-
-
-
-Inicializa el Pokémon actual de un jugador, asignándole el primer Pokémon disponible que no esté fuera de combate. 
+Ejecuta un ataque desde el jugador actual hacia el jugador enemigo. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & El jugador cuyo Pokémon actual debe ser inicializado.\\
+{\em actual\+Player} & El jugador que realiza el ataque.\\
+\hline
+{\em enemy\+Player} & El jugador enemigo que recibe el ataque.\\
+\hline
+{\em move\+Number} & El número del movimiento/ataque que se va a ejecutar.\\
+\hline
+{\em ctx} & El contexto de la interacción en Discord.\\
 \hline
 \end{DoxyParams}
-\Hypertarget{interface_library_1_1_i_battle_a1dd7d35a64daa0e271731a32cbe64ec8}\index{Library.IBattle@{Library.IBattle}!PlayShift@{PlayShift}}
+
+
+Implemented in \mbox{\hyperlink{class_library_1_1_battle_abfd08b247bbe9f383c6f3b52bd45f5e4}{Library.\+Battle}}.
+
+\Hypertarget{interface_library_1_1_i_battle_a05d1689e384731d06d76becd1a8a074c}\index{Library.IBattle@{Library.IBattle}!PlayShift@{PlayShift}}
 \index{PlayShift@{PlayShift}!Library.IBattle@{Library.IBattle}}
 \doxysubsubsection{\texorpdfstring{PlayShift()}{PlayShift()}}
-{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a1dd7d35a64daa0e271731a32cbe64ec8} 
-void Library.\+IBattle.\+Play\+Shift (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{actual\+Player}{, }\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{enemy\+Player}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a05d1689e384731d06d76becd1a8a074c} 
+void Library.\+IBattle.\+Play\+Shift (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{actual\+Player}{, }\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{enemy\+Player}{, }\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})}
 
 
 
-Método que maneja un turno de batalla, donde el jugador actual y el enemigo realizan sus acciones. 
+Juega un turno entre dos jugadores en una batalla. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em actual\+Player} & El jugador que está realizando su turno.\\
+{\em actual\+Player} & El jugador que toma el turno actual.\\
 \hline
-{\em enemy\+Player} & El jugador enemigo que está esperando su turno.\\
+{\em enemy\+Player} & El jugador enemigo contra quien se juega el turno.\\
+\hline
+{\em ctx} & El contexto de la interacción en Discord.\\
 \hline
 \end{DoxyParams}
-\Hypertarget{interface_library_1_1_i_battle_a5272ed8b41696bfffdb9b238b283caf6}\index{Library.IBattle@{Library.IBattle}!SwitchPokemon@{SwitchPokemon}}
+
+
+Implemented in \mbox{\hyperlink{class_library_1_1_battle_ad5abcc08816246cd53e6664adcea327d}{Library.\+Battle}}.
+
+\Hypertarget{interface_library_1_1_i_battle_a0ec286df0266ba695ead803d70f4840c}\index{Library.IBattle@{Library.IBattle}!SwitchPokemon@{SwitchPokemon}}
 \index{SwitchPokemon@{SwitchPokemon}!Library.IBattle@{Library.IBattle}}
 \doxysubsubsection{\texorpdfstring{SwitchPokemon()}{SwitchPokemon()}}
-{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a5272ed8b41696bfffdb9b238b283caf6} 
-void Library.\+IBattle.\+Switch\+Pokemon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a0ec286df0266ba695ead803d70f4840c} 
+void Library.\+IBattle.\+Switch\+Pokemon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{, }\item[{int}]{pokemon\+Index}{, }\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})}
 
 
 
-Permite al jugador cambiar de Pokémon durante su turno. 
+Cambia el Pokémon activo de un jugador. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & El jugador que realizará el cambio de Pokémon.\\
+{\em player} & El jugador que realiza el cambio de Pokémon.\\
+\hline
+{\em pokemon\+Index} & El índice del nuevo Pokémon que se desea usar.\\
+\hline
+{\em ctx} & El contexto de la interacción en Discord.\\
 \hline
 \end{DoxyParams}
-\Hypertarget{interface_library_1_1_i_battle_a4694176b1a1c9c42da198ad529c71ba3}\index{Library.IBattle@{Library.IBattle}!UseItem@{UseItem}}
+
+
+Implemented in \mbox{\hyperlink{class_library_1_1_battle_a2bea10743dacd2e42445b64ce980a2b9}{Library.\+Battle}}.
+
+\Hypertarget{interface_library_1_1_i_battle_ac80bfdfdb925c012e69fc727fb633ffd}\index{Library.IBattle@{Library.IBattle}!UseItem@{UseItem}}
 \index{UseItem@{UseItem}!Library.IBattle@{Library.IBattle}}
 \doxysubsubsection{\texorpdfstring{UseItem()}{UseItem()}}
-{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_a4694176b1a1c9c42da198ad529c71ba3} 
-void Library.\+IBattle.\+Use\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interface_library_1_1_i_battle_ac80bfdfdb925c012e69fc727fb633ffd} 
+void Library.\+IBattle.\+Use\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{, }\item[{int}]{item\+Number}{, }\item[{string}]{pokemon\+Name}{, }\item[{Interaction\+Context}]{ctx}{}\end{DoxyParamCaption})}
 
 
 
-Permite a un jugador usar un ítem durante su turno en la batalla. 
+Utiliza un ítem del inventario de un jugador sobre un Pokémon. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em player} & El jugador que usará el ítem.\\
+{\em player} & El jugador que usa el ítem.\\
+\hline
+{\em item\+Number} & El número del ítem a usar del inventario del jugador.\\
+\hline
+{\em pokemon\+Name} & El nombre del Pokémon sobre el cual se aplicará el ítem.\\
+\hline
+{\em ctx} & El contexto de la interacción en Discord.\\
 \hline
 \end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_library_1_1_battle_ac1d5fccc0b5c3c64d9b96e38930b42f5}{Library.\+Battle}}.
+
 
 
 The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}

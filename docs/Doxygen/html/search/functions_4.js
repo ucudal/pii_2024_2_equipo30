@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['getmovedetails_0',['GetMoveDetails',['../interface_library_1_1_i_pokemon_api.html#a9806426a8724f63f84248f41f23bde9f',1,'Library.IPokemonApi.GetMoveDetails()'],['../class_library_1_1_pokemon_api.html#af997c2c31f6e027a69acd912c2e01f84',1,'Library.PokemonApi.GetMoveDetails()']]],
-  ['getpokemondetails_1',['GetPokemonDetails',['../interface_library_1_1_i_pokemon_api.html#aabd023ca37f5ae94f4baec7bc53641b0',1,'Library.IPokemonApi.GetPokemonDetails()'],['../class_library_1_1_pokemon_api.html#a5793999b384b9e82007e6580eeec6b53',1,'Library.PokemonApi.GetPokemonDetails()']]]
+  ['elegirequipo_0',['ElegirEquipo',['../interface_library_1_1_i_player.html#a068700cba361de23cdb5b3d5bc2c990a',1,'Library.IPlayer.ElegirEquipo()'],['../class_library_1_1_player.html#a78191e984513adb327490a149bd20779',1,'Library.Player.ElegirEquipo()']]],
+  ['executespecialattack_1',['ExecuteSpecialAttack',['../class_library_1_1_shift.html#a1100183e374e64260c3e1919de81ff7c',1,'Library::Shift']]],
+  ['exitqueue_2',['ExitQueue',['../class_library_1_1_bot_discord_1_1_battle_commands.html#af446d29fb70f6228220ddafdf393c0b7',1,'Library.BotDiscord.BattleCommands.ExitQueue()'],['../class_library_1_1_bot_discord_1_1_bot_queue_players.html#af27ec1bed04552add5f2cc41046c6652',1,'Library.BotDiscord.BotQueuePlayers.ExitQueue()']]]
 ];

@@ -1,0 +1,151 @@
+\doxysection{Library.\+Bot\+Discord.\+Bot\+Queue\+Players Class Reference}
+\hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players}{}\label{class_library_1_1_bot_discord_1_1_bot_queue_players}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+
+
+Clase que maneja la cola de jugadores para las batallas del bot en Discord. Implementa un patrón Singleton.  
+
+
+Inheritance diagram for Library.\+Bot\+Discord.\+Bot\+Queue\+Players\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_library_1_1_bot_discord_1_1_bot_queue_players}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players_a536c880b7b61ac32697dbba8d1c93f4a}{Join\+Queue}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Añade un jugador a la cola de batalla. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players_af27ec1bed04552add5f2cc41046c6652}{Exit\+Queue}} (\mbox{\hyperlink{class_library_1_1_player}{Player}} player)
+\begin{DoxyCompactList}\small\item\em Elimina un jugador de la cola de batalla. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_library_1_1_player}{Player}} $>$ \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players_a355d74ee78c5937d52edd696f12f767a}{Obtener\+Proximos\+Jugadores}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene los próximos dos jugadores de la cola para iniciar una batalla. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players_a07aa427e02ae6028a730b82af4a099cd}{Mostrar\+Jugadores}} ()
+\begin{DoxyCompactList}\small\item\em Muestra la lista de jugadores actualmente en la cola. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_library_1_1_player}{Player}} \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players_a293d8d4925414786569828f1adacf604}{Get\+Player\+By\+Name}} (string name, List$<$ \mbox{\hyperlink{class_library_1_1_player}{Player}} $>$ players)
+\begin{DoxyCompactList}\small\item\em Obtiene un jugador por su nombre a partir de una lista de jugadores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players}{Bot\+Queue\+Players}} \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players_ac40148b5a09ac714bad7ec4bc0ca9068}{Get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Obtiene la instancia única de la clase \doxylink{class_library_1_1_bot_discord_1_1_bot_queue_players}{Bot\+Queue\+Players}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_a0ce78e2967bce139f270a3658648def6}\label{class_library_1_1_bot_discord_1_1_bot_queue_players_a0ce78e2967bce139f270a3658648def6} 
+List$<$ \mbox{\hyperlink{class_library_1_1_player}{Player}} $>$ {\bfseries Players\+In\+Game}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Lista de jugadores actualmente en la partida. \end{DoxyCompactList}\item 
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_ae5029eed1f5565ae9188d98ff15a3eff}\label{class_library_1_1_bot_discord_1_1_bot_queue_players_ae5029eed1f5565ae9188d98ff15a3eff} 
+\mbox{\hyperlink{class_library_1_1_battle}{Battle}} {\bfseries Battle}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Instancia de la batalla en curso. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase que maneja la cola de jugadores para las batallas del bot en Discord. Implementa un patrón Singleton. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_af27ec1bed04552add5f2cc41046c6652}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}!ExitQueue@{ExitQueue}}
+\index{ExitQueue@{ExitQueue}!Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+\doxysubsubsection{\texorpdfstring{ExitQueue()}{ExitQueue()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_bot_queue_players_af27ec1bed04552add5f2cc41046c6652} 
+string Library.\+Bot\+Discord.\+Bot\+Queue\+Players.\+Exit\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Elimina un jugador de la cola de batalla. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & El jugador que se desea eliminar de la cola.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un mensaje indicando si el jugador se ha eliminado exitosamente o si no estaba en la cola.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_ac40148b5a09ac714bad7ec4bc0ca9068}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_bot_queue_players_ac40148b5a09ac714bad7ec4bc0ca9068} 
+static \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_bot_queue_players}{Bot\+Queue\+Players}} Library.\+Bot\+Discord.\+Bot\+Queue\+Players.\+Get\+Instance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Obtiene la instancia única de la clase \doxylink{class_library_1_1_bot_discord_1_1_bot_queue_players}{Bot\+Queue\+Players}. 
+
+\begin{DoxyReturn}{Returns}
+La instancia única de \doxylink{class_library_1_1_bot_discord_1_1_bot_queue_players}{Bot\+Queue\+Players}.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_a293d8d4925414786569828f1adacf604}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}!GetPlayerByName@{GetPlayerByName}}
+\index{GetPlayerByName@{GetPlayerByName}!Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+\doxysubsubsection{\texorpdfstring{GetPlayerByName()}{GetPlayerByName()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_bot_queue_players_a293d8d4925414786569828f1adacf604} 
+\mbox{\hyperlink{class_library_1_1_player}{Player}} Library.\+Bot\+Discord.\+Bot\+Queue\+Players.\+Get\+Player\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{List$<$ \mbox{\hyperlink{class_library_1_1_player}{Player}} $>$}]{players}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtiene un jugador por su nombre a partir de una lista de jugadores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & El nombre del jugador que se desea buscar.\\
+\hline
+{\em players} & La lista de jugadores donde buscar el nombre.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El jugador correspondiente al nombre proporcionado o null si no se encuentra.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Argument\+Exception} & Lanza una excepción si el nombre es nulo o vacío.\\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_a536c880b7b61ac32697dbba8d1c93f4a}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}!JoinQueue@{JoinQueue}}
+\index{JoinQueue@{JoinQueue}!Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+\doxysubsubsection{\texorpdfstring{JoinQueue()}{JoinQueue()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_bot_queue_players_a536c880b7b61ac32697dbba8d1c93f4a} 
+string Library.\+Bot\+Discord.\+Bot\+Queue\+Players.\+Join\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_library_1_1_player}{Player}}}]{player}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Añade un jugador a la cola de batalla. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & El jugador que se desea añadir a la cola.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un mensaje indicando si el jugador se ha añadido exitosamente o si ya estaba en la cola.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_a07aa427e02ae6028a730b82af4a099cd}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}!MostrarJugadores@{MostrarJugadores}}
+\index{MostrarJugadores@{MostrarJugadores}!Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+\doxysubsubsection{\texorpdfstring{MostrarJugadores()}{MostrarJugadores()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_bot_queue_players_a07aa427e02ae6028a730b82af4a099cd} 
+string Library.\+Bot\+Discord.\+Bot\+Queue\+Players.\+Mostrar\+Jugadores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Muestra la lista de jugadores actualmente en la cola. 
+
+\begin{DoxyReturn}{Returns}
+Una cadena con los nombres de los jugadores en la cola o un mensaje indicando que la cola está vacía.
+\end{DoxyReturn}
+\Hypertarget{class_library_1_1_bot_discord_1_1_bot_queue_players_a355d74ee78c5937d52edd696f12f767a}\index{Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}!ObtenerProximosJugadores@{ObtenerProximosJugadores}}
+\index{ObtenerProximosJugadores@{ObtenerProximosJugadores}!Library.BotDiscord.BotQueuePlayers@{Library.BotDiscord.BotQueuePlayers}}
+\doxysubsubsection{\texorpdfstring{ObtenerProximosJugadores()}{ObtenerProximosJugadores()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_bot_queue_players_a355d74ee78c5937d52edd696f12f767a} 
+List$<$ \mbox{\hyperlink{class_library_1_1_player}{Player}} $>$ Library.\+Bot\+Discord.\+Bot\+Queue\+Players.\+Obtener\+Proximos\+Jugadores (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtiene los próximos dos jugadores de la cola para iniciar una batalla. 
+
+\begin{DoxyReturn}{Returns}
+Una lista con los dos próximos jugadores si hay suficientes, de lo contrario null.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/\+Bot\+Discord/Bot\+Queue\+Players.\+cs\end{DoxyCompactItemize}

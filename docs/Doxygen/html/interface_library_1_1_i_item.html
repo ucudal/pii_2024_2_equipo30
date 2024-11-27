@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>4GRAM_Equipo30: Library.IItem Interface Reference</title>
+<title>4GRAM_Equipo30 - Poke Fight: Library.IItem Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">4GRAM_Equipo30
+   <div id="projectname">4GRAM_Equipo30 - Poke Fight
    </div>
   </td>
  </tr>
@@ -96,7 +96,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento.  
+<p>Interfaz que define las propiedades y métodos básicos para un ítem.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Library.IItem:</div>
@@ -114,29 +114,29 @@ Inheritance diagram for Library.IItem:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac876022231c1c57b63aaa1790b52b7e5" id="r_ac876022231c1c57b63aaa1790b52b7e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac876022231c1c57b63aaa1790b52b7e5">Use</a> (<a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> pokemon)</td></tr>
-<tr class="memdesc:ac876022231c1c57b63aaa1790b52b7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método para usar el ítem en un Pokémon específico. Este método es necesario para aplicar el efecto del ítem en el Pokémon.  <br /></td></tr>
+<tr class="memdesc:ac876022231c1c57b63aaa1790b52b7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Usa el ítem en un Pokémon específico.  <br /></td></tr>
 <tr class="separator:ac876022231c1c57b63aaa1790b52b7e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6ce028b775b89535f9d4ee27d08f167" id="r_af6ce028b775b89535f9d4ee27d08f167"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6ce028b775b89535f9d4ee27d08f167">Consume</a> ()</td></tr>
-<tr class="memdesc:af6ce028b775b89535f9d4ee27d08f167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método para consumir el ítem, disminuyendo su cantidad disponible.  <br /></td></tr>
+<tr class="memdesc:af6ce028b775b89535f9d4ee27d08f167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce la cantidad del ítem después de ser consumido.  <br /></td></tr>
 <tr class="separator:af6ce028b775b89535f9d4ee27d08f167"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a070314c1fc30d638555e5b3826aa1f74" id="r_a070314c1fc30d638555e5b3826aa1f74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a070314c1fc30d638555e5b3826aa1f74">MaxHealt</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a070314c1fc30d638555e5b3826aa1f74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Máxima cantidad de salud que el ítem puede restaurar.  <br /></td></tr>
+<tr class="memdesc:a070314c1fc30d638555e5b3826aa1f74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece la cantidad máxima de salud que puede restaurar el ítem.  <br /></td></tr>
 <tr class="separator:a070314c1fc30d638555e5b3826aa1f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd9262e1e767b12e8dae59d77b7f25c8" id="r_afd9262e1e767b12e8dae59d77b7f25c8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd9262e1e767b12e8dae59d77b7f25c8">ItemsName</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:afd9262e1e767b12e8dae59d77b7f25c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre del ítem.  <br /></td></tr>
+<tr class="memdesc:afd9262e1e767b12e8dae59d77b7f25c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece el nombre del ítem.  <br /></td></tr>
 <tr class="separator:afd9262e1e767b12e8dae59d77b7f25c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa180312d64ba2592ac1bce5edf0240c8" id="r_aa180312d64ba2592ac1bce5edf0240c8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa180312d64ba2592ac1bce5edf0240c8">ItemsDescription</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:aa180312d64ba2592ac1bce5edf0240c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Descripción del ítem.  <br /></td></tr>
+<tr class="memdesc:aa180312d64ba2592ac1bce5edf0240c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece la descripción del ítem.  <br /></td></tr>
 <tr class="separator:aa180312d64ba2592ac1bce5edf0240c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19cc2c33a1a3171fddfb233b7b260e89" id="r_a19cc2c33a1a3171fddfb233b7b260e89"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19cc2c33a1a3171fddfb233b7b260e89">Quantity</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a19cc2c33a1a3171fddfb233b7b260e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de ítems disponibles para el jugador.  <br /></td></tr>
+<tr class="memdesc:a19cc2c33a1a3171fddfb233b7b260e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene o establece la cantidad de ítems disponibles.  <br /></td></tr>
 <tr class="separator:a19cc2c33a1a3171fddfb233b7b260e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfaz que define la estructura de un ítem en el juego, siguiendo una guía de diseño orientada a mantener bajo acoplamiento. </p>
+<div class="textblock"><p>Interfaz que define las propiedades y métodos básicos para un ítem. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af6ce028b775b89535f9d4ee27d08f167" name="af6ce028b775b89535f9d4ee27d08f167"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af6ce028b775b89535f9d4ee27d08f167">&#9670;&#160;</a></span>Consume()</h2>
@@ -153,7 +153,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Método para consumir el ítem, disminuyendo su cantidad disponible. </p>
+<p>Reduce la cantidad del ítem después de ser consumido. </p>
 
 <p>Implemented in <a class="el" href="class_items.html#a6370f5a6a0c358380da1b3030a1bdd8a">Items</a>.</p>
 
@@ -174,10 +174,10 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Método para usar el ítem en un Pokémon específico. Este método es necesario para aplicar el efecto del ítem en el Pokémon. </p>
+<p>Usa el ítem en un Pokémon específico. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pokemon</td><td>El Pokémon en el que se aplicará el ítem.</td></tr>
+    <tr><td class="paramname">pokemon</td><td>El Pokémon sobre el cual se va a usar el ítem.</td></tr>
   </table>
   </dd>
 </dl>
@@ -207,7 +207,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Descripción del ítem. </p>
+<p>Obtiene o establece la descripción del ítem. </p>
 
 <p>Implemented in <a class="el" href="class_items.html#a0504947faad7d22cdbf2e734f0bfbd04">Items</a>.</p>
 
@@ -233,7 +233,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Nombre del ítem. </p>
+<p>Obtiene o establece el nombre del ítem. </p>
 
 <p>Implemented in <a class="el" href="class_items.html#a8a8c5027c73a9c9e0f22197ad11a57ed">Items</a>.</p>
 
@@ -259,7 +259,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Máxima cantidad de salud que el ítem puede restaurar. </p>
+<p>Obtiene o establece la cantidad máxima de salud que puede restaurar el ítem. </p>
 
 <p>Implemented in <a class="el" href="class_items.html#a9a0249013bd5fec86a000897236f6792">Items</a>.</p>
 
@@ -285,7 +285,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Cantidad de ítems disponibles para el jugador. </p>
+<p>Obtiene o establece la cantidad de ítems disponibles. </p>
 
 <p>Implemented in <a class="el" href="class_items.html#af5e6d5a05f81e874fde950a28ec31a1b">Items</a>.</p>
 

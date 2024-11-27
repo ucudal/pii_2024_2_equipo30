@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>4GRAM_Equipo30: Library.IBattle Interface Reference</title>
+<title>4GRAM_Equipo30 - Poke Fight: Library.IBattle Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">4GRAM_Equipo30
+   <div id="projectname">4GRAM_Equipo30 - Poke Fight
    </div>
   </td>
  </tr>
@@ -95,36 +95,38 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Interfaz que define los métodos para la batalla entre dos jugadores en un juego de Pokémon.  
+<p>Interfaz que define las operaciones básicas que deben implementarse para una batalla.  
  <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Library.IBattle:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interface_library_1_1_i_battle.png" usemap="#Library.IBattle_map" alt=""/>
+  <map id="Library.IBattle_map" name="Library.IBattle_map">
+<area href="class_library_1_1_battle.html" title="Clase &quot;Battle&quot; que maneja la lógica de la batalla entre dos jugadores en un entorno de Discord." alt="Library.Battle" shape="rect" coords="0,56,91,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad0f73ccfc519928d3aec184acc3e35cb" id="r_ad0f73ccfc519928d3aec184acc3e35cb"><td class="memItemLeft" align="right" valign="top"><a id="ad0f73ccfc519928d3aec184acc3e35cb" name="ad0f73ccfc519928d3aec184acc3e35cb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>StartBattle</b> ()</td></tr>
-<tr class="memdesc:ad0f73ccfc519928d3aec184acc3e35cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicia la batalla entre dos jugadores. Este método se encarga de gestionar el flujo principal de la batalla. <br /></td></tr>
-<tr class="separator:ad0f73ccfc519928d3aec184acc3e35cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dd7d35a64daa0e271731a32cbe64ec8" id="r_a1dd7d35a64daa0e271731a32cbe64ec8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dd7d35a64daa0e271731a32cbe64ec8">PlayShift</a> (<a class="el" href="class_library_1_1_player.html">Player</a> actualPlayer, <a class="el" href="class_library_1_1_player.html">Player</a> enemyPlayer)</td></tr>
-<tr class="memdesc:a1dd7d35a64daa0e271731a32cbe64ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método que maneja un turno de batalla, donde el jugador actual y el enemigo realizan sus acciones.  <br /></td></tr>
-<tr class="separator:a1dd7d35a64daa0e271731a32cbe64ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4694176b1a1c9c42da198ad529c71ba3" id="r_a4694176b1a1c9c42da198ad529c71ba3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4694176b1a1c9c42da198ad529c71ba3">UseItem</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a4694176b1a1c9c42da198ad529c71ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permite a un jugador usar un ítem durante su turno en la batalla.  <br /></td></tr>
-<tr class="separator:a4694176b1a1c9c42da198ad529c71ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30991a87e75542cff263fe02cee0a23d" id="r_a30991a87e75542cff263fe02cee0a23d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30991a87e75542cff263fe02cee0a23d">Attack</a> (<a class="el" href="class_library_1_1_player.html">Player</a> actualPlayer, <a class="el" href="class_library_1_1_player.html">Player</a> enemyPlayer)</td></tr>
-<tr class="memdesc:a30991a87e75542cff263fe02cee0a23d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método para que el jugador realice un ataque contra el Pokémon enemigo.  <br /></td></tr>
-<tr class="separator:a30991a87e75542cff263fe02cee0a23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5272ed8b41696bfffdb9b238b283caf6" id="r_a5272ed8b41696bfffdb9b238b283caf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5272ed8b41696bfffdb9b238b283caf6">SwitchPokemon</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:a5272ed8b41696bfffdb9b238b283caf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permite al jugador cambiar de Pokémon durante su turno.  <br /></td></tr>
-<tr class="separator:a5272ed8b41696bfffdb9b238b283caf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac621ba7d6c0ab309e7f813ede4c6e060" id="r_ac621ba7d6c0ab309e7f813ede4c6e060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac621ba7d6c0ab309e7f813ede4c6e060">InitializeCurrentPokemon</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player)</td></tr>
-<tr class="memdesc:ac621ba7d6c0ab309e7f813ede4c6e060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa el Pokémon actual de un jugador, asignándole el primer Pokémon disponible que no esté fuera de combate.  <br /></td></tr>
-<tr class="separator:ac621ba7d6c0ab309e7f813ede4c6e060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05d1689e384731d06d76becd1a8a074c" id="r_a05d1689e384731d06d76becd1a8a074c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05d1689e384731d06d76becd1a8a074c">PlayShift</a> (<a class="el" href="class_library_1_1_player.html">Player</a> actualPlayer, <a class="el" href="class_library_1_1_player.html">Player</a> enemyPlayer, InteractionContext ctx)</td></tr>
+<tr class="memdesc:a05d1689e384731d06d76becd1a8a074c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Juega un turno entre dos jugadores en una batalla.  <br /></td></tr>
+<tr class="separator:a05d1689e384731d06d76becd1a8a074c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80bfdfdb925c012e69fc727fb633ffd" id="r_ac80bfdfdb925c012e69fc727fb633ffd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac80bfdfdb925c012e69fc727fb633ffd">UseItem</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player, int itemNumber, string pokemonName, InteractionContext ctx)</td></tr>
+<tr class="memdesc:ac80bfdfdb925c012e69fc727fb633ffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utiliza un ítem del inventario de un jugador sobre un Pokémon.  <br /></td></tr>
+<tr class="separator:ac80bfdfdb925c012e69fc727fb633ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a439dfa49795330528ac260400b7d10f6" id="r_a439dfa49795330528ac260400b7d10f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a439dfa49795330528ac260400b7d10f6">Attack</a> (<a class="el" href="class_library_1_1_player.html">Player</a> actualPlayer, <a class="el" href="class_library_1_1_player.html">Player</a> enemyPlayer, int moveNumber, InteractionContext ctx)</td></tr>
+<tr class="memdesc:a439dfa49795330528ac260400b7d10f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta un ataque desde el jugador actual hacia el jugador enemigo.  <br /></td></tr>
+<tr class="separator:a439dfa49795330528ac260400b7d10f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec286df0266ba695ead803d70f4840c" id="r_a0ec286df0266ba695ead803d70f4840c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ec286df0266ba695ead803d70f4840c">SwitchPokemon</a> (<a class="el" href="class_library_1_1_player.html">Player</a> player, int pokemonIndex, InteractionContext ctx)</td></tr>
+<tr class="memdesc:a0ec286df0266ba695ead803d70f4840c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cambia el Pokémon activo de un jugador.  <br /></td></tr>
+<tr class="separator:a0ec286df0266ba695ead803d70f4840c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfaz que define los métodos para la batalla entre dos jugadores en un juego de Pokémon. </p>
+<div class="textblock"><p>Interfaz que define las operaciones básicas que deben implementarse para una batalla. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a30991a87e75542cff263fe02cee0a23d" name="a30991a87e75542cff263fe02cee0a23d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30991a87e75542cff263fe02cee0a23d">&#9670;&#160;</a></span>Attack()</h2>
+<a id="a439dfa49795330528ac260400b7d10f6" name="a439dfa49795330528ac260400b7d10f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a439dfa49795330528ac260400b7d10f6">&#9670;&#160;</a></span>Attack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,49 +139,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartBattle</b> ()</t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>enemyPlayer</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>enemyPlayer</em></span>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Método para que el jugador realice un ataque contra el Pokémon enemigo. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">actualPlayer</td><td>El jugador que está atacando.</td></tr>
-    <tr><td class="paramname">enemyPlayer</td><td>El jugador cuyo Pokémon será atacado.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ac621ba7d6c0ab309e7f813ede4c6e060" name="ac621ba7d6c0ab309e7f813ede4c6e060"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac621ba7d6c0ab309e7f813ede4c6e060">&#9670;&#160;</a></span>InitializeCurrentPokemon()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">void Library.IBattle.InitializeCurrentPokemon </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>moveNumber</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inicializa el Pokémon actual de un jugador, asignándole el primer Pokémon disponible que no esté fuera de combate. </p>
+<p>Ejecuta un ataque desde el jugador actual hacia el jugador enemigo. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>El jugador cuyo Pokémon actual debe ser inicializado.</td></tr>
+    <tr><td class="paramname">actualPlayer</td><td>El jugador que realiza el ataque.</td></tr>
+    <tr><td class="paramname">enemyPlayer</td><td>El jugador enemigo que recibe el ataque.</td></tr>
+    <tr><td class="paramname">moveNumber</td><td>El número del movimiento/ataque que se va a ejecutar.</td></tr>
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implemented in <a class="el" href="class_library_1_1_battle.html#abfd08b247bbe9f383c6f3b52bd45f5e4">Library.Battle</a>.</p>
+
 </div>
 </div>
-<a id="a1dd7d35a64daa0e271731a32cbe64ec8" name="a1dd7d35a64daa0e271731a32cbe64ec8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dd7d35a64daa0e271731a32cbe64ec8">&#9670;&#160;</a></span>PlayShift()</h2>
+<a id="a05d1689e384731d06d76becd1a8a074c" name="a05d1689e384731d06d76becd1a8a074c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05d1689e384731d06d76becd1a8a074c">&#9670;&#160;</a></span>PlayShift()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,24 +183,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartBattle</b> ()</t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>enemyPlayer</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>enemyPlayer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Método que maneja un turno de batalla, donde el jugador actual y el enemigo realizan sus acciones. </p>
+<p>Juega un turno entre dos jugadores en una batalla. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">actualPlayer</td><td>El jugador que está realizando su turno.</td></tr>
-    <tr><td class="paramname">enemyPlayer</td><td>El jugador enemigo que está esperando su turno.</td></tr>
+    <tr><td class="paramname">actualPlayer</td><td>El jugador que toma el turno actual.</td></tr>
+    <tr><td class="paramname">enemyPlayer</td><td>El jugador enemigo contra quien se juega el turno.</td></tr>
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implemented in <a class="el" href="class_library_1_1_battle.html#ad5abcc08816246cd53e6664adcea327d">Library.Battle</a>.</p>
+
 </div>
 </div>
-<a id="a5272ed8b41696bfffdb9b238b283caf6" name="a5272ed8b41696bfffdb9b238b283caf6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5272ed8b41696bfffdb9b238b283caf6">&#9670;&#160;</a></span>SwitchPokemon()</h2>
+<a id="a0ec286df0266ba695ead803d70f4840c" name="a0ec286df0266ba695ead803d70f4840c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ec286df0266ba695ead803d70f4840c">&#9670;&#160;</a></span>SwitchPokemon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,24 +216,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartBattle</b> ()</t
         <tr>
           <td class="memname">void Library.IBattle.SwitchPokemon </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>pokemonIndex</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Permite al jugador cambiar de Pokémon durante su turno. </p>
+<p>Cambia el Pokémon activo de un jugador. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>El jugador que realizará el cambio de Pokémon.</td></tr>
+    <tr><td class="paramname">player</td><td>El jugador que realiza el cambio de Pokémon.</td></tr>
+    <tr><td class="paramname">pokemonIndex</td><td>El índice del nuevo Pokémon que se desea usar.</td></tr>
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Implemented in <a class="el" href="class_library_1_1_battle.html#a2bea10743dacd2e42445b64ce980a2b9">Library.Battle</a>.</p>
+
 </div>
 </div>
-<a id="a4694176b1a1c9c42da198ad529c71ba3" name="a4694176b1a1c9c42da198ad529c71ba3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4694176b1a1c9c42da198ad529c71ba3">&#9670;&#160;</a></span>UseItem()</h2>
+<a id="ac80bfdfdb925c012e69fc727fb633ffd" name="ac80bfdfdb925c012e69fc727fb633ffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac80bfdfdb925c012e69fc727fb633ffd">&#9670;&#160;</a></span>UseItem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,19 +254,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartBattle</b> ()</t
         <tr>
           <td class="memname">void Library.IBattle.UseItem </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_library_1_1_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>itemNumber</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>pokemonName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InteractionContext</td>          <td class="paramname"><span class="paramname"><em>ctx</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Permite a un jugador usar un ítem durante su turno en la batalla. </p>
+<p>Utiliza un ítem del inventario de un jugador sobre un Pokémon. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">player</td><td>El jugador que usará el ítem.</td></tr>
+    <tr><td class="paramname">player</td><td>El jugador que usa el ítem.</td></tr>
+    <tr><td class="paramname">itemNumber</td><td>El número del ítem a usar del inventario del jugador.</td></tr>
+    <tr><td class="paramname">pokemonName</td><td>El nombre del Pokémon sobre el cual se aplicará el ítem.</td></tr>
+    <tr><td class="paramname">ctx</td><td>El contexto de la interacción en Discord.</td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Implemented in <a class="el" href="class_library_1_1_battle.html#ac1d5fccc0b5c3c64d9b96e38930b42f5">Library.Battle</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,40 @@
+\doxysection{Library.\+Bot\+Discord.\+Discord\+Bot Class Reference}
+\hypertarget{class_library_1_1_bot_discord_1_1_discord_bot}{}\label{class_library_1_1_bot_discord_1_1_discord_bot}\index{Library.BotDiscord.DiscordBot@{Library.BotDiscord.DiscordBot}}
+
+
+Clase para la inicialización y configuración del bot de Discord. Utiliza DSharp\+Plus para conectarse a Discord y permitir utilizar comandos.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+async Task \mbox{\hyperlink{class_library_1_1_bot_discord_1_1_discord_bot_a4b68ceef6f6f2546f528bfa7875be0a1}{Iniciate}} ()
+\begin{DoxyCompactList}\small\item\em Método principal que configura y conecta el bot de Discord. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para la inicialización y configuración del bot de Discord. Utiliza DSharp\+Plus para conectarse a Discord y permitir utilizar comandos. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_library_1_1_bot_discord_1_1_discord_bot_a4b68ceef6f6f2546f528bfa7875be0a1}\index{Library.BotDiscord.DiscordBot@{Library.BotDiscord.DiscordBot}!Iniciate@{Iniciate}}
+\index{Iniciate@{Iniciate}!Library.BotDiscord.DiscordBot@{Library.BotDiscord.DiscordBot}}
+\doxysubsubsection{\texorpdfstring{Iniciate()}{Iniciate()}}
+{\footnotesize\ttfamily \label{class_library_1_1_bot_discord_1_1_discord_bot_a4b68ceef6f6f2546f528bfa7875be0a1} 
+async Task Library.\+Bot\+Discord.\+Discord\+Bot.\+Iniciate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Método principal que configura y conecta el bot de Discord. 
+
+Obtiene el token del bot desde la variable de entorno {\ttfamily DISCORD\+\_\+\+TOKEN} y configura el cliente de Discord utilizando {\ttfamily Discord\+Configuration} proporcionada por {\ttfamily DSharp\+Plus} y aplica los comandos del bot de discord pasandole a {\ttfamily Slash\+Commands} la clase {\ttfamily Discord\+Commands}. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Lanzada cuando no se encuentra el token del bot en la variable de entorno {\ttfamily DISCORD\+\_\+\+TOKEN}.\\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Library/\+Bot\+Discord/Bot\+Discord.\+cs\end{DoxyCompactItemize}

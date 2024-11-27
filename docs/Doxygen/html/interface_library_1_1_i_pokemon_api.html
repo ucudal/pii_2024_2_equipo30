@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>4GRAM_Equipo30: Library.IPokemonApi Interface Reference</title>
+<title>4GRAM_Equipo30 - Poke Fight: Library.IPokemonApi Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">4GRAM_Equipo30
+   <div id="projectname">4GRAM_Equipo30 - Poke Fight
    </div>
   </td>
  </tr>
@@ -95,7 +95,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Interfaz que define métodos para interactuar con una <a class="el" href="namespace_a_p_i.html">API</a> de Pokémon y obtener detalles sobre Pokémon y movimientos específicos.  
+<p>Interfaz que define los métodos para interactuar con la API de Pokémon y obtener detalles de Pokémon y movimientos.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Library.IPokemonApi:</div>
@@ -103,21 +103,21 @@ Inheritance diagram for Library.IPokemonApi:</div>
  <div class="center">
   <img src="interface_library_1_1_i_pokemon_api.png" usemap="#Library.IPokemonApi_map" alt=""/>
   <map id="Library.IPokemonApi_map" name="Library.IPokemonApi_map">
-<area href="class_library_1_1_pokemon_api.html" title="Clase que encapsula la lógica para obtener datos desde la API de Pokémon. Implementa la interfaz IPok..." alt="Library.PokemonApi" shape="rect" coords="0,56,130,80"/>
+<area href="class_library_1_1_pokemon_api.html" title="Clase que proporciona métodos para interactuar con la API de Pokémon. Implementa la interfaz IPokemon..." alt="Library.PokemonApi" shape="rect" coords="0,56,130,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aabd023ca37f5ae94f4baec7bc53641b0" id="r_aabd023ca37f5ae94f4baec7bc53641b0"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_library_1_1_pokemon.html">Pokemon</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabd023ca37f5ae94f4baec7bc53641b0">GetPokemonDetails</a> (string pokemonId)</td></tr>
-<tr class="memdesc:aabd023ca37f5ae94f4baec7bc53641b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre.  <br /></td></tr>
+<tr class="memdesc:aabd023ca37f5ae94f4baec7bc53641b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los detalles de un Pokémon a partir de su identificador utilizando la API de Pokémon.  <br /></td></tr>
 <tr class="separator:aabd023ca37f5ae94f4baec7bc53641b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9806426a8724f63f84248f41f23bde9f" id="r_a9806426a8724f63f84248f41f23bde9f"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_library_1_1_move_detail.html">MoveDetail</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9806426a8724f63f84248f41f23bde9f">GetMoveDetails</a> (string url)</td></tr>
-<tr class="memdesc:a9806426a8724f63f84248f41f23bde9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los detalles de un movimiento específico a partir de una URL.  <br /></td></tr>
+<tr class="memdesc:a9806426a8724f63f84248f41f23bde9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los detalles de un movimiento específico a partir de una URL proporcionada por la API de Pokémon.  <br /></td></tr>
 <tr class="separator:a9806426a8724f63f84248f41f23bde9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfaz que define métodos para interactuar con una <a class="el" href="namespace_a_p_i.html">API</a> de Pokémon y obtener detalles sobre Pokémon y movimientos específicos. </p>
+<div class="textblock"><p>Interfaz que define los métodos para interactuar con la API de Pokémon y obtener detalles de Pokémon y movimientos. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a9806426a8724f63f84248f41f23bde9f" name="a9806426a8724f63f84248f41f23bde9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9806426a8724f63f84248f41f23bde9f">&#9670;&#160;</a></span>GetMoveDetails()</h2>
@@ -134,14 +134,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Obtiene los detalles de un movimiento específico a partir de una URL. </p>
+<p>Obtiene los detalles de un movimiento específico a partir de una URL proporcionada por la API de Pokémon. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">url</td><td>URL del movimiento para obtener sus detalles.</td></tr>
+    <tr><td class="paramname">url</td><td>La URL que apunta al recurso del movimiento específico en la API.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Un objeto <a class="el" href="class_library_1_1_move_detail.html" title="Clase que representa los detalles de un movimiento específico que un Pokémon puede realizar.">MoveDetail</a> con los detalles del movimiento.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve un objeto <a class="el" href="class_library_1_1_move_detail.html" title="Clase que representa los detalles de un movimiento específico que un Pokémon puede realizar.">MoveDetail</a> con los detalles del movimiento solicitado.</dd></dl>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon_api.html#af997c2c31f6e027a69acd912c2e01f84">Library.PokemonApi</a>.</p>
 
@@ -162,14 +162,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Obtiene los detalles de un Pokémon específico a partir de su identificador o nombre. </p>
+<p>Obtiene los detalles de un Pokémon a partir de su identificador utilizando la API de Pokémon. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pokemonId</td><td>Identificador o nombre del Pokémon que se desea consultar.</td></tr>
+    <tr><td class="paramname">pokemonId</td><td>El identificador del Pokémon (nombre o número).</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Un objeto <a class="el" href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon, con sus atributos, movimientos y métodos para interactuar durante un...">Pokemon</a> con los detalles del Pokémon.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Devuelve un objeto <a class="el" href="class_library_1_1_pokemon.html" title="Clase que representa un Pokémon en el contexto del juego.">Pokemon</a> con los detalles del Pokémon solicitado.</dd></dl>
 
 <p>Implemented in <a class="el" href="class_library_1_1_pokemon_api.html#a5793999b384b9e82007e6580eeec6b53">Library.PokemonApi</a>.</p>
 

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['elegirequipo_0',['ElegirEquipo',['../interface_library_1_1_i_jugador.html#a4dc81a9a206f00b3362c7aeebdbfd284',1,'Library.IJugador.ElegirEquipo()'],['../class_library_1_1_player.html#a78191e984513adb327490a149bd20779',1,'Library.Player.ElegirEquipo()']]],
-  ['executespecialattack_1',['ExecuteSpecialAttack',['../class_library_1_1_shift.html#af3ac4f941c6409af6796dc03283e2f01',1,'Library::Shift']]]
+  ['damagetest_0',['DamageTest',['../class_library_1_1_tests_1_1_history_user_tests_1_1_history_user3___test.html#aed4c04acc92acc547a7fea2f667761e4',1,'Library::Tests::HistoryUserTests::HistoryUser3_Test']]],
+  ['deleteplayer_1',['DeletePlayer',['../class_library_1_1_wait_list.html#a5c10b317b0de3432a8d1ad15700a1dd0',1,'Library::WaitList']]]
 ];
