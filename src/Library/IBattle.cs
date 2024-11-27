@@ -4,40 +4,42 @@ using DSharpPlus.SlashCommands;
 namespace Library
 {
     /// <summary>
-    /// Interfaz que define los métodos para la batalla entre dos jugadores en un juego de Pokémon.
+    /// Interfaz que define las operaciones básicas que deben implementarse para una batalla.
     /// </summary>
     public interface IBattle
     {
         /// <summary>
-        /// Inicia la batalla entre dos jugadores.
-        /// Este método se encarga de gestionar el flujo principal de la batalla.
-        /// </summary
-
-        /// <summary>
-        /// Método que maneja un turno de batalla, donde el jugador actual y el enemigo realizan sus acciones.
+        /// Juega un turno entre dos jugadores en una batalla.
         /// </summary>
-        /// <param name="actualPlayer">El jugador que está realizando su turno.</param>
-        /// <param name="enemyPlayer">El jugador enemigo que está esperando su turno.</param>
+        /// <param name="actualPlayer">El jugador que toma el turno actual.</param>
+        /// <param name="enemyPlayer">El jugador enemigo contra quien se juega el turno.</param>
+        /// <param name="ctx">El contexto de la interacción en Discord.</param>
         void PlayShift(Player actualPlayer, Player enemyPlayer, InteractionContext ctx);
 
         /// <summary>
-        /// Permite a un jugador usar un ítem durante su turno en la batalla.
+        /// Utiliza un ítem del inventario de un jugador sobre un Pokémon.
         /// </summary>
-        /// <param name="player">El jugador que usará el ítem.</param>
+        /// <param name="player">El jugador que usa el ítem.</param>
+        /// <param name="itemNumber">El número del ítem a usar del inventario del jugador.</param>
+        /// <param name="pokemonName">El nombre del Pokémon sobre el cual se aplicará el ítem.</param>
+        /// <param name="ctx">El contexto de la interacción en Discord.</param>
         void UseItem(Player player, int itemNumber, string pokemonName, InteractionContext ctx);
-        
+
         /// <summary>
-        /// Método para que el jugador realice un ataque contra el Pokémon enemigo.
+        /// Ejecuta un ataque desde el jugador actual hacia el jugador enemigo.
         /// </summary>
-        /// <param name="actualPlayer">El jugador que está atacando.</param>
-        /// <param name="enemyPlayer">El jugador cuyo Pokémon será atacado.</param>
+        /// <param name="actualPlayer">El jugador que realiza el ataque.</param>
+        /// <param name="enemyPlayer">El jugador enemigo que recibe el ataque.</param>
+        /// <param name="moveNumber">El número del movimiento/ataque que se va a ejecutar.</param>
+        /// <param name="ctx">El contexto de la interacción en Discord.</param>
         void Attack(Player actualPlayer, Player enemyPlayer, int moveNumber, InteractionContext ctx);
 
         /// <summary>
-        /// Permite al jugador cambiar de Pokémon durante su turno.
+        /// Cambia el Pokémon activo de un jugador.
         /// </summary>
-        /// <param name="player">El jugador que realizará el cambio de Pokémon.</param>
+        /// <param name="player">El jugador que realiza el cambio de Pokémon.</param>
+        /// <param name="pokemonIndex">El índice del nuevo Pokémon que se desea usar.</param>
+        /// <param name="ctx">El contexto de la interacción en Discord.</param>
         void SwitchPokemon(Player player, int pokemonIndex, InteractionContext ctx);
-        
     }
 }

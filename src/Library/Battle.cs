@@ -8,20 +8,36 @@ using Library.BotDiscord;
 namespace Library;
 
 /// <summary>
-/// Clase que representa una batalla entre dos jugadores y maneja toda la lógica de turnos, ataques y uso de ítems.
+/// Clase "Battle" que maneja la lógica de la batalla entre dos jugadores en un entorno de Discord.
 /// </summary>
 public class Battle : IBattle
 {
+    /// <summary>
+    /// Jugador 1 en la batalla.
+    /// </summary>
     private Player Player1;
+
+    /// <summary>
+    /// Jugador 2 en la batalla.
+    /// </summary>
     private Player Player2;
+
+    /// <summary>
+    /// Instancia de "Shift" que maneja los turnos durante la batalla.
+    /// </summary>
     public Shift shift { get; }
+
+    /// <summary>
+    /// Máximo número de Pokémon permitidos en un equipo.
+    /// </summary>
     private int maxpokemons = 6;
 
     /// <summary>
-    /// Constructor que inicializa la batalla con dos jugadores.
+    /// Constructor de la clase "Battle".
+    /// Inicializa los jugadores y el objeto "Shift".
     /// </summary>
-    /// <param name="player1">Jugador 1 de la batalla.</param>
-    /// <param name="player2">Jugador 2 de la batalla.</param>
+    /// <param name="player1">El primer jugador.</param>
+    /// <param name="player2">El segundo jugador.</param>
     public Battle(Player player1, Player player2)
     {
         this.Player1 = player1;
@@ -30,8 +46,9 @@ public class Battle : IBattle
     }
     
     /// <summary>
-    /// Método para iniciar una batalla.
+    /// Método para iniciar la batalla entre dos jugadores en Discord.
     /// </summary>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async Task StartBattle(InteractionContext ctx)
     {
         if (!Player1.InGame || !Player2.InGame)
@@ -49,10 +66,10 @@ public class Battle : IBattle
         PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
 
-
     /// <summary>
-    /// Método para iniciar el juego.
+    /// Método para iniciar el juego y permitir a los jugadores elegir sus Pokémon.
     /// </summary>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async Task StartGame(InteractionContext ctx)
     {
         Player1.InGame = true;
@@ -61,10 +78,11 @@ public class Battle : IBattle
     }
 
     /// <summary>
-    /// Método que ejecuta el turno de un jugador.
+    /// Maneja el turno del jugador actual, permitiéndole atacar, usar ítems o cambiar de Pokémon.
     /// </summary>
-    /// <param name="actualPlayer">Jugador que realiza la acción en este turno.</param>
-    /// <param name="enemyPlayer">Jugador enemigo que recibe la acción.</param>
+    /// <param name="actualPlayer">Jugador que está jugando el turno actual.</param>
+    /// <param name="enemyPlayer">Jugador enemigo.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async void PlayShift(Player actualPlayer, Player enemyPlayer, InteractionContext ctx)
     {
         string message = "";
@@ -96,10 +114,12 @@ public class Battle : IBattle
     }
 
     /// <summary>
-    /// Método para realizar un ataque del Pokémon del jugador actual al del jugador enemigo.
+    /// Ejecuta la acción de ataque del jugador actual hacia el jugador enemigo.
     /// </summary>
-    /// <param name="actualPlayer">Jugador que realiza el ataque.</param>
-    /// <param name="enemyPlayer">Jugador enemigo que recibe el ataque.</param>
+    /// <param name="actualPlayer">Jugador que ataca.</param>
+    /// <param name="enemyPlayer">Jugador que recibe el ataque.</param>
+    /// <param name="moveNumber">Número del movimiento a usar.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async void Attack(Player actualPlayer, Player enemyPlayer, int moveNumber, InteractionContext ctx)
     {
         Pokemon actualPokemon = actualPlayer.actualPokemon;
@@ -189,9 +209,12 @@ public class Battle : IBattle
     }
 
     /// <summary>
-    /// Método para usar un ítem durante el turno de un jugador.
+    /// Permite al jugador usar un ítem durante su turno.
     /// </summary>
-    /// <param name="player">Jugador que va a usar el ítem.</param>
+    /// <param name="player">Jugador que usará el ítem.</param>
+    /// <param name="itemNumber">Número del ítem a usar.</param>
+    /// <param name="pokemonName">Nombre del Pokémon en el cual usar el ítem.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async void UseItem(Player player, int itemNumber, string pokemonName , InteractionContext ctx)
     {
         Pokemon pokemonToUseItem = player.Team.Find(pokemon => pokemon.Name == pokemonName);
@@ -275,9 +298,11 @@ public class Battle : IBattle
     }
 
     /// <summary>
-    /// Método para cambiar el Pokémon del jugador durante un turno.
+    /// Permite al jugador cambiar de Pokémon durante su turno.
     /// </summary>
     /// <param name="player">Jugador que cambiará su Pokémon.</param>
+    /// <param name="pokemonIndex">Índice del Pokémon a cambiar.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async void SwitchPokemon(Player player, int pokemonIndex, InteractionContext ctx)
     {
         if (pokemonIndex > 0 && pokemonIndex <= player.Team.Count)
@@ -303,6 +328,12 @@ public class Battle : IBattle
         PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
 
+    /// <summary>
+    /// Muestra los ítems disponibles que el jugador puede usar durante la batalla.
+    /// </summary>
+    /// <param name="player">Jugador que verá sus ítems.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
+    /// <returns>Mensaje con los ítems disponibles del jugador.</returns>
     public string ShowItemsByPlayer(Player player, InteractionContext ctx)
     {
         string message = "\nItems disponibles:\n" +
@@ -312,6 +343,12 @@ public class Battle : IBattle
         return message;
     }
 
+    /// <summary>
+    /// Muestra los ataques disponibles del Pokémon actual del jugador.
+    /// </summary>
+    /// <param name="player">Jugador que verá sus ataques disponibles.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
+    /// <returns>Mensaje con los ataques disponibles del Pokémon actual del jugador.</returns>
     public string ShowAttacksByPlayer(Player player, InteractionContext ctx)
     {
         string message = $"\n{player.NamePlayer}, elige un movimiento de: {player.actualPokemon.Name}";
@@ -325,6 +362,12 @@ public class Battle : IBattle
         return message;
     }
     
+    /// <summary>
+    /// Muestra los Pokémon disponibles para cambiar durante la batalla.
+    /// </summary>
+    /// <param name="player">Jugador que verá sus Pokémon disponibles para el cambio.</param>
+    /// <param name="ctx">Contexto de la interacción en Discord.</param>
+    /// <returns>Mensaje con los Pokémon disponibles para cambiar.</returns>
     public string ShowPokemonsToSwitch(Player player, InteractionContext ctx)
     {
         string message = $"\nPokemons disponibles para cambiar:\n";

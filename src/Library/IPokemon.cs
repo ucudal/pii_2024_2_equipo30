@@ -1,105 +1,108 @@
 using DSharpPlus.SlashCommands;
 
-namespace Library;
-
-/// <summary>
-/// Interfaz que define la estructura y el comportamiento de un Pokémon en el juego.
-/// </summary>
-public interface IPokemon
+namespace Library
 {
     /// <summary>
-    /// Nombre del Pokémon.
+    /// Interfaz que define las propiedades y métodos básicos de un Pokémon en el contexto de un juego.
     /// </summary>
-    string Name { get; set; }
+    public interface IPokemon
+    {
+        /// <summary>
+        /// Obtiene o establece el nombre del Pokémon.
+        /// </summary>
+        string Name { get; set; }
 
-    /// <summary>
-    /// Puntos de salud actuales del Pokémon.
-    /// </summary>
-    double Health { get; set; }
+        /// <summary>
+        /// Obtiene o establece la salud actual del Pokémon.
+        /// </summary>
+        double Health { get; set; }
 
-    /// <summary>
-    /// Máximo de puntos de salud que el Pokémon puede tener.
-    /// </summary>
-    double MaxHealt { get; set; }
+        /// <summary>
+        /// Obtiene o establece la salud máxima del Pokémon.
+        /// </summary>
+        double MaxHealt { get; set; }
 
-    /// <summary>
-    /// Identificador único del Pokémon.
-    /// </summary>
-    int Id { get; set; }
+        /// <summary>
+        /// Obtiene o establece el identificador único del Pokémon.
+        /// </summary>
+        int Id { get; set; }
 
-    /// <summary>
-    /// Valor de ataque del Pokémon.
-    /// </summary>
-    int Attack { get; set; }
+        /// <summary>
+        /// Obtiene o establece el valor de ataque del Pokémon.
+        /// </summary>
+        int Attack { get; set; }
 
-    /// <summary>
-    /// Valor de defensa del Pokémon.
-    /// </summary>
-    int Defense { get; set; }
+        /// <summary>
+        /// Obtiene o establece el valor de defensa del Pokémon.
+        /// </summary>
+        int Defense { get; set; }
 
-    /// <summary>
-    /// Valor de ataque especial del Pokémon.
-    /// </summary>
-    int SpecialAttack { get; set; }
+        /// <summary>
+        /// Obtiene o establece el valor de ataque especial del Pokémon.
+        /// </summary>
+        int SpecialAttack { get; set; }
 
-    /// <summary>
-    /// Valor de defensa especial del Pokémon.
-    /// </summary>
-    int SpecialDefense { get; set; }
+        /// <summary>
+        /// Obtiene o establece el valor de defensa especial del Pokémon.
+        /// </summary>
+        int SpecialDefense { get; set; }
 
-    /// <summary>
-    /// Tipo del Pokémon (por ejemplo, Agua, Fuego, Planta, etc.).
-    /// </summary>
-    Type Type { get; set; }
+        /// <summary>
+        /// Obtiene o establece el tipo del Pokémon (por ejemplo, fuego, agua, planta).
+        /// </summary>
+        Type Type { get; set; }
 
-    /// <summary>
-    /// Lista de movimientos que el Pokémon puede realizar.
-    /// </summary>
-    List<Move> Moves { get; set; }
+        /// <summary>
+        /// Obtiene o establece la lista de movimientos que el Pokémon conoce.
+        /// </summary>
+        List<Move> Moves { get; set; }
 
-    /// <summary>
-    /// Estado especial actual del Pokémon (por ejemplo, envenenado, quemado, etc.).
-    /// </summary>
-    SpecialStatus Status { get; set; }
+        /// <summary>
+        /// Obtiene o establece el estado especial del Pokémon (por ejemplo, envenenado, paralizado).
+        /// </summary>
+        SpecialStatus Status { get; set; }
 
-    /// <summary>
-    /// Número de turnos que le quedan al Pokémon durmiendo, si está dormido.
-    /// </summary>
-    int SleepTurnsLeft { get; set; }
+        /// <summary>
+        /// Obtiene o establece el número de turnos restantes que el Pokémon permanecerá dormido.
+        /// </summary>
+        int SleepTurnsLeft { get; set; }
 
-    /// <summary>
-    /// Calcula el daño infligido al oponente por un movimiento.
-    /// </summary>
-    /// <param name="movimiento">Movimiento que realiza el ataque.</param>
-    /// <param name="efectividad">Factor de efectividad del ataque.</param>
-    /// <param name="oponente">El Pokémon oponente que recibe el ataque.</param>
-    /// <returns>Devuelve el daño calculado.</returns>
-    double CalculateDamage(Move movimiento, double efectividad, Pokemon oponente);
+        /// <summary>
+        /// Calcula el daño infligido por un movimiento específico al oponente.
+        /// </summary>
+        /// <param name="movimiento">El movimiento que el Pokémon usará para atacar.</param>
+        /// <param name="efectividad">El factor de efectividad del movimiento (por ejemplo, si es súper efectivo).</param>
+        /// <param name="oponente">El Pokémon enemigo que recibirá el daño.</param>
+        /// <returns>Devuelve el valor de daño infligido.</returns>
+        double CalculateDamage(Move movimiento, double efectividad, Pokemon oponente);
 
-    /// <summary>
-    /// Verifica si el Pokémon puede atacar en su turno, teniendo en cuenta su estado actual.
-    /// </summary>
-    /// <returns>Devuelve true si el Pokémon puede atacar, de lo contrario false.</returns>
-    Task<bool> CanAtack(InteractionContext ctx);
+        /// <summary>
+        /// Determina si el Pokémon puede atacar según su estado actual.
+        /// </summary>
+        /// <param name="ctx">El contexto de la interacción en Discord.</param>
+        /// <returns>Devuelve un valor booleano indicando si el Pokémon puede atacar.</returns>
+        Task<bool> CanAtack(InteractionContext ctx);
 
-    /// <summary>
-    /// Realiza un ataque al Pokémon enemigo.
-    /// </summary>
-    /// <param name="player">El jugador que posee el Pokémon que ataca.</param>
-    /// <param name="enemy">El Pokémon enemigo que recibe el ataque.</param>
-    /// <param name="movement">El movimiento utilizado para el ataque.</param>
-    /// <param name="currentShift">El turno actual en el que se realiza el ataque.</param>
-    void AttackP(Player player, Pokemon enemy, Move movement, int currentShift, InteractionContext ctx);
+        /// <summary>
+        /// Realiza un ataque hacia un Pokémon enemigo.
+        /// </summary>
+        /// <param name="player">El jugador propietario del Pokémon que ataca.</param>
+        /// <param name="enemy">El Pokémon enemigo que recibirá el ataque.</param>
+        /// <param name="movement">El movimiento que se usará para atacar.</param>
+        /// <param name="currentShift">El turno actual en la batalla.</param>
+        /// <param name="ctx">El contexto de la interacción en Discord.</param>
+        void AttackP(Player player, Pokemon enemy, Move movement, int currentShift, InteractionContext ctx);
 
-    /// <summary>
-    /// Procesa el estado actual del Pokémon y aplica los efectos correspondientes.
-    /// </summary>
-    /// <param name="enemy">El Pokémon enemigo (opcional) en caso de que el estado afecte a ambos.</param>
-    string ProcessStatus();
+        /// <summary>
+        /// Procesa el estado actual del Pokémon y aplica los efectos correspondientes (por ejemplo, daño por veneno).
+        /// </summary>
+        /// <returns>Devuelve una descripción del estado actual del Pokémon.</returns>
+        string ProcessStatus();
 
-    /// <summary>
-    /// Verifica si el Pokémon está fuera de combate (sin puntos de salud).
-    /// </summary>
-    /// <returns>Devuelve true si el Pokémon está fuera de combate, de lo contrario false.</returns>
-    bool OutOfAction();
+        /// <summary>
+        /// Verifica si el Pokémon está fuera de combate.
+        /// </summary>
+        /// <returns>Devuelve true si el Pokémon ya no puede combatir, de lo contrario false.</returns>
+        bool OutOfAction();
+    }
 }
