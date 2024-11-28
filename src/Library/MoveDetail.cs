@@ -26,5 +26,9 @@ namespace Library
         /// URL que apunta a información adicional del movimiento, usualmente para obtener detalles de una API.
         /// </summary>
         public string URL { get; set; }
+
+        public double? healtPercentaje { get; set; } = null;
+
+        public bool IsSpecialMove { get; set; } = false;
     }
 }

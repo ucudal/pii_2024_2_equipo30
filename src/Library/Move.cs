@@ -46,5 +46,10 @@ namespace Library
         {
             SpecialStatus = specialStatus;
         }
+        
+        public void Compare()
+        {
+            
+        }
     }
 }

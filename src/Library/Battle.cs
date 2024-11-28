@@ -85,6 +85,7 @@ public class Battle : IBattle
     /// <param name="ctx">Contexto de la interacción en Discord.</param>
     public async void PlayShift(Player actualPlayer, Player enemyPlayer, InteractionContext ctx)
     {
+        
         string message = "";
         if (!actualPlayer.actualPokemon.OutOfAction())
         {
@@ -111,6 +112,19 @@ public class Battle : IBattle
         }
 
         await ctx.Channel.SendMessageAsync(message);
+
+        var selectedMove = actualPlayer.Move;
+        if (selectedMove != null)
+        {
+            if (selectedMove.MoveDetails.IsSpecialMove && selectedMove.MoveDetails.Name)
+            {
+                double damage = (selectedMove.MoveDetails.Power ?? 0) * 1.5;
+                enemyPlayer.actualPokemon.TakeDamage(damage);
+
+                double healtAmount = damage + (selectedMove.MoveDetails.HealthPercentaje ?? 0);
+                actualPlayer.actualPokemon.Health(healt.Percentaje);
+            }
+        }
     }
 
     /// <summary>
