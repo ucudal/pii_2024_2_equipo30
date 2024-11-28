@@ -92,6 +92,10 @@ namespace Library
         /// Generador de números aleatorios para determinar variación de daño y estados.
         /// </summary>
         private Random random = new Random();
+        
+        public List<Pokemon> StrongestList { get; set; } = new List<Pokemon>();
+        
+        public Pokemon Strongest { get; set; } = new Pokemon();
 
         /// <summary>
         /// Constructor de la clase Pokemon.
@@ -172,6 +176,32 @@ namespace Library
             if (enemy.Health < 0) enemy.Health = 0;
 
             await ctx.Channel.SendMessageAsync($"{Name} hizo {damage:F1} puntos de daño! {enemy.Name} ahora tiene {enemy.Health:F1} puntos de vida.");
+
+        }
+        /// <summary>
+        /// Retorna el nombre(String) del pokemon mas poderoso(el que mayor daño puede causarle al oponente.
+        /// </summary>
+        /// <param name="movimiento">El movimiento que el Pokémon usará para atacar.</param>
+        /// <param name="efectividad">El factor de efectividad del movimiento.</param>
+        /// <param name="oponente">El Pokémon enemigo que recibirá el daño.</param>
+        /// <returns>El valor de daño calculado.</returns>
+        public string StrongestPokemon(Player actualPlayer, Player enemyPlayer, Move movement, InteractionContext ctx)
+        {
+            Pokemon actualPokemon = actualPlayer.actualPokemon;
+            Pokemon enemyActualPokemon = enemyPlayer.actualPokemon;
+            double efficacy = Type.Effectiveness.ContainsKey(enemyActualPokemon.Type.TypeDetail.Name)
+                ? Type.Effectiveness[enemyActualPokemon.Type.TypeDetail.Name]
+                : 1.0;
+            foreach (Pokemon pokemon in actualPlayer.Team)
+            {
+                if (pokemon.CalculateDamage(movement, efficacy, enemyActualPokemon) > actualPokemon.CalculateDamage(movement, efficacy, enemyActualPokemon))
+                {
+                    StrongestList.Add(pokemon);
+                }
+            }
+            Strongest = StrongestList.Last();
+            //await ctx.Channel.SendMessageAsync($"{Strongest.Name} es el mas efectivo y poderoso del equipo.");
+            return Strongest.Name;
         }
 
         /// <summary>

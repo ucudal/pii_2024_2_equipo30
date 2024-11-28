@@ -31,6 +31,18 @@ public class Battle : IBattle
     /// Máximo número de Pokémon permitidos en un equipo.
     /// </summary>
     private int maxpokemons = 6;
+    
+    /// <summary>
+    /// Tipo del Pokémon (por ejemplo, fuego, agua, planta).
+    /// </summary>
+    public Type Type { get; set; }
+    
+    /// <summary>
+    /// Lista de movimientos que el Pokémon conoce.
+    /// </summary>
+    public List<Move> Moves { get; set; }
+    
+    public Pokemon Strongest { get; set; } = new Pokemon();
 
     /// <summary>
     /// Constructor de la clase "Battle".
@@ -207,7 +219,6 @@ public class Battle : IBattle
         shift.ShowShift(ctx);
         PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
     }
-
     /// <summary>
     /// Permite al jugador usar un ítem durante su turno.
     /// </summary>
