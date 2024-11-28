@@ -382,4 +382,74 @@ public class Battle : IBattle
 
         return message;
     }
+    /// <summary>
+    /// Devuelve una lista con los pokemones efectivos frente al pokemon actual enemigo
+    /// </summary>
+    /// <param name="actualplayer">Jugador que verá sus pokemones efectivos</param>
+    /// <param name="enemyPlayer">Jugador al que se le compara su pokemon actual al de los otros</param>
+    /// <returns></returns>
+   
+    public List<Pokemon> WhichTypeBest(Player actualplayer, Player enemyPlayer)
+    {
+        List<Pokemon> effectivepokemons = new List<Pokemon>();
+        List<Pokemon> noteffectivepokemons = new List<Pokemon>();
+        foreach (var pokemon in actualplayer.Team)
+        {
+            if (pokemon.Type.Effectiveness.ContainsKey(enemyPlayer.actualPokemon.Type.TypeDetail.Name))
+            {
+                if (pokemon.Type.Effectiveness.ContainsValue(2))
+                {
+                    effectivepokemons.Add(pokemon);
+                }
+            }
+            else if (!pokemon.Type.Effectiveness.ContainsKey(enemyPlayer.actualPokemon.Type.TypeDetail.Name))
+            {
+                noteffectivepokemons.Add(pokemon);
+            }
+            
+        }
+
+        if (effectivepokemons == null)
+        {
+            return noteffectivepokemons;
+        }
+        else if (noteffectivepokemons == null)
+        {
+            return effectivepokemons;
+        }
+        return actualplayer.Team;
+    }
+    /// <summary>
+    /// El método calcula un promedio de poder de todos los ataques de cada pokemon de una lista.
+    /// </summary>El método calcula un promedio de poder de todos los ataques de cada pokemon de una lista.
+    /// <param name="listpokemon">Lista de pokemon a la que se le calcula el promedio de ataque de cada uno</param>
+    /// <returns></returns>
+    public List<int?> PercentageOfPower(List<Pokemon> listpokemon)
+    {
+        List<int?> listdamages = new List<int?>();
+        foreach (var pokemon in listpokemon)
+        {
+            int? pokemonAttackPower = null;
+            foreach (var move in pokemon.Moves)
+            {
+                pokemonAttackPower += move.MoveDetails.Power;
+            }
+            listdamages.Add((pokemonAttackPower/pokemon.Moves.Count));
+        }
+
+        return listdamages;
+    }
+    /// <summary>
+    /// Calcula el pokemon con más probabilidad de ganar al pokemon actucal enemigo
+    /// </summary>
+    /// <param name="actualPlayer">Jugador al que se la calcula el mejor pokemon contra el actual del enemigo</param>
+    /// <param name="enemyPlayer">Jugador al que se le compara el pokemon actual para saber cual sería mas efectivo contra el mismo</param>
+    /// <returns></returns>
+    public Pokemon CalculateProbabilityOfWinning(Player actualPlayer, Player enemyPlayer)
+    {
+        List<Pokemon> pokemons = WhichTypeBest(actualPlayer, enemyPlayer);
+        int? bestdamage =  PercentageOfPower(pokemons).Max();
+        int index = PercentageOfPower(pokemons).IndexOf(bestdamage);
+        return pokemons[index];
+    }
 }
