@@ -218,8 +218,38 @@ namespace Library.BotDiscord
                 await ctx.CreateResponseAsync($"Debes esperar tu turno. Es el turno de {BotQueuePlayers.GetInstance().Battle.shift.actualPlayer}");
                 return;
             }
-
             BotQueuePlayers.GetInstance().Battle.Attack(BotQueuePlayers.GetInstance().Battle.shift.actualPlayer, BotQueuePlayers.GetInstance().Battle.shift.enemyPlayer, int.Parse(moveNumber), ctx);
+            
         }
+
+        [SlashCommand("Check", "Da una ojeada a los pokemons del equipo enemigo y cual esta usando ahora")]
+        public async Task Check(InteractionContext ctx)//mostraria el equipo del rival y su pokemon activo
+        {
+            if (BotQueuePlayers.GetInstance().PlayersInGame == null)
+            {
+                await ctx.CreateResponseAsync("La partida aun no ha comenzado.");
+                return;
+            }
+            var player = BotQueuePlayers.GetInstance().GetPlayerByName(ctx.Member.Username, BotQueuePlayers.GetInstance().PlayersInGame);
+            if (player == null)
+            {
+                await ctx.CreateResponseAsync($"Debes esperar tu turno. Es el turno de {BotQueuePlayers.GetInstance().Battle.shift.actualPlayer}");
+                return;
+            }
+
+            await ctx.CreateResponseAsync(
+                $"Los pokemones del enemigo {BotQueuePlayers.GetInstance().GetPlayerByName(ctx.Member.Username, BotQueuePlayers.GetInstance().PlayersInGame)} son {BotQueuePlayers.GetInstance().Battle.shift.enemyPlayer.Team}. \nEl pokemon actual del enemigo es:{BotQueuePlayers.GetInstance().Battle.shift.enemyPlayer.actualPokemon} de tipo {BotQueuePlayers.GetInstance().Battle.shift.enemyPlayer.actualPokemon.Type.TypeDetail.Name}");
+        }
+
+        [SlashCommand("CheckEfectivity", "Muestra la efectividad del pokemon actual")]
+        public async Task CheckEfectivity(InteractionContext ctx)//mostraria que efectividad tiene el pokemon de uno
+        {
+            
+            string message = $"{BotQueuePlayers.GetInstance().Battle.ShowEfectivity(BotQueuePlayers.GetInstance().Battle.shift.actualPlayer,ctx)}";
+            await ctx.CreateResponseAsync(message);
+        }
+        
+        
+        
     }
 }

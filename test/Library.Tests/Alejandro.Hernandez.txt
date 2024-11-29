@@ -1,0 +1,10 @@
+﻿Criterios de aceptación: 
+
+El sistema debe evaluar los ataques disponibles de cada Pokémon de tu equipo y su tipo (por ejemplo, Fuego, Agua, Eléctrico, etc.). 
+
+El sistema debe identificar el tipo del Pokémon rival activo y determinar qué tipos de ataques de tu equipo son más efectivos contra ese tipo (por ejemplo, el Fuego es fuerte contra Planta, Agua es fuerte contra Fuego, etc.). 
+
+El sistema debe contar cuántos ataques de cada Pokémon en tu equipo son de un tipo que tiene una ventaja sobre el tipo del Pokémon rival activo (es decir, los ataques que causarán más daño). 
+
+El Pokémon de tu equipo con el mayor número de ataques efectivos contra el Pokémon rival activo debe ser considerado el que tiene más probabilidad de ganar.
+

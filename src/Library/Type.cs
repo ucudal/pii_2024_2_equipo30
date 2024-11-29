@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 namespace Library
@@ -25,6 +26,7 @@ namespace Library
         /// Por ejemplo, si el valor es 2, significa que el ataque es súper efectivo; si es 0.5, es menos efectivo.
         /// </summary>
         public Dictionary<string, double> Effectiveness { get; set; }
+        
 
         /// <summary>
         /// Constructor por defecto.
@@ -233,6 +235,7 @@ namespace Library
                     Effectiveness.Add("poison", 0);
                     break;
             }
+            
         }
     }
 }

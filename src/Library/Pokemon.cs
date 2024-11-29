@@ -92,7 +92,8 @@ namespace Library
         /// Generador de números aleatorios para determinar variación de daño y estados.
         /// </summary>
         private Random random = new Random();
-
+        
+        
         /// <summary>
         /// Constructor de la clase Pokemon.
         /// </summary>
@@ -118,6 +119,7 @@ namespace Library
             Type = type;
             Moves = moves;
             Status = SpecialStatus.NoneStatus;
+            
         }
 
         /// <summary>
@@ -167,7 +169,6 @@ namespace Library
 
             double efficacy = Type.Effectiveness.ContainsKey(enemy.Type.TypeDetail.Name) ? Type.Effectiveness[enemy.Type.TypeDetail.Name] : 1.0;
             double damage = CalculateDamage(movement, efficacy, enemy);
-
             enemy.Health -= damage;
             if (enemy.Health < 0) enemy.Health = 0;
 
@@ -181,7 +182,7 @@ namespace Library
         /// <param name="efectividad">El factor de efectividad del movimiento.</param>
         /// <param name="oponente">El Pokémon enemigo que recibirá el daño.</param>
         /// <returns>El valor de daño calculado.</returns>
-        public double CalculateDamage(Move movimiento, double efectividad, Pokemon oponente)
+        public double CalculateDamage(Move movimiento, double efficacy, Pokemon oponente)
         {
             int power = movimiento.MoveDetails.Power ?? 0;
             int attack = movimiento.SpecialAttack ? SpecialAttack : Attack;
@@ -190,7 +191,7 @@ namespace Library
             double variation = random.NextDouble() * (1.0 - 0.85) + 0.85;
             double critic = random.NextDouble() < 0.1 ? 1.2 : 1.0;
 
-            return (0.1 * critic * efectividad * variation * (0.2 * level + 1) * attack * power) / (25 * defence) + 2;
+            return (0.1 * critic * efficacy * variation * (0.2 * level + 1) * attack * power) / (25 * defence) + 2;
         }
 
         /// <summary>
@@ -269,4 +270,5 @@ namespace Library
             return Outofaction;
         }
     }
+    
 }

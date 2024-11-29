@@ -86,7 +86,7 @@ namespace Library
 
             return moves;
         }
-
+        
         /// <summary>
         /// Asigna un estado especial a los movimientos del Pokémon en función de su tipo.
         /// </summary>

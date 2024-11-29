@@ -16,7 +16,7 @@ public class Battle : IBattle
     /// Jugador 1 en la batalla.
     /// </summary>
     private Player Player1;
-
+    
     /// <summary>
     /// Jugador 2 en la batalla.
     /// </summary>
@@ -31,6 +31,8 @@ public class Battle : IBattle
     /// Máximo número de Pokémon permitidos en un equipo.
     /// </summary>
     private int maxpokemons = 6;
+    
+    public Type Type { get; set; }
 
     /// <summary>
     /// Constructor de la clase "Battle".
@@ -131,7 +133,7 @@ public class Battle : IBattle
             PlayShift(shift.actualPlayer, shift.enemyPlayer, ctx);
             return;  // No tiene movimientos disponibles, salir de la función
         }
-
+        
         if (!(await actualPokemon.CanAtack(ctx)))
         {
             shift.ShowShift(ctx);
@@ -150,7 +152,7 @@ public class Battle : IBattle
         }
 
         var MovementSelected = actualPokemon.Moves[selectedMovement];
-
+        
         if (MovementSelected.SpecialAttack)
         {
             // Verificar si el ataque especial puede ser usado
@@ -312,7 +314,7 @@ public class Battle : IBattle
             {
                 player.SwitchPokemon(pokemonIndex - 1, ctx);
                 shift.SwitchShift();
-                await ctx.Channel.SendMessageAsync($"\nCambio realizado. Ahora tu Pokémon es {player.actualPokemon.Name}\n");
+                await ctx.Channel.SendMessageAsync($"\nCambio realizado. Ahora tu Pokémon es {player.actualPokemon.Name} de tipo: {player.actualPokemon.Type}\n");
             }
             else
             {
@@ -356,9 +358,10 @@ public class Battle : IBattle
         for (int i = 0; i < player.actualPokemon.Moves.Count; i++)
         {
             var movement = player.actualPokemon.Moves[i];
-            message += $"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus}\n";
+            message += $"{i + 1}: {movement.MoveDetails.Name} (Poder: {movement.MoveDetails.Power}) (Precisión: {movement.MoveDetails.Accuracy}) Especial: {movement.SpecialStatus} Eficiencia contra el enemigo = {Player2.actualPokemon.Type.Effectiveness}\n";
         }
 
+        
         return message;
     }
     
@@ -382,4 +385,21 @@ public class Battle : IBattle
 
         return message;
     }
+    
+    public string ShowEfectivity(Player player,InteractionContext ctx)
+    {
+        //muestra la efectividad del pokemon
+        
+        string message = $"Tu pokemon {player.actualPokemon} es de tipo : {player.actualPokemon.Type} \nTiene una efectividad de : {player.actualPokemon.Type.Effectiveness}";
+        
+        return message;
+    }
+
+/*    public EfectivePokemon(Player player, InteractionContext ctx)
+    {
+        for (int i = 0; i < player.Team.Count; i++)
+        {
+            List<string> equipo = player.Team[i]
+        }
+    }*/
 }
